@@ -32,5 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         containeruser.startAnimation(frombottom);
         containerpwd.startAnimation(frombottom);
+
     }
 }

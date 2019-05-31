@@ -1,12 +1,15 @@
 package com.example.pelangiaquscape;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout logosplash, container_user, container_pwd, container_google, container_daftar;
     Animation frombottom;
     Button btn_masuk;
+    TextView daftar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         container_daftar = (LinearLayout) findViewById(R.id.container_daftar);
         btn_masuk = (Button) findViewById(R.id.btn_masuk);
 
+        daftar =(TextView) findViewById(R.id.tv_daftar);
+
         bgapp.animate().translationY(-1500).setDuration(1000).setStartDelay(1500);
         clover.animate().alpha(0).setDuration(1000).setStartDelay(600);
         logosplash.animate().translationY(-260).setDuration(1500).setStartDelay(1000);
@@ -40,6 +46,14 @@ public class LoginActivity extends AppCompatActivity {
         btn_masuk.startAnimation(frombottom);
         container_google.startAnimation(frombottom);
         container_daftar.startAnimation(frombottom);
+
+        daftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent daftar = new Intent(LoginActivity.this,DaftarActivity.class);
+                startActivity(daftar);
+            }
+        });
 
     }
 }

@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="28dp"
+            android:gravity="center"
             app:boxStrokeColor="@color/colorBorder"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -62,15 +63,12 @@
                 android:id="@+id/et_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/iconusername"
                 android:drawableStart="@drawable/iconusername"
                 android:drawablePadding="10dp"
                 android:hint="Username"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"
-                android:backgroundTint="@color/colorPrimary"
-                android:singleLine="true"/>
+                android:textColorHint="@color/colorBlack" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -91,6 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="28dp"
+            android:gravity="center"
             app:boxStrokeColor="@color/colorBorder"
             app:passwordToggleEnabled="true"
             app:passwordToggleDrawable="@drawable/icon_selector"
@@ -101,16 +100,12 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/iconpassword"
                 android:drawableStart="@drawable/iconpassword"
                 android:drawablePadding="10dp"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"
-                android:textCursorDrawable="@null"
-                android:backgroundTint="@color/colorPrimary"
-                android:singleLine="true"/>
+                android:textColorHint="@color/colorBlack"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -120,10 +115,7 @@
         android:id="@+id/btn_masuk"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/button_blue_login"
         android:elevation="6dp"
         android:text="Masuk"
@@ -190,7 +182,7 @@
             android:textStyle="normal" />
 
         <TextView
-            android:id="@+id/btn_daftar"
+            android:id="@+id/tv_daftar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

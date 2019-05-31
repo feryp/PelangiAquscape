@@ -4,14 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView bgapp, clover;
-    LinearLayout logosplash, containeruser, containerpwd;
+    LinearLayout logosplash, container_user, container_pwd, container_google, container_daftar;
     Animation frombottom;
+    Button btn_masuk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +25,21 @@ public class MainActivity extends AppCompatActivity {
         bgapp = (ImageView) findViewById(R.id.bgapp);
         clover = (ImageView) findViewById(R.id.clover);
         logosplash = (LinearLayout) findViewById(R.id.logosplash);
-        containeruser = (LinearLayout) findViewById(R.id.containeruser);
-        containerpwd = (LinearLayout) findViewById(R.id.containerpwd);
+        container_user = (LinearLayout) findViewById(R.id.container_user);
+        container_pwd = (LinearLayout) findViewById(R.id.container_pwd);
+        container_google = (LinearLayout) findViewById(R.id.container_google);
+        container_daftar = (LinearLayout) findViewById(R.id.container_daftar);
+        btn_masuk = (Button) findViewById(R.id.btn_masuk);
 
         bgapp.animate().translationY(-1500).setDuration(1000).setStartDelay(1500);
         clover.animate().alpha(0).setDuration(1000).setStartDelay(600);
         logosplash.animate().translationY(-260).setDuration(1500).setStartDelay(1000);
 
-        containeruser.startAnimation(frombottom);
-        containerpwd.startAnimation(frombottom);
+        container_user.startAnimation(frombottom);
+        container_pwd.startAnimation(frombottom);
+        btn_masuk.startAnimation(frombottom);
+        container_google.startAnimation(frombottom);
+        container_daftar.startAnimation(frombottom);
 
     }
 }

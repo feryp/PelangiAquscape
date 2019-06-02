@@ -55,5 +55,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btn_masuk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent btn_masuk = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(btn_masuk);
+            }
+        });
+
     }
 }

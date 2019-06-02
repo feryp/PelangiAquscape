@@ -6,4 +6,5 @@
     <color name="colorBorder">#000000</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBlue">#2398D8</color>
+    <color name="colorGrey">#C4C4C4</color>
 </resources>

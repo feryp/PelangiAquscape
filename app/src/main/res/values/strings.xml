@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">PelangiAquscape</string>
+    <string name="password">Password</string>
+    <string name="ulangi_password">Ulangi Password</string>
+    <string name="daftar">Daftar</string>
+    <string name="masuk">Masuk</string>
+    <string name="username">Username</string>
+    <string name="telepon">Telepon</string>
+    <string name="email">Email</string>
+    <string name="sudah_memiliki_akun">Sudah memiliki akun ?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

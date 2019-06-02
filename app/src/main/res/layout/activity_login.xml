@@ -60,8 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/iconusername"
-                android:drawablePadding="10dp"
                 android:hint="Username"
+                android:drawablePadding="10dp"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -121,6 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_pwd" />
+
 
     <LinearLayout
         android:id="@+id/container_google"
@@ -195,7 +196,7 @@
         android:layout_width="526dp"
         android:layout_height="900dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/bgapp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"

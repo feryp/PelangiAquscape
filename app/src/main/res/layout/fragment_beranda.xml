@@ -1,387 +1,394 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     tools:context=".fragment.BerandaFragment">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/bar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundhome">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Beranda"
-                    android:textColor="@color/colorBlue"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_bold"/>
-            </RelativeLayout>
+                    android:text="Hallo,"
+                    android:textSize="35sp"
+                    android:layout_margin="6dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/colorPrimary"
+                    />
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Admin"
+                    android:textSize="35sp"
+                    android:layout_margin="6dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/colorPrimary"
+                    />
 
-        </android.support.v7.widget.Toolbar>
+            </LinearLayout>
 
-    </android.support.design.widget.AppBarLayout>
-
-
-    <ImageView
-        android:id="@+id/ilustrasi"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/ilustrasi"
-        android:layout_below="@+id/bar"
-        android:scaleType="centerCrop"/>
-
-    <RelativeLayout
-        android:id="@+id/laporan_penjualan"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/ilustrasi"
-        android:background="@drawable/border_box_grey">
-
-        <ImageView
-            android:id="@+id/ic_laporan_penjualan"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_laporan_penjualan"
-            android:layout_marginStart="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_laporan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Laporan"
-            android:textSize="12sp"
-            android:textColor="#898989"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/ic_laporan_penjualan"
-            android:fontFamily="@font/roboto_regular"/>
-
-        <TextView
-            android:id="@+id/tv_tgl_laporan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mei 2019"
-            android:textSize="14sp"
-            android:textColor="#898989"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/ic_laporan_penjualan"
-            android:layout_below="@+id/tv_laporan"
-            android:fontFamily="@font/roboto_bold"/>
-
-        <TextView
-            android:id="@+id/tv_total_penjualan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="150dp"
-            android:layout_toRightOf="@+id/ic_laporan_penjualan"
-            android:fontFamily="@font/roboto_bold"
-            android:gravity="center"
-            android:text="Rp. 0"
-            android:textColor="#898989"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/iv_arrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow"
-            android:layout_toRightOf="@+id/tv_total_penjualan"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="80dp"
-            android:rotation="180" />
-
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_below="@+id/laporan_penjualan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/laporan_penjualan"
-            android:background="@color/colorPrimary">
-
-            <TextView
-                android:id="@+id/tv_kategori"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kategori"
-                android:textSize="20sp"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="#636262"
-                android:layout_marginTop="10dp"
-                android:layout_margin="6dp"/>
-
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:rowCount="3"
-                android:columnCount="3"
-                android:layout_below="@+id/tv_kategori">
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-                <android.support.v7.widget.CardView
+                <TextView
+                    android:id="@+id/tv_laporan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="6dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Laporan"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:id="@+id/container_laporan"
+                    android:layout_width="390dp"
+                    android:layout_height="210dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="30dp"
+                    android:background="@drawable/border_box_blue"
+                    android:elevation="6dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/transaksi"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/border_box_blue"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/transaksi"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginTop="12dp"
-                            android:text="Transaksi"
                             android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/colorBlue"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_margin="10dp">
-
-                    <LinearLayout
-                        android:id="@+id/pegawai"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/border_box_blue"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/pegawai"/>
+                            android:padding="10dp"
+                            android:text="Laporan Penjualan"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="18sp" />
 
                         <TextView
+                            android:id="@+id/bulan_laporan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginTop="12dp"
-                            android:text="Pegawai"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/colorBlue"/>
+                            android:layout_marginStart="100dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:padding="10dp"
+                            android:text="Mei 2019"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="14sp" />
 
                     </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:id="@+id/kartubisnis"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/border_box_blue"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/kartubisnis"/>
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/laporanpenjualan" />
 
                         <TextView
+                            android:id="@+id/total_penjualan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginTop="12dp"
-                            android:text="Kartu Bisnis"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
                             android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/colorBlue"/>
+                            android:text="Rp. 0"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="38sp" />
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </LinearLayout>
 
-                <android.support.v7.widget.CardView
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:id="@+id/tv_kategori"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_margin="10dp">
+                    android:text="Kategori"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="#636262"
+                    android:layout_margin="6dp"/>
 
-                    <LinearLayout
-                        android:id="@+id/pembelian"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/border_box_blue"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/pembelian"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginTop="12dp"
-                            android:text="Pembelian"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/colorBlue"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
+                <GridLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_margin="10dp">
+                    android:rowCount="3"
+                    android:columnCount="3">
 
-                    <LinearLayout
-                        android:id="@+id/penjualan"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/border_box_blue"
-                        android:orientation="vertical">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="10dp">
 
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/penjualan"/>
+                        <LinearLayout
+                            android:id="@+id/transaksi"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:background="@drawable/border_box_blue"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginTop="12dp"
-                            android:text="Penjualan"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/colorBlue"/>
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/transaksi"/>
 
-                    </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_marginTop="12dp"
+                                android:text="Transaksi"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorBlue"/>
 
-                </android.support.v7.widget.CardView>
+                        </LinearLayout>
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_margin="10dp">
+                    </android.support.v7.widget.CardView>
 
-                    <LinearLayout
-                        android:id="@+id/pengiriman"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/border_box_blue"
-                        android:orientation="vertical">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="10dp">
 
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/pengiriman"/>
+                        <LinearLayout
+                            android:id="@+id/pegawai"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:background="@drawable/border_box_blue"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginTop="12dp"
-                            android:text="Pengiriman"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/colorBlue"/>
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/pegawai"/>
 
-                    </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_marginTop="12dp"
+                                android:text="Pegawai"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorBlue"/>
 
-                </android.support.v7.widget.CardView>
+                        </LinearLayout>
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_margin="10dp">
+                    </android.support.v7.widget.CardView>
 
-                    <LinearLayout
-                        android:id="@+id/barang"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/border_box_blue"
-                        android:orientation="vertical">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="10dp">
 
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/barang"/>
+                        <LinearLayout
+                            android:id="@+id/kartubisnis"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:background="@drawable/border_box_blue"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginTop="12dp"
-                            android:text="Barang"
-                            android:fontFamily="@font/roboto_bold"
-                            android:textColor="@color/colorBlue"/>
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/kartubisnis"/>
 
-                    </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_marginTop="12dp"
+                                android:text="Kartu Bisnis"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorBlue"/>
 
-                </android.support.v7.widget.CardView>
+                        </LinearLayout>
 
-            </GridLayout>
+                    </android.support.v7.widget.CardView>
 
-        </RelativeLayout>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/pembelian"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:background="@drawable/border_box_blue"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/pembelian"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_marginTop="12dp"
+                                android:text="Pembelian"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorBlue"/>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/penjualan"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:background="@drawable/border_box_blue"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/penjualan"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_marginTop="12dp"
+                                android:text="Penjualan"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorBlue"/>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/pengiriman"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:background="@drawable/border_box_blue"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/pengiriman"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_marginTop="12dp"
+                                android:text="Pengiriman"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorBlue"/>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="6dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/barang"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:background="@drawable/border_box_blue"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/barang"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_marginTop="12dp"
+                                android:text="Barang"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorBlue"/>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </GridLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </ScrollView>
 
-
-
-</RelativeLayout>
+</FrameLayout>

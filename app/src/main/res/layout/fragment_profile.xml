@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:attr/windowBackground"
     tools:context=".fragment.ProfileFragment">
 
     <LinearLayout
@@ -13,8 +15,9 @@
         android:background="@color/colorPrimary">
 
         <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/border_blue_efect"
             android:layout_height="250dp"
             android:orientation="horizontal">
 
@@ -64,7 +67,8 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/ic_foto_profile"
+                    android:background="@drawable/border_profile"
                     android:layout_margin="10dp"/>
 
                 <Button
@@ -81,139 +85,132 @@
 
         </LinearLayout>
 
-            <ListView
-                android:id="@+id/listview"
+
+        <LinearLayout
+            android:id="@+id/notifikasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/border_box_grey">
+
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:src="@drawable/ic_notif"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notifikasi"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp"
+                android:layout_gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_blue"
+                android:rotation="180"
+                android:layout_marginStart="200dp"
+               />
 
-            </ListView>
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/bantuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/border_box_grey">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:src="@drawable/ic_bantuan"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bantuan"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp"
+                android:layout_gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_blue"
+                android:rotation="180"
+                android:layout_marginStart="210dp"/>
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/notifikasi"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="74dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:background="@drawable/border_box_grey">-->
+        </LinearLayout>
 
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="20dp"-->
-                <!--android:src="@drawable/ic_notif"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Notifikasi"-->
-                <!--android:textColor="@color/colorBlack"-->
-                <!--android:fontFamily="@font/roboto_bold"-->
-                <!--android:textSize="15sp"-->
-                <!--android:layout_gravity="center"/>-->
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:src="@drawable/ic_arrow_blue"-->
-                <!--android:rotation="180"-->
-                <!--android:layout_marginHorizontal="200dp"/>-->
+        <LinearLayout
+            android:id="@+id/tentangkami"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/border_box_grey">
 
-        <!--</LinearLayout>-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:src="@drawable/ic_info"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tentang Kami"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp"
+                android:layout_gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_blue"
+                android:rotation="180"
+                android:layout_marginStart="175dp"/>
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/bantuan"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="74dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:background="@drawable/border_box_grey">-->
+        </LinearLayout>
 
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="20dp"-->
-                <!--android:src="@drawable/ic_bantuan"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Bantuan"-->
-                <!--android:textColor="@color/colorBlack"-->
-                <!--android:fontFamily="@font/roboto_bold"-->
-                <!--android:textSize="15sp"-->
-                <!--android:layout_gravity="center"/>-->
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:src="@drawable/ic_arrow_blue"-->
-                <!--android:rotation="180"-->
-                <!--android:layout_marginHorizontal="210dp"/>-->
+        <LinearLayout
+            android:id="@+id/keluar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/border_box_grey">
 
-        <!--</LinearLayout>-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:src="@drawable/ic_keluar"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keluar"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp"
+                android:layout_gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_blue"
+                android:rotation="180"
+                android:layout_marginStart="225dp"/>
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/tentangkami"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="74dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:background="@drawable/border_box_grey">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="20dp"-->
-                <!--android:src="@drawable/ic_info"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Tentang Kami"-->
-                <!--android:textColor="@color/colorBlack"-->
-                <!--android:fontFamily="@font/roboto_bold"-->
-                <!--android:textSize="15sp"-->
-                <!--android:layout_gravity="center"/>-->
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:src="@drawable/ic_arrow_blue"-->
-                <!--android:rotation="180"-->
-                <!--android:layout_marginHorizontal="175dp"/>-->
-
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/keluar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="74dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:background="@drawable/border_box_grey">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="20dp"-->
-                <!--android:src="@drawable/ic_keluar"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Keluar"-->
-                <!--android:textColor="@color/colorBlack"-->
-                <!--android:fontFamily="@font/roboto_bold"-->
-                <!--android:textSize="15sp"-->
-                <!--android:layout_gravity="center"/>-->
-            <!--<ImageView-->
-                <!--android:layout_width="24dp"-->
-                <!--android:layout_height="24dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:src="@drawable/ic_arrow_blue"-->
-                <!--android:rotation="180"-->
-                <!--android:layout_marginHorizontal="225dp"/>-->
-
-        <!--</LinearLayout>-->
+        </LinearLayout>
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

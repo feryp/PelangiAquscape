@@ -1,15 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".fragment.PemberitahuanFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:background="@color/colorPrimary">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pemberitahuan"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_bold"/>
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Pemberitahuan" />
+        android:background="@color/colorPrimary">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/iv_ilustrasi_InboxKosong"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/inboxempty"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tv_pemberitahuan_kosong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pemberitahuan Kosong"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_below="@+id/iv_ilustrasi_InboxKosong"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

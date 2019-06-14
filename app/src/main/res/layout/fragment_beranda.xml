@@ -47,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
+                    android:paddingTop="30dp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="Laporan"
                     android:textColor="@color/colorPrimary"
@@ -123,20 +124,19 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="15dp"
+                            android:padding="10dp"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:src="@drawable/laporanpenjualan" />
 
                             <TextView
                                 android:id="@+id/total_penjualan"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
                                 android:text="Rp. 0"
                                 android:textColor="@color/colorBlue"
@@ -179,7 +179,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="6dp">
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:id="@+id/transaksi"
@@ -212,7 +213,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="6dp">
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:id="@+id/pegawai"
@@ -245,7 +247,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="6dp">
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:id="@+id/kartubisnis"
@@ -278,7 +281,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="6dp">
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:id="@+id/pembelian"
@@ -311,7 +315,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="6dp">
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:id="@+id/penjualan"
@@ -344,7 +349,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="6dp">
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:id="@+id/pengiriman"
@@ -377,7 +383,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="6dp">
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:id="@+id/barang"

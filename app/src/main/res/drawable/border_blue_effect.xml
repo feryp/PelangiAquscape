@@ -5,30 +5,29 @@
             <!-- SHADOW -->
             <item>
                 <shape>
-                    <gradient
-                        android:startColor="@color/colorPrimary"
-                        android:endColor="@color/colorBlue"
-                        android:angle="270" />
+                   <gradient android:startColor="@color/colorBlue"
+                       android:endColor="#5AAFE1"
+                       android:angle="180"/>
                     <!-- alttan gölge -->
                     <!--<corners android:radius="28dp"/>-->
                 </shape>
             </item>
             <item
-                android:bottom="5px"
+                android:bottom="2px"
                 >
                 <shape>
-                    <padding android:bottom="5dp"/>
+                    <padding android:bottom="2dp"/>
                     <gradient
                         android:startColor="#FFFFFF"
                         android:endColor="#FFFFFF"
                         android:angle="270" />
                     <!--<corners-->
                         <!--android:radius="28dp"/>-->
-                    <padding
-                        android:left="10dp"
-                        android:top="10dp"
-                        android:right="5dp"
-                        android:bottom="10dp"/>
+                    <!--<padding-->
+                        <!--android:left="10dp"-->
+                        <!--android:top="10dp"-->
+                        <!--android:right="5dp"-->
+                        <!--android:bottom="10dp"/>-->
                 </shape>
             </item>
         </layer-list>

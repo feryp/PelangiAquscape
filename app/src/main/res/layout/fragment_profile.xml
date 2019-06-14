@@ -17,7 +17,7 @@
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:background="@drawable/border_blue_efect"
+            android:background="@drawable/border_blue_effect"
             android:layout_height="250dp"
             android:orientation="horizontal">
 

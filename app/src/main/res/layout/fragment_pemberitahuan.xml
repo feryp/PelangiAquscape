@@ -11,14 +11,13 @@
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
-        android:background="@color/colorPrimary">
+        android:elevation="6dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:background="@drawable/border_box_grey">
 
             <RelativeLayout
                 android:layout_width="match_parent"

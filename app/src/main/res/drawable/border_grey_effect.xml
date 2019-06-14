@@ -7,7 +7,7 @@
                 <shape>
                     <solid android:color="#40000000"/>
                     <!-- alttan gölge -->
-                    <corners android:radius="28dp"/>
+                    <!--<corners android:radius="28dp"/>-->
                 </shape>
             </item>
             <item
@@ -19,8 +19,8 @@
                         android:startColor="#FFFFFF"
                         android:endColor="#FFFFFF"
                         android:angle="270" />
-                    <corners
-                    android:radius="28dp"/>
+                    <!--<corners-->
+                    <!--android:radius="28dp"/>-->
                     <padding
                         android:left="10dp"
                         android:top="10dp"

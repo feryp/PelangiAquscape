@@ -30,7 +30,7 @@
                     android:textColor="@color/colorBlue"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/roboto_bold"/>
+                    android:fontFamily="@font/roboto_medium"/>
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>

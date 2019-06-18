@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context=".NotifikasiActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            android:background="@drawable/border_grey_effect">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/im_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notifikasi"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_medium"/>
+
+                <View
+                    android:id="@+id/im_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notifikasi Otomatis"
+        android:textSize="18sp"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/roboto_bold"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:id="@+id/tv_transaksi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaksi"
+            android:layout_alignParentStart="true"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/roboto_regular"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:switchMinWidth="25dp"
+            android:checked="false"
+            android:theme="@style/SCBSwitch"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jenis Notifikasi Lainnya"
+        android:textSize="18sp"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/roboto_bold"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:id="@+id/tv_email_pengingat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email Pengingat"
+            android:layout_alignParentStart="true"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/roboto_regular"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dapatkan notifikasi yang mungkin anda lewatkan"
+            android:layout_below="@+id/tv_email_pengingat"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="#898989"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:switchMinWidth="25dp"
+            android:checked="false"
+            android:theme="@style/SCBSwitch"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:id="@+id/tv_pesan_teks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pesan Teks (SMS)"
+            android:layout_alignParentStart="true"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/roboto_regular"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dapatkan notifikasi melalui SMS"
+            android:layout_below="@+id/tv_pesan_teks"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="#898989"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:switchMinWidth="25dp"
+            android:checked="false"
+            android:theme="@style/SCBSwitch"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

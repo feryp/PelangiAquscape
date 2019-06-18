@@ -6,4 +6,10 @@
     <color name="colorBlack">#000000</color>
     <color name="colorBlue">#2398D8</color>
     <color name="colorGrey">#C4C4C4</color>
+
+
+    <!--Switch Colors-->
+    <color name="disable_forground_grey">#9B9595</color>
+    <color name="disable_thumb_grey">#636262</color>
+    <color name="enable_thumb_blue">#2398D8</color>
 </resources>

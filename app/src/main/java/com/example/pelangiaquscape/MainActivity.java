@@ -2,17 +2,11 @@ package com.example.pelangiaquscape;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.ViewParent;
-import android.widget.Toolbar;
 
-import com.example.pelangiaquscape.Adapter.PageAdapter;
 import com.example.pelangiaquscape.fragment.BerandaFragment;
 import com.example.pelangiaquscape.fragment.PemberitahuanFragment;
 import com.example.pelangiaquscape.fragment.ProfileFragment;

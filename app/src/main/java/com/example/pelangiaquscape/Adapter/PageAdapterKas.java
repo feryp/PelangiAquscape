@@ -7,10 +7,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.example.pelangiaquscape.fragment.PendapatanFragment;
 import com.example.pelangiaquscape.fragment.PengeluaranFragment;
 
-public class PageAdapter extends FragmentStatePagerAdapter {
+public class PageAdapterKas extends FragmentStatePagerAdapter {
 int counttab;
 
-    public PageAdapter(FragmentManager fm, int counttab) {
+    public PageAdapterKas(FragmentManager fm, int counttab) {
         super(fm);
         this.counttab = counttab;
     }

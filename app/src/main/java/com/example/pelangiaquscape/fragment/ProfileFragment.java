@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.pelangiaquscape.BantuanActivity;
 import com.example.pelangiaquscape.EditProfileActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.NotifikasiActivity;
@@ -25,6 +26,7 @@ public class ProfileFragment extends Fragment {
 
         Button btn_edit_profile = v.findViewById(R.id.btn_edit_profile);
         LinearLayout notifikasi = v.findViewById(R.id.notifikasi);
+        LinearLayout bantuan = v.findViewById(R.id.bantuan);
 
         btn_edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,14 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
                 startActivity(notifikasi);
+            }
+        });
+
+        bantuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent bantuan = new Intent(getActivity(), BantuanActivity.class);
+                startActivity(bantuan);
             }
         });
 

@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".NotifikasiActivity"></activity>
+        <activity android:name=".BantuanActivity"></activity>
+        <activity android:name=".NotifikasiActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".LaporanPenjualanActivity" />
         <activity android:name=".MainActivity" />

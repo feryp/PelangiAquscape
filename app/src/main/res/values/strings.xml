@@ -11,4 +11,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="header_bantuan">Ada yang kurang jelas?</string>
+    <string name="header_bantuan2">Aquascape akan siap membantu</string>
+    <string name="cara_kelola_barang">Bagaimana cara mengelola barang di Aplikasi Aquascape ?</string>
+    <string name="cara_transaksi_penjualan">Bagaimana cara melakukan transaksi pada Aplikasi Aquascape ?</string>
+    <string name="cara_ringkasan_penjualan">Bagaimana cara untuk melihat laporan keuntungan pada Aplikasi Aquascape ?</string>
 </resources>

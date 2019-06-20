@@ -1,23 +1,18 @@
 package com.example.pelangiaquscape;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.pelangiaquscape.fragment.ProfileFragment;
+public class TentangKamiActivity extends AppCompatActivity {
 
-public class EditProfileActivity extends AppCompatActivity {
-
-    final String EXTRA = "INTENT_EDIT_TO_MAIN";
     ImageView cancel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.activity_tentang_kami);
 
         cancel =(ImageView) findViewById(R.id.im_cancel);
 
@@ -27,9 +22,5 @@ public class EditProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
     }
 }

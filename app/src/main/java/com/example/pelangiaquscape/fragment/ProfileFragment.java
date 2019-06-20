@@ -14,6 +14,7 @@ import com.example.pelangiaquscape.EditProfileActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.NotifikasiActivity;
 import com.example.pelangiaquscape.R;
+import com.example.pelangiaquscape.TentangKamiActivity;
 
 public class ProfileFragment extends Fragment {
 
@@ -27,6 +28,7 @@ public class ProfileFragment extends Fragment {
         Button btn_edit_profile = v.findViewById(R.id.btn_edit_profile);
         LinearLayout notifikasi = v.findViewById(R.id.notifikasi);
         LinearLayout bantuan = v.findViewById(R.id.bantuan);
+        LinearLayout tentangkamu = v.findViewById(R.id.tentangkami);
 
         btn_edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +51,14 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent bantuan = new Intent(getActivity(), BantuanActivity.class);
                 startActivity(bantuan);
+            }
+        });
+
+        tentangkamu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent tentangkami = new Intent(getActivity(), TentangKamiActivity.class);
+                startActivity(tentangkami);
             }
         });
 

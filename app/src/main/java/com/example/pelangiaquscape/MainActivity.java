@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.pelangiaquscape.fragment.BerandaFragment;
 import com.example.pelangiaquscape.fragment.PemberitahuanFragment;
@@ -43,21 +44,26 @@ public class MainActivity extends AppCompatActivity {
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
                             selectedFragment = new BerandaFragment();
+//                            Toast.makeText(MainActivity.this, "Home",Toast.LENGTH_SHORT).show();
                             break;
                         case R.id.nav_rekap:
                             selectedFragment = new RekapFragment();
+//                            Toast.makeText(MainActivity.this, "Rekap Kas",Toast.LENGTH_SHORT).show();
                             break;
                         case R.id.nav_stok:
                             selectedFragment = new StokFragment();
+//                            Toast.makeText(MainActivity.this, "Stok Barang",Toast.LENGTH_SHORT).show();
                             break;
                         case R.id.nav_inbox:
                             selectedFragment = new PemberitahuanFragment();
+//                            Toast.makeText(MainActivity.this, "Pemberitahuan",Toast.LENGTH_SHORT).show();
                             break;
                         case R.id.nav_profile:
 //                            SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
 //                            editor.putString("profileid", FirebaseAuth.getIntance().getCurrentUser().getUid());
 //                            editor.apply();
                             selectedFragment = new ProfileFragment();
+//                            Toast.makeText(MainActivity.this, "Profile",Toast.LENGTH_SHORT).show();
                             break;
                     }
 

@@ -88,7 +88,7 @@
             android:gravity="center"
             app:boxStrokeColor="@color/colorAccent"
             app:passwordToggleEnabled="true"
-            app:passwordToggleDrawable="@drawable/icon_selector"
+            app:passwordToggleDrawable="@drawable/ic_selector"
             app:passwordToggleTint="@color/colorBlack"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 

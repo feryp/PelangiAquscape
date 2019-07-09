@@ -27,4 +27,11 @@
         <item name="android:colorForeground">#9B9595</item>
     </style>
 
+    <!--spinner-->
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+    </style>
+
 </resources>

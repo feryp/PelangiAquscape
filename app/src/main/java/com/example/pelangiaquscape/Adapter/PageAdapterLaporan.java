@@ -19,10 +19,10 @@ public class PageAdapterLaporan extends FragmentStatePagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
 
-            case 1:
+            case 0:
                 LapBulananFragment lapBulananFragment = new LapBulananFragment();
                 return lapBulananFragment;
-            case 2:
+            case 1:
                 LapTahunanFragment lapTahunanFragment = new LapTahunanFragment();
                 return lapTahunanFragment;
             default:

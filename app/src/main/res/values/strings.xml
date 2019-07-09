@@ -16,4 +16,32 @@
     <string name="cara_kelola_barang">Bagaimana cara mengelola barang di Aplikasi Aquascape ?</string>
     <string name="cara_transaksi_penjualan">Bagaimana cara melakukan transaksi pada Aplikasi Aquascape ?</string>
     <string name="cara_ringkasan_penjualan">Bagaimana cara untuk melihat laporan keuntungan pada Aplikasi Aquascape ?</string>
+
+
+    <string name="bulan_prompt">Pilih Bulan</string>
+
+    <string-array name="bulan_arrays">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
+        <item>April</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Desember</item>
+    </string-array>
+
+    <string-array name="tahun_arrays">
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+        <item>2015</item>
+        <item>2014</item>
+        <item>2013</item>
+    </string-array>
 </resources>

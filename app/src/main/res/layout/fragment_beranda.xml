@@ -174,6 +174,7 @@
                     android:rowCount="3">
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_transaksi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -208,6 +209,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_pegawai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -242,6 +244,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_mitra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -250,7 +253,7 @@
                         app:cardElevation="4dp">
 
                         <LinearLayout
-                            android:id="@+id/kartubisnis"
+                            android:id="@+id/mitrabisnis"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:background="@drawable/border_box_blue"
@@ -267,7 +270,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="Kartu Bisnis"
+                                android:text="Mitra Bisnis"
                                 android:textColor="@color/colorBlue"
                                 android:textSize="14sp" />
 
@@ -276,6 +279,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_pembelian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -310,6 +314,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_penjualan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -344,6 +349,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_pengiriman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -378,6 +384,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_barang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"

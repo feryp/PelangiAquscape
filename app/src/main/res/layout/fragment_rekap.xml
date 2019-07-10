@@ -52,9 +52,10 @@
         app:tabIndicatorColor="@color/colorBlue"/>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/fragment_container_pager"
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
     </android.support.v4.view.ViewPager>
 

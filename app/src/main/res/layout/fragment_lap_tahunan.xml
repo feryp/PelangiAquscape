@@ -37,4 +37,213 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/container_total_penjualan"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_border">
+
+        <ImageView
+            android:id="@+id/im_total_penjualan"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_total_penjualan"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_nominal_penjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/im_total_penjualan"
+            android:text="Rp. 0"
+            android:textSize="24sp"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/colorBlack"/>
+
+        <TextView
+            android:id="@+id/tv_total_penjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Total Penjualan"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/tv_nominal_penjualan"
+            android:layout_toEndOf="@+id/im_total_penjualan"/>
+
+        <ImageView
+            android:id="@+id/im_grafik_penjualan"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_grafik"
+            android:layout_marginRight="18dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_total_keuntungan"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_border">
+
+        <ImageView
+            android:id="@+id/im_total_keuntungan"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_total_keuntungan"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_nominal_keuntungan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/im_total_keuntungan"
+            android:text="Rp. 0"
+            android:textSize="24sp"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/colorBlack"/>
+
+        <TextView
+            android:id="@+id/tv_total_keuntungan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Total Keuntungan"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/tv_nominal_keuntungan"
+            android:layout_toEndOf="@+id/im_total_keuntungan"/>
+
+        <ImageView
+            android:id="@+id/im_grafik_keuntungan"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_grafik"
+            android:layout_marginRight="18dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <RelativeLayout
+            android:id="@+id/container_jumlah_transaksi"
+            android:layout_width="150dp"
+            android:layout_height="85dp"
+            android:background="@drawable/spinner_border">
+
+            <TextView
+                android:id="@+id/tv_jumlah_transaksi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_centerInParent="true"
+                android:textSize="24sp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/tv_transaksi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Transaksi"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@+id/tv_jumlah_transaksi"
+                />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_jumlah_produk_terjual"
+            android:layout_width="150dp"
+            android:layout_height="85dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/spinner_border">
+
+            <TextView
+                android:id="@+id/tv_jumlah_produk_terjual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_centerInParent="true"
+                android:textSize="24sp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/tv_produk_terjual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Produk Terjual"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@+id/tv_jumlah_produk_terjual"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_produk_paling_laku"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_border">
+
+        <TextView
+            android:id="@+id/tv_produk_paling_laku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produk Paling Laku"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/colorBlack"/>
+
+        <TextView
+            android:id="@+id/tv_jumlah_produk_laku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:text="0"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
+
+            />
+
+    </RelativeLayout>
+
 </LinearLayout>

@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".TentangKamiActivity"></activity>
+        <activity android:name=".PegawaiActivity" />
+        <activity android:name=".GrafikKeuntunganTahunActivity" />
+        <activity android:name=".GrafikPenjualanTahunActivity" />
+        <activity android:name=".GrafikKeuntunganBulanActivity" />
+        <activity android:name=".GrafikPenjualanBulanActivity" />
+        <activity android:name=".TentangKamiActivity" />
         <activity android:name=".BantuanActivity" />
         <activity android:name=".NotifikasiActivity" />
         <activity android:name=".EditProfileActivity" />

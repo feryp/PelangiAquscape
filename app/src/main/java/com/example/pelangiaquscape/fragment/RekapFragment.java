@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
 import com.example.pelangiaquscape.Adapter.PageAdapterKas;
 import com.example.pelangiaquscape.R;
@@ -25,10 +24,12 @@ public class RekapFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Pengeluaran"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        final ViewPager viewPager = v.findViewById(R.id.viewpager);
 
-        final ViewPager viewPager = v.findViewById(R.id.fragment_container_pager);
         final PageAdapterKas pageAdapterKas = new PageAdapterKas(getFragmentManager(),tabLayout.getTabCount());
+
         viewPager.setAdapter(pageAdapterKas);
+
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -47,6 +48,7 @@ public class RekapFragment extends Fragment {
 
             }
         });
+
         // Inflate the layout for this fragment
         return v;
     }

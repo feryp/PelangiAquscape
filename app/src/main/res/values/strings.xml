@@ -44,4 +44,35 @@
         <item>2014</item>
         <item>2013</item>
     </string-array>
+
+    <string-array name="akses_arrays">
+        <item>Super Admin</item>
+        <item>Admin</item>
+    </string-array>
+
+    <string-array name="jenis_perusahaan_arrays">
+        <item>PT</item>
+        <item>CV</item>
+        <item>PD</item>
+        <item>NV</item>
+        <item>FA</item>
+        <item>LSM</item>
+        <item>Lainnya</item>
+    </string-array>
+
+    <string-array name="klasifikasi_perusahaan_arrays">
+        <item>Jasa Pemborongan</item>
+        <item>Penyedia Barang</item>
+        <item>Penyedia Jasa</item>
+        <item>Lainnya</item>
+    </string-array>
+
+    <string-array name="kualifikasi_perusahaan_arrays">
+        <item>Usaha Kecil</item>
+        <item>Perusahaan Menengah</item>
+        <item>Perusahaan Besar</item>
+        <item>Agen</item>
+        <item>Lainnya</item>
+    </string-array>
+
 </resources>

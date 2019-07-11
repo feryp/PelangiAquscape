@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragment.ProsesPembelianFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/iv_ilustrasi_barangkosong"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/tidak_ada_barang"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/tv_list_kosong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum ada list pembelian"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_below="@+id/iv_ilustrasi_barangkosong"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_ket1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="** Maksimum order 50 pcs"
+            android:textSize="10sp"
+            android:textColor="@color/colorDarkGray"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="145dp"
+            android:layout_below="@+id/tv_list_kosong"
+            />
+        <TextView
+            android:id="@+id/tv_ket2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_ket1"
+            android:text="** Pengiriman 2-5 hari"
+            android:textSize="10sp"
+            android:textColor="@color/colorDarkGray"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginStart="15dp"
+            />
+        <TextView
+            android:id="@+id/tv_ket3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_ket2"
+            android:text="** Komplain maksimal 2x24 jam setelah barang diterima"
+            android:textSize="10sp"
+            android:textColor="@color/colorDarkGray"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginStart="15dp"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_pembelian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:elevation="6dp"
+            android:src="@drawable/ic_add_white"
+            app:fabSize="normal"
+            android:backgroundTint="@color/colorBlue"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -8,26 +8,27 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.pelangiaquscape.Adapter.PageAdapterLaporan;
+import com.example.pelangiaquscape.Adapter.PageAdapterPembelian;
 
-public class LaporanPenjualanActivity extends AppCompatActivity {
+public class PembelianActivity extends AppCompatActivity {
 
     ImageView cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_laporan_penjualan);
+        setContentView(R.layout.activity_pembelian);
 
-        cancel = (ImageView) findViewById(R.id.im_cancel);
+        cancel =  (ImageView) findViewById(R.id.im_cancel);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Bulanan"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tahunan"));
+        tabLayout.addTab(tabLayout.newTab().setText("Diproses"));
+        tabLayout.addTab(tabLayout.newTab().setText("Selesai"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PageAdapterLaporan pageAdapterLaporan = new PageAdapterLaporan(getSupportFragmentManager(),tabLayout.getTabCount());
-        viewPager.setAdapter(pageAdapterLaporan);
+        final PageAdapterPembelian pageAdapterPembelian = new PageAdapterPembelian(getSupportFragmentManager(),tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapterPembelian);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -53,6 +54,5 @@ public class LaporanPenjualanActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

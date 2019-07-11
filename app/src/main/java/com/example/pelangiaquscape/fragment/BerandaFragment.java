@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.MitraBisnisActivity;
 import com.example.pelangiaquscape.PegawaiActivity;
+import com.example.pelangiaquscape.PembelianActivity;
 import com.example.pelangiaquscape.R;
 
 
@@ -28,6 +29,7 @@ public class BerandaFragment extends Fragment {
 
         CardView cardViewPegawai = v.findViewById(R.id.cv_pegawai);
         CardView cardViewMitra = v.findViewById(R.id.cv_mitra);
+        CardView cardViewPembelian = v.findViewById(R.id.cv_pembelian);
 
         cardViewPegawai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,14 @@ public class BerandaFragment extends Fragment {
             public void onClick(View view) {
                 Intent cv_mitra = new Intent(getActivity(), MitraBisnisActivity.class);
                 startActivity(cv_mitra);
+            }
+        });
+
+        cardViewPembelian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cv_pembelian = new Intent(getActivity(), PembelianActivity.class);
+                startActivity(cv_pembelian);
             }
         });
 

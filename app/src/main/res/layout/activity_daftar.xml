@@ -47,6 +47,7 @@
                 android:drawableStart="@drawable/ic_username"
                 android:drawablePadding="10dp"
                 android:hint="Username"
+                android:textSize="12sp"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -70,6 +71,7 @@
                 android:drawableStart="@drawable/ic_telepon"
                 android:drawablePadding="10dp"
                 android:hint="Telepon"
+                android:textSize="12sp"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -94,6 +96,7 @@
                 android:drawablePadding="10dp"
                 android:hint="Email"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 
@@ -118,6 +121,7 @@
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
                 android:hint="Password"
+                android:textSize="12sp"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -144,6 +148,7 @@
                 android:drawablePadding="10dp"
                 android:hint="Ulangi Password"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 

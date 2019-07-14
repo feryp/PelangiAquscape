@@ -30,8 +30,18 @@
     <!--spinner-->
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
     </style>
+    
+    <style name="MySpinnerLook"
+        parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">12sp</item>
+    </style>
 
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+    </style>
+
+    <style name="RadioButtonStyle" parent="Theme.AppCompat.Light">
+        <item name="radioButtonStyle">@color/colorBlue</item>
+        <item name="android:textColorPrimary">@android:color/darker_gray</item>
     </style>
 
 </resources>

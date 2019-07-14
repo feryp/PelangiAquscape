@@ -30,40 +30,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:id="@+id/tv_ket1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="** Maksimum order 50 pcs"
-            android:textSize="10sp"
-            android:textColor="@color/colorDarkGray"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="145dp"
-            android:layout_below="@+id/tv_list_kosong"
-            />
-        <TextView
-            android:id="@+id/tv_ket2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_ket1"
-            android:text="** Pengiriman 2-5 hari"
-            android:textSize="10sp"
-            android:textColor="@color/colorDarkGray"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginStart="15dp"
-            />
-        <TextView
-            android:id="@+id/tv_ket3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_ket2"
-            android:text="** Komplain maksimal 2x24 jam setelah barang diterima"
-            android:textSize="10sp"
-            android:textColor="@color/colorDarkGray"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginStart="15dp"
-            />
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_pembelian"
@@ -77,6 +44,47 @@
             app:fabSize="normal"
             android:backgroundTint="@color/colorBlue"
             />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true">
+
+            <TextView
+                android:id="@+id/tv_ket1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="** Maksimum order 50 pcs"
+                android:textSize="10sp"
+                android:textColor="@color/colorDarkGray"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="15dp"
+                />
+            <TextView
+                android:id="@+id/tv_ket2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ket1"
+                android:text="** Pengiriman 2-5 hari"
+                android:textSize="10sp"
+                android:textColor="@color/colorDarkGray"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="15dp"
+                />
+            <TextView
+                android:id="@+id/tv_ket3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ket2"
+                android:text="** Komplain maksimal 2x24 jam setelah barang diterima"
+                android:textSize="10sp"
+                android:textColor="@color/colorDarkGray"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="15dp"
+                />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

@@ -1,9 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".FormPembelianActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/border_grey_effect"
+            android:elevation="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/im_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_cancel" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Form Pembelian"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/im_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_save" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F8F6F6"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/container_search_bantuan"
+                android:elevation="6dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_pengisian_pesananan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Pengisian Pesanan"
+                    android:textColor="#636262"
+                    android:textSize="12sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/no_pesanan"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_pengisian_pesananan"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_no_pesanan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="No Pesanan"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pemasok"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/no_pesanan"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_pemasok"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Pemasok"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tgl_pesanan"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pemasok"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_tgl_pesanan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tgl. Pesanan"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/container_search_bantuan"
+                android:elevation="6dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_metode_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Metode Pembayaran"
+                    android:textColor="#636262"
+                    android:textSize="12sp" />
+
+                <RadioGroup
+                    android:id="@+id/radio_metode_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_metode_pembayaran"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/tunai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/custom_radiobutton"
+                        android:drawablePadding="200dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center_vertical"
+                        android:layoutDirection="rtl"
+                        android:onClick="onRadioButtonClick"
+                        android:padding="15dp"
+                        android:text="Tunai"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp"
+                        android:theme="@style/RadioButtonStyle" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/rekening_bank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/custom_radiobutton"
+                        android:drawablePadding="160dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layoutDirection="rtl"
+                        android:onClick="onRadioButtonClick"
+                        android:padding="15dp"
+                        android:text="Rekening Bank"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp"
+                        android:theme="@style/RadioButtonStyle" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/cicil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/custom_radiobutton"
+                        android:drawablePadding="200dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layoutDirection="rtl"
+                        android:onClick="onRadioButtonClick"
+                        android:padding="15dp"
+                        android:text="Cicil"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp"
+                        android:theme="@style/RadioButtonStyle" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/kasbon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/custom_radiobutton"
+                        android:drawablePadding="200dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layoutDirection="rtl"
+                        android:onClick="onRadioButtonClick"
+                        android:padding="15dp"
+                        android:text="Kasbon"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp"
+                        android:theme="@style/RadioButtonStyle" />
+
+                </RadioGroup>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/container_search_bantuan"
+                android:elevation="6dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_barang_pesanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Barang Pesanan"
+                    android:textColor="#636262"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/nama_barang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_barang_pesanan"
+                    android:text="Nama Barang"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:id="@+id/jumlah_barang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_barang_pesanan"
+                    android:layout_toEndOf="@+id/nama_barang"
+                    android:layout_marginLeft="50dp"
+                    android:text="Jumlah Barang"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:id="@+id/total_harga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_barang_pesanan"
+                    android:layout_toEndOf="@+id/jumlah_barang"
+                    android:layout_marginLeft="50dp"
+                    android:text="Total Harga"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="20dp"/>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager_barang_pesanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nama_barang"
+                    android:layout_marginTop="10dp">
+
+                </android.support.v4.view.ViewPager>
+
+                <Button
+                    android:id="@+id/btn_tambah_barang"
+                    android:layout_width="157dp"
+                    android:layout_height="50dp"
+                    android:text="Tambah Barang"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/colorPrimary"
+                    android:textAllCaps="false"
+                    android:background="@drawable/button_blue"
+                    android:layout_below="@+id/viewpager_barang_pesanan"
+                    android:layout_marginTop="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

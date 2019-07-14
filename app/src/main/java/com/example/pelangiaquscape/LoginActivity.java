@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         bgapp.animate().translationY(-1500).setDuration(1000).setStartDelay(1500);
         clover.animate().alpha(0).setDuration(1000).setStartDelay(600);
-        logosplash.animate().translationY(-260).setDuration(1500).setStartDelay(1000);
+        logosplash.animate().translationY(-330).setDuration(1500).setStartDelay(1000);
 
         container_user.startAnimation(frombottom);
         container_pwd.startAnimation(frombottom);

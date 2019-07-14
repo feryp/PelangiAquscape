@@ -102,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama"
+                android:textSize="12sp"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -123,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 
@@ -143,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:hint="No. Telp"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 
@@ -163,6 +166,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Status Jabatan"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 
@@ -183,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Alamat"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 

@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".FormPembelianActivity"></activity>
+        <activity android:name=".TambahBarangActivity"></activity>
+        <activity android:name=".BarangActivity" />
+        <activity android:name=".FormPembelianActivity" />
         <activity android:name=".PembelianActivity" />
         <activity android:name=".TambahPemasokActivity" />
         <activity android:name=".TambahPelangganActivity" />

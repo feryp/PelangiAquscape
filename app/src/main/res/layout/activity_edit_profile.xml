@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Edit Profile"
+                    android:text="Edit Akun"
                     android:textColor="@color/colorBlue"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -69,7 +69,7 @@
             android:id="@+id/edit_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_foto_profile"
+            android:src="@drawable/ic_foto_profile_edit"
             android:layout_gravity="center"
             android:background="@drawable/scrim_profile"
             android:layout_margin="10dp"/>
@@ -102,7 +102,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama"
-                android:textSize="12sp"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -124,7 +123,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="text"
-                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 
@@ -145,7 +143,6 @@
                 android:layout_height="wrap_content"
                 android:hint="No. Telp"
                 android:inputType="text"
-                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 
@@ -166,7 +163,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Status Jabatan"
                 android:inputType="text"
-                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 
@@ -187,7 +183,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Alamat"
                 android:inputType="text"
-                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 

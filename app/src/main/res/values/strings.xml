@@ -19,6 +19,7 @@
 
 
     <string name="bulan_prompt">Pilih Bulan</string>
+    <string name="merek_prompt">Pilih Merek</string>
 
     <string-array name="bulan_arrays">
         <item>Januari</item>
@@ -73,6 +74,33 @@
         <item>Perusahaan Besar</item>
         <item>Agen</item>
         <item>Lainnya</item>
+    </string-array>
+
+    <string-array name="merek_barang_array">
+        <item>AMARA</item>
+        <item>HIDOM</item>
+        <item>YAMANO</item>
+        <item>NIKITA STAR</item>
+        <item>JEBO</item>
+        <item>Pelet/Botol Kecil</item>
+        <item>ATMAN</item>
+        <item>AQUILA</item>
+        <item>SUNSUN</item>
+        <item>COSMO</item>
+        <item>HAILONG</item>
+        <item>VOSSO</item>
+        <item>TANK SEROKAN</item>
+        <item>AQUAJAYA</item>
+        <item>ONE RESEARCH</item>
+        <item>HOPAR</item>
+        <item>Batu/Pasir</item>
+        <item>TOOL</item>
+    </string-array>
+
+    <string-array name="satuan_unit_array">
+        <item>Pcs</item>
+        <item>Kg</item>
+        <item>Gr</item>
     </string-array>
 
 </resources>

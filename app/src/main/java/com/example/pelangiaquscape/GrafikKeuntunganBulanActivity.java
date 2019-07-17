@@ -3,7 +3,11 @@ package com.example.pelangiaquscape;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
+
+import java.util.Observable;
 
 public class GrafikKeuntunganBulanActivity extends AppCompatActivity {
 
@@ -15,6 +19,11 @@ public class GrafikKeuntunganBulanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grafik_keuntungan_bulan);
 
         cancel =(ImageView) findViewById(R.id.im_cancel);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_bulan);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.bulan_arrays, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
+        spinner.setAdapter(adapter);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class DaftarActivity extends AppCompatActivity {
 
-    TextInputEditText username, telepon, email, password, ulangiPassword;
+    TextInputEditText namapengguna, telepon, email, katasandi, ulangiKataSandi;
     Button btn_daftar;
     TextView masuk;
 
@@ -38,11 +38,11 @@ public class DaftarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
 
-        username = (TextInputEditText) findViewById(R.id.et_username);
+        namapengguna = (TextInputEditText) findViewById(R.id.et_nama_pengguna);
         telepon = (TextInputEditText) findViewById(R.id.et_telepon);
         email = (TextInputEditText) findViewById(R.id.et_email);
-        password = (TextInputEditText) findViewById(R.id.et_password);
-        ulangiPassword = (TextInputEditText) findViewById(R.id.et_ulangi);
+        katasandi = (TextInputEditText) findViewById(R.id.et_kata_sandi);
+        ulangiKataSandi = (TextInputEditText) findViewById(R.id.et_ulangi);
         btn_daftar = (Button) findViewById(R.id.btn_daftar);
         masuk = (TextView) findViewById(R.id.tv_masuk);
 
@@ -64,31 +64,31 @@ public class DaftarActivity extends AppCompatActivity {
                 pd.setMessage("Tunggu Sebentar...");
                 pd.show();
 
-                String str_username = username.getText().toString();
+                String str_namapengguna = namapengguna.getText().toString();
                 String str_telepon = telepon.getText().toString();
                 String str_email = email.getText().toString();
-                String str_password = password.getText().toString();
-                String str_ulangi = ulangiPassword.getText().toString();
+                String str_katasandi = katasandi.getText().toString();
+                String str_ulangi = ulangiKataSandi.getText().toString();
 
-                if (TextUtils.isEmpty(str_username) || TextUtils.isEmpty(str_telepon) ||
-                        TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password)
+                if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_telepon) ||
+                        TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_katasandi)
                         || TextUtils.isEmpty(str_ulangi)) {
                     Toast.makeText(DaftarActivity.this, "All fileds are requiered!", Toast.LENGTH_SHORT).show();
-                } else if (str_password.length() < 6) {
+                } else if (str_katasandi.length() < 6) {
                     Toast.makeText(DaftarActivity.this, "Password must have 6 characters", Toast.LENGTH_SHORT).show();
                 } else {
-                    btn_daftar(str_username, str_telepon, str_email, str_password, str_ulangi);
+                    btn_daftar(str_namapengguna, str_telepon, str_email, str_katasandi, str_ulangi);
                 }
 
             }
         });
     }
 
-        private void btn_daftar (final String username, final String telepon, final String email, final String
-        password, final String ulangi)
+        private void btn_daftar (final String namapengguna, final String telepon, final String email, final String
+        katasandi, final String ulangi)
         {
 
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
+            firebaseAuth.createUserWithEmailAndPassword(email,katasandi)
                     .addOnCompleteListener(DaftarActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(Task<AuthResult> task) {
@@ -100,11 +100,11 @@ public class DaftarActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> hashMap = new HashMap<>();
                                 hashMap.put("id", adminid);
-                                hashMap.put("username", username.toLowerCase());
+                                hashMap.put("namapengguna",namapengguna.toLowerCase());
                                 hashMap.put("telepon", telepon);
                                 hashMap.put("email", email);
-                                hashMap.put("password", password);
-                                hashMap.put("ulangpassword", ulangi);
+                                hashMap.put("katasandi", katasandi);
+                                hashMap.put("ulangkatasandi", ulangi);
 
                                 databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override

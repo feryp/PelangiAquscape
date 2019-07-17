@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.pelangiaquscape.BantuanActivity;
 import com.example.pelangiaquscape.EditProfileActivity;
@@ -25,10 +26,10 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        Button btn_edit_profile = v.findViewById(R.id.btn_edit_profile);
-        LinearLayout notifikasi = v.findViewById(R.id.notifikasi);
-        LinearLayout bantuan = v.findViewById(R.id.bantuan);
-        LinearLayout tentangkamu = v.findViewById(R.id.tentangkami);
+        Button btn_edit_profile = v.findViewById(R.id.btn_edit_akun);
+        RelativeLayout notifikasi = v.findViewById(R.id.notifikasi);
+        RelativeLayout bantuan = v.findViewById(R.id.bantuan);
+        RelativeLayout tentangkamu = v.findViewById(R.id.tentangkami);
 
         btn_edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override

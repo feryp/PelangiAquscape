@@ -93,13 +93,13 @@
                     android:background="@drawable/spinner_border">
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/spinner_jenis_perusahaan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        style="@style/MySpinnerLook"
+                        style="@style/spinnerItemStyle"
                         android:background="@android:color/transparent"
                         android:entries="@array/jenis_perusahaan_arrays"
                         android:spinnerMode="dropdown" />
@@ -131,7 +131,6 @@
                         android:layout_height="wrap_content"
                         android:hint="Nama Pemasok"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -146,13 +145,13 @@
                     android:background="@drawable/spinner_border">
 
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/spinner_klasifikasi_perusahaan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        style="@style/MySpinnerLook"
+                        style="@style/spinnerItemStyle"
                         android:background="@android:color/transparent"
                         android:entries="@array/klasifikasi_perusahaan_arrays"
                         android:spinnerMode="dropdown" />
@@ -177,13 +176,13 @@
                     android:background="@drawable/spinner_border">
 
                     <Spinner
-                        android:id="@+id/spinner3"
+                        android:id="@+id/spinner_kualifikasi_perusahaan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        style="@style/MySpinnerLook"
+                        style="@style/spinnerItemStyle"
                         android:background="@android:color/transparent"
                         android:entries="@array/kualifikasi_perusahaan_arrays"
                         android:spinnerMode="dropdown" />
@@ -234,7 +233,6 @@
                         android:layout_height="wrap_content"
                         android:hint="Telepon"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -256,7 +254,6 @@
                         android:layout_height="wrap_content"
                         android:hint="Email"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -277,7 +274,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="No. Handphone"
-                        android:textSize="12sp"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
@@ -299,7 +295,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Situs Perusahaan"
-                        android:textSize="12sp"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
@@ -322,7 +317,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="85dp"
                         android:hint="Alamat"
-                        android:textSize="12sp"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />

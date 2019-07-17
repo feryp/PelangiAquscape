@@ -107,7 +107,6 @@
                         android:layout_height="wrap_content"
                         android:hint="Nama Pelanggan"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -147,7 +146,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="KTP"
-                        android:textSize="12sp"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
@@ -170,7 +168,6 @@
                         android:layout_height="wrap_content"
                         android:hint="Email"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -192,7 +189,6 @@
                         android:layout_height="wrap_content"
                         android:hint="No. Handphone"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -214,7 +210,6 @@
                         android:layout_height="85dp"
                         android:hint="Alamat"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -256,7 +251,6 @@
                         android:layout_height="85dp"
                         android:hint="Catatan"
                         android:inputType="text"
-                        android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 

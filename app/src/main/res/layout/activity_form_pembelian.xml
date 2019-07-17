@@ -102,7 +102,7 @@
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack"
-                        android:textSize="12sp" />
+                        />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -123,8 +123,7 @@
                         android:hint="Pemasok"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
-                        android:textColorHint="@color/colorBlack"
-                        android:textSize="12sp" />
+                        android:textColorHint="@color/colorBlack" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -145,8 +144,7 @@
                         android:hint="Tgl. Pesanan"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
-                        android:textColorHint="@color/colorBlack"
-                        android:textSize="12sp" />
+                        android:textColorHint="@color/colorBlack" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -189,7 +187,7 @@
                         android:padding="15dp"
                         android:text="Tunai"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:theme="@style/RadioButtonStyle" />
 
                     <android.support.v7.widget.AppCompatRadioButton
@@ -197,14 +195,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableRight="@drawable/custom_radiobutton"
-                        android:drawablePadding="160dp"
+                        android:drawablePadding="150dp"
                         android:fontFamily="@font/roboto_regular"
                         android:layoutDirection="rtl"
                         android:onClick="onRadioButtonClick"
                         android:padding="15dp"
                         android:text="Rekening Bank"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:theme="@style/RadioButtonStyle" />
 
                     <android.support.v7.widget.AppCompatRadioButton
@@ -219,7 +217,7 @@
                         android:padding="15dp"
                         android:text="Cicil"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:theme="@style/RadioButtonStyle" />
 
                     <android.support.v7.widget.AppCompatRadioButton
@@ -227,14 +225,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableRight="@drawable/custom_radiobutton"
-                        android:drawablePadding="200dp"
+                        android:drawablePadding="190dp"
                         android:fontFamily="@font/roboto_regular"
                         android:layoutDirection="rtl"
                         android:onClick="onRadioButtonClick"
                         android:padding="15dp"
                         android:text="Kasbon"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:theme="@style/RadioButtonStyle" />
 
                 </RadioGroup>
@@ -264,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_barang_pesanan"
                     android:text="Nama Barang"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/colorBlack"
                     android:layout_marginTop="20dp"/>
@@ -275,9 +273,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_barang_pesanan"
                     android:layout_toEndOf="@+id/nama_barang"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="40dp"
                     android:text="Jumlah Barang"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/colorBlack"
                     android:layout_marginTop="20dp"/>
@@ -288,9 +286,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_barang_pesanan"
                     android:layout_toEndOf="@+id/jumlah_barang"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="40dp"
                     android:text="Total Harga"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/colorBlack"
                     android:layout_marginTop="20dp"/>

@@ -1,6 +1,8 @@
 package com.example.pelangiaquscape.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -12,34 +14,23 @@ import android.widget.LinearLayout;
 import com.example.pelangiaquscape.BarangActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.MitraBisnisActivity;
-import com.example.pelangiaquscape.PegawaiActivity;
 import com.example.pelangiaquscape.PembelianActivity;
 import com.example.pelangiaquscape.R;
 
 
-public class BerandaFragment extends Fragment {
+public class BerandaAdminFragment extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
-        View v  = inflater.inflate(R.layout.fragment_beranda, container, false);
+        View v  = inflater.inflate(R.layout.fragment_beranda_admin, container, false);
 
         LinearLayout containerLaporan = v.findViewById(R.id.container_laporan);
 
-        CardView cardViewPegawai = v.findViewById(R.id.cv_pegawai);
         CardView cardViewMitra = v.findViewById(R.id.cv_mitra);
         CardView cardViewPembelian = v.findViewById(R.id.cv_pembelian);
         CardView cardViewBarang = v.findViewById(R.id.cv_barang);
-
-        cardViewPegawai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cv_pegawai = new Intent(getActivity(), PegawaiActivity.class);
-                startActivity(cv_pegawai);
-            }
-        });
 
         cardViewMitra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +64,8 @@ public class BerandaFragment extends Fragment {
             }
         });
 
+        // Inflate the layout for this fragment
         return v;
     }
-
 
 }

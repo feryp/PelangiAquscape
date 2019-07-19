@@ -3,11 +3,13 @@ package com.example.pelangiaquscape.Adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.pelangiaquscape.fragment.PendapatanFragment;
 import com.example.pelangiaquscape.fragment.PengeluaranFragment;
 
-public class PageAdapterKas extends FragmentPagerAdapter {
+public class PageAdapterKas extends FragmentStatePagerAdapter {
+
     int counttab;
 
     public PageAdapterKas(FragmentManager fm, int counttab) {

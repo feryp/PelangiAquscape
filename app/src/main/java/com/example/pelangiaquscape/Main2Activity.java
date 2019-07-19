@@ -7,31 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.pelangiaquscape.fragment.BerandaSuperAdminFragment;
+import com.example.pelangiaquscape.fragment.BerandaAdminFragment;
 import com.example.pelangiaquscape.fragment.PemberitahuanFragment;
 import com.example.pelangiaquscape.fragment.ProfileFragment;
 import com.example.pelangiaquscape.fragment.RekapFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     Fragment selectedFragment = null;
 
-    final String EXTRA = "INTENT_EDIT_TO_MAIN";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BerandaSuperAdminFragment()).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BerandaAdminFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
@@ -39,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                    switch (menuItem.getItemId()){
+                    switch (menuItem.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new BerandaSuperAdminFragment();
+                            selectedFragment = new BerandaAdminFragment();
 //                            Toast.makeText(MainActivity.this, "Home",Toast.LENGTH_SHORT).show();
                             break;
                         case R.id.nav_rekap:

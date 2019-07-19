@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context=".fragment.PendapatanFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:padding="15dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Total Saldo Keuangan"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_waktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/roboto_bold"
+            android:text="19 Juli 2019"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/tv_idr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_judul"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingLeft="20dp"
+            android:text="IDR"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/total_saldo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_judul"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/tv_idr"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Rp. 0.000.000,00"
+            android:textColor="@color/colorBlack"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

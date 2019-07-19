@@ -13,9 +13,11 @@ import android.widget.RelativeLayout;
 import com.example.pelangiaquscape.BantuanActivity;
 import com.example.pelangiaquscape.EditProfileActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
+import com.example.pelangiaquscape.LoginActivity;
 import com.example.pelangiaquscape.NotifikasiActivity;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.TentangKamiActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment {
 
@@ -27,9 +29,11 @@ public class ProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         Button btn_edit_profile = v.findViewById(R.id.btn_edit_akun);
+
         RelativeLayout notifikasi = v.findViewById(R.id.notifikasi);
         RelativeLayout bantuan = v.findViewById(R.id.bantuan);
         RelativeLayout tentangkamu = v.findViewById(R.id.tentangkami);
+        RelativeLayout keluar = v.findViewById(R.id.keluar);
 
         btn_edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +67,18 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        keluar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(getActivity(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
         return v;
     }
+
+
 
 }

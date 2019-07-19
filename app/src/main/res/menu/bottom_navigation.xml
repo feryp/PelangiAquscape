@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
         android:checked="true"
+        android:icon="@drawable/ic_home"
         android:title="Beranda" />
 
 
@@ -14,10 +14,6 @@
         android:icon="@drawable/ic_rekap"
         android:title="Rekap" />
 
-    <item
-        android:id="@+id/nav_stok"
-        android:icon="@drawable/ic_stok"
-        android:title="Stok Barang" />
 
     <item
         android:id="@+id/nav_inbox"

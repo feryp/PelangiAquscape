@@ -25,11 +25,8 @@ public class RekapFragment extends Fragment {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = v.findViewById(R.id.viewpager);
-
         final PageAdapterKas pageAdapterKas = new PageAdapterKas(getFragmentManager(),tabLayout.getTabCount());
-
         viewPager.setAdapter(pageAdapterKas);
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

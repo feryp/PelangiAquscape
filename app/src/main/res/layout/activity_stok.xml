@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/colorPrimary"
-    tools:context=".fragment.StokFragment">
+    android:orientation="vertical"
+    tools:context=".StokActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar"
@@ -17,8 +17,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:background="@drawable/border_grey_effect">
+            android:background="@drawable/border_grey_effect"
+            android:elevation="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -29,11 +29,11 @@
                     android:id="@+id/tv_judul"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="Atur Stok"
                     android:textColor="@color/colorBlue"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_medium"/>
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -54,41 +54,69 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_toStartOf="@+id/ib_search"
-            android:paddingBottom="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="15dp"
+            android:background="@drawable/search_layout"
             android:ems="15"
             android:fontFamily="@font/roboto_bold"
-            android:inputType="textPersonName"
             android:hint="Cari Barang"
-            android:textColorHint="#636262"
+            android:inputType="textPersonName"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp"
             android:textColor="#636262"
-            android:textSize="16sp"
-            android:background="@drawable/search_layout"/>
+            android:textColorHint="#636262"
+            android:textSize="16sp" />
 
         <ImageButton
             android:id="@+id/ib_search"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_alignTop="@+id/search_field"
             android:layout_alignBottom="@+id/search_field"
             android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/search_field"
             android:layout_marginRight="10dp"
             android:background="@drawable/border_search"
-            android:src="@drawable/ic_search"/>
+            android:src="@drawable/ic_search" />
 
     </RelativeLayout>
-        
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:layout_below="@+id/search_field"
-            android:layout_marginTop="30dp">
 
-        </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_stok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_field"
+        android:background="@color/colorPrimary">
 
+    </android.support.v7.widget.RecyclerView>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="30dp">
+
+        <Button
+            android:id="@+id/btn_simpan"
+            android:layout_width="157dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:text="Simpan"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:background="@drawable/button_blue"/>
+
+        <Button
+            android:id="@+id/btn_batal"
+            android:layout_width="157dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Batal"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:background="@drawable/button_blue"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

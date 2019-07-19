@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class BarangActivity extends AppCompatActivity {
 
@@ -16,6 +20,7 @@ public class BarangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barang);
+
 
         cancel =  (ImageView) findViewById(R.id.im_cancel);
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,9 +15,10 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:background="@drawable/border_grey_effect">
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_grey_effect"
+            android:minHeight="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -29,27 +29,30 @@
                     android:id="@+id/im_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
-                    android:layout_alignParentStart="true"/>
+                    android:src="@drawable/ic_back" />
 
                 <TextView
+                    android:id="@+id/tv_judul"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="Barang"
                     android:textColor="@color/colorBlue"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/roboto_medium"/>
+                    android:textStyle="bold" />
 
-                <View
-                    android:id="@+id/im_save"
+                <ImageView
+                    android:id="@+id/im_reload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:layout_alignParentEnd="true"/>
+                    android:paddingRight="10dp"
+                    android:src="@drawable/ic_reload" />
+
 
             </RelativeLayout>
 
@@ -69,29 +72,29 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_toStartOf="@+id/ib_search"
-            android:paddingBottom="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="15dp"
+            android:background="@drawable/search_layout"
             android:ems="15"
             android:fontFamily="@font/roboto_bold"
-            android:inputType="textPersonName"
             android:hint="Cari Barang"
-            android:textColorHint="#636262"
+            android:inputType="textPersonName"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp"
             android:textColor="#636262"
-            android:textSize="16sp"
-            android:background="@drawable/search_layout"/>
+            android:textColorHint="#636262"
+            android:textSize="16sp" />
 
         <ImageButton
             android:id="@+id/ib_search"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_alignTop="@+id/search_field"
             android:layout_alignBottom="@+id/search_field"
             android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/search_field"
             android:layout_marginRight="10dp"
             android:background="@drawable/border_search"
-            android:src="@drawable/ic_search"/>
+            android:src="@drawable/ic_search" />
 
     </RelativeLayout>
 
@@ -104,35 +107,34 @@
             android:id="@+id/iv_ilustrasi_barangkosong"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/tidak_ada_barang"
-            android:layout_marginTop="100dp"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentLeft="true"/>
+            android:layout_marginTop="100dp"
+            android:src="@drawable/tidak_ada_barang" />
 
         <TextView
             android:id="@+id/tv_barang_kosong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Belum ada list barang"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_regular"
             android:layout_below="@+id/iv_ilustrasi_barangkosong"
             android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Belum ada list barang"
+            android:textSize="12sp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_barang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
+            android:backgroundTint="@color/colorBlue"
             android:elevation="6dp"
             android:src="@drawable/ic_add_white"
-            app:fabSize="normal"
-            android:backgroundTint="@color/colorBlue"
-            />
+            app:fabSize="normal" />
 
     </RelativeLayout>
 

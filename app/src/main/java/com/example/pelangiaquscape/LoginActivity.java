@@ -1,8 +1,14 @@
 package com.example.pelangiaquscape;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -10,32 +16,65 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static int RC_SIGN_IN = 1;
+    private static String TAG = "LoginActivity";
+
     ImageView bgapp, clover;
-    LinearLayout logosplash, container_user, container_pwd, container_google, container_daftar;
+    LinearLayout logosplash, container_user, container_pwd, container_daftar;
     Animation frombottom;
-    Button btn_masuk;
+    Button btn_masuk, btn_google;
     TextView daftar;
+    TextInputEditText namapengguna, katasandi;
+    FirebaseAuth firebaseAuth;
+
+    GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        frombottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
 
         bgapp = (ImageView) findViewById(R.id.bgapp);
         clover = (ImageView) findViewById(R.id.clover);
         logosplash = (LinearLayout) findViewById(R.id.logosplash);
         container_user = (LinearLayout) findViewById(R.id.container_user);
         container_pwd = (LinearLayout) findViewById(R.id.container_pwd);
-        container_google = (LinearLayout) findViewById(R.id.container_google);
+        btn_google = (Button) findViewById(R.id.btn_google);
         container_daftar = (LinearLayout) findViewById(R.id.container_daftar);
         btn_masuk = (Button) findViewById(R.id.btn_masuk);
 
-        daftar =(TextView) findViewById(R.id.tv_daftar);
+        namapengguna = findViewById(R.id.et_nama_pengguna);
+        katasandi = findViewById(R.id.et_kata_sandi);
+
+        daftar = (TextView) findViewById(R.id.tv_daftar);
+
+
 
         bgapp.animate().translationY(-1500).setDuration(1000).setStartDelay(1500);
         clover.animate().alpha(0).setDuration(1000).setStartDelay(600);
@@ -44,13 +83,23 @@ public class LoginActivity extends AppCompatActivity {
         container_user.startAnimation(frombottom);
         container_pwd.startAnimation(frombottom);
         btn_masuk.startAnimation(frombottom);
-        container_google.startAnimation(frombottom);
+        btn_google.startAnimation(frombottom);
         container_daftar.startAnimation(frombottom);
+
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent daftar = new Intent(LoginActivity.this,DaftarActivity.class);
+                Intent daftar = new Intent(LoginActivity.this, DaftarActivity.class);
                 startActivity(daftar);
             }
         });
@@ -58,10 +107,166 @@ public class LoginActivity extends AppCompatActivity {
         btn_masuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent btn_masuk = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(btn_masuk);
+                final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+                pd.setMessage("Tunggu Sebentar ...");
+                pd.show();
+
+                String str_namapengguna = namapengguna.getText().toString();
+                String str_katasandi = katasandi.getText().toString();
+
+                if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_katasandi)) {
+                    Toast.makeText(LoginActivity.this, "Semua harus diisi!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.v("HERE0", "VALUE EVENT LISTENER");
+                    firebaseAuth.signInWithEmailAndPassword(str_namapengguna, str_katasandi)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+
+                                        Log.v("HERE1", "VALUE EVENT LISTENER");
+
+
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
+                                                .child(firebaseAuth.getCurrentUser().getUid()).child("kode_login");
+
+
+                                        reference.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                                pd.dismiss();
+                                                Log.v("HERE2", "VALUE EVENT LISTENER");
+                                                int as = Integer.parseInt(dataSnapshot.getValue().toString());
+                                                if (as == 1) {
+                                                    Intent i = new Intent(LoginActivity.this, Main2Activity.class);
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(i);
+                                                    finish();
+                                                } else if (as == 0) {
+                                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                pd.dismiss();
+
+                                            }
+                                        });
+                                    } else {
+                                        pd.dismiss();
+                                        Toast.makeText(LoginActivity.this, "Otentikasi gagal!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+            }
+
+        });
+
+        btn_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signIn();
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser != null){
+
+            final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+            pd.setMessage("Tunggu Sebentar ...");
+            pd.show();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
+                    .child(currentUser.getUid()).child("kode_login");
+
+
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    pd.dismiss();
+                    Log.v("HERE2", "VALUE EVENT LISTENER");
+                    int as = Integer.parseInt(dataSnapshot.getValue().toString());
+                    if (as == 1) {
+                        Intent i = new Intent(LoginActivity.this, Main2Activity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                    } else if (as == 0) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    pd.dismiss();
+
+                }
+            });
+        }
+    }
+
+
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w(TAG, "Google sign in failed", e);
+                // ...
+            }
+        }
+
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user =  firebaseAuth.getCurrentUser();
+//                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+//                            updateUI(null);
+                        }
+
+                        // ...
+                    }
+                });
     }
 }

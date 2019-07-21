@@ -40,11 +40,11 @@
             android:textSize="9sp" />
 
         <TextView
+            android:id="@+id/tv_harga_barang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/roboto_bold"
-            android:paddingLeft="50dp"
             android:text="Rp. 0"
             android:textColor="@color/colorBlack"
             android:textSize="14sp" />

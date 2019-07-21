@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -48,20 +47,20 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/nama_pengguna"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="28dp"
             android:gravity="center"
-            app:boxStrokeColor="@color/colorAccent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:boxStrokeColor="@color/colorAccent">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/et_nama_pengguna"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_username"
-                android:hint="Nama Penguna"
                 android:drawablePadding="10dp"
+                android:hint="Nama Penguna"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -74,23 +73,23 @@
         android:id="@+id/container_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
         android:elevation="6dp"
         android:orientation="vertical"
-        android:layout_marginTop="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/kata_sandi"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="28dp"
             android:gravity="center"
             app:boxStrokeColor="@color/colorAccent"
-            app:passwordToggleEnabled="true"
             app:passwordToggleDrawable="@drawable/ic_selector"
-            app:passwordToggleTint="@color/colorBlack"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorBlack">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/et_kata_sandi"
@@ -101,7 +100,7 @@
                 android:hint="Kata Sandi"
                 android:inputType="textPassword"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"/>
+                android:textColorHint="@color/colorBlack" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -114,10 +113,10 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/button_blue_login"
         android:elevation="6dp"
-        android:text="Masuk"
-        android:textSize="18sp"
         android:fontFamily="@font/roboto_bold"
+        android:text="Masuk"
         android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_pwd" />
@@ -126,51 +125,51 @@
         android:id="@+id/btn_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_masuk"
         android:layout_marginStart="8dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/ic_google"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="Masuk dengan Google"
         android:textAllCaps="false"
         android:textSize="12sp"
-        android:fontFamily="@font/roboto_bold"
-        android:drawableStart="@drawable/ic_google"
-        android:drawablePadding="20dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_masuk" />
 
 
     <!--<LinearLayout-->
-        <!--android:id="@+id/container_google"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="26dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:elevation="6dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/btn_masuk">-->
+    <!--android:id="@+id/container_google"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="26dp"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:elevation="6dp"-->
+    <!--android:orientation="horizontal"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/btn_masuk">-->
 
-        <!--<ImageView-->
-            <!--android:layout_width="24dp"-->
-            <!--android:layout_height="24dp"-->
-            <!--android:src="@drawable/icongoogle" />-->
+    <!--<ImageView-->
+    <!--android:layout_width="24dp"-->
+    <!--android:layout_height="24dp"-->
+    <!--android:src="@drawable/icongoogle" />-->
 
-        <!--<TextView-->
-            <!--android:id="@+id/btn_google"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="Masuk dengan Goggle"-->
-            <!--android:textSize="12sp"-->
-            <!--android:fontFamily="@font/roboto_bold"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:gravity="center"-->
-            <!--android:textColor="@color/colorBlue"/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/btn_google"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:text="Masuk dengan Goggle"-->
+    <!--android:textSize="12sp"-->
+    <!--android:fontFamily="@font/roboto_bold"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/colorBlue"/>-->
 
     <!--</LinearLayout>-->
 
@@ -192,20 +191,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
             android:text="Belum punya akun ?"
             android:textColor="@color/colorBlack"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_regular" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_daftar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:fontFamily="@font/roboto_bold"
             android:text="Daftar"
             android:textColor="@color/colorBlack"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_bold" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -214,14 +213,13 @@
         android:id="@+id/bgapp"
         android:layout_width="526dp"
         android:layout_height="900dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/bgapp"
+        android:layout_marginEnd="8dp"
         android:scaleType="fitXY"
+        android:src="@drawable/bgapp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

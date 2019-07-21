@@ -1,0 +1,36 @@
+package com.example.pelangiaquscape.ViewHolder;
+
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.pelangiaquscape.Interface.ItemClickListener;
+import com.example.pelangiaquscape.R;
+
+public class MerekViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    public TextView tv_merek;
+    public ImageView im_arrow;
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    private ItemClickListener itemClickListener;
+
+    public MerekViewHolder(View itemView) {
+        super(itemView);
+
+        tv_merek = itemView.findViewById(R.id.tv_merek);
+        im_arrow = itemView.findViewById(R.id.im_arrow);
+        itemView.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        itemClickListener.onClick(view, getAdapterPosition(), false);
+    }
+}

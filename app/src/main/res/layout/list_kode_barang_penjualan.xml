@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/container_list_kode"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_margin="35dp"
+        android:background="@drawable/container_barang"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_kode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center_vertical"
+            android:text="Q3"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_keterangan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_kode"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center_vertical"
+            android:text="Kode Barang"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingLeft="50dp"
+            android:text="Rp. 0"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_kuantitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kuantitas"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/container_list_kode"/>
+
+    <ImageButton
+        android:id="@+id/btn_minus"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/tv_kuantitas"
+        android:layout_toRightOf="@+id/container_list_kode"
+        android:src="@drawable/ic_minus"
+        android:background="@drawable/button_plus_minus"/>
+
+    <EditText
+        android:id="@+id/et_kuantitas"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_toRightOf="@+id/btn_minus"
+        android:layout_centerVertical="true"
+        android:text="0"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/button_edittext"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_plus"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_toRightOf="@+id/et_kuantitas"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_plus"
+        android:background="@drawable/button_plus_minus"/>
+
+
+</RelativeLayout>

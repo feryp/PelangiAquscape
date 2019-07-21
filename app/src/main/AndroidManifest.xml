@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".StokActivity"></activity>
+        <activity android:name=".PenjualanKodeBarangActivity"></activity>
+        <activity android:name=".PenjualanActivity" />
+        <activity android:name=".StokActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".TambahBarangActivity" />
         <activity android:name=".BarangActivity" />

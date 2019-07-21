@@ -1,119 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary"
-    tools:context=".PenjualanKodeBarangActivity">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:background="@drawable/border_grey_effect">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/im_cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentStart="true"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Penjualan"
-                    android:textColor="@color/colorBlue"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/roboto_medium"/>
-
-                <View
-                    android:id="@+id/im_transaksi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentEnd="true"/>
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:padding="15dp">
-
-        <EditText
-            android:id="@+id/search_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_toStartOf="@+id/ib_search"
-            android:paddingBottom="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="15dp"
-            android:ems="15"
-            android:fontFamily="@font/roboto_bold"
-            android:inputType="textPersonName"
-            android:hint="Cari Barang"
-            android:textColorHint="#636262"
-            android:textColor="#636262"
-            android:textSize="16sp"
-            android:background="@drawable/search_layout"/>
-
-        <ImageButton
-            android:id="@+id/ib_search"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/search_field"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/search_field"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/border_search"
-            android:src="@drawable/ic_search"/>
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kode Barang"
-        android:textSize="18sp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/roboto_bold"
-        android:paddingLeft="20dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_daftar_kode"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        app:spanCount="2">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        tools:context=".PenjualanKodeBarangActivity">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/border_grey_effect"
+                android:elevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/im_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Penjualan"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/im_transaksi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="10dp" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="15dp">
+
+            <EditText
+                android:id="@+id/search_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toStartOf="@+id/ib_search"
+                android:background="@drawable/search_layout"
+                android:ems="15"
+                android:fontFamily="@font/roboto_bold"
+                android:hint="Cari Barang"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="15dp"
+                android:textColor="#636262"
+                android:textColorHint="#636262"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/ib_search"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@+id/search_field"
+                android:layout_alignBottom="@+id/search_field"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/border_search"
+                android:src="@drawable/ic_search" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Kode Barang"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_daftar_kode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            app:spanCount="2">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_jual"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-284dp"
+        android:background="@color/colorBlue"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Jual"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

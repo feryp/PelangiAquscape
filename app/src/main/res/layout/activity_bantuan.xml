@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BantuanActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/gradient_header_bantuan"
+                android:paddingTop="30dp"
+                android:padding="30dp">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/im_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_cancel_white"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentEnd="true"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.Toolbar>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/Hallo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hallo"
+                        android:textSize="36sp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/colorPrimary" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/ic_waving_hand" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header_bantuan"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header_bantuan2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/colorBlue" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/container_carijawaban"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:background="@drawable/container_search_bantuan"
+                        android:elevation="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cari jawaban dengan cepat"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorBlack"
+                            android:fontFamily="@font/roboto_regular"/>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:layout_marginTop="20dp">
+
+                            <EditText
+                                android:id="@+id/search_field_bantuan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/roboto_bold"
+                                android:background="@drawable/border_box_grey2"
+                                android:ems="10"
+                                android:padding="15dp"
+                                android:inputType="textPersonName"
+                                android:hint="Mencari Jawaban..."
+                                android:textColor="#636262"
+                                android:textSize="16sp"/>
+
+                            <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_toEndOf="@+id/search_field_bantuan"
+                                android:background="@color/colorBlue"
+                                android:src="@drawable/ic_arrow_search"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:columnCount="1"
+                android:rowCount="3">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:id="@+id/container_cara_kelola_barang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/container_search_bantuan"
+                        android:padding="30dp">
+
+                            <ImageView
+                                android:id="@+id/icon_question"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_question"/>
+
+                            <TextView
+                                android:id="@+id/tv_cara_kelola_barang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cari Kelola Barang"
+                               android:layout_marginStart="70dp"
+                                android:textSize="16sp"
+                                android:textColor="@color/colorBlue"
+                                android:fontFamily="@font/roboto_regular"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/cara_kelola_barang"
+                                android:layout_marginStart="70dp"
+                                android:layout_below="@+id/tv_cara_kelola_barang"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorBlack"
+                                android:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:id="@+id/container_cara_transaksi_penjualan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/container_search_bantuan"
+                        android:padding="30dp">
+
+                        <ImageView
+                            android:id="@+id/icon_question2"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_question"/>
+
+                        <TextView
+                            android:id="@+id/tv_cara_transaksi_penjualan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cari Transaksi Penjualan"
+                            android:layout_marginStart="70dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorBlue"
+                            android:fontFamily="@font/roboto_regular"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cara_transaksi_penjualan"
+                            android:layout_marginStart="70dp"
+                            android:layout_below="@+id/tv_cara_transaksi_penjualan"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorBlack"
+                            android:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:id="@+id/container_ringkasan_penjualan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/container_search_bantuan"
+                        android:padding="30dp">
+
+                        <ImageView
+                            android:id="@+id/icon_question3"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_question"/>
+
+                        <TextView
+                            android:id="@+id/tv_ringkasan_penjualan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ringkasan Penjualan"
+                            android:layout_marginStart="70dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorBlue"
+                            android:fontFamily="@font/roboto_regular"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cara_ringkasan_penjualan"
+                            android:layout_marginStart="70dp"
+                            android:layout_below="@+id/tv_ringkasan_penjualan"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorBlack"
+                            android:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </GridLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

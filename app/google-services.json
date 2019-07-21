@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "748176016018",
+    "firebase_url": "https://pelangiaquscape.firebaseio.com",
+    "project_id": "pelangiaquscape",
+    "storage_bucket": "pelangiaquscape.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748176016018:android:8a96ceae76a0cee4",
+        "android_client_info": {
+          "package_name": "com.example.pelangiaquscape"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748176016018-4u9e9ujjl7kur2kmvu79lrh2f7evsub6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pelangiaquscape",
+            "certificate_hash": "ba45e3fadfc2023261e4d394110c9ae99d400c1d"
+          }
+        },
+        {
+          "client_id": "748176016018-c0c9avkvuit6lh679b3dqclesvurb6b4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPPqaceLXFvfo0-31XveFkjJXMyti9BLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748176016018-c0c9avkvuit6lh679b3dqclesvurb6b4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

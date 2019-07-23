@@ -52,7 +52,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tv_kuantitas"
+        android:id="@+id/lbl_kuantitas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kuantitas"
@@ -70,13 +70,13 @@
         android:layout_height="24dp"
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
-        android:layout_below="@+id/tv_kuantitas"
+        android:layout_below="@+id/lbl_kuantitas"
         android:layout_toRightOf="@+id/container_list_kode"
         android:src="@drawable/ic_minus"
         android:background="@drawable/button_plus_minus"/>
 
-    <EditText
-        android:id="@+id/et_kuantitas"
+    <TextView
+        android:id="@+id/tv_kuantitas"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_toRightOf="@+id/btn_minus"
@@ -93,7 +93,7 @@
         android:id="@+id/btn_plus"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_toRightOf="@+id/et_kuantitas"
+        android:layout_toRightOf="@+id/tv_kuantitas"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_plus"
         android:background="@drawable/button_plus_minus"/>

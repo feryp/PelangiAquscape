@@ -14,10 +14,6 @@ public class MerekViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView tv_merek;
     public ImageView im_arrow;
 
-    public void setItemClickListener(ItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
-
     private ItemClickListener itemClickListener;
 
     public MerekViewHolder(View itemView) {
@@ -32,5 +28,9 @@ public class MerekViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @Override
     public void onClick(View view) {
         itemClickListener.onClick(view, getAdapterPosition(), false);
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 }

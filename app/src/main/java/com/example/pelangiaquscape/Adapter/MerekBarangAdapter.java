@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MerekBarangAdapter extends ArrayAdapter<Merek> {
 
 
-    public MerekBarangAdapter(Context context, int resource, ArrayList<Merek> Merek) {
+    public MerekBarangAdapter(@NonNull Context context, ArrayList<Merek> Merek, int resource) {
         super(context, 0, Merek);
     }
 

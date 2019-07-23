@@ -41,6 +41,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".DaftarActivity" />
         <activity android:name=".LoginActivity">
+
+        </activity>
+
+        <activity android:name=".DummyInsertDataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

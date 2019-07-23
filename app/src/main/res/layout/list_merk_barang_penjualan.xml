@@ -8,11 +8,12 @@
     android:padding="10dp">
 
     <TextView
+        android:paddingLeft="8dp"
         android:id="@+id/tv_merek"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="4"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_vertical"
         android:text="AMARA"
@@ -22,10 +23,11 @@
 
     <ImageView
         android:id="@+id/im_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="200dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:foregroundGravity="right"
         android:rotation="180"
         android:src="@drawable/ic_arrow_black" />
 

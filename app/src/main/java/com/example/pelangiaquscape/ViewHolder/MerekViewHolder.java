@@ -22,6 +22,7 @@ public class MerekViewHolder extends RecyclerView.ViewHolder implements View.OnC
         tv_merek = itemView.findViewById(R.id.tv_merek);
         im_arrow = itemView.findViewById(R.id.im_arrow);
         itemView.setOnClickListener(this);
+//        im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
     }
 

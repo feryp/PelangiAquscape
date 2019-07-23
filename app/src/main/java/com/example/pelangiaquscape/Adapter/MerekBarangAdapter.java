@@ -27,6 +27,6 @@ public class MerekBarangAdapter extends ArrayAdapter<Merek> {
         if (view==null){
             view = LayoutInflater.from(getContext()).inflate(R.layout.list_merk_barang_penjualan, parent, false);
         }
-        return null;
+        return view;
     }
 }

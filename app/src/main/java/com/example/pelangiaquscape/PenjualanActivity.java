@@ -70,6 +70,7 @@ public class PenjualanActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull MerekViewHolder holder, int position, @NonNull Merek model) {
                 holder.tv_merek.setText(model.getNama());
+//                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
                 Log.i("INFORMATION", model.getNama()+" "+model.getNama());
                 final Merek clickItem = model;

@@ -7,7 +7,7 @@
     android:rowCount="3">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_pegawai"
+        android:id="@+id/cv_pelanggan"
         android:layout_width="121dp"
         android:layout_height="140dp"
         android:layout_margin="10dp"
@@ -16,35 +16,28 @@
         app:cardPreventCornerOverlap="false">
 
         <LinearLayout
-            android:id="@+id/pegawai"
+            android:id="@+id/pelanggan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/foto_pegawai"
+                android:id="@+id/foto_pelanggan"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:src="@drawable/pegawai" />
+                android:src="@drawable/ic_foto_profile_edit" />
 
             <TextView
-                android:id="@+id/tv_nama_pegawai"
+                android:id="@+id/tv_nama_pelanggan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Nama"
                 android:textColor="@color/colorBlue"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Pegawai"
-                android:textColor="@color/colorBlue"
-                android:textSize="12sp" />
 
         </LinearLayout>
 

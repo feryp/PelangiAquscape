@@ -9,12 +9,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 public class BarangActivity extends AppCompatActivity {
 
     ImageView cancel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

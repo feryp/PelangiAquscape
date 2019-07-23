@@ -13,10 +13,10 @@ import com.example.pelangiaquscape.R;
 
 import java.util.ArrayList;
 
-public class MerekBarangAdapter extends ArrayAdapter<Merek> {
+public class PenjualanMerekBarangAdapter extends ArrayAdapter<Merek> {
 
 
-    public MerekBarangAdapter(@NonNull Context context, ArrayList<Merek> Merek, int resource) {
+    public PenjualanMerekBarangAdapter(@NonNull Context context, ArrayList<Merek> Merek, int resource) {
         super(context, 0, Merek);
     }
 

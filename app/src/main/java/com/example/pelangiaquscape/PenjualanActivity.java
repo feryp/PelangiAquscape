@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Merek;
-import com.example.pelangiaquscape.ViewHolder.MerekViewHolder;
+import com.example.pelangiaquscape.ViewHolder.PenjualanMerekViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -66,9 +66,9 @@ public class PenjualanActivity extends AppCompatActivity {
 
         Log.i("SNAPSHOT", options.getSnapshots().toString());
 
-        adapter = new FirebaseRecyclerAdapter<Merek, MerekViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Merek, PenjualanMerekViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull MerekViewHolder holder, int position, @NonNull Merek model) {
+            protected void onBindViewHolder(@NonNull PenjualanMerekViewHolder holder, int position, @NonNull Merek model) {
                 holder.tv_merek.setText(model.getNama());
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
@@ -88,11 +88,11 @@ public class PenjualanActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public MerekViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public PenjualanMerekViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_merk_barang_penjualan, viewGroup, false);
                 Log.i("Buat View Holder", view.toString());
-                return new MerekViewHolder(view);
+                return new PenjualanMerekViewHolder(view);
             }
         };
 

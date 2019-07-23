@@ -15,9 +15,7 @@ import android.widget.Toast;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Barang;
-import com.example.pelangiaquscape.Model.Merek;
-import com.example.pelangiaquscape.ViewHolder.BarangViewHolder;
-import com.example.pelangiaquscape.ViewHolder.MerekViewHolder;
+import com.example.pelangiaquscape.ViewHolder.PenjualanBarangViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -73,9 +71,9 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
 
         Log.i("SNAPSHOT", options.getSnapshots().toString() + " " + ids);
 
-        adapter = new FirebaseRecyclerAdapter<Barang, BarangViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Barang, PenjualanBarangViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull BarangViewHolder holder, int position, @NonNull Barang model) {
+            protected void onBindViewHolder(@NonNull PenjualanBarangViewHolder holder, int position, @NonNull Barang model) {
                 holder.tvKode.setText(model.getKode());
                 holder.tvHarga.setText(String.valueOf(model.getHargaJual()));
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
@@ -95,11 +93,11 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public BarangViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public PenjualanBarangViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_kode_barang_penjualan, viewGroup, false);
                 Log.i("Kesini", view.toString());
-                return new BarangViewHolder(view);
+                return new PenjualanBarangViewHolder(view);
             }
         };
 

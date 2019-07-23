@@ -220,21 +220,6 @@
                         android:textSize="14sp"
                         android:theme="@style/RadioButtonStyle" />
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:id="@+id/kasbon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/custom_radiobutton"
-                        android:drawablePadding="190dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:layoutDirection="rtl"
-                        android:onClick="onRadioButtonClick"
-                        android:padding="15dp"
-                        android:text="Kasbon"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="14sp"
-                        android:theme="@style/RadioButtonStyle" />
-
                 </RadioGroup>
 
             </RelativeLayout>

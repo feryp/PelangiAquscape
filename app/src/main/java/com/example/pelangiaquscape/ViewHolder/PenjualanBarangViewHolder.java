@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.R;
 
-public class BarangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class PenjualanBarangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     public TextView tvKode;
     public TextView tvHarga;
@@ -23,7 +23,7 @@ public class BarangViewHolder extends RecyclerView.ViewHolder implements View.On
     private ItemClickListener itemClickListener;
 
 
-    public BarangViewHolder(@NonNull View itemView) {
+    public PenjualanBarangViewHolder(@NonNull View itemView) {
         super(itemView);
 
         tvKode = itemView.findViewById(R.id.tv_kode);

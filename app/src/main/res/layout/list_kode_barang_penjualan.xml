@@ -9,9 +9,9 @@
         android:id="@+id/container_list_kode"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_margin="35dp"
+        android:layout_margin="15dp"
         android:background="@drawable/container_barang"
-        android:padding="10dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/tv_kode"
@@ -43,7 +43,9 @@
             android:id="@+id/tv_harga_barang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="30dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Rp. 0"
             android:textColor="@color/colorBlack"
@@ -57,18 +59,17 @@
         android:layout_height="wrap_content"
         android:text="Kuantitas"
         android:textSize="12sp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_bold"
         android:textColor="@color/colorBlack"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/container_list_kode"/>
 
     <ImageButton
         android:id="@+id/btn_minus"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
         android:layout_below="@+id/lbl_kuantitas"
         android:layout_toRightOf="@+id/container_list_kode"

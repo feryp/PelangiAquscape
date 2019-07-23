@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
@@ -29,15 +30,17 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
     DatabaseReference dr;
     FirebaseRecyclerAdapter adapter;
     RecyclerView rv;
-
     RecyclerView.LayoutManager layoutManager;
     String id;
-
     Query query;
+    ImageView cancel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penjualan_kode_barang);
+
+        cancel =  (ImageView) findViewById(R.id.im_cancel);
 
         Intent i = getIntent();
         id = i.getStringExtra("idMerek");
@@ -51,17 +54,24 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         loadBarang(id);
 
     }
 
     private void loadBarang(String ids) {
 
-                query = FirebaseDatabase.getInstance().getReference().child("Barang").orderByChild("merek").equalTo(ids);
+        query = FirebaseDatabase.getInstance().getReference().child("Barang").orderByChild("merek").equalTo(ids);
         FirebaseRecyclerOptions<Barang> options =
                 new FirebaseRecyclerOptions.Builder<Barang>().setQuery(query, Barang.class).build();
 
-        Log.i("SNAPSHOT", options.getSnapshots().toString()+" " +ids);
+        Log.i("SNAPSHOT", options.getSnapshots().toString() + " " + ids);
 
         adapter = new FirebaseRecyclerAdapter<Barang, BarangViewHolder>(options) {
             @Override
@@ -70,7 +80,7 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
                 holder.tvHarga.setText(String.valueOf(model.getHargaJual()));
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
-                Log.i("INFORMATION", model.getKode()+" "+model.getMerek());
+                Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
                 final Barang clickItem = model;
 
                 holder.setItemClickListener(new ItemClickListener() {

@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
         <activity android:name=".PembayaranActivity"></activity>
-        <activity android:name=".TransaksiPenjualanActivity" />
+        <activity android:name=".KeranjangPenjualanActivity" />
         <activity android:name=".PenjualanKodeBarangActivity" />
         <activity android:name=".PenjualanActivity" />
         <activity android:name=".StokActivity" />

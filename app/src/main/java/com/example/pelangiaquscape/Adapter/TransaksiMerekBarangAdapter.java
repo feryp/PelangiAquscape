@@ -13,10 +13,10 @@ import com.example.pelangiaquscape.R;
 
 import java.util.ArrayList;
 
-public class PenjualanMerekBarangAdapter extends ArrayAdapter<Merek> {
+public class TransaksiMerekBarangAdapter extends ArrayAdapter<Merek> {
 
 
-    public PenjualanMerekBarangAdapter(@NonNull Context context, ArrayList<Merek> Merek, int resource) {
+    public TransaksiMerekBarangAdapter(@NonNull Context context, ArrayList<Merek> Merek, int resource) {
         super(context, 0, Merek);
     }
 
@@ -25,7 +25,7 @@ public class PenjualanMerekBarangAdapter extends ArrayAdapter<Merek> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
         if (view==null){
-            view = LayoutInflater.from(getContext()).inflate(R.layout.list_merk_barang_penjualan, parent, false);
+            view = LayoutInflater.from(getContext()).inflate(R.layout.list_merk_barang_transaksi, parent, false);
         }
         return view;
     }

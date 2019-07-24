@@ -14,14 +14,14 @@ import android.widget.ImageView;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Merek;
-import com.example.pelangiaquscape.ViewHolder.PenjualanMerekViewHolder;
+import com.example.pelangiaquscape.ViewHolder.TransaksiMerekViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class PenjualanActivity extends AppCompatActivity {
+public class TransaksiActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseMerek;
@@ -34,7 +34,7 @@ public class PenjualanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_penjualan);
+        setContentView(R.layout.activity_transaksi);
 
         cancel =  (ImageView) findViewById(R.id.im_cancel);
 
@@ -66,9 +66,9 @@ public class PenjualanActivity extends AppCompatActivity {
 
         Log.i("SNAPSHOT", options.getSnapshots().toString());
 
-        adapter = new FirebaseRecyclerAdapter<Merek, PenjualanMerekViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Merek, TransaksiMerekViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull PenjualanMerekViewHolder holder, int position, @NonNull Merek model) {
+            protected void onBindViewHolder(@NonNull TransaksiMerekViewHolder holder, int position, @NonNull Merek model) {
                 holder.tv_merek.setText(model.getNama());
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
@@ -78,7 +78,7 @@ public class PenjualanActivity extends AppCompatActivity {
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent merek = new Intent(PenjualanActivity.this, PenjualanKodeBarangActivity.class);
+                        Intent merek = new Intent(TransaksiActivity.this, TransaksiKodeBarangActivity.class);
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
                         Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
                         startActivity(merek);
@@ -88,11 +88,11 @@ public class PenjualanActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public PenjualanMerekViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public TransaksiMerekViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.list_merk_barang_penjualan, viewGroup, false);
+                        .inflate(R.layout.list_merk_barang_transaksi, viewGroup, false);
                 Log.i("Buat View Holder", view.toString());
-                return new PenjualanMerekViewHolder(view);
+                return new TransaksiMerekViewHolder(view);
             }
         };
 

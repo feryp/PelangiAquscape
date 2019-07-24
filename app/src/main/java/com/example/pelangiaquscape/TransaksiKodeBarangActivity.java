@@ -15,14 +15,14 @@ import android.widget.Toast;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Barang;
-import com.example.pelangiaquscape.ViewHolder.PenjualanBarangViewHolder;
+import com.example.pelangiaquscape.ViewHolder.TransaksiBarangViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class PenjualanKodeBarangActivity extends AppCompatActivity {
+public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
     FirebaseDatabase fd;
     DatabaseReference dr;
@@ -36,7 +36,7 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_penjualan_kode_barang);
+        setContentView(R.layout.activity_transaksi_kode_barang);
 
         cancel =  (ImageView) findViewById(R.id.im_cancel);
 
@@ -71,9 +71,9 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
 
         Log.i("SNAPSHOT", options.getSnapshots().toString() + " " + ids);
 
-        adapter = new FirebaseRecyclerAdapter<Barang, PenjualanBarangViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Barang, TransaksiBarangViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull PenjualanBarangViewHolder holder, int position, @NonNull Barang model) {
+            protected void onBindViewHolder(@NonNull TransaksiBarangViewHolder holder, int position, @NonNull Barang model) {
                 holder.tvKode.setText(model.getKode());
                 holder.tvHarga.setText(String.valueOf(model.getHargaJual()));
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
@@ -84,7 +84,7 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(PenjualanKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -93,11 +93,11 @@ public class PenjualanKodeBarangActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public PenjualanBarangViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public TransaksiBarangViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.list_kode_barang_penjualan, viewGroup, false);
+                        .inflate(R.layout.list_kode_barang_transaksi, viewGroup, false);
                 Log.i("Kesini", view.toString());
-                return new PenjualanBarangViewHolder(view);
+                return new TransaksiBarangViewHolder(view);
             }
         };
 

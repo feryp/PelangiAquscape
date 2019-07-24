@@ -16,8 +16,8 @@
         tools:replace="android:appComponentFactory">
         <activity android:name=".PembayaranActivity"></activity>
         <activity android:name=".KeranjangPenjualanActivity" />
-        <activity android:name=".PenjualanKodeBarangActivity" />
-        <activity android:name=".PenjualanActivity" />
+        <activity android:name=".TransaksiKodeBarangActivity" />
+        <activity android:name=".TransaksiActivity" />
         <activity android:name=".StokActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".TambahBarangActivity" />

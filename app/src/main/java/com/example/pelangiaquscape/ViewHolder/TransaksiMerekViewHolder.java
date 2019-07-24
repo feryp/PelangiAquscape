@@ -9,14 +9,14 @@ import android.widget.TextView;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.R;
 
-public class PenjualanMerekViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class TransaksiMerekViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView tv_merek;
     public ImageView im_arrow;
 
     private ItemClickListener itemClickListener;
 
-    public PenjualanMerekViewHolder(View itemView) {
+    public TransaksiMerekViewHolder(View itemView) {
         super(itemView);
 
         tv_merek = itemView.findViewById(R.id.tv_merek);

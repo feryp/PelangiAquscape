@@ -43,12 +43,6 @@ public class TambahBarangActivity extends AppCompatActivity {
         });
 
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_merek);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.merek_barang_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
-        spinner.setAdapter(adapter);
-
         final ExpandableRelativeLayout ex = findViewById(R.id.expand_barang);
 
         ex.collapse();

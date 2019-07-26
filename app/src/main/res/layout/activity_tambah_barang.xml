@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#F8F6F6"
+    android:orientation="vertical"
     tools:context=".TambahBarangActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -97,7 +96,7 @@
                     app:boxStrokeColor="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_no_pesanan"
+                        android:id="@+id/et_nama_barang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nama Barang"
@@ -107,35 +106,56 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-                <RelativeLayout
-                    android:id="@+id/pilih_merek"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/merek_barang"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/nama_barang"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/spinner_border">
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
 
-                    <Spinner
-                        android:id="@+id/spinner_merek"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_merek_barang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:entries="@array/merek_barang_array"
-                        android:spinnerMode="dropdown" />
+                        android:hint="Merek Barang"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="18dp"
-                        android:src="@drawable/ic_drop_down" />
+                </android.support.design.widget.TextInputLayout>
 
-                </RelativeLayout>
+                <!--<RelativeLayout-->
+                <!--android:id="@+id/pilih_merek"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_below="@+id/nama_barang"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:background="@drawable/spinner_border">-->
+
+                <!--<Spinner-->
+                <!--android:id="@+id/spinner_merek"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:entries="@array/merek_barang_array"-->
+                <!--android:spinnerMode="dropdown" />-->
+
+                <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="18dp"-->
+                <!--android:src="@drawable/ic_drop_down" />-->
+
+                <!--</RelativeLayout>-->
 
             </RelativeLayout>
 
@@ -225,8 +245,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
-                android:padding="15dp"
-                android:background="@drawable/container_search_bantuan">
+                android:background="@drawable/container_search_bantuan"
+                android:padding="15dp">
 
                 <RelativeLayout
                     android:id="@+id/layout_expand"
@@ -247,9 +267,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:switchMinWidth="25dp"
                         android:checked="false"
-                        android:theme="@style/SCBSwitch"/>
+                        android:switchMinWidth="25dp"
+                        android:theme="@style/SCBSwitch" />
 
                 </RelativeLayout>
 
@@ -258,40 +278,60 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_expand"
-                    app:ael_expanded="false"
                     app:ael_duration="200"
+                    app:ael_expanded="false"
                     app:ael_interpolator="accelerate"
                     app:ael_orientation="vertical">
 
-                    <RelativeLayout
-                        android:id="@+id/satuan_unit"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/nama_barang"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/spinner_border">
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/satuan_unit"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:layout_below="@+id/nama_barang"-->
+                        <!--android:layout_marginTop="20dp"-->
+                        <!--android:background="@drawable/spinner_border">-->
 
-                        <Spinner
-                            android:id="@+id/spinner_satuan_unit"
+                        <!--<Spinner-->
+                            <!--android:id="@+id/spinner_satuan_unit"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_margin="10dp"-->
+                            <!--android:background="@android:color/transparent"-->
+                            <!--android:entries="@array/satuan_unit_array"-->
+                            <!--android:spinnerMode="dropdown" />-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_alignParentRight="true"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_marginRight="18dp"-->
+                            <!--android:src="@drawable/ic_drop_down" />-->
+
+                    <!--</RelativeLayout>-->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/satuan_unit"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/expand_barang"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        app:boxStrokeColor="@color/colorAccent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_satuan_unit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:background="@android:color/transparent"
-                            android:entries="@array/satuan_unit_array"
-                            android:spinnerMode="dropdown" />
+                            android:hint="Satuan Unit"
+                            android:inputType="text"
+                            android:textColor="@color/colorBlack"
+                            android:textColorHint="@color/colorBlack" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="18dp"
-                            android:src="@drawable/ic_drop_down" />
-
-                    </RelativeLayout>
+                    </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/jumlah_stok"
@@ -299,7 +339,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/satuan_unit"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:gravity="center"
                         app:boxStrokeColor="@color/colorAccent">
 
@@ -320,7 +360,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/jumlah_stok"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:gravity="center"
                         app:boxStrokeColor="@color/colorAccent">
 
@@ -328,10 +368,10 @@
                             android:id="@+id/et_minimum_stok"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Minimum Stok"
-                            android:inputType="text"
                             android:drawableRight="@drawable/ic_help"
                             android:drawablePadding="10dp"
+                            android:hint="Minimum Stok"
+                            android:inputType="text"
                             android:textColor="@color/colorBlack"
                             android:textColorHint="@color/colorBlack" />
 
@@ -341,7 +381,6 @@
                 </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
             </RelativeLayout>
-
 
 
         </LinearLayout>

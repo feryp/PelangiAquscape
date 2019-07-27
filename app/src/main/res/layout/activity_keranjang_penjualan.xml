@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".KeranjangPenjualanActivity">
 
     <LinearLayout
+        android:id="@+id/container_appBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
@@ -60,6 +61,16 @@
 
         </android.support.design.widget.AppBarLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/container_appBar"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +85,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list_transaksi"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:scrollbars="vertical"
             app:spanCount="1">
 
@@ -83,57 +94,70 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_ket_total_pembayaran"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/container_total_pembayaran"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:fontFamily="@font/roboto_bold"
-        android:paddingBottom="100dp"
-        android:text="Total Pembayaran"
-        android:textColor="@color/colorBlue"
-        android:textSize="20sp" />
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/container_recyclerView"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_total_pembayaran"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:layout_toRightOf="@+id/tv_ket_total_pembayaran"
-        android:fontFamily="@font/roboto_bold"
-        android:paddingLeft="20dp"
-        android:paddingBottom="100dp"
-        android:text="Rp. 0"
-        android:textColor="@color/colorBlue"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_ket_total_pembayaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Total Pembayaran"
+            android:textColor="@color/colorBlue"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btn_tambah_barang"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:background="@drawable/button_blue"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Tambah Barang"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_total_pembayaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Rp. 0"
+            android:textColor="@color/colorBlue"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btn_konfirmasi"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:background="@drawable/button_blue"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Konfirmasi"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/container_total_pembayaran">
+
+        <Button
+            android:id="@+id/btn_tambah_barang"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/button_blue"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Tambah Barang"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_konfirmasi"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_blue"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Konfirmasi"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

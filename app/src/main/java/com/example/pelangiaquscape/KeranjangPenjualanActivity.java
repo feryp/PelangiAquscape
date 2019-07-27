@@ -111,5 +111,11 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         tv.setText("Rp. "+ totalAllItemPrice);
+
+
+
+
+
+
     }
 }

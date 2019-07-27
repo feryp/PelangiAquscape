@@ -33,6 +33,8 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
         max = itemView.findViewById(R.id.btn_plus);
         tvQuantity.setText("0");
         itemView.setOnClickListener(this);
+        min.setOnClickListener(this);
+        max.setOnClickListener(this);
 
     }
 
@@ -41,12 +43,12 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
     public void onClick(View v) {
         itemClickListener.onClick(v, getAdapterPosition(), false);
         switch(v.getId()){
-            case R.id.btn_minus:
-                if(qty < 30)
+            case R.id.btn_plus:
+                if(qty < 50)
                     qty = qty+1;
                 tvQuantity.setText(String.valueOf(qty));
                 break;
-            case R.id.btn_plus:
+            case R.id.btn_minus:
                 if(qty > -1)
                     qty = qty-1;
                 tvQuantity.setText(String.valueOf(qty));

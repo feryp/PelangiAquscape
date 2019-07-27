@@ -375,7 +375,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="Pengiriman"
+                                android:text="Penerimaan"
                                 android:textColor="@color/colorBlue"
                                 android:textSize="14sp" />
 
@@ -411,6 +411,41 @@
                                 android:layout_marginTop="12dp"
                                 android:fontFamily="@font/roboto_bold"
                                 android:text="Barang"
+                                android:textColor="@color/colorBlue"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_gudang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="4dp"
+                        app:cardPreventCornerOverlap="false">
+
+                        <LinearLayout
+                            android:id="@+id/gudang"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/border_box_blue"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:src="@drawable/gudang" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Gudang"
                                 android:textColor="@color/colorBlue"
                                 android:textSize="14sp" />
 

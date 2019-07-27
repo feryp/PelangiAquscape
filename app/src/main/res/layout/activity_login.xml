@@ -106,28 +106,51 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/container_lupa_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:layout_marginRight="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_pwd">
+
+        <TextView
+            android:id="@+id/tv_lupa_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Lupa Password"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_masuk"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_blue_login"
         android:elevation="6dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Masuk"
+        android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_pwd" />
+        app:layout_constraintTop_toBottomOf="@+id/container_lupa_password" />
 
     <Button
         android:id="@+id/btn_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="26dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:drawableStart="@drawable/ic_google"
@@ -140,45 +163,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_masuk" />
 
-
-    <!--<LinearLayout-->
-    <!--android:id="@+id/container_google"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="26dp"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:elevation="6dp"-->
-    <!--android:orientation="horizontal"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/btn_masuk">-->
-
-    <!--<ImageView-->
-    <!--android:layout_width="24dp"-->
-    <!--android:layout_height="24dp"-->
-    <!--android:src="@drawable/icongoogle" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/btn_google"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:text="Masuk dengan Goggle"-->
-    <!--android:textSize="12sp"-->
-    <!--android:fontFamily="@font/roboto_bold"-->
-    <!--android:layout_marginLeft="10dp"-->
-    <!--android:gravity="center"-->
-    <!--android:textColor="@color/colorBlue"/>-->
-
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:id="@+id/container_daftar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:elevation="6dp"

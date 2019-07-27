@@ -46,10 +46,10 @@ public class LoginActivity extends AppCompatActivity {
     private static String TAG = "LoginActivity";
 
     ImageView bgapp, clover;
-    LinearLayout logosplash, container_user, container_pwd, container_daftar;
+    LinearLayout logosplash, container_user, container_pwd, container_daftar, container_lupa_password;
     Animation frombottom;
     Button btn_masuk, btn_google;
-    TextView daftar;
+    TextView daftar, lupa_password;
     TextInputEditText namapengguna, katasandi;
     FirebaseAuth firebaseAuth;
 
@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         logosplash = (LinearLayout) findViewById(R.id.logosplash);
         container_user = (LinearLayout) findViewById(R.id.container_user);
         container_pwd = (LinearLayout) findViewById(R.id.container_pwd);
+        container_lupa_password = (LinearLayout) findViewById(R.id.container_lupa_password);
         btn_google = (Button) findViewById(R.id.btn_google);
         container_daftar = (LinearLayout) findViewById(R.id.container_daftar);
         btn_masuk = (Button) findViewById(R.id.btn_masuk);
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         katasandi = findViewById(R.id.et_kata_sandi);
 
         daftar = (TextView) findViewById(R.id.tv_daftar);
+        lupa_password = (TextView) findViewById(R.id.tv_lupa_password);
 
 
 
@@ -87,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_masuk.startAnimation(frombottom);
         btn_google.startAnimation(frombottom);
         container_daftar.startAnimation(frombottom);
+        container_lupa_password.startAnimation(frombottom);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -103,6 +106,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent daftar = new Intent(LoginActivity.this, DaftarActivity.class);
                 startActivity(daftar);
+            }
+        });
+
+        lupa_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lupa_password = new Intent(LoginActivity.this, LupaPasswordActivity.class);
+                startActivity(lupa_password);
             }
         });
 

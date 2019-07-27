@@ -30,6 +30,7 @@ public class TransaksiActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     Query query;
     ImageView cancel;
+    ImageView keranjang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class TransaksiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transaksi);
 
         cancel =  (ImageView) findViewById(R.id.im_cancel);
+        keranjang = (ImageView)findViewById(R.id.im_keranjang);
 
         //init Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -52,6 +54,14 @@ public class TransaksiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        keranjang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent keranjang = new Intent(TransaksiActivity.this, KeranjangPenjualanActivity.class);
+                startActivity(keranjang);
             }
         });
 

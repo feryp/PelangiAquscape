@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,17 +27,27 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     TextView tv;
     Button tambahBarang, konfirmasi;
+    ImageView cancel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keranjang_penjualan);
 
         tv = findViewById(R.id.tv_total_pembayaran);
+        cancel =  (ImageView) findViewById(R.id.im_cancel);
 
         recyclerView = findViewById(R.id.rv_list_transaksi);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         ItemKeranjangDbHelper dbHelper = new ItemKeranjangDbHelper(this);

@@ -48,7 +48,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi_kode_barang);
 
-        cancel =  (ImageView) findViewById(R.id.im_cancel);
+        cancel =  findViewById(R.id.im_cancel);
         btnJual = findViewById(R.id.btn_jual);
         btnJual.setOnClickListener(new View.OnClickListener() {
             @Override

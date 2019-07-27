@@ -6,24 +6,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
+import com.example.pelangiaquscape.Interface.ItemClickListener;
+import com.example.pelangiaquscape.Interface.OnItemClickListener;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.ViewHolder.KeranjangViewHolder;
 
 import java.util.List;
 
-public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder>{
+public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> {
 
 
     Context context;
     List<ItemKeranjang> listKeranjang;
 
+
+
     public KeranjangAdapter(Context context, List<ItemKeranjang> listKeranjang) {
         this.context = context;
         this.listKeranjang = listKeranjang;
     }
+
 
     @NonNull
     @Override
@@ -39,6 +46,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder>{
         holder.tvHarga.setText(String.valueOf(listKeranjang.get(i).getTotalPrice()));
         holder.tvQty.setText(String.valueOf(listKeranjang.get(i).getQty()));
         holder.tvMerek.setText(listKeranjang.get(i).getMerek());
+        holder.bind(listKeranjang.get(i));
 
     }
 
@@ -46,4 +54,5 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder>{
     public int getItemCount() {
         return listKeranjang.size();
     }
+
 }

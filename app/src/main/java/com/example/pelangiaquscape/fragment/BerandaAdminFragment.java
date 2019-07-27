@@ -13,6 +13,7 @@ import com.example.pelangiaquscape.BarangActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.MitraBisnisActivity;
 import com.example.pelangiaquscape.PembelianActivity;
+import com.example.pelangiaquscape.PenjualanActivity;
 import com.example.pelangiaquscape.TransaksiActivity;
 import com.example.pelangiaquscape.R;
 
@@ -30,6 +31,7 @@ public class BerandaAdminFragment extends Fragment {
         CardView cardViewMitra = v.findViewById(R.id.cv_mitra);
         CardView cardViewBarang = v.findViewById(R.id.cv_barang);
         CardView cardViewTransaksi = v.findViewById(R.id.cv_transaksi);
+        CardView cardViewPenjualan = v.findViewById(R.id.cv_penjualan);
 
         cardViewMitra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,14 @@ public class BerandaAdminFragment extends Fragment {
             public void onClick(View view) {
                 Intent cv_transaksi = new Intent(getActivity(), TransaksiActivity.class);
                 startActivity(cv_transaksi);
+            }
+        });
+
+        cardViewPenjualan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cv_penjualan = new Intent(getActivity(), PenjualanActivity.class);
+                startActivity(cv_penjualan);
             }
         });
 

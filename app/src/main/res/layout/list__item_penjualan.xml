@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/waktu_transaksi_penjualan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingLeft="20dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="Minggu, 31 Juli 2019"
+        android:textAllCaps="false"
+        android:textColor="@color/colorDarkGray"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/total_transaksi_penjualan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/roboto_bold"
+        android:paddingTop="15dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="15dp"
+        android:text="Rp. 0"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBlue"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/container_list_penjualan"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/waktu_transaksi_penjualan"
+        android:layout_margin="10dp"
+        android:background="@drawable/container_barang">
+
+        <ImageView
+            android:id="@+id/im_icon_struk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_struk" />
+
+        <TextView
+            android:id="@+id/total_harga_penjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/im_icon_struk"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Rp. 215000"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/no_struk_penjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/total_harga_penjualan"
+            android:layout_marginLeft="20sp"
+            android:layout_toRightOf="@+id/im_icon_struk"
+            android:fontFamily="@font/roboto_regular"
+            android:text="#INV-12345RM"
+            android:textAllCaps="false"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/keterangan_pembayaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginTop="15dp"
+            android:paddingRight="20dp"
+            android:text="Lunas"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/waktu_list_penjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/keterangan_pembayaran"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingRight="22dp"
+            android:text="18.30"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="9sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

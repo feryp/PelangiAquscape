@@ -42,8 +42,8 @@
         android:textColor="@color/colorBlack"
         android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/et_jumlah_kuantitas"
+    <TextView
+        android:id="@+id/tv_jumlah_kuantitas"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_alignParentRight="true"

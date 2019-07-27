@@ -1,6 +1,10 @@
 package com.example.pelangiaquscape;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +14,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.example.pelangiaquscape.Database.ItemKeranjangContract.ItemKeranjangEntry;
+import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.ViewHolder.TransaksiBarangViewHolder;
@@ -33,12 +41,23 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
     Query query;
     ImageView cancel;
 
+    Button btnJual;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi_kode_barang);
 
         cancel =  (ImageView) findViewById(R.id.im_cancel);
+        btnJual = findViewById(R.id.btn_jual);
+        btnJual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransaksiKodeBarangActivity.this, KeranjangPenjualanActivity.class);
+                startActivity(i);
+
+            }
+        });
 
         Intent i = getIntent();
         id = i.getStringExtra("idMerek");
@@ -63,7 +82,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
     }
 
-    private void loadBarang(String ids) {
+    private void loadBarang(final String ids) {
 
         query = FirebaseDatabase.getInstance().getReference().child("Barang").orderByChild("merek").equalTo(ids);
         FirebaseRecyclerOptions<Barang> options =
@@ -73,9 +92,9 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
         adapter = new FirebaseRecyclerAdapter<Barang, TransaksiBarangViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull TransaksiBarangViewHolder holder, int position, @NonNull Barang model) {
+            protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
                 holder.tvKode.setText(model.getKode());
-                holder.tvHarga.setText(String.valueOf(model.getHargaJual()));
+                holder.tvHarga.setText(String.valueOf(model.getHargaBeli()));
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
                 Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
@@ -85,6 +104,33 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
+                        ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
+
+                        SQLiteDatabase db =hp.getWritableDatabase();
+
+                        ContentValues values = new ContentValues();
+                        values.put(ItemKeranjangEntry.COLUMN_NAME_KODE, model.getKode());
+                        values.put(ItemKeranjangEntry.COLUMN_NAME_HARGA_BELI, model.getHargaBeli());
+                        values.put(ItemKeranjangEntry.COLUMN_NAME_QTY, holder.tvQuantity.getText().toString());
+                        values.put(ItemKeranjangEntry.COLUMN_NAME_MEREK, ids);
+                        values.put(ItemKeranjangEntry.COLUMN_NAME_SATUAN, "-");
+                        double total = model.getHargaBeli() * Double.parseDouble(holder.tvQuantity.getText().toString());
+                        values.put(ItemKeranjangEntry.COLUMN_NAME_TOTAL_PRICE, total);
+                        values.put(ItemKeranjangEntry.COLUMN_NAME_HARGA_JUAL, model.getHargaJual());
+
+                        try{
+
+                            long rowID = db.insertOrThrow(ItemKeranjangEntry.TABLE_NAME, null, values);
+                            Toast.makeText(TransaksiKodeBarangActivity.this, "insert db", Toast.LENGTH_SHORT).show();
+                        }catch(SQLiteConstraintException e){
+
+                            long rowID = db.update(ItemKeranjangEntry.TABLE_NAME, values, ItemKeranjangEntry.COLUMN_NAME_KODE +"=?", new String[]{model.getKode()});
+
+                            Toast.makeText(TransaksiKodeBarangActivity.this, "update db", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
                     }
                 });
 

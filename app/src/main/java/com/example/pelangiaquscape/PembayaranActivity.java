@@ -19,6 +19,8 @@ public class PembayaranActivity extends AppCompatActivity {
         final Button buttonKelLima = findViewById(R.id.btn_kelipatan_lima);
         final Button buttonKelSepuluh = findViewById(R.id.btn_kelipatan_sepuluh);
 
+
+
         buttonUasPas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

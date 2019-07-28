@@ -16,6 +16,7 @@ import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.ViewHolder.KeranjangViewHolder;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> {
@@ -43,8 +44,11 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull KeranjangViewHolder holder, int i) {
         holder.tvKode.setText(listKeranjang.get(i).getKode());
-        holder.tvHarga.setText(String.valueOf(listKeranjang.get(i).getTotalPrice()));
-        holder.tvQty.setText(String.valueOf(listKeranjang.get(i).getQty()));
+
+        DecimalFormat fmt = new DecimalFormat("#,###.00");
+        String as = fmt.format(listKeranjang.get(i).getTotalPrice());
+        holder.tvHarga.setText(as);
+        holder.tvQty.setText("Rp. "+as);
         holder.tvMerek.setText(listKeranjang.get(i).getMerek());
         holder.bind(listKeranjang.get(i));
 

@@ -113,9 +113,5 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         tv.setText("Rp. "+ totalAllItemPrice);
 
 
-
-
-
-
     }
 }

@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".PenjualanActivity"></activity>
+        <activity android:name=".LupaPasswordActivity"></activity>
+        <activity android:name=".PenjualanActivity" />
         <activity android:name=".PembayaranActivity" />
         <activity android:name=".KeranjangPenjualanActivity" />
         <activity android:name=".TransaksiKodeBarangActivity" />
@@ -48,7 +49,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DummyInsertDataActivity"></activity>
+        <activity android:name=".DummyInsertDataActivity" />
     </application>
 
 </manifest>

@@ -38,13 +38,13 @@ public class DaftarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
 
-        namapengguna = (TextInputEditText) findViewById(R.id.et_nama_pengguna);
-        telepon = (TextInputEditText) findViewById(R.id.et_telepon);
-        email = (TextInputEditText) findViewById(R.id.et_email);
-        katasandi = (TextInputEditText) findViewById(R.id.et_kata_sandi);
-        ulangiKataSandi = (TextInputEditText) findViewById(R.id.et_ulangi);
-        btn_daftar = (Button) findViewById(R.id.btn_daftar);
-        masuk = (TextView) findViewById(R.id.tv_masuk);
+        namapengguna = findViewById(R.id.et_nama_pengguna);
+        telepon =  findViewById(R.id.et_telepon);
+        email = findViewById(R.id.et_email);
+        katasandi =  findViewById(R.id.et_kata_sandi);
+        ulangiKataSandi = findViewById(R.id.et_ulangi);
+        btn_daftar =  findViewById(R.id.btn_daftar);
+        masuk = findViewById(R.id.tv_masuk);
 
 
         firebaseAuth = FirebaseAuth.getInstance();

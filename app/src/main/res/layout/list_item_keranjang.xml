@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="80dp"
         android:layout_margin="15dp"
         android:background="@drawable/container_barang"
         android:padding="10dp">
@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/tv_merek"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tv_kode"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/roboto_regular"
@@ -40,7 +40,8 @@
             android:id="@+id/tv_harga_barang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@+id/tv_merek"
+            android:layout_marginLeft="20dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Rp. 0"
             android:textColor="@color/colorBlack"

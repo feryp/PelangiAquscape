@@ -1,7 +1,9 @@
 package com.example.pelangiaquscape;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
@@ -95,6 +97,11 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
                 holder.tvKode.setText(model.getKode());
                 holder.tvHarga.setText(String.valueOf(model.getHargaBeli()));
+
+                SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+                int qty = sharedPref.getInt(holder.tvKode.getText().toString(), 0);
+
+                holder.tvQuantity.setText(String.valueOf(qty));
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
                 Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
@@ -105,6 +112,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
                         ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
+
 
                         SQLiteDatabase db =hp.getWritableDatabase();
 

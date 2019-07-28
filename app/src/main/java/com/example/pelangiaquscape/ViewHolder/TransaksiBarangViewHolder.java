@@ -1,5 +1,7 @@
 package com.example.pelangiaquscape.ViewHolder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.R;
+import com.example.pelangiaquscape.TransaksiKodeBarangActivity;
 
 public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -41,19 +44,37 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
 
     @Override
     public void onClick(View v) {
-        itemClickListener.onClick(v, getAdapterPosition(), false);
+
+        int value =qty;
+        Context context = itemView.getContext();
+
+        SharedPreferences sh = context
+                .getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sh.edit();
+
         switch(v.getId()){
             case R.id.btn_plus:
                 if(qty < 50)
                     qty = qty+1;
                 tvQuantity.setText(String.valueOf(qty));
+
+                value = Integer.parseInt(tvQuantity.getText().toString());
+
+                editor.putInt(tvKode.getText().toString(), value);
+                editor.apply();
+
                 break;
             case R.id.btn_minus:
-                if(qty > -1)
+                if(qty > 0)
                     qty = qty-1;
                 tvQuantity.setText(String.valueOf(qty));
+
+                editor.putInt(tvKode.getText().toString(), value);
+                editor.apply();
+
                 break;
         }
+        itemClickListener.onClick(v, getAdapterPosition(), false);
     }
 
     public void setItemClickListener(ItemClickListener i){

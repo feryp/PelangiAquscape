@@ -99,7 +99,7 @@
         android:padding="18dp">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/nama"
+            android:id="@+id/nama_akun_pengguna"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
             app:boxStrokeColor="@color/colorAccent">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/et_nama"
+                android:id="@+id/et_nama_akun_pengguna"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama"

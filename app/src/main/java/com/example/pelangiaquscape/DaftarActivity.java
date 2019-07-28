@@ -23,8 +23,6 @@ import java.util.HashMap;
 
 public class DaftarActivity extends AppCompatActivity {
 
-
-
     TextInputEditText namapengguna, telepon, email, katasandi, ulangiKataSandi;
     Button btn_daftar;
     TextView masuk;
@@ -39,15 +37,16 @@ public class DaftarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_daftar);
 
         namapengguna = findViewById(R.id.et_nama_pengguna);
-        telepon =  findViewById(R.id.et_telepon);
+        telepon = findViewById(R.id.et_telepon);
         email = findViewById(R.id.et_email);
-        katasandi =  findViewById(R.id.et_kata_sandi);
+        katasandi = findViewById(R.id.et_kata_sandi);
         ulangiKataSandi = findViewById(R.id.et_ulangi);
-        btn_daftar =  findViewById(R.id.btn_daftar);
+        btn_daftar = findViewById(R.id.btn_daftar);
         masuk = findViewById(R.id.tv_masuk);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
 
         masuk.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +73,7 @@ public class DaftarActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_telepon) ||
                         TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_katasandi)
-                        || TextUtils.isEmpty(str_ulangi)|| TextUtils.isEmpty(str_kode_login)){
+                        || TextUtils.isEmpty(str_ulangi) || TextUtils.isEmpty(str_kode_login)) {
                     Toast.makeText(DaftarActivity.this, "All fileds are requiered!", Toast.LENGTH_SHORT).show();
                 } else if (str_katasandi.length() < 6) {
                     Toast.makeText(DaftarActivity.this, "Password must have 6 characters", Toast.LENGTH_SHORT).show();
@@ -86,45 +85,47 @@ public class DaftarActivity extends AppCompatActivity {
         });
     }
 
-        private void btn_daftar (final String namapengguna, final String telepon, final String email, final String
-        katasandi, final String ulangi, final String kodelogin)
-        {
+    private void btn_daftar(final String namapengguna, final String telepon, final String email, final String
+            katasandi, final String ulangi, final String kodelogin) {
 
-            firebaseAuth.createUserWithEmailAndPassword(email,katasandi)
-                    .addOnCompleteListener(DaftarActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                                String userid = firebaseUser.getUid();
+        firebaseAuth.createUserWithEmailAndPassword(email, katasandi)
+                .addOnCompleteListener(DaftarActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                            String userid = firebaseUser.getUid();
 
-                                databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(userid);
+                            databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(userid);
 
-                                HashMap<String, Object> hashMap = new HashMap<>();
-                                hashMap.put("id", userid);
-                                hashMap.put("namapengguna",namapengguna.toLowerCase());
-                                hashMap.put("telepon", telepon);
-                                hashMap.put("email", email);
-                                hashMap.put("katasandi", katasandi);
-                                hashMap.put("ulangkatasandi", ulangi);
-                                hashMap.put("kode_login", kodelogin);
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("id", userid);
+                            hashMap.put("namapengguna", namapengguna.toLowerCase());
+                            hashMap.put("telepon", telepon);
+                            hashMap.put("email", email);
+                            hashMap.put("katasandi", katasandi);
+                            hashMap.put("ulangkatasandi", ulangi);
+                            hashMap.put("kode_login", kodelogin);
+                            hashMap.put("status_jabatan", "");
+                            hashMap.put("bio", "");
+                            hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/pelangiaquscape.appspot.com/o/ic_foto_profile.png?alt=media&token=0121d8b0-baff-4b05-8939-b0c82f10b5fe");
 
-                                databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            pd.dismiss();
-                                            Intent intent = new Intent(DaftarActivity.this, Main2Activity.class);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            startActivity(intent);
-                                        }
+                            databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        pd.dismiss();
+                                        Intent intent = new Intent(DaftarActivity.this, Main2Activity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
                                     }
-                                });
-                            } else {
-                                pd.dismiss();
-                                Toast.makeText(DaftarActivity.this, "You can't  register with this email or password", Toast.LENGTH_SHORT).show();
-                            }
+                                }
+                            });
+                        } else {
+                            pd.dismiss();
+                            Toast.makeText(DaftarActivity.this, "You can't  register with this email or password", Toast.LENGTH_SHORT).show();
                         }
-                    });
-        }
+                    }
+                });
     }
+}

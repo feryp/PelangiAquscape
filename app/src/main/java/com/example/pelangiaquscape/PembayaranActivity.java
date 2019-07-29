@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
@@ -32,6 +33,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     SwitchCompat btnSwitch;
     TextInputLayout tvDiskon, tvNamaDiskon;
     ExpandableRelativeLayout ex;
+
+    ImageView cancel;
 
     TextInputEditText etJmlLain, etDiskon;
 
@@ -66,6 +69,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         rl.setOnClickListener(this);
         ll.setOnClickListener(this);
 
+        cancel = findViewById(R.id.im_cancel);
+
         etJmlLain = findViewById(R.id.et_jumlah_lain);
         etDiskon = findViewById(R.id.et_jumlah_diskon);
 
@@ -85,6 +90,13 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         tvTotalPembayaran = findViewById(R.id.tv_total_pembayaran);
         tvKembalian = findViewById(R.id.tv_kembalian);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         etDiskon.addTextChangedListener(new TextWatcher() {
             @Override

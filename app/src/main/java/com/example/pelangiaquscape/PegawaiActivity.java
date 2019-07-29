@@ -17,7 +17,7 @@ public class PegawaiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pegawai);
 
-        cancel =(ImageView) findViewById(R.id.im_cancel);
+        cancel = findViewById(R.id.im_cancel);
 
         FloatingActionButton fab_pegawai = findViewById(R.id.fab_pegawai);
 

@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.KeranjangAdapter;
+import com.example.pelangiaquscape.Adapter.TransaksiMerekBarangAdapter;
 import com.example.pelangiaquscape.Database.ItemKeranjangContract.ItemKeranjangEntry;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
@@ -26,8 +28,10 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     TextView tv;
-    Button tambahBarang, konfirmasi;
+    Button btnTambahBarang, btnKonfirmasi;
     ImageView cancel;
+
+    double totalAllItemPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.tv_total_pembayaran);
         cancel =  (ImageView) findViewById(R.id.im_cancel);
+        btnTambahBarang = findViewById(R.id.btn_tambah_barang);
+        btnKonfirmasi = findViewById(R.id.btn_konfirmasi);
 
         recyclerView = findViewById(R.id.rv_list_transaksi);
         recyclerView.setHasFixedSize(true);
@@ -45,6 +51,23 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
+            }
+        });
+        btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(KeranjangPenjualanActivity.this, PembayaranActivity.class);
+                i.putExtra("totalHargaKeranjang", totalAllItemPrice);
+                startActivity(i);
+            }
+        });
+
+        btnTambahBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(KeranjangPenjualanActivity.this, TransaksiMerekBarangAdapter.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -85,7 +108,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
 
 //                List itemIds = new ArrayList<>();
         List<ItemKeranjang> list = new ArrayList<>();
-        double totalAllItemPrice = 0;
+        totalAllItemPrice = 0;
         while(cursor.moveToNext()){
             String kode = cursor.getString(cursor.getColumnIndexOrThrow(ItemKeranjangEntry.COLUMN_NAME_KODE));
             String merek = cursor.getString(cursor.getColumnIndexOrThrow(ItemKeranjangEntry.COLUMN_NAME_MEREK));

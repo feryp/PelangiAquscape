@@ -47,7 +47,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
 
         DecimalFormat fmt = new DecimalFormat("#,###.00");
         String as = fmt.format(listKeranjang.get(i).getTotalPrice());
-        holder.tvHarga.setText("Rp. "+as);
+        holder.tvHarga.setText("Rp. "+ as);
         holder.tvQty.setText(String.valueOf(listKeranjang.get(i).getQty()));
         holder.tvMerek.setText(listKeranjang.get(i).getMerek());
         holder.bind(listKeranjang.get(i));

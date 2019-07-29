@@ -59,6 +59,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_black"
@@ -90,6 +91,7 @@
         </RelativeLayout>
 
         <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+            android:id="@+id/l_expand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_expand"

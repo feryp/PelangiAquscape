@@ -46,7 +46,6 @@ public class DaftarActivity extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
 
         masuk.setOnClickListener(new View.OnClickListener() {
@@ -106,9 +105,6 @@ public class DaftarActivity extends AppCompatActivity {
                             hashMap.put("katasandi", katasandi);
                             hashMap.put("ulangkatasandi", ulangi);
                             hashMap.put("kode_login", kodelogin);
-                            hashMap.put("status_jabatan", "");
-                            hashMap.put("bio", "");
-                            hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/pelangiaquscape.appspot.com/o/ic_foto_profile.png?alt=media&token=0121d8b0-baff-4b05-8939-b0c82f10b5fe");
 
                             databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

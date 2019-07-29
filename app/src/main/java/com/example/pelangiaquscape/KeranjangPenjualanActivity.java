@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.KeranjangAdapter;
-import com.example.pelangiaquscape.Adapter.TransaksiMerekBarangAdapter;
 import com.example.pelangiaquscape.Database.ItemKeranjangContract.ItemKeranjangEntry;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
@@ -39,7 +38,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_keranjang_penjualan);
 
         tv = findViewById(R.id.tv_total_pembayaran);
-        cancel =  (ImageView) findViewById(R.id.im_cancel);
+        cancel = findViewById(R.id.im_cancel);
         btnTambahBarang = findViewById(R.id.btn_tambah_barang);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi);
 
@@ -54,6 +53,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,11 +66,12 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         btnTambahBarang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(KeranjangPenjualanActivity.this, TransaksiMerekBarangAdapter.class);
+                Intent i = new Intent(KeranjangPenjualanActivity.this, TransaksiActivity.class);
                 startActivity(i);
                 finish();
             }
         });
+
 
 
         ItemKeranjangDbHelper dbHelper = new ItemKeranjangDbHelper(this);
@@ -108,7 +109,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
 
 //                List itemIds = new ArrayList<>();
         List<ItemKeranjang> list = new ArrayList<>();
-        totalAllItemPrice = 0;
+        double totalAllItemPrice = 0;
         while(cursor.moveToNext()){
             String kode = cursor.getString(cursor.getColumnIndexOrThrow(ItemKeranjangEntry.COLUMN_NAME_KODE));
             String merek = cursor.getString(cursor.getColumnIndexOrThrow(ItemKeranjangEntry.COLUMN_NAME_MEREK));

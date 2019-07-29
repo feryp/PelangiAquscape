@@ -15,4 +15,7 @@
     <color name="disable_forground_grey">#9B9595</color>
     <color name="disable_thumb_grey">#636262</color>
     <color name="enable_thumb_blue">#2398D8</color>
+
+    <!--Default Color-->
+    <color name="default_color">#FAFAFA</color>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -114,7 +115,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Diskon"
-                    android:inputType="text"
+                    android:maxLength="2"
+                    android:inputType="number"
                     android:textColor="@color/colorBlack"
                     android:textColorHint="@color/colorBlack" />
 
@@ -146,6 +148,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_option_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -229,7 +232,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Jumlah Lain"
-                android:inputType="text"
+                android:inputType="number"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
 

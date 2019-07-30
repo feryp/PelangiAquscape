@@ -1,27 +1,25 @@
 package com.example.pelangiaquscape;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AbsListView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
@@ -165,10 +163,14 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
-                    btnKelDua.setBackgroundResource(android.R.drawable.btn_default);
-                    btnUangPas.setBackgroundResource(android.R.drawable.btn_default);
-                    btnKelLima.setBackgroundResource(android.R.drawable.btn_default);
-                    btnKelSepuluh.setBackgroundResource(android.R.drawable.btn_default);
+                    btnKelDua.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                    btnUangPas.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                    btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                    btnKelSepuluh.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                    btnKelDua.setTextColor(Color.GRAY);
+                    btnKelLima.setTextColor(Color.GRAY);
+                    btnKelSepuluh.setTextColor(Color.GRAY);
+                    btnUangPas.setTextColor(Color.GRAY);
                 }
             }
         });
@@ -194,6 +196,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                     etJmlLain.setText("");
                     etDiskon.clearFocus();
                     etJmlLain.clearFocus();
+
 //                    tvDiskon.setVisibility(View.INVISIBLE);
 //                    tvNamaDiskon.setVisibility(View.INVISIBLE);
                 }else{
@@ -227,6 +230,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
 
         double kembalian;
+        InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         switch (v.getId()){
             case R.id.btn_kelipatan_dua:
 
@@ -234,12 +238,16 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 String as = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as);
 
-                v.setBackground(getResources().getDrawable(R.color.colorBlue));
-//                v.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                btnUangPas.setBackgroundResource(android.R.drawable.btn_default);
-                btnKelLima.setBackgroundResource(android.R.drawable.btn_default);
-                btnKelSepuluh.setBackgroundResource(android.R.drawable.btn_default);
+                v.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_pressed));
+                btnKelDua.setTextColor(Color.WHITE);
+                btnKelLima.setTextColor(Color.GRAY);
+                btnKelSepuluh.setTextColor(Color.GRAY);
+                btnUangPas.setTextColor(Color.GRAY);
+                btnUangPas.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnKelSepuluh.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
                 break;
             case R.id.btn_kelipatan_lima:
                 kembalian = 50000 - totalHarga;
@@ -247,12 +255,16 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 String as1 = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as1);
 
-                v.setBackground(getResources().getDrawable(R.color.colorBlue));
-//                v.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                btnKelDua.setBackgroundResource(android.R.drawable.btn_default);
-                btnUangPas.setBackgroundResource(android.R.drawable.btn_default);
-                btnKelSepuluh.setBackgroundResource(android.R.drawable.btn_default);
+                v.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_pressed));
+                btnKelDua.setTextColor(Color.GRAY);
+                btnKelLima.setTextColor(Color.WHITE);
+                btnKelSepuluh.setTextColor(Color.GRAY);
+                btnUangPas.setTextColor(Color.GRAY);
+                btnKelDua.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnUangPas.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnKelSepuluh.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
 
                 break;
             case R.id.btn_kelipatan_sepuluh:
@@ -261,32 +273,42 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 String as2 = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as2);
 
-                v.setBackground(getResources().getDrawable(R.color.colorBlue));
-//                v.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                btnKelDua.setBackgroundResource(android.R.drawable.btn_default);
-                btnKelLima.setBackgroundResource(android.R.drawable.btn_default);
-                btnUangPas.setBackgroundResource(android.R.drawable.btn_default);
+                v.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_pressed));
+                btnKelDua.setTextColor(Color.GRAY);
+                btnKelLima.setTextColor(Color.GRAY);
+                btnKelSepuluh.setTextColor(Color.WHITE);
+                btnUangPas.setTextColor(Color.GRAY);
+                btnKelDua.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnUangPas.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
                 break;
 
             case R.id.btn_uang_pas:
                 tvKembalian.setText("Rp. 0.00");
 
-                v.setBackground(getResources().getDrawable(R.color.colorBlue));
-//                v.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                btnKelDua.setBackgroundResource(android.R.drawable.btn_default);
-                btnKelLima.setBackgroundResource(android.R.drawable.btn_default);
-                btnKelSepuluh.setBackgroundResource(android.R.drawable.btn_default);
+                v.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_pressed));
+                btnKelDua.setTextColor(Color.GRAY);
+                btnKelLima.setTextColor(Color.GRAY);
+                btnKelSepuluh.setTextColor(Color.GRAY);
+                btnUangPas.setTextColor(Color.WHITE);
+                btnKelDua.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
+                btnKelSepuluh.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
 
                 break;
 
             case R.id.ll:
                 etJmlLain.clearFocus();
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
                 break;
 
             case R.id.rl_option_payment:
                 etJmlLain.clearFocus();
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
                 break;
         }
     }

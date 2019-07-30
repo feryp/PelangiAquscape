@@ -88,12 +88,60 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp">
 
+                    <TextView
+                        android:id="@+id/tv_judul_namapelanggan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Nama Pelanggan"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_popup_namapelanggan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Nama"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_judul_nohp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_judul_namapelanggan"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="No. Telepon"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_popup_nohp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_popup_namapelanggan"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="087771365862"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="14sp" />
+
 
                     <TextView
                         android:id="@+id/tv_judul_pembayaran"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_judul_nohp"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="Pembayaran"
                         android:textColor="@color/disable_thumb_grey"
@@ -103,7 +151,9 @@
                         android:id="@+id/tv_popup_pilihpembayaran"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_popup_nohp"
                         android:layout_alignParentRight="true"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="Jumlah Lain"

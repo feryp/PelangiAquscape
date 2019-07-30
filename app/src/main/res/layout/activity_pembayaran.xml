@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorPrimary"
+    android:orientation="vertical"
     tools:context=".PembayaranActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -59,251 +59,326 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_black"
-        android:padding="15dp">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/layout_expand"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_diskon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Diskon"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/toogle_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:checked="false"
-                android:switchMinWidth="25dp"
-                android:theme="@style/SCBSwitch" />
-
-        </RelativeLayout>
-
-        <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-            android:id="@+id/l_expand"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_expand"
-            app:ael_duration="200"
-            app:ael_expanded="false"
-            app:ael_interpolator="accelerate"
-            app:ael_orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/jumlah_diskon"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                app:boxStrokeColor="@color/colorAccent">
-
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_jumlah_diskon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Diskon"
-                    android:maxLength="2"
-                    android:inputType="number"
-                    android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorBlack" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/nama_diskon"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <RelativeLayout
+                android:id="@+id/rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/jumlah_diskon"
-                android:layout_marginTop="18dp"
-                android:gravity="center"
-                app:boxStrokeColor="@color/colorAccent">
+                android:background="@drawable/border_black"
+                android:padding="15dp">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_nama_diskon"
+                <RelativeLayout
+                    android:id="@+id/layout_expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_diskon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Diskon"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/toogle_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:checked="false"
+                        android:switchMinWidth="25dp"
+                        android:theme="@style/SCBSwitch" />
+
+                </RelativeLayout>
+
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:id="@+id/l_expand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Diskon (Optional)"
-                    android:inputType="text"
-                    android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorBlack" />
+                    android:layout_below="@+id/layout_expand"
+                    app:ael_duration="200"
+                    app:ael_expanded="false"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical">
 
-            </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/jumlah_diskon"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        app:boxStrokeColor="@color/colorAccent">
 
-        </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
-    </RelativeLayout>
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_jumlah_diskon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Diskon"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorHint="@color/colorBlack" />
 
-    <RelativeLayout
-        android:id="@+id/rl_option_payment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:padding="15dp">
+                    </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_pilihan_pembayaran"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Pilihan Pembayaran"
-            android:textColor="@color/colorBlack"
-            android:textSize="20sp" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/nama_diskon"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/jumlah_diskon"
+                        android:layout_marginTop="18dp"
+                        android:gravity="center"
+                        app:boxStrokeColor="@color/colorAccent">
 
-        <Button
-            android:id="@+id/btn_uang_pas"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
-            android:layout_below="@+id/tv_pilihan_pembayaran"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/button_gray"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Uang Pas"
-            android:textAllCaps="false"
-            android:textColor="@color/disable_thumb_grey"
-            android:textSize="18sp" />
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_nama_diskon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nama Diskon (Optional)"
+                            android:inputType="text"
+                            android:textColor="@color/colorBlack"
+                            android:textColorHint="@color/colorBlack" />
 
-        <Button
-            android:id="@+id/btn_kelipatan_dua"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
-            android:layout_below="@+id/tv_pilihan_pembayaran"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/btn_uang_pas"
-            android:background="@drawable/button_gray"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Rp. 20000"
-            android:textAllCaps="false"
-            android:textColor="@color/disable_thumb_grey"
-            android:textSize="18sp" />
+                    </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/btn_kelipatan_lima"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
-            android:layout_below="@+id/btn_uang_pas"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/button_gray"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Rp. 50000"
-            android:textAllCaps="false"
-            android:textColor="@color/disable_thumb_grey"
-            android:textSize="18sp" />
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
-        <Button
-            android:id="@+id/btn_kelipatan_sepuluh"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
-            android:layout_below="@+id/btn_kelipatan_dua"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/btn_kelipatan_lima"
-            android:background="@drawable/button_gray"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Rp. 100000"
-            android:textAllCaps="false"
-            android:textColor="@color/disable_thumb_grey"
-            android:textSize="18sp" />
+            </RelativeLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/jumlah_lain"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_kelipatan_lima"
-            android:layout_margin="15dp"
-            android:gravity="center"
-            app:boxStrokeColor="@color/colorAccent">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/et_jumlah_lain"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Jumlah Lain"
-                android:inputType="number"
-                android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack" />
+                android:background="@color/colorPrimary"
+                android:padding="15dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/tv_data_pelanggan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Data Pelanggan"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_ket_kembalian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/jumlah_lain"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Kembalian"
-            android:textColor="@color/disable_thumb_grey"
-            android:textSize="20sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nama_pelanggan_pembayaran"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_data_pelanggan"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
 
-        <TextView
-            android:id="@+id/tv_kembalian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/jumlah_lain"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Rp. 0"
-            android:textColor="@color/disable_thumb_grey"
-            android:textSize="20sp" />
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_nama_pelanggan_pembayaran"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Pelanggan"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
 
-        <TextView
-            android:id="@+id/tv_ket_total_pembayaran"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_ket_kembalian"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Total Pembayaran"
-            android:textColor="@color/colorBlue"
-            android:textSize="20sp" />
+                </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_total_pembayaran"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
-            android:layout_below="@+id/tv_kembalian"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Rp. 0"
-            android:textColor="@color/colorBlue"
-            android:textSize="20sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/no_hp_pelanggan"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nama_pelanggan_pembayaran"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
 
-        <Button
-            android:id="@+id/btn_bayar"
-            android:layout_width="157dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_below="@+id/tv_ket_total_pembayaran"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_blue"
-            android:text="Bayar"
-            android:textColor="@color/colorPrimary"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:fontFamily="@font/roboto_bold"/>
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_no_hp_pelanggan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="No. Telepon"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
 
-    </RelativeLayout>
+                </android.support.design.widget.TextInputLayout>
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_option_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="15dp">
+
+
+                <TextView
+                    android:id="@+id/tv_pilihan_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Pilihan Pembayaran"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btn_uang_pas"
+                    android:layout_width="150dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/tv_pilihan_pembayaran"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_gray"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Uang Pas"
+                    android:textAllCaps="false"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_kelipatan_dua"
+                    android:layout_width="150dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/tv_pilihan_pembayaran"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/btn_uang_pas"
+                    android:background="@drawable/button_gray"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 20000"
+                    android:textAllCaps="false"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_kelipatan_lima"
+                    android:layout_width="150dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/btn_uang_pas"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_gray"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 50000"
+                    android:textAllCaps="false"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_kelipatan_sepuluh"
+                    android:layout_width="150dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/btn_kelipatan_dua"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/btn_kelipatan_lima"
+                    android:background="@drawable/button_gray"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 100000"
+                    android:textAllCaps="false"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="18sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/jumlah_lain"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_kelipatan_lima"
+                    android:layout_margin="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_jumlah_lain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Jumlah Lain"
+                        android:inputType="number"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_ket_total_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/jumlah_lain"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Total Pembayaran"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_total_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/jumlah_lain"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 0"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_ket_kembalian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_ket_total_pembayaran"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Kembalian"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_kembalian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_total_pembayaran"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 0"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btn_bayar"
+                    android:layout_width="157dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/tv_ket_kembalian"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_blue"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Bayar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </LinearLayout>

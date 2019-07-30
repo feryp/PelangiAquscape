@@ -109,7 +109,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
 
 //                List itemIds = new ArrayList<>();
         List<ItemKeranjang> list = new ArrayList<>();
-        double totalAllItemPrice = 0;
+        totalAllItemPrice = 0;
         while(cursor.moveToNext()){
             String kode = cursor.getString(cursor.getColumnIndexOrThrow(ItemKeranjangEntry.COLUMN_NAME_KODE));
             String merek = cursor.getString(cursor.getColumnIndexOrThrow(ItemKeranjangEntry.COLUMN_NAME_MEREK));
@@ -134,7 +134,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         KeranjangAdapter adapter = new KeranjangAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
-        tv.setText("Rp. "+ totalAllItemPrice);
+        tv.setText("Rp. " + totalAllItemPrice);
 
 
     }

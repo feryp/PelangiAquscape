@@ -31,20 +31,17 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     SwitchCompat btnSwitch;
     TextInputLayout tvDiskon, tvNamaDiskon;
     ExpandableRelativeLayout ex;
-
     ImageView cancel;
-
     TextInputEditText etJmlLain, etDiskon;
-
     TextView tvTotalPembayaran, tvKembalian;
-
-    Button btnUangPas, btnKelDua, btnKelLima, btnKelSepuluh;
-
+    Button btnUangPas, btnKelDua, btnKelLima, btnKelSepuluh, btnDiskonRp, btnDiskonPersen;
     RelativeLayout rl;
 
     LinearLayout ll;
     double totalHarga;
     double diskon;
+
+    boolean diskonPersen, diskonRp;
 
     DecimalFormat fmt = new DecimalFormat("#,###.00");
     @Override
@@ -77,6 +74,10 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         btnKelDua = findViewById(R.id.btn_kelipatan_dua);
         btnKelLima = findViewById(R.id.btn_kelipatan_lima);
         btnKelSepuluh = findViewById(R.id.btn_kelipatan_sepuluh);
+        btnDiskonRp = findViewById(R.id.btn_diskon_rp);
+        btnDiskonPersen = findViewById(R.id.btn_diskon_persen);
+        btnDiskonRp.setOnClickListener(this);
+        btnDiskonPersen.setOnClickListener(this);
         btnUangPas.setOnClickListener(this);
         btnKelDua.setOnClickListener(this);
         btnKelLima.setOnClickListener(this);
@@ -88,6 +89,13 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         tvTotalPembayaran = findViewById(R.id.tv_total_pembayaran);
         tvKembalian = findViewById(R.id.tv_kembalian);
+
+        //init
+        btnDiskonPersen.setBackground(getResources().getDrawable(R.drawable.button_blue_circle));
+        etDiskon.setHint("%");
+        diskonPersen = true;
+        diskonRp = false;
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +112,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 if(s.length() == 0){
                     diskon = 0;
                     assert i != null;
@@ -112,7 +121,14 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 }else{
 
                     diskon = Double.parseDouble(s.toString());
-                    totalHarga = totalHarga - (totalHarga * (diskon*0.01));
+                    double a = i.getDoubleExtra("totalHargaKeranjang", 0);
+                    if(diskonPersen) {
+
+                        totalHarga = a - (a * (diskon / 100));
+                    }
+                    else if(diskonRp) {
+                        totalHarga = a - diskon;
+                    }
                     tvTotalPembayaran.setText("Rp. " +fmt.format(totalHarga));
                 }
             }
@@ -309,6 +325,26 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             case R.id.rl_option_payment:
                 etJmlLain.clearFocus();
                 im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
+                break;
+
+            case R.id.btn_diskon_persen:
+                v.setBackground(getResources().getDrawable(R.drawable.button_blue_circle));
+                btnDiskonRp.setBackground(getResources().getDrawable(R.drawable.button_grey_circle));
+                etDiskon.setHint("%");
+                etDiskon.setMaxLines(2);
+                diskonPersen = true;
+                diskonRp = false;
+                etDiskon.setText("");
+                break;
+
+            case R.id.btn_diskon_rp:
+                v.setBackground(getResources().getDrawable(R.drawable.button_blue_circle));
+                btnDiskonPersen.setBackground(getResources().getDrawable(R.drawable.button_grey_circle));
+                etDiskon.setHint("10,000");
+                etDiskon.setMaxLines(10);
+                diskonPersen = false;
+                diskonRp = true;
+                etDiskon.setText("");
                 break;
         }
     }

@@ -126,7 +126,6 @@
                             android:layout_height="wrap_content"
                             android:hint="Diskon"
                             android:inputType="number"
-                            android:maxLength="2"
                             android:textColor="@color/colorBlack"
                             android:textColorHint="@color/colorBlack" />
 

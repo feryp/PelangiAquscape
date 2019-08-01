@@ -90,13 +90,6 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
 
         };
 
-//        String selection = ItemKeranjangEntry.COLUMN_NAME_TITLE + " = ?";
-//        String[] selectionArgs = { "Aku" };
-
-//        String sortOrder =
-//                FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " DESC";
-
-
         Cursor cursor = db.query(
                 ItemKeranjangEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)

@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".LupaPasswordActivity"></activity>
+        <activity android:name=".VerificationActivity"></activity>
+        <activity android:name=".LupaPasswordActivity" />
         <activity android:name=".PenjualanActivity" />
         <activity android:name=".PembayaranActivity" />
         <activity android:name=".KeranjangPenjualanActivity" />

@@ -92,6 +92,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         //init
         btnDiskonPersen.setBackground(getResources().getDrawable(R.drawable.button_blue_circle));
+        btnDiskonPersen.setTextColor(Color.WHITE);
         etDiskon.setHint("%");
         diskonPersen = true;
         diskonRp = false;
@@ -330,6 +331,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_diskon_persen:
                 v.setBackground(getResources().getDrawable(R.drawable.button_blue_circle));
                 btnDiskonRp.setBackground(getResources().getDrawable(R.drawable.button_grey_circle));
+                btnDiskonRp.setTextColor(Color.GRAY);
+                btnDiskonPersen.setTextColor(Color.WHITE);
                 etDiskon.setHint("%");
                 etDiskon.setMaxLines(2);
                 diskonPersen = true;
@@ -340,6 +343,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_diskon_rp:
                 v.setBackground(getResources().getDrawable(R.drawable.button_blue_circle));
                 btnDiskonPersen.setBackground(getResources().getDrawable(R.drawable.button_grey_circle));
+                btnDiskonPersen.setTextColor(Color.GRAY);
+                btnDiskonRp.setTextColor(Color.WHITE);
                 etDiskon.setHint("10,000");
                 etDiskon.setMaxLines(10);
                 diskonPersen = false;

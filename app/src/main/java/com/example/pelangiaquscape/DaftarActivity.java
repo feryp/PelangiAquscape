@@ -73,9 +73,9 @@ public class DaftarActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_telepon) ||
                         TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_katasandi)
                         || TextUtils.isEmpty(str_ulangi) || TextUtils.isEmpty(str_kode_login)) {
-                    Toast.makeText(DaftarActivity.this, "All fileds are requiered!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DaftarActivity.this, "Semua data harus diisi!", Toast.LENGTH_SHORT).show();
                 } else if (str_katasandi.length() < 6) {
-                    Toast.makeText(DaftarActivity.this, "Password must have 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DaftarActivity.this, "Kata Sandi harus 6 karakter", Toast.LENGTH_SHORT).show();
                 } else {
                     btn_daftar(str_namapengguna, str_telepon, str_email, str_katasandi, str_ulangi, str_kode_login);
                 }
@@ -105,6 +105,10 @@ public class DaftarActivity extends AppCompatActivity {
                             hashMap.put("katasandi", katasandi);
                             hashMap.put("ulangkatasandi", ulangi);
                             hashMap.put("kode_login", kodelogin);
+                            hashMap.put("status_jabatan","");
+                            hashMap.put("bio","");
+                            hashMap.put("imageurl","https://firebasestorage.googleapis.com/v0/b/pelangiaquscape.appspot.com/o/ic_foto_profile.png?alt=media&token=0a5ad242-9ce0-4ce9-9782-5b4986ad51f0");
+
 
                             databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -119,7 +123,7 @@ public class DaftarActivity extends AppCompatActivity {
                             });
                         } else {
                             pd.dismiss();
-                            Toast.makeText(DaftarActivity.this, "You can't  register with this email or password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DaftarActivity.this, "Anda tidak dapat mendaftar dengan email dan kata sandi ini !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

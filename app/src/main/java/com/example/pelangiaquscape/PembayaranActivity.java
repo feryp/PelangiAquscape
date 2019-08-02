@@ -7,12 +7,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -34,7 +37,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     ImageView cancel;
     TextInputEditText etJmlLain, etDiskon;
     TextView tvTotalPembayaran, tvKembalian;
-    Button btnUangPas, btnKelDua, btnKelLima, btnKelSepuluh, btnDiskonRp, btnDiskonPersen;
+    Button btnBayar, btnUangPas, btnKelDua, btnKelLima, btnKelSepuluh, btnDiskonRp, btnDiskonPersen;
     RelativeLayout rl;
 
     LinearLayout ll;
@@ -76,12 +79,14 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         btnKelSepuluh = findViewById(R.id.btn_kelipatan_sepuluh);
         btnDiskonRp = findViewById(R.id.btn_diskon_rp);
         btnDiskonPersen = findViewById(R.id.btn_diskon_persen);
+        btnBayar = findViewById(R.id.btn_bayar);
         btnDiskonRp.setOnClickListener(this);
         btnDiskonPersen.setOnClickListener(this);
         btnUangPas.setOnClickListener(this);
         btnKelDua.setOnClickListener(this);
         btnKelLima.setOnClickListener(this);
         btnKelSepuluh.setOnClickListener(this);
+        btnBayar.setOnClickListener(this);
 
         tvDiskon = findViewById(R.id.jumlah_diskon);
         tvNamaDiskon = findViewById(R.id.nama_diskon);
@@ -207,6 +212,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         btnSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if(!isChecked){
                     ex.collapse();
                     etDiskon.setText("");
@@ -351,6 +357,23 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 diskonRp = true;
                 etDiskon.setText("");
                 break;
+            case R.id.btn_bayar:
+                showPembayaranBerhasilDialog();
+                break;
         }
+    }
+
+    void showPembayaranBerhasilDialog(){
+        ViewGroup group = findViewById(android.R.id.content);
+
+        View view = LayoutInflater.from(this).inflate(R.layout.popup_transaksi_berhasil, group, false);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setView(view);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

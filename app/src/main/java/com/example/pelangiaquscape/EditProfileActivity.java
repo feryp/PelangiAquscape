@@ -56,7 +56,7 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-//        cancel = findViewById(R.id.im_cancel);
+        cancel = findViewById(R.id.im_cancel);
 //        save = findViewById(R.id.im_save);
 //        image_profile = findViewById(R.id.image_profile);
 //        ubah_foto = findViewById(R.id.tv_ubah_foto);
@@ -84,12 +84,12 @@ public class EditProfileActivity extends AppCompatActivity {
 //            }
 //        });
 //
-//        cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 //
 //        ubah_foto.setOnClickListener(new View.OnClickListener() {
 //            @Override

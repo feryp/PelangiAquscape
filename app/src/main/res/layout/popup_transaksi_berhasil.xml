@@ -13,280 +13,274 @@
         android:layout_height="50dp"
         android:layout_centerHorizontal="true">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:alpha="0.0"
+                android:background="@color/colorPrimary"
+                android:visibility="invisible" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@android:color/transparent">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary" />
+        </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:alpha="0.0"
-                    android:visibility="invisible"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    />
-            </LinearLayout>
-            <LinearLayout
+        <LinearLayout
+            android:id="@+id/container_checkmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/background_checkmark"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/ic_checkmark"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:id="@+id/container_checkmark"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/background_checkmark"
-                android:elevation="6dp"
-                android:gravity="center">
+                android:src="@drawable/ic_checkmark" />
 
-                <ImageView
-                    android:id="@+id/ic_checkmark"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_checkmark" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp">
 
+            <ImageView
+                android:id="@+id/close_popup"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_cancel_black" />
+
+        </LinearLayout>
 
     </FrameLayout>
 
 
-    <ImageView
-        android:id="@+id/im_close"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:translationY="-80dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:background="@color/colorPrimary"
-        android:elevation="3dp"
-        android:src="@drawable/ic_cancel_black" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Transaksi Berhasil"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/tv_waktu_transaksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="29-Juli-2019, 20:30 WIB"
+            android:textAlignment="center"
+            android:textColor="@color/disable_thumb_grey"
+            android:textSize="12sp" />
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="50dp"
+            android:layerType="software"
+            android:src="@drawable/garis_putus" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_judul_namapelanggan"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="25dp"
-                android:orientation="vertical">
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Nama Pelanggan"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Transaksi Berhasil"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tv_popup_namapelanggan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Nama"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_waktu_transaksi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="29-Juli-2019, 20:30 WIB"
-                    android:textAlignment="center"
-                    android:textColor="@color/disable_thumb_grey"
-                    android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_judul_nohp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_judul_namapelanggan"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="No. Telepon"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="50dp"
-                    android:layerType="software"
-                    android:src="@drawable/garis_putus" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_judul_namapelanggan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Nama Pelanggan"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_popup_namapelanggan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Nama"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_judul_nohp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_judul_namapelanggan"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="No. Telepon"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_popup_nohp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_popup_namapelanggan"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="087771365862"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_popup_nohp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_popup_namapelanggan"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="087771365862"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
 
-                    <TextView
-                        android:id="@+id/tv_judul_pembayaran"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_judul_nohp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Pembayaran"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_judul_pembayaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_judul_nohp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Pembayaran"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_popup_pilihpembayaran"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_popup_nohp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Jumlah Lain"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_popup_pilihpembayaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_popup_nohp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Jumlah Lain"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_judul_total_bayar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_judul_pembayaran"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Total Bayar"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_judul_total_bayar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_judul_pembayaran"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Total Bayar"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_popup_totalbayar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_popup_pilihpembayaran"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Rp. 0"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_popup_totalbayar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_popup_pilihpembayaran"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Rp. 0"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_judul_uang_diterima"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_judul_total_bayar"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Uang Diterima"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_judul_uang_diterima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_judul_total_bayar"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Uang Diterima"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_popup_uangditerima"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_popup_totalbayar"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Rp. 0"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_popup_uangditerima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_popup_totalbayar"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Rp. 0"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                </RelativeLayout>
+        </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="20dp"
-                    android:layerType="software"
-                    android:src="@drawable/garis_putus" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="20dp"
+            android:layerType="software"
+            android:src="@drawable/garis_putus" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
 
-                    <TextView
-                        android:id="@+id/tv_judul_kembalian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Kembalian"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_judul_kembalian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Kembalian"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_popup_kembalian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Rp. 0"
-                        android:textColor="@color/disable_thumb_grey"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_popup_kembalian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Rp. 0"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
 
-                </RelativeLayout>
+        </RelativeLayout>
 
-                <Button
-                    android:id="@+id/btn_lihat_struk"
-                    android:layout_width="160dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="70dp"
-                    android:background="@drawable/button_blue"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Lihat Struk"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14sp" />
-
-
-            </LinearLayout>
+        <Button
+            android:id="@+id/btn_lihat_struk"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/button_blue"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Lihat Struk"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
 
 
+    </LinearLayout>
 
 
 </RelativeLayout>

@@ -9,10 +9,13 @@ public class User {
     private String password;
     private String ulangiPassword;
     private String kodeLogin;
+    private String statusJabatan;
+    private String imageurl;
+    private String bio;
 
 
 
-    public User(String id, String username, String telepon, String email, String password, String ulangiPassword, String kodeLogin) {
+    public User(String id, String username, String telepon, String email, String password, String ulangiPassword, String kodeLogin, String statusJabatan, String imageurl, String bio) {
         this.id = id;
         this.username = username;
         this.telepon = telepon;
@@ -20,6 +23,9 @@ public class User {
         this.password = password;
         this.ulangiPassword = ulangiPassword;
         this.kodeLogin = kodeLogin;
+        this.statusJabatan = statusJabatan;
+        this.imageurl = imageurl;
+        this.bio = bio;
 
     }
 
@@ -77,6 +83,30 @@ public class User {
 
     public void setKodeLogin(String kodeLogin) {
         this.kodeLogin = kodeLogin;
+    }
+
+    public String getStatusJabatan() {
+        return statusJabatan;
+    }
+
+    public void setStatusJabatan(String statusJabatan) {
+        this.statusJabatan = statusJabatan;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
 }

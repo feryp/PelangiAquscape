@@ -1,228 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="?android:attr/windowBackground"
+    android:orientation="vertical"
     tools:context=".fragment.ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:background="@color/colorBlue"
             android:layout_height="250dp"
-            android:padding="20dp"
-            android:orientation="horizontal">
+            android:background="@color/colorBlue"
+            android:orientation="horizontal"
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nama"
+                    android:id="@+id/nama_pengguna_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Nama Pengguna"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp" />
+
                 <TextView
-                    android:id="@+id/status"
+                    android:id="@+id/status_jabatan_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Status"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
+
                 <TextView
-                    android:id="@+id/bio"
+                    android:id="@+id/bio_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bio"
-                    android:textSize="12sp"
                     android:fontFamily="@font/roboto_regular"
-                    android:textColor="@color/colorPrimary"/>
+                    android:text="Bio"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_gravity="center"
                 android:layout_marginLeft="30dp"
-                android:layout_gravity="center">
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/image_profile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_foto_profile"
+                    android:layout_margin="10dp"
                     android:background="@drawable/border_profile"
-                    android:layout_margin="10dp"/>
+                    android:src="@drawable/ic_foto_profile" />
 
                 <Button
                     android:id="@+id/btn_edit_akun"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:textSize="12sp"
+                    android:background="@drawable/border_button_editprofile"
                     android:text="Edit Akun"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
-                    android:background="@drawable/border_button_editprofile"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-
-        <RelativeLayout
-            android:id="@+id/notifikasi"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_box_grey">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_notif"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Notifikasi"
-                android:textColor="@color/colorBlack"
-                android:fontFamily="@font/roboto_bold"
-                android:layout_centerInParent="true"
-                android:paddingRight="180dp"
-                android:layout_margin="20dp"
-                android:textSize="15sp"
-                android:layout_gravity="center_vertical"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="20dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_arrow_blue"
-                android:rotation="180"
-               />
+                <RelativeLayout
+                    android:id="@+id/notifikasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_box_grey">
 
-        </RelativeLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/ic_notif" />
 
-        <RelativeLayout
-            android:id="@+id/bantuan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_box_grey">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:paddingRight="180dp"
+                        android:text="Notifikasi"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_bantuan"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bantuan"
-                android:textColor="@color/colorBlack"
-                android:fontFamily="@font/roboto_bold"
-                android:textSize="15sp"
-                android:layout_margin="20dp"
-                android:paddingRight="190dp"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_vertical" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="20dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_arrow_blue"
-                android:rotation="180" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:rotation="180"
+                        android:src="@drawable/ic_arrow_blue" />
 
-        </RelativeLayout>
+                </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/tentangkami"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_box_grey">
+                <RelativeLayout
+                    android:id="@+id/bantuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_box_grey">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_info"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tentang Kami"
-                android:textColor="@color/colorBlack"
-                android:fontFamily="@font/roboto_bold"
-                android:textSize="15sp"
-                android:layout_centerInParent="true"
-                android:paddingRight="155dp"
-                android:layout_gravity="center_vertical"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_arrow_blue"
-                android:rotation="180"
-                android:layout_margin="20dp"
-                android:layout_alignParentRight="true"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/ic_bantuan" />
 
-        </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:paddingRight="190dp"
+                        android:text="Bantuan"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
 
-        <RelativeLayout
-            android:id="@+id/keluar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_box_grey">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:rotation="180"
+                        android:src="@drawable/ic_arrow_blue" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_keluar"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Keluar"
-                android:textColor="@color/colorBlack"
-                android:fontFamily="@font/roboto_bold"
-                android:textSize="15sp"
-                android:layout_margin="20dp"
-                android:paddingRight="190dp"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_vertical"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_arrow_blue"
-                android:rotation="180"
-                android:layout_margin="20dp"
-                android:layout_alignParentRight="true"/>
+                </RelativeLayout>
 
-        </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/tentangkami"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_box_grey">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/ic_info" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/roboto_bold"
+                        android:paddingRight="155dp"
+                        android:text="Tentang Kami"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        android:rotation="180"
+                        android:src="@drawable/ic_arrow_blue" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/keluar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_box_grey">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/ic_keluar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="20dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:paddingRight="190dp"
+                        android:text="Keluar"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        android:rotation="180"
+                        android:src="@drawable/ic_arrow_blue" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 

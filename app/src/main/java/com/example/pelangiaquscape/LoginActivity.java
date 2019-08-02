@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         lupa_password = (TextView) findViewById(R.id.tv_lupa_password);
 
 
-
         bgapp.animate().translationY(-1500).setDuration(1000).setStartDelay(1500);
         clover.animate().alpha(0).setDuration(1000).setStartDelay(600);
         logosplash.animate().translationY(-330).setDuration(1500).setStartDelay(1000);
@@ -195,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
 
             final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
             pd.setMessage("Tunggu Sebentar ...");
@@ -285,7 +284,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user =  firebaseAuth.getCurrentUser();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
 //                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

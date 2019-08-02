@@ -7,89 +7,90 @@
     android:orientation="vertical"
     tools:context=".fragment.ProfileFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="@color/colorBlue"
-            android:orientation="horizontal"
-            android:padding="20dp">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/nama_pengguna_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Nama Pengguna"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/status_jabatan_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Status"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/bio_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Bio"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
+                android:layout_height="250dp"
+                android:background="@color/colorBlue"
+                android:orientation="horizontal"
+                android:padding="20dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/image_profile"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/border_profile"
-                    android:src="@drawable/ic_foto_profile" />
-
-                <Button
-                    android:id="@+id/btn_edit_akun"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/border_button_editprofile"
-                    android:text="Edit Akun"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nama_pengguna_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Nama Pengguna"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/status_jabatan_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Status"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/bio_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Bio"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/image_profile"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/border_profile"
+                        android:src="@drawable/ic_foto_profile" />
+
+                    <Button
+                        android:id="@+id/btn_edit_akun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/border_button_editprofile"
+                        android:text="Edit Akun"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -241,8 +242,9 @@
 
             </LinearLayout>
 
-        </ScrollView>
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -10,12 +10,12 @@ public class User {
     private String ulangiPassword;
     private String kodeLogin;
     private String statusJabatan;
-    private String imageurl;
+    private String fotoProfile;
     private String bio;
 
 
 
-    public User(String id, String username, String telepon, String email, String password, String ulangiPassword, String kodeLogin, String statusJabatan, String imageurl, String bio) {
+    public User(String id, String username, String telepon, String email, String password, String ulangiPassword, String kodeLogin, String statusJabatan, String fotoProfile, String bio) {
         this.id = id;
         this.username = username;
         this.telepon = telepon;
@@ -24,7 +24,7 @@ public class User {
         this.ulangiPassword = ulangiPassword;
         this.kodeLogin = kodeLogin;
         this.statusJabatan = statusJabatan;
-        this.imageurl = imageurl;
+        this.fotoProfile = fotoProfile;
         this.bio = bio;
 
     }
@@ -93,12 +93,12 @@ public class User {
         this.statusJabatan = statusJabatan;
     }
 
-    public String getImageurl() {
-        return imageurl;
+    public String getFotoProfile() {
+        return fotoProfile;
     }
 
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
+    public void setFotoProfile(String fotoProfile) {
+        this.fotoProfile = fotoProfile;
     }
 
     public String getBio() {

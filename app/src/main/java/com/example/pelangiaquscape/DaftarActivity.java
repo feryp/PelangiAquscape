@@ -107,7 +107,7 @@ public class DaftarActivity extends AppCompatActivity {
                             hashMap.put("kode_login", kodelogin);
                             hashMap.put("status_jabatan","");
                             hashMap.put("bio","");
-                            hashMap.put("imageurl","https://firebasestorage.googleapis.com/v0/b/pelangiaquscape.appspot.com/o/ic_foto_profile.png?alt=media&token=33420743-d376-4d05-b761-baadfac4da00");
+                            hashMap.put("fotoProfile","");
 
 
                             databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

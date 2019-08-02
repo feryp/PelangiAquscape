@@ -110,29 +110,29 @@ public class ProfileFragment extends Fragment {
         return v;
     }
 
-//    private void userInfo(){
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(profileid);
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (getContext() == null){
-//                    return;
-//                }
-//
-//                User user = dataSnapshot.getValue(User.class);
-//
-//                Glide.with(getContext()).load(user.getImageurl()).into(image_profile);
-//                namaPengguna.setText(user.getUsername());
-//                statusJabatan.setText(user.getStatusJabatan());
-//                bio.setText(user.getBio());
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    private void userInfo(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(profileid);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (getContext() == null){
+                    return;
+                }
+
+                User user = dataSnapshot.getValue(User.class);
+
+                Glide.with(getContext()).load(user.getFotoProfile()).into(image_profile);
+                namaPengguna.setText(user.getUsername());
+                statusJabatan.setText(user.getStatusJabatan());
+                bio.setText(user.getBio());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
 }

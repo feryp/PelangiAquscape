@@ -27,38 +27,41 @@ import android.widget.TextView;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class PembayaranActivity extends AppCompatActivity implements View.OnClickListener{
+public class PembayaranActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     SwitchCompat btnSwitch;
     TextInputLayout tvDiskon, tvNamaDiskon;
     ExpandableRelativeLayout ex;
     ImageView cancel;
-    TextInputEditText etJmlLain, etDiskon;
+    TextInputEditText etJmlLain, etDiskon, etNamaPelanggan, etNoHp;
     TextView tvTotalPembayaran, tvKembalian;
     Button btnBayar, btnUangPas, btnKelDua, btnKelLima, btnKelSepuluh, btnDiskonRp, btnDiskonPersen;
     RelativeLayout rl;
 
     LinearLayout ll;
     double totalHarga;
+    double totalKembalian;
     double diskon;
 
     boolean diskonPersen, diskonRp;
 
     DecimalFormat fmt = new DecimalFormat("#,###.00");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pembayaran);
 
+        totalKembalian = 0;
         final Intent i = getIntent();
 
-        if(i!= null){
+        if (i != null) {
             totalHarga = i.getDoubleExtra("totalHargaKeranjang", 0);
-        }
-
-        else{
+        } else {
             totalHarga = 0;
         }
 
@@ -71,6 +74,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         etJmlLain = findViewById(R.id.et_jumlah_lain);
         etDiskon = findViewById(R.id.et_jumlah_diskon);
+        etNamaPelanggan = findViewById(R.id.et_nama_pelanggan_pembayaran);
+        etNoHp = findViewById(R.id.et_no_hp_pelanggan);
 
 
         btnUangPas = findViewById(R.id.btn_uang_pas);
@@ -119,23 +124,22 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(s.length() == 0){
+                if (s.length() == 0) {
                     diskon = 0;
                     assert i != null;
                     totalHarga = i.getDoubleExtra("totalHargaKeranjang", 0);
-                    tvTotalPembayaran.setText("Rp. " +fmt.format(totalHarga));
-                }else{
+                    tvTotalPembayaran.setText("Rp. " + fmt.format(totalHarga));
+                } else {
 
                     diskon = Double.parseDouble(s.toString());
                     double a = i.getDoubleExtra("totalHargaKeranjang", 0);
-                    if(diskonPersen) {
+                    if (diskonPersen) {
 
                         totalHarga = a - (a * (diskon / 100));
-                    }
-                    else if(diskonRp) {
+                    } else if (diskonRp) {
                         totalHarga = a - diskon;
                     }
-                    tvTotalPembayaran.setText("Rp. " +fmt.format(totalHarga));
+                    tvTotalPembayaran.setText("Rp. " + fmt.format(totalHarga));
                 }
             }
 
@@ -158,17 +162,17 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 //                Log.v("tryTextListen", "onChange");
 
 
-
-
-                if(s.length() == 0){
+                if (s.length() == 0) {
                     double kembalian = 0;
-                    tvKembalian.setText("Rp. " +kembalian);
-                }else{
+                    totalKembalian = kembalian;
+                    tvKembalian.setText("Rp. " + kembalian);
+                } else {
 
                     double jmlLain = Double.parseDouble(s.toString());
                     double kembalian = jmlLain - totalHarga;
+                    totalKembalian = kembalian;
 
-                    tvKembalian.setText("Rp. " +fmt.format(kembalian));
+                    tvKembalian.setText("Rp. " + fmt.format(kembalian));
                 }
 
 
@@ -184,7 +188,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         etJmlLain.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     btnKelDua.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                     btnUangPas.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                     btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
@@ -198,11 +202,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         });
 
 
-
         String format = fmt.format(totalHarga);
-        tvTotalPembayaran.setText("Rp. "+ format);
-
-
+        tvTotalPembayaran.setText("Rp. " + format);
 
 
         btnSwitch.setChecked(false);
@@ -213,7 +214,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(!isChecked){
+                if (!isChecked) {
                     ex.collapse();
                     etDiskon.setText("");
                     etJmlLain.setText("");
@@ -222,7 +223,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
 //                    tvDiskon.setVisibility(View.INVISIBLE);
 //                    tvNamaDiskon.setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     ex.expand();
                     etDiskon.setFocusable(true);
                     etDiskon.requestFocus();
@@ -231,7 +232,6 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 }
             }
         });
-
 
 
 //        buttonUasPas.setOnTouchListener(new View.OnTouchListener() {
@@ -254,10 +254,11 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         double kembalian;
         InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_kelipatan_dua:
 
                 kembalian = 20000 - totalHarga;
+                totalKembalian = kembalian;
                 String as = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as);
 
@@ -270,11 +271,11 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 btnKelSepuluh.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
-                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(), 0);
                 break;
             case R.id.btn_kelipatan_lima:
                 kembalian = 50000 - totalHarga;
-
+                totalKembalian = kembalian;
                 String as1 = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as1);
 
@@ -287,12 +288,12 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 btnUangPas.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 btnKelSepuluh.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
-                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(), 0);
 
                 break;
             case R.id.btn_kelipatan_sepuluh:
                 kembalian = 100000 - totalHarga;
-
+                totalKembalian = kembalian;
                 String as2 = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as2);
 
@@ -305,12 +306,12 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 btnUangPas.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
-                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(), 0);
                 break;
 
             case R.id.btn_uang_pas:
                 tvKembalian.setText("Rp. 0.00");
-
+                totalKembalian = 0;
                 v.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_pressed));
                 btnKelDua.setTextColor(Color.GRAY);
                 btnKelLima.setTextColor(Color.GRAY);
@@ -320,18 +321,18 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 btnKelLima.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 btnKelSepuluh.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_default));
                 etJmlLain.clearFocus();
-                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(), 0);
 
                 break;
 
             case R.id.ll:
                 etJmlLain.clearFocus();
-                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(), 0);
                 break;
 
             case R.id.rl_option_payment:
                 etJmlLain.clearFocus();
-                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(),0);
+                im.hideSoftInputFromWindow(etJmlLain.getWindowToken(), 0);
                 break;
 
             case R.id.btn_diskon_persen:
@@ -363,10 +364,33 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    void showPembayaranBerhasilDialog(){
+    void showPembayaranBerhasilDialog() {
         ViewGroup group = findViewById(android.R.id.content);
 
         View view = LayoutInflater.from(this).inflate(R.layout.popup_transaksi_berhasil, group, false);
+
+        TextView tvTanggal = view.findViewById(R.id.tv_waktu_transaksi);
+
+
+        TextView tvNamaPelanggan = view.findViewById(R.id.tv_popup_namapelanggan);
+        TextView tvNoHp = view.findViewById(R.id.tv_popup_nohp);
+        TextView tvUangBayar = view.findViewById(R.id.tv_popup_pilihpembayaran);
+        TextView tvTotalBayarTransaksi = view.findViewById(R.id.tv_popup_totalbayar);
+        TextView tvKembalianTransaksi = view.findViewById(R.id.tv_popup_kembalian);
+
+
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy, HH:mm");
+        String date = format.format(new Date());
+        tvTanggal.setText(date.concat(" WIB"));
+        tvNamaPelanggan.setText(etNamaPelanggan.getText().toString());
+        tvNoHp.setText(etNoHp.getText().toString());
+        tvTotalBayarTransaksi.setText("Rp. " + String.valueOf(fmt.format(totalHarga)));
+        tvKembalianTransaksi.setText("Rp. " + String.valueOf(fmt.format(totalKembalian)));
+
+        double uangBayar;
+        uangBayar = totalKembalian + totalHarga;
+
+        tvUangBayar.setText("Rp. " + String.valueOf(fmt.format(uangBayar)));
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

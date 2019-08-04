@@ -19,9 +19,9 @@ public class MitraBisnisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mitra_bisnis);
 
-        cancel =(ImageView) findViewById(R.id.im_cancel);
+        cancel = findViewById(R.id.im_cancel);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Pelanggan"));
         tabLayout.addTab(tabLayout.newTab().setText("Pemasok"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

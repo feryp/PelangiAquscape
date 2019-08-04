@@ -155,14 +155,14 @@
 
 
             <TextView
-                android:id="@+id/tv_judul_pembayaran"
+                android:id="@+id/tv_judul_uangmuka"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_judul_nohp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Pembayaran"
+                android:text="Uang Bayar"
                 android:textColor="@color/disable_thumb_grey"
                 android:textSize="14sp" />
 
@@ -183,7 +183,7 @@
                 android:id="@+id/tv_judul_total_bayar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_judul_pembayaran"
+                android:layout_below="@+id/tv_judul_uangmuka"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_regular"
@@ -204,30 +204,6 @@
                 android:textColor="@color/disable_thumb_grey"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_judul_uang_diterima"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_judul_total_bayar"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Uang Diterima"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_popup_uangditerima"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_popup_totalbayar"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Rp. 0"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="14sp" />
 
         </RelativeLayout>
 

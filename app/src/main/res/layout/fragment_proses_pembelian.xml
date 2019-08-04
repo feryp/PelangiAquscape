@@ -43,6 +43,7 @@
             android:src="@drawable/ic_add_white"
             app:fabSize="normal"
             android:backgroundTint="@color/colorBlue"
+            app:borderWidth="0dp"
             />
 
         <RelativeLayout

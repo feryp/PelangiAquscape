@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,17 +31,38 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment {
 
-    TextView namaPengguna, statusJabatan, bio;
+    TextView tvNamaPengguna, tvStatusJabatan, tvBiodata;
     Button editAkun;
-    ImageView image_profile;
+    ImageView imgFotoProfile;
     RelativeLayout notifikasi, bantuan, tentangkami, keluar;
 
     FirebaseUser firebaseUser;
-    String profileid;
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+
+    String namaPengguna, statusJabatan, biodata, fotoProfil, kodeLogin;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid());
+
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,22 +71,56 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        SharedPreferences preferences = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
-        profileid = preferences.getString("profileid", "none");
-
-        image_profile = v.findViewById(R.id.image_profile);
-        namaPengguna = v.findViewById(R.id.nama_pengguna_profile);
-        statusJabatan = v.findViewById(R.id.status_jabatan_profile);
-        bio = v.findViewById(R.id.bio_profile);
+        imgFotoProfile = v.findViewById(R.id.image_profile);
+        tvNamaPengguna = v.findViewById(R.id.nama_pengguna_profile);
+        tvStatusJabatan = v.findViewById(R.id.status_jabatan_profile);
+        tvBiodata = v.findViewById(R.id.bio_profile);
         editAkun = v.findViewById(R.id.btn_edit_akun);
         notifikasi = v.findViewById(R.id.notifikasi);
         bantuan = v.findViewById(R.id.bantuan);
         tentangkami = v.findViewById(R.id.tentangkami);
         keluar = v.findViewById(R.id.keluar);
 
-//        userInfo();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                namaPengguna = "" + dataSnapshot.child("namapengguna").getValue();
+
+                kodeLogin = "" + dataSnapshot.child("kode_login").getValue();
+                switch (kodeLogin) {
+                    case "0":
+                        statusJabatan = "Super Admin";
+                        break;
+                    case "1":
+                        statusJabatan = "Pegawai";
+                        break;
+                }
+
+                biodata = "" + dataSnapshot.child("bio").getValue();
+                fotoProfil = "" + dataSnapshot.child("fotoProfile").getValue();
+
+
+                try {
+                    Picasso.get().load(fotoProfil).into(imgFotoProfile);
+                } catch (IllegalArgumentException e) {
+                    imgFotoProfile.setImageResource(R.drawable.ic_foto_profile);
+                }
+
+                //set data
+                tvNamaPengguna.setText(namaPengguna);
+                tvStatusJabatan.setText(statusJabatan);
+                tvBiodata.setText(biodata);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         editAkun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,31 +163,8 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
         return v;
-    }
-
-    private void userInfo(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(profileid);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (getContext() == null){
-                    return;
-                }
-
-                User user = dataSnapshot.getValue(User.class);
-
-                Glide.with(getContext()).load(user.getFotoProfile()).into(image_profile);
-                namaPengguna.setText(user.getUsername());
-                statusJabatan.setText(user.getStatusJabatan());
-                bio.setText(user.getBio());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 

@@ -40,6 +40,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static int RC_SIGN_IN = 1;
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView daftar, lupa_password;
     TextInputEditText namapengguna, katasandi;
     FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     GoogleSignInClient mGoogleSignInClient;
 
@@ -99,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,11 +288,31 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
+//                            FirebaseUser user = firebaseAuth.getCurrentUser();
+//                            String email = firebaseUser.getEmail();
+//                            String userid = firebaseUser.getUid();
+//
+//                            HashMap<Object, String> hashMap = new HashMap<>();
+//                            hashMap.put("email", email);
+//                            hashMap.put("id", userid);
+//                            hashMap.put("namapengguna", "");
+//                            hashMap.put("status_jabatan","");
+//                            hashMap.put("fotoProfile", "");
+//
+//                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//
+//                            DatabaseReference databaseReference = database.getReference("User");
+//
+//                            databaseReference.child(userid).setValue(hashMap);
+//
+//                            //show user email in toast
+//                            Toast.makeText(LoginActivity.this, ""+firebaseUser.getEmail(), Toast.LENGTH_SHORT);
+//                            startActivity(new Intent(LoginActivity.this, Main2Activity.class));
 //                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Login Gagal...", Toast.LENGTH_SHORT);
 //                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }

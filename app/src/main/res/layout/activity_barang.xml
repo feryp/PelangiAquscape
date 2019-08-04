@@ -124,6 +124,7 @@
         android:backgroundTint="@color/colorBlue"
         android:elevation="6dp"
         android:src="@drawable/ic_add_white"
+        app:borderWidth="0dp"
         app:fabSize="normal" />
 
 </RelativeLayout>

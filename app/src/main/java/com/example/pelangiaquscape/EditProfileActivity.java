@@ -45,6 +45,9 @@ public class EditProfileActivity extends AppCompatActivity {
     TextInputEditText nama_akun_pengguna, status_jabatan, bio;
 
     FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     private Uri mImageUri;
     private StorageTask uploadTask;
@@ -57,12 +60,12 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         cancel = findViewById(R.id.im_cancel);
-//        save = findViewById(R.id.im_save);
-//        image_profile = findViewById(R.id.image_profile);
-//        ubah_foto = findViewById(R.id.tv_ubah_foto);
-//        nama_akun_pengguna = findViewById(R.id.et_nama_akun_pengguna);
-//        status_jabatan = findViewById(R.id.et_status_jabatan);
-//        bio = findViewById(R.id.et_bio);
+        save = findViewById(R.id.im_save);
+        image_profile = findViewById(R.id.image_profile);
+        ubah_foto = findViewById(R.id.tv_ubah_foto);
+        nama_akun_pengguna = findViewById(R.id.et_nama_akun_pengguna);
+        status_jabatan = findViewById(R.id.et_status_jabatan);
+        bio = findViewById(R.id.et_bio);
 //
 //        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 //        storageReference = FirebaseStorage.getInstance().getReference("uploads");

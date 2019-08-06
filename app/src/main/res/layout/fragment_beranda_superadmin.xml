@@ -33,12 +33,11 @@
                     android:textSize="35sp" />
 
                 <TextView
-                    android:id="@+id/status"
+                    android:id="@+id/nama_pengguna_superadmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Super Admin"
                     android:textColor="@color/colorPrimary"
                     android:textSize="35sp" />
 

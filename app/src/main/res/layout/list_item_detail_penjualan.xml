@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="15dp">
+
+       <TextView
+           android:id="@+id/detail_kode_barang"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Q3"
+           android:textSize="18sp"
+           android:fontFamily="@font/roboto_regular"
+           android:textColor="@color/colorBlack"/>
+
+       <TextView
+           android:id="@+id/detail_merek_barang"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="(AMARA)"
+           android:textSize="18sp"
+           android:layout_toRightOf="@+id/detail_kode_barang"
+           android:layout_marginLeft="8dp"
+           android:fontFamily="@font/roboto_regular"
+           android:textColor="@color/colorBlack"/>
+
+       <TextView
+           android:id="@+id/detail_kuantitas_jual"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="8dp"
+           android:text="Rp. 15000 x 1"
+           android:textSize="14sp"
+           android:layout_below="@+id/detail_kode_barang"
+           android:fontFamily="@font/roboto_regular" />
+
+       <TextView
+           android:id="@+id/detail_total_perkuantitas"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="8dp"
+           android:text="Rp. 15000"
+           android:textSize="14sp"
+           android:layout_below="@+id/detail_kode_barang"
+           android:layout_alignParentRight="true"
+           android:fontFamily="@font/roboto_regular" />
+
+
+
+   </RelativeLayout>
+
+
+
+</LinearLayout>

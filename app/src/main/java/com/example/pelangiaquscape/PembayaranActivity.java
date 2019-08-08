@@ -370,6 +370,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         View view = LayoutInflater.from(this).inflate(R.layout.popup_transaksi_berhasil, group, false);
 
         TextView tvTanggal = view.findViewById(R.id.tv_waktu_transaksi);
+        final ImageView imClosePopUp = view.findViewById(R.id.close_popup);
 
 
         TextView tvNamaPelanggan = view.findViewById(R.id.tv_popup_namapelanggan);
@@ -399,5 +400,13 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
+        imClosePopUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent close = new Intent(PembayaranActivity.this, TransaksiActivity.class);
+                startActivity(close);
+            }
+        });
     }
 }

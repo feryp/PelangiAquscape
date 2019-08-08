@@ -48,7 +48,7 @@ public class ProfileFragment extends Fragment {
     DatabaseReference databaseReference;
 
 
-    String namaPengguna, statusJabatan, biodata, fotoProfil, kodeLogin;
+    String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
 
 
     @Override
@@ -99,11 +99,11 @@ public class ProfileFragment extends Fragment {
                 }
 
                 biodata = "" + dataSnapshot.child("bio").getValue();
-                fotoProfil = "" + dataSnapshot.child("fotoProfile").getValue();
+                fotoProfile = "" + dataSnapshot.child("fotoProfile").getValue();
 
 
                 try {
-                    Picasso.get().load(fotoProfil).into(imgFotoProfile);
+                    Picasso.get().load(fotoProfile).into(imgFotoProfile);
                 } catch (IllegalArgumentException e) {
                     imgFotoProfile.setImageResource(R.drawable.ic_foto_profile);
                 }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.bumptech.glide.Glide;
+import com.bumptech.glide.Glide;
 import com.example.pelangiaquscape.Model.User;
 import com.example.pelangiaquscape.fragment.ProfileFragment;
 import com.google.android.gms.tasks.Continuation;
@@ -32,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.squareup.picasso.Picasso;
 //import com.theartofdev.edmodo.cropper.CropImage;
 //import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -40,7 +42,7 @@ import java.util.HashMap;
 public class EditProfileActivity extends AppCompatActivity {
 
     final String EXTRA = "INTENT_EDIT_TO_MAIN";
-    ImageView cancel, save, image_profile;
+    ImageView cancel, save, imgFotoprofile;
     TextView ubah_foto;
     TextInputEditText nama_akun_pengguna, status_jabatan, bio;
 
@@ -48,10 +50,12 @@ public class EditProfileActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    StorageReference storageReference;
+
+    String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
 
     private Uri mImageUri;
     private StorageTask uploadTask;
-    StorageReference storageReference;
 
 
     @Override
@@ -61,31 +65,58 @@ public class EditProfileActivity extends AppCompatActivity {
 
         cancel = findViewById(R.id.im_cancel);
         save = findViewById(R.id.im_save);
-        image_profile = findViewById(R.id.image_profile);
+        imgFotoprofile = findViewById(R.id.image_profile);
         ubah_foto = findViewById(R.id.tv_ubah_foto);
         nama_akun_pengguna = findViewById(R.id.et_nama_akun_pengguna);
         status_jabatan = findViewById(R.id.et_status_jabatan);
         bio = findViewById(R.id.et_bio);
-//
-//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        storageReference = FirebaseStorage.getInstance().getReference("uploads");
-//
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid());
+        storageReference = FirebaseStorage.getInstance().getReference("uploads");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
 //                User user = dataSnapshot.getValue(User.class);
 //                nama_akun_pengguna.setText(user.getUsername());
 //                status_jabatan.setText(user.getStatusJabatan());
 //                bio.setText(user.getBio());
+                namaPengguna = "" + dataSnapshot.child("namapengguna").getValue();
+                kodeLogin = "" + dataSnapshot.child("kode_login").getValue();
+                switch (kodeLogin) {
+                    case "0":
+                        statusJabatan = "Super Admin";
+                        break;
+                    case "1":
+                        statusJabatan = "Pegawai";
+                        break;
+                }
+                biodata = "" + dataSnapshot.child("bio").getValue();
+                fotoProfile = "" + dataSnapshot.child("fotoProfile").getValue();
+
+
+                try {
+                    Picasso.get().load(fotoProfile).into(imgFotoprofile);
+                } catch (IllegalArgumentException e) {
+                    imgFotoprofile.setImageResource(R.drawable.ic_foto_profile);
+                }
 //                Glide.with(getApplicationContext()).load(user.getImageUrl()).into(image_profile);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+
+                //set data
+                nama_akun_pengguna.setText(namaPengguna);
+                status_jabatan.setText(statusJabatan);
+                bio.setText(biodata);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 //
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +144,13 @@ public class EditProfileActivity extends AppCompatActivity {
 //                        .start(EditProfileActivity.this);
 //            }
 //        });
-//
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                updateProfile(nama_akun_pengguna.getText().toString(),status_jabatan.getText().toString(),bio.getText().toString());
-//            }
-//        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateProfile(nama_akun_pengguna.getText().toString(),status_jabatan.getText().toString(),bio.getText().toString());
+            }
+        });
     }
 
     private void updateProfile(String nama_akun_pengguna, String status_jabatan, String bio) {

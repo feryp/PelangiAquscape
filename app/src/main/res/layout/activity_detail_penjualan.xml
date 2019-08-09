@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_struk"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_bold"
             android:text="#INV-1234RM"
             android:textColor="@color/colorBlack"
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/no_struk_detail_penjualan"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
             android:text="Tunai"
             android:textColor="@color/colorBlack"
@@ -134,7 +134,7 @@
             android:layout_height="24dp"
             android:layout_below="@+id/im_clock"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ic_cashier" />
 
         <TextView
@@ -143,10 +143,32 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/waktu_detail_penjualan"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="18dp"
             android:layout_toRightOf="@+id/im_cashier"
             android:fontFamily="@font/roboto_regular"
             android:text="Mas Ardhi"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/im_customer"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/im_cashier"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_customer" />
+
+        <TextView
+            android:id="@+id/nama_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nama_kasir"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@+id/im_cashier"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Udin"
             android:textColor="@color/colorBlack"
             android:textSize="14sp" />
 
@@ -155,8 +177,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
         android:background="@color/colorPrimary"
+        android:orientation="vertical"
         android:padding="15dp">
 
         <TextView
@@ -167,17 +190,19 @@
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_detail_penjualan"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_detail_penjualan"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="2dp"
-        android:background="@color/colorPrimary"
-        android:scrollbars="vertical">
 
-    </android.support.v7.widget.RecyclerView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -209,7 +234,7 @@
     <Button
         android:id="@+id/btn_lihatstruk_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
         android:layout_marginTop="10dp"
         android:background="@color/colorBlue"
         android:fontFamily="@font/roboto_bold"

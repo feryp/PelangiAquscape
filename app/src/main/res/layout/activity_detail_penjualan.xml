@@ -59,13 +59,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:orientation="horizontal"
         android:padding="15dp">
+
+        <TextView
+            android:id="@+id/no_struk_detail_penjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="No. Struk :"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Detail Transaksi"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="#INV-1234"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
@@ -78,43 +89,10 @@
         android:background="@color/colorPrimary"
         android:padding="15dp">
 
-
-        <TextView
-            android:id="@+id/tv_struk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
-            android:text="No. Struk :"
-            android:textColor="@color/colorBlack"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/no_struk_detail_penjualan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_struk"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="#INV-1234RM"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/keterangan_pembayaran_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/no_struk_detail_penjualan"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Tunai"
-            android:textColor="@color/colorBlack"
-            android:textSize="12sp" />
-
         <ImageView
             android:id="@+id/im_clock"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/ic_clock" />
 
         <TextView
@@ -128,22 +106,30 @@
             android:textColor="@color/colorBlack"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/keterangan_pembayaran_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/waktu_detail_penjualan"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Tunai"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
         <ImageView
             android:id="@+id/im_cashier"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_below="@+id/im_clock"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
             android:src="@drawable/ic_cashier" />
 
         <TextView
             android:id="@+id/nama_kasir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/waktu_detail_penjualan"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/im_cashier"
             android:fontFamily="@font/roboto_regular"
             android:text="Mas Ardhi"
@@ -165,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/nama_kasir"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:layout_toRightOf="@+id/im_cashier"
             android:fontFamily="@font/roboto_regular"
             android:text="Udin"
@@ -186,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
-            android:text="Detail Penjualan"
+            android:text="Detail Item"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
@@ -201,7 +187,6 @@
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
-
 
 
     <RelativeLayout

@@ -72,11 +72,11 @@
             android:padding="15dp">
 
             <EditText
-                android:id="@+id/search_field"
+                android:id="@+id/search_field_barang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                android:layout_toStartOf="@+id/ib_search"
+                android:layout_toStartOf="@+id/ib_search_barang"
                 android:background="@drawable/search_layout"
                 android:ems="15"
                 android:fontFamily="@font/roboto_bold"
@@ -91,11 +91,11 @@
                 android:textSize="16sp" />
 
             <ImageButton
-                android:id="@+id/ib_search"
+                android:id="@+id/ib_search_barang"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignTop="@+id/search_field"
-                android:layout_alignBottom="@+id/search_field"
+                android:layout_alignTop="@+id/search_field_barang"
+                android:layout_alignBottom="@+id/search_field_barang"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/border_search"

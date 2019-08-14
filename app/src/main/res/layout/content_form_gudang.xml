@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="10dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="10dp"
+    tools:context=".GudangActivity"
+    tools:showIn="@layout/activity_gudang">
+
+    <LinearLayout
+        android:id="@+id/slideView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/background_slideup">
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:background="@color/colorDarkGrey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Form Gudang"
+            android:textSize="18sp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/colorBlack"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tanggal_tabungan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            app:boxStrokeColor="@color/colorBlack">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_tanggal_tabungan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tanggal Kegiatan"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/jenis_rutin"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:boxStrokeColor="@color/colorBlack">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_jenis_rutin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Jenis Rutin"
+                android:inputType="text"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/jumlah"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:boxStrokeColor="@color/colorBlack">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_jumlah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Jumlah"
+                android:inputType="number"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="15dp">
+
+            <Button
+                android:id="@+id/btnSimpan"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:text="Simpan"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:background="@drawable/button_blue"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/roboto_bold"/>
+
+            <Button
+                android:id="@+id/btnHapus"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:text="Hapus"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/button_blue"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/roboto_bold"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

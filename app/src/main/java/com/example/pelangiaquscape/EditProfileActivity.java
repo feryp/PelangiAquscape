@@ -209,12 +209,12 @@ public class EditProfileActivity extends AppCompatActivity {
                         String myUrl = downloadUri.toString();
 
                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
-
-                        HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("imageURL", myUrl);
-
-                        reference.updateChildren(hashMap);
-                        pd.dismiss();
+//
+//                        HashMap<String, Object> hashMap = new HashMap<>();
+//                        hashMap.put("imageURL", myUrl);
+//
+//                        reference.updateChildren(hashMap);
+//                        pd.dismiss();
 
                     } else {
 

@@ -35,7 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_below="@+id/total_transaksi_penjualan"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/container_barang">
 
         <ImageView

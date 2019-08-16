@@ -1,115 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_ilustrasi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary"
-    tools:context=".PenjualanActivity">
+    android:background="@color/colorPrimary">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:background="@drawable/border_grey_effect">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/im_cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentStart="true"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Penjualan"
-                    android:textColor="@color/colorBlue"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/roboto_medium"/>
-
-                <ImageView
-                    android:id="@+id/im_save"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_filter"
-                    android:layout_marginRight="15dp"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentEnd="true"/>
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Riwayat Penjualan"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/roboto_bold"
-        android:paddingLeft="20dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"/>
-
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/container_ilustrasi"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        tools:context=".PenjualanActivity">
 
-        <ImageView
-            android:id="@+id/iv_ilustrasi_pelanggankosong"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/tidak_ada_penjualan"
-            android:layout_marginTop="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentLeft="true"/>
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/border_grey_effect"
+                android:elevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/im_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Penjualan"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/im_save"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/ic_filter" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
 
         <TextView
-            android:id="@+id/tv_pelanggan_kosong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Belum ada list penjualan"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_below="@+id/iv_ilustrasi_pelanggankosong"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Riwayat Penjualan"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_penjualan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical">
+            android:scrollbars="vertical" />
 
-        </android.support.v7.widget.RecyclerView>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
+    <ImageView
+        android:id="@+id/iv_ilustrasi_pelanggankosong"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
 
+        android:src="@drawable/tidak_ada_penjualan" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_pelanggan_kosong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_ilustrasi_pelanggankosong"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Belum ada list penjualan"
+        android:textSize="12sp" />
+</RelativeLayout>

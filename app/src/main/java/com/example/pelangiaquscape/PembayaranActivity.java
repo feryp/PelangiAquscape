@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
@@ -23,12 +24,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Penjualan;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class PembayaranActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,7 +62,9 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
     boolean diskonPersen, diskonRp;
 
+
     DecimalFormat fmt = new DecimalFormat("#,###.00");
+    List<ItemKeranjang> listKeranjang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +76,10 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         if (i != null) {
             totalHarga = i.getDoubleExtra("totalHargaKeranjang", 0);
+            Bundle bundle = getIntent().getExtras();
+            ArrayList<ItemKeranjang> k = bundle.getParcelableArrayList("listItemKeranjang");
+            listKeranjang = new ArrayList<>();
+            listKeranjang.addAll(k);
         } else {
             totalHarga = 0;
         }
@@ -360,6 +379,35 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_bayar:
                 showPembayaranBerhasilDialog();
+                SimpleDateFormat fmt = new SimpleDateFormat("ddMMyyyy-hhmmss");
+                Calendar c = Calendar.getInstance();
+                Date date = c.getTime();
+                String formatedDate = fmt.format(date);
+                String noPenjualan = "INV-"+formatedDate;
+
+                Penjualan p = new Penjualan(noPenjualan,
+                        "Tunai",
+                        c.getTimeInMillis(),
+                        FirebaseAuth.getInstance().getUid(),
+                        listKeranjang,
+                        etNamaPelanggan.getText().toString() != null? etNamaPelanggan.getText().toString():"",
+                        etNoHp.getText().toString() != null ? etNoHp.getText().toString():"",
+                        totalHarga
+                        );
+                FirebaseDatabase db = FirebaseDatabase.getInstance();
+                DatabaseReference dr = db.getReference().child("Penjualan");
+                dr.push().setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(PembayaranActivity.this, "Pembayaran berhasil diinput", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(PembayaranActivity.this, "Pembayaran gagal diinput", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 break;
         }
     }

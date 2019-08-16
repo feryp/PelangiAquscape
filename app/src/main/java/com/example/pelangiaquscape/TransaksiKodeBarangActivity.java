@@ -102,10 +102,10 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                 int qty = sharedPref.getInt(holder.tvKode.getText().toString(), 0);
 
                 holder.tvQuantity.setText(String.valueOf(qty));
-//                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
+
 
                 Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
-                final Barang clickItem = model;
+
 
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -136,13 +136,8 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
                             Toast.makeText(TransaksiKodeBarangActivity.this, "update db", Toast.LENGTH_SHORT).show();
                         }
-
-
-
                     }
                 });
-
-
             }
 
             @NonNull

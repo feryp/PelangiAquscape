@@ -20,6 +20,7 @@ import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class KeranjangPenjualanActivity extends AppCompatActivity {
@@ -29,6 +30,9 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
     TextView tv;
     Button btnTambahBarang, btnKonfirmasi;
     ImageView cancel;
+
+    ArrayList<ItemKeranjang> listItemKeranjang = new ArrayList<ItemKeranjang>();
+    Bundle bundle = new Bundle();
 
     double totalAllItemPrice;
 
@@ -59,6 +63,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(KeranjangPenjualanActivity.this, PembayaranActivity.class);
                 i.putExtra("totalHargaKeranjang", totalAllItemPrice);
+                i.putExtras(bundle);
                 startActivity(i);
             }
         });
@@ -101,7 +106,7 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         );
 
 //                List itemIds = new ArrayList<>();
-        List<ItemKeranjang> list = new ArrayList<>();
+        ArrayList<ItemKeranjang> list = new ArrayList<>();
         totalAllItemPrice = 0;
         while(cursor.moveToNext()){
             String kode = cursor.getString(cursor.getColumnIndexOrThrow(ItemKeranjangEntry.COLUMN_NAME_KODE));
@@ -118,16 +123,23 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
 //
             totalAllItemPrice = totalAllItemPrice + totalPrice;
             list.add(new ItemKeranjang(kode, merek, hargaJual, hargaBeli, satuan,qty, totalPrice));
+
 //            Toast.makeText(MainActivity.this, subtitle, Toast.LENGTH_SHORT).show();
 
 
         }
+//        listItemKeranjang.addAll(list);
+        bundle.putParcelableArrayList("listItemKeranjang",list);
+
+
         cursor.close();
 
         KeranjangAdapter adapter = new KeranjangAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
         tv.setText("Rp. " + totalAllItemPrice);
+
+
 
 
     }

@@ -2,6 +2,7 @@ package com.example.pelangiaquscape;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -33,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 //import com.theartofdev.edmodo.cropper.CropImage;
 //import com.theartofdev.edmodo.cropper.CropImageView;
@@ -52,10 +54,11 @@ public class EditProfileActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     StorageReference storageReference;
 
-    String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
-
+    private static final int IMAGE_REQUEST = 1;
     private Uri mImageUri;
     private StorageTask uploadTask;
+
+    String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
 
 
     @Override
@@ -85,6 +88,11 @@ public class EditProfileActivity extends AppCompatActivity {
 //                nama_akun_pengguna.setText(user.getUsername());
 //                status_jabatan.setText(user.getStatusJabatan());
 //                bio.setText(user.getBio());
+//                if (user.getFotoProfile().equals("default")){
+//                    imgFotoprofile.setImageResource(R.drawable.ic_foto_profile);
+//                } else {
+//                    Glide.with(getApplicationContext()).load(user.getFotoProfile()).into(imgFotoprofile);
+//                }
                 namaPengguna = "" + dataSnapshot.child("namapengguna").getValue();
                 kodeLogin = "" + dataSnapshot.child("kode_login").getValue();
                 switch (kodeLogin) {
@@ -104,7 +112,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 } catch (IllegalArgumentException e) {
                     imgFotoprofile.setImageResource(R.drawable.ic_foto_profile);
                 }
-//                Glide.with(getApplicationContext()).load(user.getImageUrl()).into(image_profile);
 
                 //set data
                 nama_akun_pengguna.setText(namaPengguna);
@@ -125,48 +132,52 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 //
-//        ubah_foto.setOnClickListener(new View.OnClickListener() {
+        ubah_foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openImage();
+            }
+        });
+
+//        imgFotoprofile.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                CropImage.activity()
-//                        .setAspectRatio(1,1)
-//                        .setCropShape(CropImageView.CropShape.OVAL)
-//                        .start(EditProfileActivity.this);
-//            }
-//        });
 //
-//        image_profile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                CropImage.activity()
-//                        .setAspectRatio(1,1)
-//                        .setCropShape(CropImageView.CropShape.OVAL)
-//                        .start(EditProfileActivity.this);
 //            }
 //        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateProfile(nama_akun_pengguna.getText().toString(),status_jabatan.getText().toString(),bio.getText().toString());
+                updateProfile(
+                        nama_akun_pengguna.getText().toString(),
+                        status_jabatan.getText().toString(),
+                        bio.getText().toString());
             }
         });
+    }
+
+    private void openImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, IMAGE_REQUEST);
     }
 
     private void updateProfile(String nama_akun_pengguna, String status_jabatan, String bio) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
 
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("nama_akun_pengguna", nama_akun_pengguna);
-        hashMap.put("status_jabatan", status_jabatan);
-        hashMap.put("bio", bio);
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("nama_akun_pengguna", nama_akun_pengguna);
+//        hashMap.put("status_jabatan", status_jabatan);
+//        hashMap.put("bio", bio);
 
-        reference.updateChildren(hashMap);
+//        reference.updateChildren(hashMap);
 
     }
 
     private String getFileExtension(Uri uri){
-        ContentResolver contentResolver = getContentResolver();
+        ContentResolver contentResolver = getApplicationContext().getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
@@ -181,9 +192,9 @@ public class EditProfileActivity extends AppCompatActivity {
                     +"."+ getFileExtension(mImageUri));
 
             uploadTask = filereference.putFile(mImageUri);
-            uploadTask.continueWithTask(new Continuation() {
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
-                public Object then(@NonNull Task task) throws Exception {
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()){
                         throw task.getException();
                     }
@@ -198,22 +209,23 @@ public class EditProfileActivity extends AppCompatActivity {
                         String myUrl = downloadUri.toString();
 
                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
-
-                        HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("imageurl", ""+myUrl);
-
-                        reference.updateChildren(hashMap);
-                        pd.dismiss();
+//
+//                        HashMap<String, Object> hashMap = new HashMap<>();
+//                        hashMap.put("imageURL", myUrl);
+//
+//                        reference.updateChildren(hashMap);
+//                        pd.dismiss();
 
                     } else {
 
-                        Toast.makeText(EditProfileActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
                 }
             });
 
@@ -229,16 +241,16 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//            mImageUri = result.getUri();
-//
-//            uploadImage();
-//
-//        } else {
-//
-//            Toast.makeText(this,"Ada yang salah!", Toast.LENGTH_SHORT).show();
-//        }
+
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK
+            && data != null && data.getData() != null){
+            mImageUri = data.getData();
+
+            if (uploadTask != null && uploadTask.isInProgress()){
+                Toast.makeText(getApplicationContext(), "Unggah sedang dalam proses", Toast.LENGTH_SHORT).show();
+            } else {
+                uploadImage();
+            }
+        }
     }
 }

@@ -13,9 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.BarangActivity;
+import com.example.pelangiaquscape.GudangActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.MitraBisnisActivity;
 import com.example.pelangiaquscape.PembelianActivity;
+import com.example.pelangiaquscape.PenerimaanActivity;
 import com.example.pelangiaquscape.PenjualanActivity;
 import com.example.pelangiaquscape.TransaksiActivity;
 import com.example.pelangiaquscape.R;
@@ -65,6 +67,8 @@ public class BerandaAdminFragment extends Fragment {
         CardView cardViewBarang = v.findViewById(R.id.cv_barang);
         CardView cardViewTransaksi = v.findViewById(R.id.cv_transaksi);
         CardView cardViewPenjualan = v.findViewById(R.id.cv_penjualan);
+        CardView cardViewGudang = v.findViewById(R.id.cv_gudang);
+        CardView cardViewPenerimaan = v.findViewById(R.id.cv_penerimaan);
 
         cardViewMitra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +100,22 @@ public class BerandaAdminFragment extends Fragment {
             public void onClick(View view) {
                 Intent cv_penjualan = new Intent(getActivity(), PenjualanActivity.class);
                 startActivity(cv_penjualan);
+            }
+        });
+
+        cardViewPenerimaan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cv_penerimaaan = new Intent(getActivity(), PenerimaanActivity.class);
+                startActivity(cv_penerimaaan);
+            }
+        });
+
+        cardViewGudang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cv_gudang = new Intent(getActivity(), GudangActivity.class);
+                startActivity(cv_gudang);
             }
         });
 

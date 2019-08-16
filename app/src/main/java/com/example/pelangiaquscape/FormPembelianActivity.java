@@ -17,7 +17,7 @@ public class FormPembelianActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_pembelian);
 
-        cancel =(ImageView) findViewById(R.id.im_cancel);
+        cancel = findViewById(R.id.im_cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

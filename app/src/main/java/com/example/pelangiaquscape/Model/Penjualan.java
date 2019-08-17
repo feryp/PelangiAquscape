@@ -12,6 +12,9 @@ public class Penjualan {
     private String noTelpKustomer;
     private double totalPenjualan;
 
+    public Penjualan() {
+    }
+
     public Penjualan(String noPenjualan, String jenisPembayaran, long tanggalPenjualan, String namaPenjual, List<ItemKeranjang> listItemKeranjang, String namaKustomer, String noTelpKustomer, double totalPenjualan) {
         this.noPenjualan = noPenjualan;
         this.jenisPembayaran = jenisPembayaran;

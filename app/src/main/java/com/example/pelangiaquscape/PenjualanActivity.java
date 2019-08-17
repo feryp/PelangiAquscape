@@ -5,16 +5,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Penjualan;
+import com.example.pelangiaquscape.ViewHolder.PenjualanViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -29,6 +39,15 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     List<Penjualan> listPenjualan = new ArrayList<>();
 
+    FirebaseDatabase fd;
+    DatabaseReference dr;
+    FirebaseRecyclerAdapter adapter;
+
+
+    ImageView iv;
+    TextView tvImage;
+
+    Query query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,24 +60,16 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         rvPenjualan.setHasFixedSize(true);
         rvPenjualan.setLayoutManager(new LinearLayoutManager(this));
 
+        iv = findViewById(R.id.iv_ilustrasi_pelanggankosong);
+        tvImage = findViewById(R.id.tv_pelanggan_kosong);
+
         // INIT VIEW END
 
-        FirebaseDatabase fd = FirebaseDatabase.getInstance();
-        DatabaseReference dr = fd.getReference().child("Penjualan");
+        fd = FirebaseDatabase.getInstance();
+        dr = fd.getReference().child("Penjualan");
+        loadDataPenjualan();
 
-        dr.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnap: dataSnapshot.getChildren()){
-                    listPenjualan.add(dataSnap.getValue(Penjualan.class));
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
     }
@@ -72,4 +83,81 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         }
 
     }
+
+    void loadDataPenjualan(){
+        query = FirebaseDatabase.getInstance().getReference().child("Penjualan");
+        Log.v("query", query.toString());
+
+//        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot ds:dataSnapshot.getChildren()){
+//                    Penjualan penjualan = ds.getValue(Penjualan.class);
+//                    Log.v("penjualanModel", penjualan.getNoPenjualan());
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        FirebaseRecyclerOptions<Penjualan> options =
+                new FirebaseRecyclerOptions.Builder<Penjualan>().setQuery(query, Penjualan.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int positiona, @NonNull Penjualan model) {
+                Log.v("modelPenjualan", model.getNoPenjualan());
+                holder.bindData(model);
+                holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {
+                    @Override
+                    public void onClick(View v, int position) {
+                        Toast.makeText(PenjualanActivity.this, position+"", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+            }
+
+            @NonNull
+            @Override
+            public PenjualanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list__item_penjualan, viewGroup, false);
+                Log.v("hereOnCreateView", "true");
+                return new PenjualanViewHolder(v);
+            }
+
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                iv.setVisibility(View.GONE);
+                tvImage.setVisibility(View.GONE);
+
+            }
+        };
+
+
+        rvPenjualan.setAdapter(adapter);
+        Log.v("itemCount", String.valueOf(rvPenjualan.getAdapter().getItemCount()));
+        rvPenjualan.setVisibility(View.VISIBLE);
+
+
+
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
 }

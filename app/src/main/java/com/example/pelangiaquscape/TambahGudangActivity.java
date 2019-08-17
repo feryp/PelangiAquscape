@@ -19,7 +19,7 @@ public class TambahGudangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_gudang);
+        setContentView(R.layout.activity_tambah_barang);
 
         spinnerKeteranganBarang = findViewById(R.id.spinner_keterangan_barang);
         etTanggalInputGudang = findViewById(R.id.et_tanggal_tabungan);

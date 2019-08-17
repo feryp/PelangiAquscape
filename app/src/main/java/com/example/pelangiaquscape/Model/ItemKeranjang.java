@@ -14,6 +14,9 @@ public class ItemKeranjang implements Parcelable {
     int qty;
     double totalPrice;
 
+    public ItemKeranjang() {
+    }
+
     public ItemKeranjang(String kode, String merek, double hargaJual, double hargaBeli, String satuan, int qty, double totalPrice) {
         this.kode = kode;
         this.merek = merek;

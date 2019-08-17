@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container_list_penjualan"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:layout_margin="10dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
     android:background="@drawable/container_barang"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingTop="8dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp">
 
     <ImageView
-        android:padding="4dp"
-        android:layout_gravity="center"
-        android:layout_marginRight="16dp"
         android:id="@+id/im_icon_struk"
-        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginRight="16dp"
+        android:layout_weight="1"
+        android:padding="4dp"
         android:src="@drawable/ic_struk" />
 
     <LinearLayout
@@ -34,13 +33,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:textStyle="bold"
             android:layout_toRightOf="@+id/im_icon_struk"
             android:fontFamily="@font/roboto_regular"
             android:text="#INV-12345RM"
             android:textAllCaps="false"
             android:textColor="@color/colorDarkGray"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/total_harga_penjualan"
@@ -108,8 +107,5 @@
             android:textColor="@color/colorDarkGray"
             android:textSize="9sp" />
 
-
     </LinearLayout>
-
-
 </LinearLayout>

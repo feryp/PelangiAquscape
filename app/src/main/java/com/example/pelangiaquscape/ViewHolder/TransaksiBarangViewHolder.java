@@ -10,14 +10,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
+import com.example.pelangiaquscape.Model.Barang;
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.TransaksiKodeBarangActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     public TextView tvKode;
     public TextView tvHarga;
     public TextView tvQuantity;
+    public TextView tvMerk;
     public AppCompatImageButton min;
     public AppCompatImageButton max;
 
@@ -27,17 +36,35 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
 
 
     public TransaksiBarangViewHolder(@NonNull View itemView) {
+
         super(itemView);
 
         tvKode = itemView.findViewById(R.id.tv_kode);
         tvHarga = itemView.findViewById(R.id.tv_harga_barang);
         tvQuantity = itemView.findViewById(R.id.tv_kuantitas);
+        tvMerk = itemView.findViewById(R.id.tv_keterangan_merek);
         min = itemView.findViewById(R.id.btn_minus);
         max = itemView.findViewById(R.id.btn_plus);
         tvQuantity.setText("0");
         itemView.setOnClickListener(this);
         min.setOnClickListener(this);
         max.setOnClickListener(this);
+
+    }
+
+    public void bindDataTransaksi(Barang barang, String namaMerek){
+        tvKode.setText(barang.getKode());
+        tvMerk.setText(namaMerek);
+
+
+        // DIGANTI JADI HARGA JUAL NANTI
+        tvHarga.setText(String.valueOf(barang.getHargaBeli()));
+        // DIGANTI JADI HARGA JUAL NANTI
+
+        SharedPreferences sharedPref = itemView.getContext().getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+        int qty = sharedPref.getInt(tvKode.getText().toString(), 0);
+
+        tvQuantity.setText(String.valueOf(qty));
 
     }
 
@@ -80,8 +107,6 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
     public void setItemClickListener(ItemClickListener i){
         this.itemClickListener = i;
     }
-
-
 
 
 }

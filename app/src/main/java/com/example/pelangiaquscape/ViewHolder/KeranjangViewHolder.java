@@ -1,10 +1,10 @@
 package com.example.pelangiaquscape.ViewHolder;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import com.example.pelangiaquscape.Database.ItemKeranjangContract;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
-import com.example.pelangiaquscape.Interface.ItemClickListener;
-import com.example.pelangiaquscape.Interface.OnItemClickListener;
 import com.example.pelangiaquscape.KeranjangPenjualanActivity;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.R;
@@ -29,7 +27,9 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder  implements Vie
 
     private ItemKeranjang itemKeranjang;
 
-    public KeranjangViewHolder(@NonNull View iv) {
+    Context context;
+
+    public KeranjangViewHolder(@NonNull View iv, Context context) {
         super(iv);
 
 
@@ -37,6 +37,7 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder  implements Vie
         tvMerek = iv.findViewById(R.id.tv_merek);
         tvQty = iv.findViewById(R.id.tv_jumlah_kuantitas);
         tvHarga = iv.findViewById(R.id.tv_harga_barang);
+        this.context = context;
         iv.setOnClickListener(this);
         iv.setOnLongClickListener(this);
 
@@ -77,6 +78,12 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder  implements Vie
                         String selection = ItemKeranjangContract.ItemKeranjangEntry.COLUMN_NAME_KODE + " LIKE ?";
                         // Specify arguments in placeholder order.
                         String[] selectionArgs = { itemKeranjang.getKode() };
+
+                        SharedPreferences pref = context.getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor edit = pref.edit();
+                        edit.remove(itemKeranjang.getKode());
+                        edit.apply();
+
                         // Issue SQL statement.
                         int deletedRows = db.delete(ItemKeranjangContract.ItemKeranjangEntry.TABLE_NAME, selection, selectionArgs);
 

@@ -78,7 +78,7 @@ public class TransaksiActivity extends AppCompatActivity {
 
         adapter = new FirebaseRecyclerAdapter<Merek, TransaksiMerekViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull TransaksiMerekViewHolder holder, int position, @NonNull Merek model) {
+            protected void onBindViewHolder(@NonNull TransaksiMerekViewHolder holder, int position, @NonNull final Merek model) {
                 holder.tv_merek.setText(model.getNama());
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
@@ -90,6 +90,7 @@ public class TransaksiActivity extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent merek = new Intent(TransaksiActivity.this, TransaksiKodeBarangActivity.class);
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
+                        merek.putExtra("namaMerek", model.getNama());
                         Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
                         startActivity(merek);
                     }

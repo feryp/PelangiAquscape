@@ -6,12 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
-import com.example.pelangiaquscape.Interface.ItemClickListener;
-import com.example.pelangiaquscape.Interface.OnItemClickListener;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.ViewHolder.KeranjangViewHolder;
@@ -37,8 +32,8 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
     @Override
     public KeranjangViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_keranjang, parent, false);
-        KeranjangViewHolder holder = new KeranjangViewHolder(v);
-        return holder;
+
+        return new KeranjangViewHolder(v, context);
     }
 
     @Override

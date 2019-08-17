@@ -13,6 +13,8 @@ public class ItemKeranjangDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME= "Keranjang.db";
     public static final int DATABASE_VERSION = 1;
 
+    SQLiteDatabase database;
+
 
     private static final String SQL_CREATE_DATABASE = "CREATE TABLE "
             + ItemKeranjangEntry.TABLE_NAME + " ("
@@ -33,6 +35,7 @@ public class ItemKeranjangDbHelper extends SQLiteOpenHelper {
     public ItemKeranjangDbHelper(Context c){
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
 
+
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -49,4 +52,11 @@ public class ItemKeranjangDbHelper extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion){
         onUpgrade(db, oldVersion, newVersion);
     }
+
+    public int deleteAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(ItemKeranjangEntry.TABLE_NAME, null, null);
+    }
+
+
 }

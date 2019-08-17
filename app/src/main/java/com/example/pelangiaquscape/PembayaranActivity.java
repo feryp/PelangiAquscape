@@ -2,6 +2,7 @@ package com.example.pelangiaquscape;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
@@ -408,6 +410,15 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                     }
                 });
 
+                SharedPreferences pref = getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.clear();
+                edit.apply();
+
+                ItemKeranjangDbHelper helper = new ItemKeranjangDbHelper(this);
+                helper.deleteAll();
+                helper.close();
+
                 break;
         }
     }
@@ -453,6 +464,9 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 Intent close = new Intent(PembayaranActivity.this, TransaksiActivity.class);
+                close.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+
                 startActivity(close);
             }
         });

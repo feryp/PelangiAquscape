@@ -25,12 +25,19 @@ import com.example.pelangiaquscape.Database.ItemKeranjangContract.ItemKeranjangE
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Barang;
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.ViewHolder.TransaksiBarangViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
@@ -39,7 +46,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter adapter;
     RecyclerView rv;
     RecyclerView.LayoutManager layoutManager;
-    String id;
+    String id, namaMerek;
     Query query;
     ImageView cancel;
 
@@ -63,6 +70,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         id = i.getStringExtra("idMerek");
+        namaMerek = i.getStringExtra("namaMerek");
 
         fd = FirebaseDatabase.getInstance();
         dr = fd.getReference().child("Barang");
@@ -86,6 +94,9 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
     private void loadBarang(final String ids) {
 
+//        final List<Merek> listMerek = new ArrayList<>();
+
+
         query = FirebaseDatabase.getInstance().getReference().child("Barang").orderByChild("merek").equalTo(ids);
         FirebaseRecyclerOptions<Barang> options =
                 new FirebaseRecyclerOptions.Builder<Barang>().setQuery(query, Barang.class).build();
@@ -95,13 +106,8 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         adapter = new FirebaseRecyclerAdapter<Barang, TransaksiBarangViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
-                holder.tvKode.setText(model.getKode());
-                holder.tvHarga.setText(String.valueOf(model.getHargaBeli()));
 
-                SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
-                int qty = sharedPref.getInt(holder.tvKode.getText().toString(), 0);
-
-                holder.tvQuantity.setText(String.valueOf(qty));
+                holder.bindDataTransaksi(model, namaMerek);
 
 
                 Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
@@ -148,6 +154,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                 Log.i("Kesini", view.toString());
                 return new TransaksiBarangViewHolder(view);
             }
+
         };
 
         rv.setAdapter(adapter);

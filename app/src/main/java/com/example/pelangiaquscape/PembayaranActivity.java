@@ -1,8 +1,10 @@
 package com.example.pelangiaquscape;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
@@ -27,6 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Database.ItemKeranjangContract;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
@@ -51,7 +54,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     SwitchCompat btnSwitch;
     TextInputLayout tvDiskon, tvNamaDiskon;
     ExpandableRelativeLayout ex;
-    ImageView cancel;
+    ImageView cancel, ivHapus;
     TextInputEditText etJmlLain, etDiskon, etNamaPelanggan, etNoHp;
     TextView tvTotalPembayaran, tvKembalian;
     Button btnBayar, btnUangPas, btnKelDua, btnKelLima, btnKelSepuluh, btnDiskonRp, btnDiskonPersen;
@@ -117,6 +120,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         tvDiskon = findViewById(R.id.jumlah_diskon);
         tvNamaDiskon = findViewById(R.id.nama_diskon);
         btnSwitch = findViewById(R.id.toogle_switch);
+        ivHapus = findViewById(R.id.im_delete);
+        ivHapus.setOnClickListener(this);
 
         tvTotalPembayaran = findViewById(R.id.tv_total_pembayaran);
         tvKembalian = findViewById(R.id.tv_kembalian);
@@ -420,6 +425,10 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 helper.close();
 
                 break;
+
+            case R.id.im_delete:
+                showDeleteDialog();
+                break;
         }
     }
 
@@ -470,5 +479,44 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 startActivity(close);
             }
         });
+    }
+
+    void showDeleteDialog(){
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Hapus Pesanan");
+        alertDialog.setMessage("Apakah anda ingin menghapus pesanan ini ? ");
+        alertDialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ItemKeranjangDbHelper itemDb = new ItemKeranjangDbHelper(PembayaranActivity.this);
+
+                        SQLiteDatabase db = itemDb.getWritableDatabase();
+
+                        SharedPreferences pref = PembayaranActivity.this.getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor edit = pref.edit();
+                        edit.clear();
+                        edit.apply();
+
+                        // Issue SQL statement.
+                        int deletedRows = db.delete(ItemKeranjangContract.ItemKeranjangEntry.TABLE_NAME, null, null);
+
+
+                        Toast.makeText(PembayaranActivity.this, deletedRows+" item terhapus", Toast.LENGTH_SHORT).show();
+                        Intent close = new Intent(PembayaranActivity.this, TransaksiActivity.class);
+                        close.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                        startActivity(close);
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.setButton(android.app.AlertDialog.BUTTON_NEGATIVE, "CANCEL",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

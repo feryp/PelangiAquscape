@@ -19,6 +19,7 @@ import com.example.pelangiaquscape.Database.ItemKeranjangContract.ItemKeranjangE
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -137,7 +138,9 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         KeranjangAdapter adapter = new KeranjangAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
-        tv.setText("Rp. " + totalAllItemPrice);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String as = decimalFormat.format(totalAllItemPrice);
+        tv.setText("Rp. " + as);
 
 
 

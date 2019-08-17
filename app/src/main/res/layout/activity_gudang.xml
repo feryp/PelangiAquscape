@@ -61,43 +61,24 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:background="@color/colorPrimary"
-            android:padding="15dp">
+            android:padding="12dp">
 
-            <EditText
-                android:id="@+id/search_field_gudang"
-                android:layout_width="wrap_content"
+
+            <SearchView
+                android:id="@+id/search_barang_gudang"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:layout_toStartOf="@+id/ib_search_gudang"
-                android:background="@drawable/search_layout"
-                android:ems="15"
-                android:fontFamily="@font/roboto_bold"
-                android:hint="Cari Barang"
-                android:inputType="textPersonName"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="15dp"
-                android:textColor="#636262"
-                android:textColorHint="#636262"
-                android:textSize="16sp" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/container_search_view"
+                android:searchHintIcon="@color/colorPrimary"
+                app:queryHint="Cari data rutin" />
 
-            <ImageButton
-                android:id="@+id/ib_search_gudang"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignTop="@+id/search_field_gudang"
-                android:layout_alignBottom="@+id/search_field_gudang"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/border_search"
-                android:src="@drawable/ic_search" />
-
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/container_ilustrasi"

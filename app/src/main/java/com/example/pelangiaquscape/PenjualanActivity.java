@@ -58,7 +58,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         cancel =  findViewById(R.id.im_cancel);
         rvPenjualan = findViewById(R.id.rv_penjualan);
         rvPenjualan.setHasFixedSize(true);
-        rvPenjualan.setLayoutManager(new LinearLayoutManager(this));
+//        rvPenjualan.setLayoutManager(new LinearLayoutManager(this));
 
         iv = findViewById(R.id.iv_ilustrasi_pelanggankosong);
         tvImage = findViewById(R.id.tv_pelanggan_kosong);
@@ -69,9 +69,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         dr = fd.getReference().child("Penjualan");
         loadDataPenjualan();
 
-
-
-
     }
 
     @Override
@@ -81,7 +78,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
         }
-
     }
 
     void loadDataPenjualan(){
@@ -118,8 +114,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                         Toast.makeText(PenjualanActivity.this, position+"", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
 
             @NonNull
@@ -138,20 +132,19 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
             }
         };
-
-
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setReverseLayout(true);
+        manager.setStackFromEnd(true);
+        rvPenjualan.setLayoutManager(manager);
         rvPenjualan.setAdapter(adapter);
+
         Log.v("itemCount", String.valueOf(rvPenjualan.getAdapter().getItemCount()));
         rvPenjualan.setVisibility(View.VISIBLE);
-
-
-
     }
     @Override
     protected void onStart() {
         super.onStart();
         adapter.startListening();
-
     }
 
     @Override

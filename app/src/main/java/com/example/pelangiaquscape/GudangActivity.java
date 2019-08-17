@@ -32,6 +32,7 @@ public class GudangActivity extends AppCompatActivity {
         btnSimpan = findViewById(R.id.btnSimpan);
         btnHapus = findViewById(R.id.btnHapus);
         cancel = findViewById(R.id.im_cancel);
+        FloatingActionButton fab_gudang = findViewById(R.id.fab_gudang);
 
 //        slideUp.hideImmediately();
 

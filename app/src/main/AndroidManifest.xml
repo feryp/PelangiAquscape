@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".PenerimaanActivity"></activity>
+        <activity android:name=".ListMerekActivity"></activity>
+        <activity android:name=".PenerimaanActivity" />
         <activity android:name=".TambahGudangActivity" />
         <activity android:name=".GudangActivity" />
 

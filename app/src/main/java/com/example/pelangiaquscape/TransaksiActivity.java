@@ -37,8 +37,8 @@ public class TransaksiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi);
 
-        cancel =  (ImageView) findViewById(R.id.im_cancel);
-        keranjang = (ImageView)findViewById(R.id.im_keranjang);
+        cancel =  findViewById(R.id.im_cancel);
+        keranjang = findViewById(R.id.im_keranjang);
 
         //init Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();

@@ -9,6 +9,7 @@ import com.example.pelangiaquscape.Model.Penjualan;
 import com.example.pelangiaquscape.R;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +49,11 @@ public class PenjualanViewHolder extends RecyclerView.ViewHolder implements View
         Date da = c.getTime();
         String stringDate = simpleDate.format(da);
         String stringHour = simpleHour.format(da);
+
+        //FORMAT TOTAL HARGA
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String as = decimalFormat.format(penjualan.getTotalPenjualan());
+        tvTotalHargaPenjualan.setText("Rp " + as);
         // FORMAT DATE END
 
         tvTanggalPenjualan.setText(stringDate);

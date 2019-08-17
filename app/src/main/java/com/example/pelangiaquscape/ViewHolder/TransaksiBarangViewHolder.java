@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -58,7 +59,9 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
 
 
         // DIGANTI JADI HARGA JUAL NANTI
-        tvHarga.setText(String.valueOf(barang.getHargaBeli()));
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String as = decimalFormat.format(barang.getHargaBeli());
+        tvHarga.setText("Rp. " + as);
         // DIGANTI JADI HARGA JUAL NANTI
 
         SharedPreferences sharedPref = itemView.getContext().getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);

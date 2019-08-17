@@ -43,23 +43,23 @@ public class TambahBarangActivity extends AppCompatActivity {
         });
 
 
-        final ExpandableRelativeLayout ex = findViewById(R.id.expand_barang);
+//        final ExpandableRelativeLayout ex = findViewById(R.id.expand_barang);
+//
+//        ex.collapse();
 
-        ex.collapse();
 
-
-        final SwitchCompat toogle = findViewById(R.id.toogle_switch);
-        toogle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                if(toogle.isChecked()){
-                    ex.expand();
-                }else{
-                    ex.collapse();
-                }
-            }
-        });
+//        final SwitchCompat toogle = findViewById(R.id.toogle_switch);
+//        toogle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//
+//                if(toogle.isChecked()){
+//                    ex.expand();
+//                }else{
+//                    ex.collapse();
+//                }
+//            }
+//        });
 
     }
 

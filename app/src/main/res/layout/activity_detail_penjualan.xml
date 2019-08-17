@@ -80,6 +80,16 @@
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/keterangan_pembayaran_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Tunai"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
     <RelativeLayout
@@ -106,16 +116,26 @@
             android:textColor="@color/colorBlack"
             android:textSize="14sp" />
 
+        <ImageView
+            android:id="@+id/im_diskon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/im_clock"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_diskon" />
+
         <TextView
-            android:id="@+id/keterangan_pembayaran_detail"
+            android:id="@+id/tv_detail_diskon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/im_diskon"
+            android:layout_marginTop="12dp"
             android:layout_below="@+id/waktu_detail_penjualan"
-            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="Tunai"
+            android:text="Diskon"
             android:textColor="@color/colorBlack"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/im_cashier"

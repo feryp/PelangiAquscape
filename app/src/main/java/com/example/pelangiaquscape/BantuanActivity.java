@@ -14,7 +14,7 @@ public class BantuanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bantuan);
 
-        cancel =(ImageView) findViewById(R.id.im_cancel);
+        cancel =  findViewById(R.id.im_cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -94,7 +94,7 @@
                     android:background="@drawable/spinner_border">
 
                     <Spinner
-                        android:id="@+id/spinner_keterangan_barang"
+                        android:id="@+id/spinner_kategori_barang"
                         style="@style/spinnerItemStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/jumlah_barang_gudang"
+                    android:id="@+id/stok_barang_gudang"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -148,10 +148,10 @@
                     app:boxStrokeColor="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_jumlah_barang_gudang"
+                        android:id="@+id/et_stok_barang_gudang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Jumlah Barang"
+                        android:hint="Stok Barang"
                         android:inputType="number"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
@@ -163,7 +163,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/jumlah_barang_gudang"
+                    android:layout_below="@+id/stok_barang_gudang"
                     android:layout_marginTop="15dp"
                     android:gravity="center"
                     app:boxStrokeColor="@color/colorAccent">

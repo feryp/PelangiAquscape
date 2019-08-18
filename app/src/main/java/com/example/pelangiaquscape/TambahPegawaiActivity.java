@@ -16,9 +16,9 @@ public class TambahPegawaiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_pegawai);
 
-        cancel =(ImageView) findViewById(R.id.im_cancel);
+        cancel = findViewById(R.id.im_cancel);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_hak_akses);
+        Spinner spinner = findViewById(R.id.spinner_hak_akses);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.akses_arrays, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);

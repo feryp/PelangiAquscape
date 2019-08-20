@@ -190,21 +190,6 @@
                         android:theme="@style/RadioButtonStyle" />
 
                     <android.support.v7.widget.AppCompatRadioButton
-                        android:id="@+id/transfer_bank"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/custom_radiobutton"
-                        android:drawablePadding="150dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:layoutDirection="rtl"
-                        android:onClick="onRadioButtonClick"
-                        android:padding="15dp"
-                        android:text="Transfer Bank"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="14sp"
-                        android:theme="@style/RadioButtonStyle" />
-
-                    <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/cicil"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -224,12 +209,13 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/container_search_bantuan"
                 android:elevation="6dp"
+                android:orientation="vertical"
                 android:padding="15dp">
 
                 <TextView
@@ -241,60 +227,58 @@
                     android:textColor="#636262"
                     android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/nama_barang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_barang_pesanan"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Nama Barang"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/jumlah_barang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_barang_pesanan"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@+id/nama_barang"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Jumlah Barang"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/total_harga"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_barang_pesanan"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@+id/jumlah_barang"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Total Harga"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_form_barang_pesanan"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/nama_barang"
-                    android:layout_marginTop="10dp"
-                    android:scrollbars="vertical">
+                    android:layout_marginTop="20dp">
 
-                </android.support.v7.widget.RecyclerView>
+                    <TextView
+                        android:id="@+id/nama_barang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Nama Barang"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/jumlah_barang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Jumlah Barang"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/total_harga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Total Harga"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_form_barang_pesanan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/nama_barang"
+                        android:layout_marginTop="10dp"
+                        android:scrollbars="vertical">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
 
                 <Button
                     android:id="@+id/btn_tambah_barang"
                     android:layout_width="157dp"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/rv_form_barang_pesanan"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
                     android:layout_marginTop="80dp"
                     android:background="@drawable/button_blue"
                     android:fontFamily="@font/roboto_bold"
@@ -303,7 +287,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
 
         </LinearLayout>

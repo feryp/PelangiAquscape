@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@color/colorPrimary"
     tools:context=".fragment.LapTahunanFragment">
 
     <RelativeLayout
@@ -14,26 +13,25 @@
         android:layout_height="50dp"
         android:background="@drawable/spinner_border">
 
-    <Spinner
-        android:id="@+id/spinner_tahun"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:layout_margin="10dp"
-        android:layout_centerVertical="true"
-        android:spinnerMode="dropdown"
-        android:entries="@array/tahun_arrays"
-       />
+        <Spinner
+            android:id="@+id/spinner_tahun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:entries="@array/tahun_arrays"
+            android:spinnerMode="dropdown" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="18dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_drop_down"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="18dp"
+            android:src="@drawable/ic_drop_down" />
 
     </RelativeLayout>
 
@@ -49,42 +47,42 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_total_penjualan"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_total_penjualan" />
 
         <TextView
             android:id="@+id/tv_nominal_penjualan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/im_total_penjualan"
-            android:text="Rp. 0"
-            android:textSize="24sp"
             android:layout_marginLeft="15dp"
+            android:layout_toEndOf="@+id/im_total_penjualan"
             android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/colorBlack"/>
+            android:text="Rp. 0"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_total_penjualan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nominal_penjualan"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toEndOf="@+id/im_total_penjualan"
+            android:fontFamily="@font/roboto_regular"
             android:text="Total Penjualan"
             android:textColor="@color/colorDarkGray"
-            android:textSize="14sp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginLeft="15dp"
-            android:layout_below="@+id/tv_nominal_penjualan"
-            android:layout_toEndOf="@+id/im_total_penjualan"/>
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/im_grafik_penjualan"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_grafik"
-            android:layout_marginRight="18dp"/>
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:src="@drawable/ic_grafik" />
 
     </RelativeLayout>
 
@@ -100,42 +98,42 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_total_keuntungan"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_total_keuntungan" />
 
         <TextView
             android:id="@+id/tv_nominal_keuntungan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/im_total_keuntungan"
-            android:text="Rp. 0"
-            android:textSize="24sp"
             android:layout_marginLeft="15dp"
+            android:layout_toEndOf="@+id/im_total_keuntungan"
             android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/colorBlack"/>
+            android:text="Rp. 0"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_total_keuntungan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nominal_keuntungan"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toEndOf="@+id/im_total_keuntungan"
+            android:fontFamily="@font/roboto_regular"
             android:text="Total Keuntungan"
             android:textColor="@color/colorDarkGray"
-            android:textSize="14sp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginLeft="15dp"
-            android:layout_below="@+id/tv_nominal_keuntungan"
-            android:layout_toEndOf="@+id/im_total_keuntungan"/>
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/im_grafik_keuntungan"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_grafik"
-            android:layout_marginRight="18dp"/>
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:src="@drawable/ic_grafik" />
 
     </RelativeLayout>
 
@@ -154,25 +152,24 @@
                 android:id="@+id/tv_jumlah_transaksi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:layout_centerInParent="true"
-                android:textSize="24sp"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/colorBlack"/>
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/tv_transaksi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_jumlah_transaksi"
                 android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_regular"
                 android:text="Transaksi"
                 android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="15dp"
-                android:layout_below="@+id/tv_jumlah_transaksi"
-                />
+                android:textSize="14sp" />
 
 
         </RelativeLayout>
@@ -188,25 +185,24 @@
                 android:id="@+id/tv_jumlah_produk_terjual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:layout_centerInParent="true"
-                android:textSize="24sp"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/colorBlack"/>
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/tv_produk_terjual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_jumlah_produk_terjual"
                 android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_regular"
                 android:text="Produk Terjual"
                 android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="15dp"
-                android:layout_below="@+id/tv_jumlah_produk_terjual"
-                />
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
@@ -223,12 +219,12 @@
             android:id="@+id/tv_produk_paling_laku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Produk Paling Laku"
             android:layout_centerVertical="true"
-            android:textSize="14sp"
             android:layout_marginLeft="15dp"
             android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/colorBlack"/>
+            android:text="Produk Paling Laku"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_jumlah_produk_laku"
@@ -237,10 +233,44 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="18dp"
+            android:fontFamily="@font/roboto_regular"
             android:text="0"
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_produk_paling_tidaklaku"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_border">
+
+        <TextView
+            android:id="@+id/tv_produk_paling_tidaklaku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
             android:fontFamily="@font/roboto_regular"
+            android:text="Produk Paling Tidak Laku"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_jumlah_produk_tidaklaku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="0"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
 
             />
 

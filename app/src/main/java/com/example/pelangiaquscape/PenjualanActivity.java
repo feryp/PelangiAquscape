@@ -13,19 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pelangiaquscape.Model.ItemKeranjang;
-import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.example.pelangiaquscape.ViewHolder.PenjualanViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +113,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
             @NonNull
             @Override
             public PenjualanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list__item_penjualan, viewGroup, false);
+                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_penjualan, viewGroup, false);
                 Log.v("hereOnCreateView", "true");
                 return new PenjualanViewHolder(v);
             }

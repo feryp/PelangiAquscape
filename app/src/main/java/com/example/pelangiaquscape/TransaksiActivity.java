@@ -194,8 +194,6 @@ public class TransaksiActivity extends AppCompatActivity {
             }
 
 
-
-
             @NonNull
             @Override
             public TransaksiMerekViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

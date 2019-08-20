@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Tambah Gudang"
+                    android:text="Tambah Inventory"
                     android:textColor="@color/colorBlue"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -94,7 +94,7 @@
                     android:background="@drawable/spinner_border">
 
                     <Spinner
-                        android:id="@+id/spinner_kategori_barang"
+                        android:id="@+id/spinner_keterangan_gudang"
                         style="@style/spinnerItemStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

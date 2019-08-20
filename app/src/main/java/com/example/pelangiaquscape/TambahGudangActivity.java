@@ -11,9 +11,8 @@ import android.widget.Spinner;
 
 public class TambahGudangActivity extends AppCompatActivity {
 
-    long tglInput;
-    TextInputEditText etNamaBarangGudang, etJumlahBarangGudang, etTanggalInputGudang;
     ImageView cancel;
+    Spinner spinnerKeteranganBarang;
 
 
     @Override
@@ -21,13 +20,8 @@ public class TambahGudangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_barang);
 
-        Spinner spinnerKeteranganBarang = findViewById(R.id.spinner_kategori_barang);
-//        etTanggalInputGudang = findViewById(R.id.et_tanggal_tabungan);
+        spinnerKeteranganBarang = findViewById(R.id.spinner_keterangan_gudang);
         cancel = findViewById(R.id.im_cancel);
-
-        ArrayAdapter<CharSequence> adapterBarang = ArrayAdapter.createFromResource(this,R.array.keterangan_barang_arrays, android.R.layout.simple_spinner_item);
-        adapterBarang.setDropDownViewResource(R.layout.simple_spinner_dropdown);
-        spinnerKeteranganBarang.setAdapter(adapterBarang);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +29,12 @@ public class TambahGudangActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        ArrayAdapter<CharSequence> adapterGudang = ArrayAdapter.createFromResource(this, R.array.keterangan_barang_arrays, android.R.layout.simple_spinner_item);
+        adapterGudang.setDropDownViewResource(R.layout.simple_spinner_dropdown);
+        spinnerKeteranganBarang.setAdapter(adapterGudang);
+
+
 
 //        // FORMAT DATE
 //        Calendar c = Calendar.getInstance();
@@ -45,7 +45,6 @@ public class TambahGudangActivity extends AppCompatActivity {
 //        // FORMAT DATE END
 ////        etTanggalInputGudang.setText(fors);
 
-    }
 
 //    @Override
 //    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -64,7 +63,7 @@ public class TambahGudangActivity extends AppCompatActivity {
 ////        Log.v("testinsert", String.valueOf(s.get(Calendar.MONTH)));
 //
 //
-//    }
+    }
 
 }
 

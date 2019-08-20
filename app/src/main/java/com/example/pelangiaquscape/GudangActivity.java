@@ -14,10 +14,9 @@ import android.widget.Toast;
 
 public class GudangActivity extends AppCompatActivity {
 
-//    private SlideUp slideUp;
+    //    private SlideUp slideUp;
     private View scrim;
     private View slideView;
-    private FloatingActionButton fab_gudang;
     ImageView cancel;
     Button btnSimpan, btnHapus;
 
@@ -28,7 +27,6 @@ public class GudangActivity extends AppCompatActivity {
 
 //        slideView = findViewById(R.id.slideView);
 //        scrim = findViewById(R.id.scrim);
-        fab_gudang = findViewById(R.id.fab_gudang);
         btnSimpan = findViewById(R.id.btnSimpan);
         btnHapus = findViewById(R.id.btnHapus);
         cancel = findViewById(R.id.im_cancel);
@@ -49,7 +47,7 @@ public class GudangActivity extends AppCompatActivity {
         fab_gudang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GudangActivity.this, "Tambah Barang di Gudang", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GudangActivity.this, "Tambah Inventory", Toast.LENGTH_SHORT).show();
                 Intent fab_gudang = new Intent(GudangActivity.this, TambahGudangActivity.class);
                 startActivity(fab_gudang);
 ////                Toast.makeText(getContext(), "month " + a, Toast.LENGTH_SHORT).show();

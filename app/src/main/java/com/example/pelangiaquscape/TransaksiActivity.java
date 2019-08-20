@@ -132,7 +132,7 @@ public class TransaksiActivity extends AppCompatActivity {
                         Intent merek = new Intent(TransaksiActivity.this, TransaksiKodeBarangActivity.class);
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
                         merek.putExtra("namaMerek", model.getNama());
-                        Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
+                        Log.v("GET IDMEREK",  clickItem.getNama() + " " + adapter.getRef(position).getKey());
                         startActivity(merek);
                     }
                 });
@@ -178,7 +178,7 @@ public class TransaksiActivity extends AppCompatActivity {
                 holder.tv_merek.setText(model.getNama());
 //                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
 
-                Log.i("INFORMATION", model.getNama()+" "+model.getNama());
+                Log.i("INFORMATION", model.getNama());
                 final Merek clickItem = model;
 
                 holder.setItemClickListener(new ItemClickListener() {
@@ -187,8 +187,9 @@ public class TransaksiActivity extends AppCompatActivity {
                         Intent merek = new Intent(TransaksiActivity.this, TransaksiKodeBarangActivity.class);
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
                         merek.putExtra("namaMerek", model.getNama());
-                        Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
+
                         startActivity(merek);
+                        Log.v("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
                     }
                 });
             }

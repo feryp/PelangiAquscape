@@ -28,7 +28,6 @@ import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.ViewHolder.TransaksiBarangViewHolder;
-import com.example.pelangiaquscape.ViewHolder.TransaksiMerekViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -51,8 +50,8 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
     String id, namaMerek;
     Query query;
     ImageView cancel;
-    SearchView searchView;
 
+    SearchView searchView;
     Button btnJual;
 
     @Override
@@ -60,11 +59,8 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi_kode_barang);
 
-        cancel = findViewById(R.id.im_cancel);
+        cancel =  findViewById(R.id.im_cancel);
         btnJual = findViewById(R.id.btn_jual);
-        searchView = findViewById(R.id.search_kode_barang);
-
-
         btnJual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,31 +76,18 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         id = i.getStringExtra("idMerek");
         namaMerek = i.getStringExtra("namaMerek");
 
-        fd = FirebaseDatabase.getInstance();
-        dr = fd.getReference().child("Barang");
-
-        //load data barang
-        rv = findViewById(R.id.rv_daftar_kode);
-        rv.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        rv.setLayoutManager(layoutManager);
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+        searchView = findViewById(R.id.search_kode_barang);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
+            public boolean onQueryTextSubmit(String query) {
+                searchBarang(query, id);
+                adapter.startListening();
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                searchFirebase(s);
+            public boolean onQueryTextChange(String newText) {
+                searchBarang(newText, id);
                 adapter.startListening();
                 return false;
             }
@@ -119,8 +102,40 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
             }
         });
 
+        Log.v("IDMEREK", id);
+        fd = FirebaseDatabase.getInstance();
+        dr = fd.getReference().child("Barang");
+
+        //load data merek
+        rv = findViewById(R.id.rv_daftar_kode);
+        rv.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        rv.setLayoutManager(layoutManager);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         loadBarang(id);
 
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
     private void loadBarang(final String ids) {
@@ -149,30 +164,8 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
                         ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
+                        hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
 
-
-                        SQLiteDatabase db = hp.getWritableDatabase();
-
-                        ContentValues values = new ContentValues();
-                        values.put(ItemKeranjangEntry.COLUMN_NAME_KODE, model.getKode());
-                        values.put(ItemKeranjangEntry.COLUMN_NAME_HARGA_BELI, model.getHargaBeli());
-                        values.put(ItemKeranjangEntry.COLUMN_NAME_QTY, holder.tvQuantity.getText().toString());
-                        values.put(ItemKeranjangEntry.COLUMN_NAME_MEREK, ids);
-                        values.put(ItemKeranjangEntry.COLUMN_NAME_SATUAN, "-");
-                        double total = model.getHargaBeli() * Double.parseDouble(holder.tvQuantity.getText().toString());
-                        values.put(ItemKeranjangEntry.COLUMN_NAME_TOTAL_PRICE, total);
-                        values.put(ItemKeranjangEntry.COLUMN_NAME_HARGA_JUAL, model.getHargaJual());
-
-                        try {
-
-                            long rowID = db.insertOrThrow(ItemKeranjangEntry.TABLE_NAME, null, values);
-                            Toast.makeText(TransaksiKodeBarangActivity.this, "insert db", Toast.LENGTH_SHORT).show();
-                        } catch (SQLiteConstraintException e) {
-
-                            long rowID = db.update(ItemKeranjangEntry.TABLE_NAME, values, ItemKeranjangEntry.COLUMN_NAME_KODE + "=?", new String[]{model.getKode()});
-
-                            Toast.makeText(TransaksiKodeBarangActivity.this, "update db", Toast.LENGTH_SHORT).show();
-                        }
                     }
                 });
             }
@@ -191,75 +184,60 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
 
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
-
-    public void searchFirebase (String searchText){
-        Log.i("MASUK KE SEARCH ","hehe");
-
-        query = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child("Barang")
-                .orderByChild("kode").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase() + "\uf8ff");
-
-//        query = FirebaseDatabase
-//                .getInstance()
-//                .getReference()
-//                .child("Merek")
-//                .orderByChild("nama").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase());
-
-        FirebaseRecyclerOptions<Barang> options =
-                new FirebaseRecyclerOptions.Builder<Barang>()
-                        .setQuery(query, Barang.class)
-                        .build();
-
-        adapter = new FirebaseRecyclerAdapter<Barang, TransaksiBarangViewHolder>(options) {
+    void searchBarang(final String searchText, final String ids){
+        FirebaseDatabase.getInstance().getReference().child("Barang").orderByChild("merek").equalTo(ids).addValueEventListener(new ValueEventListener() {
             @Override
-            protected void onBindViewHolder(@NonNull TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
-                holder.bindDataTransaksi(model, namaMerek);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Query query = dataSnapshot.getRef().orderByChild("kode").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase() + "\uf8ff");
+                FirebaseRecyclerOptions<Barang> options =
+                        new FirebaseRecyclerOptions.Builder<Barang>().setQuery(query, Barang.class).build();
 
+                Log.i("SNAPSHOT", options.getSnapshots().toString() + " " + ids);
 
-                Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
-                final Barang clickItem = model;
-
-                holder.setItemClickListener(new ItemClickListener() {
+                adapter = new FirebaseRecyclerAdapter<Barang, TransaksiBarangViewHolder>(options) {
                     @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent barang = new Intent(TransaksiKodeBarangActivity.this, PembayaranActivity.class);
-                        barang.putExtra("idMerek", adapter.getRef(position).getKey());
-                        barang.putExtra("namaMerek", model.getKode());
-                        Log.i("GET IDMEREK", barang.getStringExtra("idMerek") + adapter.getRef(position).getKey());
-                        startActivity(barang);
+                    protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
+
+                        holder.bindDataTransaksi(model, namaMerek);
+
+
+                        Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
+
+
+                        holder.setItemClickListener(new ItemClickListener() {
+                            @Override
+                            public void onClick(View view, int position, boolean isLongClick) {
+                                Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
+                                ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
+                                hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
+
+                            }
+                        });
                     }
-                });
+
+                    @NonNull
+                    @Override
+                    public TransaksiBarangViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                        View view = LayoutInflater.from(viewGroup.getContext())
+                                .inflate(R.layout.list_kode_barang_transaksi, viewGroup, false);
+                        Log.i("Kesini", view.toString());
+                        return new TransaksiBarangViewHolder(view);
+                    }
+
+                };
+
+
+
             }
 
-
-
-
-            @NonNull
             @Override
-            public TransaksiBarangViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_kode_barang_transaksi, parent, false);
-                Log.i("Buat View Holder", view.toString());
-                return new TransaksiBarangViewHolder(view);
             }
 
 
-        };
+        });
+        rv.setAdapter(adapter);
     }
-
 }

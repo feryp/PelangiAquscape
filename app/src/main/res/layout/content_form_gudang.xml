@@ -8,8 +8,8 @@
     android:paddingLeft="10dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="10dp"
-    tools:context=".GudangActivity"
-    tools:showIn="@layout/activity_gudang">
+    tools:context=".InventoryActivity"
+    tools:showIn="@layout/activity_inventory">
 
     <LinearLayout
         android:id="@+id/slideView"

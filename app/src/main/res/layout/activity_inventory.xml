@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".GudangActivity">
+    tools:context=".InventoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                 android:textSize="12sp" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_gudang"
+                android:id="@+id/rv_inventory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical">
@@ -132,7 +132,7 @@
     <!--<include layout="@layout/content_form_gudang" />-->
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_gudang"
+        android:id="@+id/fab_inventory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

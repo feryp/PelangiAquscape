@@ -21,8 +21,8 @@
         tools:replace="android:appComponentFactory">
         <activity android:name=".ListMerekActivity"></activity>
         <activity android:name=".PenerimaanActivity" />
-        <activity android:name=".TambahGudangActivity" />
-        <activity android:name=".GudangActivity" />
+        <activity android:name=".TambahInventoryActivity" />
+        <activity android:name=".InventoryActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

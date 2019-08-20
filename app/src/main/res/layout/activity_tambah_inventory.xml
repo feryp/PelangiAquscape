@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F8F6F6"
     android:orientation="vertical"
-    tools:context=".TambahGudangActivity">
+    tools:context=".TambahInventoryActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar"
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Pengisian Gudang"
+                    android:text="Pengisian Inventory"
                     android:textColor="#636262"
                     android:textSize="12sp" />
 
@@ -117,7 +117,7 @@
                 </RelativeLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/nama_barang_gudang"
+                    android:id="@+id/nama_barang_inventory"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                     app:boxStrokeColor="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_nama_barang_gudang"
+                        android:id="@+id/et_nama_barang_inventory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nama Barang"
@@ -138,17 +138,38 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/stok_barang_gudang"
+                    android:id="@+id/merek_barang_inventory"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/nama_barang_gudang"
+                    android:layout_below="@+id/nama_barang_inventory"
                     android:layout_marginTop="15dp"
                     android:gravity="center"
                     app:boxStrokeColor="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_stok_barang_gudang"
+                        android:id="@+id/et_merek_barang_inventory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Merek Barang"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/jumlah_stok_inventory"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/merek_barang_inventory"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_jumlah_stok_inventory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Stok Barang"
@@ -159,20 +180,41 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/tanggal_input_gudang"
+                    android:id="@+id/tanggal_input_inventory"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/stok_barang_gudang"
+                    android:layout_below="@+id/jumlah_stok_inventory"
                     android:layout_marginTop="15dp"
                     android:gravity="center"
                     app:boxStrokeColor="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_tanggal_input_gudang"
+                        android:id="@+id/et_tanggal_input_inventory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Tanggal Masuk"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/keterangan_inventory"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tanggal_input_inventory"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_keterangan_inventory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Keterangan"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />

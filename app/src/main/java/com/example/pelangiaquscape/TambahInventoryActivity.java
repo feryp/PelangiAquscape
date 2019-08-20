@@ -1,7 +1,5 @@
 package com.example.pelangiaquscape;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,19 +7,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-public class TambahGudangActivity extends AppCompatActivity {
+public class TambahInventoryActivity extends AppCompatActivity {
 
     ImageView cancel;
-    Spinner spinnerKeteranganBarang;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_barang);
+        setContentView(R.layout.activity_tambah_inventory);
 
-        spinnerKeteranganBarang = findViewById(R.id.spinner_keterangan_gudang);
+        Spinner spinner = findViewById(R.id.spinner_keterangan_barang);
         cancel = findViewById(R.id.im_cancel);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.keterangan_barang_arrays, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
+        spinner.setAdapter(adapter);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,10 +30,6 @@ public class TambahGudangActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        ArrayAdapter<CharSequence> adapterGudang = ArrayAdapter.createFromResource(this, R.array.keterangan_barang_arrays, android.R.layout.simple_spinner_item);
-        adapterGudang.setDropDownViewResource(R.layout.simple_spinner_dropdown);
-        spinnerKeteranganBarang.setAdapter(adapterGudang);
 
 
 

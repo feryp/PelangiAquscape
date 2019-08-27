@@ -84,16 +84,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:paddingLeft="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="Merek Barang"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp" />
 
         <RelativeLayout
             android:id="@+id/container_ilustrasi"
@@ -101,26 +91,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
 
-            <ImageView
-                android:id="@+id/iv_ilustrasi_barangkosong"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentLeft="true"
-                android:src="@drawable/tidak_ada_barang" />
-
-            <TextView
-                android:id="@+id/tv_barang_kosong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_ilustrasi_barangkosong"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Belum ada list barang"
-                android:textSize="12sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_merek_barang"
@@ -129,6 +99,33 @@
                 android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/linear_imageview"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_ilustrasi_barangkosong"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tidak_ada_barang" />
+
+                <TextView
+                    android:id="@+id/tv_barang_kosong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_below="@id/iv_ilustrasi_barangkosong"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Belum ada list barang"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+
 
         </RelativeLayout>
 

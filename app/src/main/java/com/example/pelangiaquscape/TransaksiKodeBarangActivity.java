@@ -175,7 +175,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
             public TransaksiBarangViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_kode_barang_transaksi, viewGroup, false);
-                Log.i("Kesini", view.toString());
+//                Log.i("Kesini", view.toString());
                 return new TransaksiBarangViewHolder(view);
             }
 

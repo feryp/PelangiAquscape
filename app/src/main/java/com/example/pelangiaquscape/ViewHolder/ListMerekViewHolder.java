@@ -1,7 +1,6 @@
 package com.example.pelangiaquscape.ViewHolder;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -11,7 +10,6 @@ import com.example.pelangiaquscape.R;
 
 public class ListMerekViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public CardView cv_merek_barang;
     public TextView tv_merek_barang;
 
     private ItemClickListener itemClickListener;
@@ -19,7 +17,6 @@ public class ListMerekViewHolder extends RecyclerView.ViewHolder implements View
     public ListMerekViewHolder(@NonNull View itemView) {
         super(itemView);
         tv_merek_barang = itemView.findViewById(R.id.tv_merek_barang);
-        cv_merek_barang = itemView.findViewById(R.id.cv_merek_barang);
         itemView.setOnClickListener(this);
     }
 

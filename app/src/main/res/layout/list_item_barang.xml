@@ -24,7 +24,7 @@
             android:fontFamily="@font/roboto_bold"
             android:text="Q3"
             android:textColor="@color/colorBlack"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
 
         <TextView

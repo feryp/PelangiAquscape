@@ -1,6 +1,8 @@
 package com.example.pelangiaquscape;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -38,6 +40,7 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
     RecyclerView.LayoutManager layoutManager;
     Query query;
     FloatingActionButton fabMerek;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,13 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
         });
 
 
+        fabMerek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ListMerekActivity.this, "Tambah Merek", Toast.LENGTH_SHORT).show();
+                openDialog();
+            }
+        });
 
         loadMerk();
     }
@@ -79,32 +89,32 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
 
 
             @Override
-            protected void onBindViewHolder(@NonNull ListMerekViewHolder holder, int position, @NonNull final Merek model) {
-                holder.tv_merek_barang.setText(model.getNama());
-//                holder.im_arrow.setImageResource(R.drawable.ic_arrow_black);
+            protected void onBindViewHolder(@NonNull ListMerekViewHolder holder, final int position, @NonNull final Merek model) {
+                holder.bindDataMerek(model);
 
-                Log.i("INFORMATION", model.getNama()+" "+model.getNama());
-                final Merek clickItem = model;
+                Log.i("INFORMATION", model.getNama() + " " + model.getNama());
 
-                final int size = this.getItemCount();
-
-                fabMerek.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(ListMerekActivity.this, "Tambah Merek", Toast.LENGTH_SHORT).show();
-                        openDialog();
-                    }
-                });
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent merek = new Intent(ListMerekActivity.this, TambahBarangActivity.class);
+
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
                         merek.putExtra("namaMerek", model.getNama());
 //                        merek.putExtra("listSize", size);
 
+
                         Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
-                        startActivity(merek);
+                        setResult(1, merek);
+                        finish();
+                    }
+                });
+
+                holder.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        showDialog(String.valueOf(adapter.getRef(position).getKey()),model);
+                        return false;
                     }
                 });
             }
@@ -152,7 +162,7 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
 
     @Override
     public void onDialogNegativeClick(DialogTambahMerek dialog, String nameValue) {
-        int a = adapter.getItemCount()+1;
+        int a = adapter.getItemCount() + 1;
         String key = String.valueOf(a);
         Merek merek = new Merek(nameValue.toUpperCase());
         FirebaseDatabase.getInstance().getReference("Merek").child(key).setValue(merek).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -162,6 +172,36 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
             }
         });
 
+    }
+
+    void showDialog(final String key, final Merek merek){
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Hapus Data");
+        alertDialog.setMessage("Apakah anda ingin menghapus Merek ini ? ");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseDatabase.getInstance().getReference("Merek")
+                                .child(key)
+                                .removeValue()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(ListMerekActivity.this, "item "+merek.getNama() +" telah terhapus", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
 

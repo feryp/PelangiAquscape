@@ -55,6 +55,7 @@ public class BarangActivity extends AppCompatActivity {
 
     List<String> merek = new ArrayList<>();
     private MerekCallback callback;
+    BarangAdapter adapter;
 
 
     @Override
@@ -88,8 +89,9 @@ public class BarangActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(BarangActivity.this, "Tambah Barang", Toast.LENGTH_SHORT).show();
-                Intent fab_barang = new Intent(BarangActivity.this, TambahBarangActivity.class);
-                startActivity(fab_barang);
+                Intent fabBarang = new Intent(BarangActivity.this, TambahBarangActivity.class);
+                fabBarang.putExtra("sizeOfListBarang",adapter.getItemCount());
+                startActivity(fabBarang);
             }
         });
 
@@ -149,7 +151,7 @@ public class BarangActivity extends AppCompatActivity {
 
                 }
 
-                BarangAdapter adapter = new BarangAdapter(BarangActivity.this, listBarang, merek);
+                adapter = new BarangAdapter(BarangActivity.this, listBarang, merek);
                 rvBarang.setAdapter(adapter);
                 if(adapter.getItemCount()> 0){
                     imageLayout.setVisibility(View.GONE);

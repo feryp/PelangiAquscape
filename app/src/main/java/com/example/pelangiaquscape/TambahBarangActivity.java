@@ -2,6 +2,7 @@ package com.example.pelangiaquscape;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,15 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
     String DEBUG_TAG = "TESTMOTION";
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 1){
+            etMerekBarang.setText(data.getStringExtra("idMerek"));
+
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_barang);
@@ -89,9 +99,10 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                         Log.d(DEBUG_TAG,"Action was MOVE");
                         return true;
                     case (MotionEvent.ACTION_UP) :
+
                         Log.d(DEBUG_TAG,"Action was UP");
                         Intent i = new Intent(TambahBarangActivity.this, ListMerekActivity.class);
-                        startActivity(i);
+                        startActivityForResult(i, 1);
                         return true;
                     case (MotionEvent.ACTION_CANCEL) :
                         Log.d(DEBUG_TAG,"Action was CANCEL");
@@ -105,16 +116,20 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                 }
             }
         });
+
         Intent i = getIntent();
         id = i.getIntExtra("idBarang", -1);
         if (id > 0) {
+            etStokAwal.setVisibility(View.GONE);
             FirebaseDatabase.getInstance().getReference().child("Barang").child(String.valueOf(id)).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     Barang barang = dataSnapshot.getValue(Barang.class);
                     Log.v("linkasd", dataSnapshot.getRef().getPath().toString());
 
-                    etNamaBarang.setText(barang.getKode() == null ? "" : barang.getKode());
+                    if (barang != null) {
+                        etNamaBarang.setText(barang.getKode() == null ? "" : barang.getKode());
+                    }
                     String merek = dataSnapshot.child("merek").getValue(String.class);
                     etMerekBarang.setText(merek);
                     etHargaJual.setText(String.valueOf(barang.getHargaJual()));
@@ -176,7 +191,14 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                         Integer.parseInt(etStokAwal.getText().toString()),
                         Integer.parseInt(etMinimumStok.getText().toString()));
 
-                FirebaseDatabase.getInstance().getReference().child("Barang").child(String.valueOf(1000)).setValue(barang)
+                int theId;
+                if(id > 0){
+                    theId = id;
+                }else{
+                    theId = getIntent().getIntExtra("sizeOfListBarang", -1);
+                }
+
+                FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(theId)).setValue(barang)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

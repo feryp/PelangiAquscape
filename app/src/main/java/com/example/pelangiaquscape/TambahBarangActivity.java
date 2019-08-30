@@ -42,7 +42,6 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
 
     ImageView cancel, save;
 
-    TextInputLayout merekBarang;
     TextInputEditText etNamaBarang, etMerekBarang, etHargaJual, etHargaModal, etStokAwal, etSatuanUnit, etMinimumStok;
     int id;
 

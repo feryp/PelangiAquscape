@@ -3,7 +3,6 @@ package com.example.pelangiaquscape.ViewHolder;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ListMerekViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
-    public CardView cv_merek_barang;
     public TextView tv_merek_barang;
 
     Merek merek;
@@ -29,7 +27,6 @@ public class ListMerekViewHolder extends RecyclerView.ViewHolder implements View
     public ListMerekViewHolder(@NonNull View itemView) {
         super(itemView);
         tv_merek_barang = itemView.findViewById(R.id.tv_merek_barang);
-        cv_merek_barang = itemView.findViewById(R.id.cv_merek_barang);
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
     }

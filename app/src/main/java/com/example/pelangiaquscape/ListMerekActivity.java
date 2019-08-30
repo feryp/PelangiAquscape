@@ -56,7 +56,7 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
         //load data merek
         recyclerView = findViewById(R.id.rv_list_merek);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(this, 3);
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         cancel.setOnClickListener(new View.OnClickListener() {

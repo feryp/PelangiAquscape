@@ -53,6 +53,8 @@ public class BarangActivity extends AppCompatActivity {
 
     LinearLayout imageLayout;
 
+    FloatingActionButton fab_barang;
+
     List<String> merek = new ArrayList<>();
     private MerekCallback callback;
     BarangAdapter adapter;
@@ -69,20 +71,19 @@ public class BarangActivity extends AppCompatActivity {
         rvBarang = findViewById(R.id.rv_merek_barang);
         rvBarang.setHasFixedSize(true);
         rvBarang.setLayoutManager(new LinearLayoutManager(this));
-        cancel =  findViewById(R.id.im_cancel);
-        FloatingActionButton fab_barang = findViewById(R.id.fab_barang);
+        cancel = findViewById(R.id.im_cancel);
+        fab_barang = findViewById(R.id.fab_barang);
         imageLayout = findViewById(R.id.linear_imageview);
         // END INIT VIEW
 
         readData(new MerekCallback() {
             @Override
             public void readMerek(List<String> listMerek) {
-                for(String a : listMerek){
+                for (String a : listMerek) {
                     Log.v("testmerek", a);
                 }
             }
         });
-
 
 
         fab_barang.setOnClickListener(new View.OnClickListener() {
@@ -105,12 +106,12 @@ public class BarangActivity extends AppCompatActivity {
         loadBarang();
     }
 
-    void readData(final MerekCallback callback){
+    void readData(final MerekCallback callback) {
         FirebaseDatabase.getInstance().getReference("Merek").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                List<Merek> merek = new ArrayList<>();
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String m = ds.child("nama").getValue(String.class);
                     merek.add(m);
                 }
@@ -127,7 +128,8 @@ public class BarangActivity extends AppCompatActivity {
         });
 
     }
-    void loadBarang(){
+
+    void loadBarang() {
 
 
         FirebaseDatabase.getInstance().getReference().child("Barang").addValueEventListener(new ValueEventListener() {
@@ -135,14 +137,13 @@ public class BarangActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 List<Barang> listBarang = new ArrayList<>();
-                for(DataSnapshot snap: dataSnapshot.getChildren()){
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
 
 //                    ObservableSnapshotArray<Barang> a = new FirebaseArray<>();
 //                    Log.v("KEYKEYKEY", snap.getKey());
                     Barang bbe = snap.getValue(Barang.class);
                     String merek = snap.child("merek").getValue(String.class);
 //                    bbe.setMerek(merek);
-
 
 
                     Log.v("MEREK", bbe.getMerek());
@@ -153,9 +154,9 @@ public class BarangActivity extends AppCompatActivity {
 
                 adapter = new BarangAdapter(BarangActivity.this, listBarang, merek);
                 rvBarang.setAdapter(adapter);
-                if(adapter.getItemCount()> 0){
+                if (adapter.getItemCount() > 0) {
                     imageLayout.setVisibility(View.GONE);
-                }else{
+                } else {
                     imageLayout.setVisibility(View.VISIBLE);
                 }
 
@@ -166,9 +167,6 @@ public class BarangActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
 //        Log.v("QUERYAN", q.getPath().toString());

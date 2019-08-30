@@ -86,26 +86,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
 
-            <ImageView
-                android:id="@+id/iv_ilustrasi_pegawaikosong"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="100dp"
-                android:src="@drawable/tidak_ada_pegawai" />
-
-            <TextView
-                android:id="@+id/tv_pemberitahuan_kosong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_ilustrasi_pegawaikosong"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Belum ada pegawai ditambahkan"
-                android:textSize="12sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_pegawai"
@@ -114,6 +94,30 @@
                 android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/linear_imageview_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/iv_ilustrasi_pegawaikosong"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/tidak_ada_pegawai" />
+
+                <TextView
+                    android:id="@+id/tv_pemberitahuan_kosong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Belum ada pegawai ditambahkan"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 

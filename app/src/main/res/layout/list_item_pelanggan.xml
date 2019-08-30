@@ -1,46 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_list_penjualan"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:columnCount="2"
-    android:rowCount="3">
+    android:layout_height="100dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/container_mitra"
+    android:orientation="horizontal"
+    android:paddingLeft="20dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_pelanggan"
-        android:layout_width="121dp"
-        android:layout_height="140dp"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="7dp"
-        app:cardElevation="4dp"
-        app:cardPreventCornerOverlap="false">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/pelanggan"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/tv_nama_pelanggan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Nama Pelanggan"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_nohp_pelanggan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="087771365862"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_alamat_pelanggan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Alamat"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/im_edit_pelanggan"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_edit_white" />
+
+        <TextView
+            android:id="@+id/edit_pelanggan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/roboto_regular"
             android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/foto_pelanggan"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_foto_profile_edit" />
-
-            <TextView
-                android:id="@+id/tv_nama_pelanggan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Nama"
-                android:textColor="@color/colorBlue"
-                android:textSize="14sp" />
+            android:text="Edit Pelanggan"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </android.support.v7.widget.CardView>
 
-</GridLayout>
+</LinearLayout>
+
+    <!--<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:columnCount="2"--><!--android:rowCount="3">-->
+
+    <!--<android.support.v7.widget.CardView--><!--android:id="@+id/cv_pelanggan"--><!--android:layout_width="121dp"--><!--android:layout_height="140dp"--><!--android:layout_margin="10dp"--><!--app:cardCornerRadius="7dp"--><!--app:cardElevation="4dp"--><!--app:cardPreventCornerOverlap="false">-->
+
+    <!--<LinearLayout--><!--android:id="@+id/pelanggan"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:gravity="center"--><!--android:orientation="vertical">-->
+
+    <!--<ImageView--><!--android:id="@+id/foto_pelanggan"--><!--android:layout_width="match_parent"--><!--android:layout_height="100dp"--><!--android:src="@drawable/ic_foto_profile_edit" />-->
+
+    <!--<TextView--><!--android:id="@+id/tv_nama_pelanggan"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_marginTop="8dp"--><!--android:fontFamily="@font/roboto_bold"--><!--android:text="Nama"--><!--android:textColor="@color/colorBlue"--><!--android:textSize="14sp" />-->
+
+
+    <!--</LinearLayout>-->
+
+    <!--</android.support.v7.widget.CardView>-->
+
+    <!--</GridLayout>-->

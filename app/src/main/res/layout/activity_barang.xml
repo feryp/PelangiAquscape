@@ -110,7 +110,6 @@
                     android:id="@+id/iv_ilustrasi_barangkosong"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:layout_centerInParent="true"
                     android:src="@drawable/tidak_ada_barang" />
 
                 <TextView
@@ -118,7 +117,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_below="@id/iv_ilustrasi_barangkosong"
                     android:fontFamily="@font/roboto_regular"
                     android:text="Belum ada list barang"
                     android:textSize="12sp" />

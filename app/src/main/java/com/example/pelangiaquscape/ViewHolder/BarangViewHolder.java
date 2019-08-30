@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -53,7 +54,12 @@ public class BarangViewHolder extends RecyclerView.ViewHolder implements View.On
         int mer = Integer.parseInt(barang.getMerek())-1;
         String merek = listMerek.get(mer);
         tvMerek.setText(merek);
-        tvStok.setText("");
+        try{
+            tvStok.setText(String.valueOf(barang.getStok()));
+        }catch (Resources.NotFoundException ex){
+            tvStok.setText("0");
+        }
+
         tvSatuan.setText(barang.getSatuan());
         tvHargaBeli.setText(String.valueOf(barang.getHargaBeli()));
         tvHargaJual.setText(String.valueOf(barang.getHargaJual()));

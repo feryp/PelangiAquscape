@@ -119,7 +119,7 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
         Intent i = getIntent();
         id = i.getIntExtra("idBarang", -1);
         if (id > 0) {
-            etStokAwal.setVisibility(View.GONE);
+            etStokAwal.setHint("Stok saat ini");
             FirebaseDatabase.getInstance().getReference().child("Barang").child(String.valueOf(id)).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

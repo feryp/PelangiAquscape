@@ -60,6 +60,7 @@ public class PelangganFragment extends Fragment {
         View v  = inflater.inflate(R.layout.fragment_pelanggan, container, false);
 
         fab_pelanggan = v.findViewById(R.id.fab_pelanggan);
+        imageLayout = v.findViewById(R.id.linear_imageviewPelanggan);
 
         //ini firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -76,6 +77,7 @@ public class PelangganFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity().getApplicationContext(), "Tambah Pelanggan", Toast.LENGTH_LONG).show();
                 Intent pelanggan = new Intent(getActivity(), TambahPelangganActivity.class);
+                pelanggan.putExtra("idForPelanggan", String.valueOf(adapter.getItemCount()+1));
                 startActivity(pelanggan);
             }
         });
@@ -96,9 +98,9 @@ public class PelangganFragment extends Fragment {
         adapter = new FirebaseRecyclerAdapter<Pelanggan, PelangganViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull PelangganViewHolder holder, int position, @NonNull final Pelanggan model) {
-                holder.tv_nama_pelanggan.setText(model.getNamaPelanggan());
-                holder.tv_noHp_pelanggan.setText(model.getNoHp());
-                holder.tv_alamat_pelanggan.setText(model.getAlamat());
+
+                holder.bindData(model);
+
 
                 Log.i("INFORMATION", model.getNamaPelanggan()+" "+model.getNamaPelanggan());
                 Log.i("INFORMATION", model.getNoHp()+" "+model.getNoHp());
@@ -113,12 +115,14 @@ public class PelangganFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent pelanggan = new Intent(getActivity(), TambahPelangganActivity.class);
-                        pelanggan.putExtra("idPelanggan", adapter.getRef(position).getKey());
+                        pelanggan.putExtra("idForPelanggan", adapter.getRef(position).getKey());
                         pelanggan.putExtra("namaPelanggan", model.getNamaPelanggan());
                         pelanggan.putExtra("noHp", model.getNoHp());
                         pelanggan.putExtra("alamat", model.getAlamat());
+                        pelanggan.putExtra("catatan", model.getCatatan());
 
-                        Log.i("GET IDPELANGGAN", pelanggan.getStringExtra("idPelanggan") + adapter.getRef(position).getKey());
+                        System.out.println("ID Pelanggan "+ adapter.getRef(position).getKey());
+//                        Log.i("GET IDPELANGGAN", pelanggan.getStringExtra("newIdForPelanggan") + adapter.getRef(position).getKey());
                         startActivity(pelanggan);
                     }
                 });
@@ -128,10 +132,21 @@ public class PelangganFragment extends Fragment {
             @NonNull
             @Override
             public PelangganViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_item_pelanggan, viewGroup, false);
                 Log.i("Buat View Holder", view.toString());
                 return new PelangganViewHolder(view);
+            }
+
+            @Override
+            public void onDataChanged() {
+
+                super.onDataChanged();
+
+                if(adapter.getItemCount()>0){
+                    imageLayout.setVisibility(View.GONE);
+                }
             }
         };
 

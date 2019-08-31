@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class TambahPelangganActivity extends AppCompatActivity {
+public class TambahPelangganActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cancel, save;
 
@@ -27,8 +27,9 @@ public class TambahPelangganActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
     Pelanggan pelanggan;
-    int id;
+    String id;
 
+    int idPelanggan;
     String DEBUG_TAG = "TESTMOTION";
 
     @Override
@@ -40,7 +41,7 @@ public class TambahPelangganActivity extends AppCompatActivity {
         cancel = findViewById(R.id.im_cancel);
         save = findViewById(R.id.im_save);
         etNamaPelanggan = findViewById(R.id.et_nama_pelanggan);
-        etNoHp = findViewById(R.id.et_no_hp_pelanggan);
+        etNoHp = findViewById(R.id.et_no_hp);
         etAlamat = findViewById(R.id.et_alamat);
         etCatatan = findViewById(R.id.et_catatan);
 
@@ -49,9 +50,23 @@ public class TambahPelangganActivity extends AppCompatActivity {
         reference = database.getReference("Pelanggan");
         pelanggan = new Pelanggan();
 
+
+        try{
+            id = getIntent().getExtras().getString("idForPelanggan");
+            System.out.println("ID in tambah pelanggan act "+ id);
+            bind(getIntent().getExtras().getString("namaPelanggan"),
+                    getIntent().getExtras().getString("noHp"),
+                    getIntent().getExtras().getString("alamat"),
+                    getIntent().getExtras().getString("catatan"));
+        }catch(NullPointerException ex){
+            id = "1";
+
+        }
+
+
 //        // SET LISTENER
-//        cancel.setOnClickListener(this);
-//        save.setOnClickListener(this);
+        cancel.setOnClickListener(this);
+        save.setOnClickListener(this);
 
     }
 
@@ -62,12 +77,19 @@ public class TambahPelangganActivity extends AppCompatActivity {
         pelanggan.setCatatan(etCatatan.getText().toString());
     }
 
-    public void save(View view){
+    private void bind(String nama, String noTelp, String alamat, String catatan){
+        etNamaPelanggan.setText(nama);
+        etNoHp.setText(noTelp);
+        etAlamat.setText(alamat);
+        etCatatan.setText(catatan);
+    }
+
+    public void save(){
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 getValues();
-                reference.child("pelanggan").setValue(pelanggan);
+                reference.child(String.valueOf(id)).setValue(pelanggan);
                 Toast.makeText(TambahPelangganActivity.this, "Pelangan telah ditambah",Toast.LENGTH_LONG).show();
 
             }
@@ -79,6 +101,17 @@ public class TambahPelangganActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.im_cancel:
+                break;
+            case R.id.im_save:
+                save();
+                finish();
+                break;
+        }
+    }
 }
 
 

@@ -40,7 +40,7 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View v) {
-
+        itemClickListener.onClick(v, getAdapterPosition(), false);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

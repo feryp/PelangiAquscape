@@ -11,7 +11,7 @@ import com.example.pelangiaquscape.R;
 
 import java.util.List;
 
-public class PelangganViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class PelangganViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     public TextView tv_nama_pelanggan;
     public TextView tv_noHp_pelanggan;
@@ -19,6 +19,8 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
 
     private Pelanggan pelanggan;
     private ItemClickListener itemClickListener;
+
+    private View.OnLongClickListener longClickListener;
 
 
     public PelangganViewHolder(@NonNull View itemView) {
@@ -45,5 +47,16 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
+    }
+
+    public void setOnLongClickListener(View.OnLongClickListener longClickListener){
+        this.longClickListener = longClickListener;
+    }
+
+
+    @Override
+    public boolean onLongClick(View v) {
+        longClickListener.onLongClick(v);
+        return false;
     }
 }

@@ -105,6 +105,7 @@ public class TambahPelangganActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.im_cancel:
+                finish();
                 break;
             case R.id.im_save:
                 save();

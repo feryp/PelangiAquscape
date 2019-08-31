@@ -85,7 +85,7 @@ public class BarangViewHolder extends RecyclerView.ViewHolder implements View.On
         AlertDialog alertDialog = new AlertDialog.Builder(itemView.getContext()).create();
         alertDialog.setTitle("Hapus Data");
         alertDialog.setMessage("Apakah anda ingin menghapus Barang ini ? ");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "YA",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseDatabase.getInstance().getReference("Barang")
@@ -101,7 +101,7 @@ public class BarangViewHolder extends RecyclerView.ViewHolder implements View.On
                         dialog.dismiss();
                     }
                 });
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL",
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "TIDAK",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

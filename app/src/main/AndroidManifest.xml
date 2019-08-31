@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".ListMerekActivity"></activity>
+        <activity android:name=".KartuPelangganActivity"></activity>
+        <activity android:name=".ListMerekActivity" />
         <activity android:name=".PenerimaanActivity" />
         <activity android:name=".TambahInventoryActivity" />
         <activity android:name=".InventoryActivity" />
@@ -71,9 +72,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DummyInsertDataActivity" >
-
-        </activity>
+        <activity android:name=".DummyInsertDataActivity"></activity>
     </application>
 
 </manifest>

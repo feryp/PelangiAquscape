@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.BarangActivity;
-import com.example.pelangiaquscape.InventoryActivity;
+import com.example.pelangiaquscape.PenyimpananActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.MitraBisnisActivity;
 import com.example.pelangiaquscape.PegawaiActivity;
@@ -125,7 +125,7 @@ public class BerandaSuperAdminFragment extends Fragment {
         cardViewGudang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cv_gudang = new Intent(getActivity(), InventoryActivity.class);
+                Intent cv_gudang = new Intent(getActivity(), PenyimpananActivity.class);
                 startActivity(cv_gudang);
             }
         });

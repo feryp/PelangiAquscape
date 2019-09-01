@@ -22,8 +22,8 @@
         <activity android:name=".KartuPelangganActivity"></activity>
         <activity android:name=".ListMerekActivity" />
         <activity android:name=".PenerimaanActivity" />
-        <activity android:name=".TambahInventoryActivity" />
-        <activity android:name=".InventoryActivity" />
+        <activity android:name=".TambahPenyimpananActivity" />
+        <activity android:name=".PenyimpananActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

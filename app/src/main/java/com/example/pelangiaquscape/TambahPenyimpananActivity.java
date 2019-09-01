@@ -7,30 +7,31 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-public class TambahInventoryActivity extends AppCompatActivity {
+public class TambahPenyimpananActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView cancel;
+    ImageView cancel, save;
+    Spinner spinnerKeteranganBarang;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_inventory);
+        setContentView(R.layout.activity_tambah_penyimpanan);
 
-        Spinner spinner = findViewById(R.id.spinner_keterangan_barang);
+        //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.keterangan_barang_arrays, android.R.layout.simple_spinner_item);
+        spinnerKeteranganBarang = findViewById(R.id.spinner_keterangan_barang);
+
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.keterangan_barang_arrays,
+                android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
-        spinner.setAdapter(adapter);
+        spinnerKeteranganBarang.setAdapter(adapter);
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+        cancel.setOnClickListener(this);
+        save.setOnClickListener(this);
 
 
 //        // FORMAT DATE
@@ -62,6 +63,23 @@ public class TambahInventoryActivity extends AppCompatActivity {
 //
     }
 
+    private void save() {
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.im_cancel:
+                finish();
+                break;
+            case R.id.im_save:
+                save();
+                finish();
+                break;
+        }
+    }
 }
+
+
 
 

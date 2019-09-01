@@ -66,7 +66,7 @@ public class PelangganFragment extends Fragment {
         fab_pelanggan = v.findViewById(R.id.fab_pelanggan);
         imageLayout = v.findViewById(R.id.linear_imageviewPelanggan);
 
-        //ini firebase
+        //init firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databasePelanggan = firebaseDatabase.getReference("Pelanggan");
 

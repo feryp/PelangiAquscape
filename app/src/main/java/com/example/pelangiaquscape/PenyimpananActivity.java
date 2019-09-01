@@ -9,24 +9,25 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-public class InventoryActivity extends AppCompatActivity {
+public class PenyimpananActivity extends AppCompatActivity {
 
     ImageView cancel;
+    FloatingActionButton fab_penyimpanan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory);
+        setContentView(R.layout.activity_penyimpanan);
 
         cancel = findViewById(R.id.im_cancel);
-        FloatingActionButton fab_inventory = findViewById(R.id.fab_inventory);
+        fab_penyimpanan = findViewById(R.id.fab_penyimpanan);
 
-        fab_inventory.setOnClickListener(new View.OnClickListener() {
+        fab_penyimpanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InventoryActivity.this, "Tambah Inventory", Toast.LENGTH_SHORT).show();
-                Intent fab_inventory = new Intent(InventoryActivity.this, TambahInventoryActivity.class);
-                startActivity(fab_inventory);
+                Intent fab_penyimpanan = new Intent(PenyimpananActivity.this, TambahPenyimpananActivity.class);
+                Toast.makeText(PenyimpananActivity.this, "Tambah Inventory", Toast.LENGTH_SHORT).show();
+                startActivity(fab_penyimpanan);
             }
         });
 

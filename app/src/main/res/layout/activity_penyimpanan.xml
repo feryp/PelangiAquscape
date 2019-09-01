@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".InventoryActivity">
+    tools:context=".PenyimpananActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Inventory"
+                        android:text="Penyimpanan"
                         android:textColor="@color/colorBlue"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -64,8 +64,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:background="@color/colorPrimary"
+            android:orientation="horizontal"
             android:padding="12dp">
 
 
@@ -86,27 +86,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
 
-            <ImageView
-                android:id="@+id/iv_ilustrasi_gudangkosong"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="100dp"
-                android:src="@drawable/tidak_ada_barang" />
-
-            <TextView
-                android:id="@+id/tv_pemberitahuan_kosong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_ilustrasi_gudangkosong"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Belum ada list barang digudang"
-                android:textSize="12sp" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_inventory"
                 android:layout_width="match_parent"
@@ -115,24 +94,49 @@
 
             </android.support.v7.widget.RecyclerView>
 
+            <LinearLayout
+                android:id="@+id/linear_imageview_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_ilustrasi_gudangkosong"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/tidak_ada_barang" />
+
+                <TextView
+                    android:id="@+id/tv_pemberitahuan_kosong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Belum ada list barang digudang"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
         </RelativeLayout>
 
     </LinearLayout>
 
     <!--<FrameLayout-->
-        <!--android:id="@+id/scrim"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:alpha="0"-->
-        <!--android:background="@color/colorDarkGrey"-->
-        <!--android:fitsSystemWindows="true">-->
+    <!--android:id="@+id/scrim"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:alpha="0"-->
+    <!--android:background="@color/colorDarkGrey"-->
+    <!--android:fitsSystemWindows="true">-->
 
     <!--</FrameLayout>-->
 
     <!--<include layout="@layout/content_form_gudang" />-->
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_inventory"
+        android:id="@+id/fab_penyimpanan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

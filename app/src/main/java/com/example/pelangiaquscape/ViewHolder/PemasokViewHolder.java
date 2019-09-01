@@ -28,6 +28,7 @@ public class PemasokViewHolder extends RecyclerView.ViewHolder implements View.O
         tv_noHp_pemasok = itemView.findViewById(R.id.tv_nohp_pemasok);
         tv_alamat_pemasok = itemView.findViewById(R.id.tv_alamat_pemasok);
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
 
     }
 

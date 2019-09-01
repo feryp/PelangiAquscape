@@ -63,14 +63,14 @@ public class TambahPemasokActivity extends AppCompatActivity implements View.OnC
         try {
             id = getIntent().getExtras().getString("idForPemasok");
             System.out.println("ID in tambah pemasok act " + id);
-            bind(getIntent().getExtras().getString("jenisPerusahaan"),
-                    getIntent().getExtras().getString("namaPemasok"),
-                    getIntent().getExtras().getString("klasifikasiPerusahaan"),
-                    getIntent().getExtras().getString("kualifikasiPerusahaan"),
-                    getIntent().getExtras().getString("telepon"),
-                    getIntent().getExtras().getString("email"),
-                    getIntent().getExtras().getString("noHp"),
-                    getIntent().getExtras().getString("alamat"));
+//            bind(getIntent().getExtras().getString("jenisPerusahaan"),
+//                    getIntent().getExtras().getString("namaPemasok"),
+//                    getIntent().getExtras().getString("klasifikasiPerusahaan"),
+//                    getIntent().getExtras().getString("kualifikasiPerusahaan"),
+//                    getIntent().getExtras().getString("telepon"),
+//                    getIntent().getExtras().getString("email"),
+//                    getIntent().getExtras().getString("noHp"),
+//                    getIntent().getExtras().getString("alamat"));
         } catch (NullPointerException ex) {
             id = "1";
         }
@@ -89,6 +89,8 @@ public class TambahPemasokActivity extends AppCompatActivity implements View.OnC
         adapter2.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinnerKlasifikasi.setAdapter(adapter2);
 
+
+
         ArrayAdapter adapter3 = ArrayAdapter.createFromResource(
                 this,
                 R.array.kualifikasi_perusahaan_arrays,
@@ -97,36 +99,67 @@ public class TambahPemasokActivity extends AppCompatActivity implements View.OnC
         spinnerKualifikasi.setAdapter(adapter3);
 
 
-//        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.jenis_perusahaan_arrays, android.R.layout.simple_spinner_item);
-//        adapter1.setDropDownViewResource(R.layout.simple_spinner_dropdown);
-//        spinnerJenis.setAdapter(adapter1);
-//
-//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.klasifikasi_perusahaan_arrays, android.R.layout.simple_spinner_item);
-//        adapter2.setDropDownViewResource(R.layout.simple_spinner_dropdown);
-//        spinnerKlasifikasi.setAdapter(adapter2);
-//
-//        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.kualifikasi_perusahaan_arrays, android.R.layout.simple_spinner_item);
-//        adapter3.setDropDownViewResource(R.layout.simple_spinner_dropdown);
-//        spinnerKualifikasi.setAdapter(adapter3);
+        boolean fromPemasokFragment = getIntent().getExtras().getBoolean("fromPemasokFragment", false);
+        if(fromPemasokFragment){
 
+            // jenis, klasifikasi, kualifikasi
+            String jenisPerusahaan = getIntent().getExtras().getString("jenisPerusahaan");
+            String klasifikasiPerusahaan = getIntent().getExtras().getString("klasifikasiPerusahaan");
+            String kualifikasiPerusahaan = getIntent().getExtras().getString("kualifikasiPerusahaan");
 
+            String namaPemasok = getIntent().getExtras().getString("namaPemasok");
+            String telepon = getIntent().getExtras().getString("telepon");
+            String email = getIntent().getExtras().getString("email");
+            String noHp = getIntent().getExtras().getString("noHp");
+            String alamat = getIntent().getExtras().getString("alamat");
+
+            bind(jenisPerusahaan, namaPemasok, klasifikasiPerusahaan, kualifikasiPerusahaan, telepon, email, noHp, alamat);
+
+        }
         cancel.setOnClickListener(this);
         save.setOnClickListener(this);
     }
 
-    private void bind(final String jenisPerusahaan, String namaPemasok, String klasifikasiPerusahaan, String kualifikasiPerusahaan, String telepon, String email, String noHp, String alamat) {
+    private void bind(final String jenisPerusahaan,
+                      String namaPemasok,
+                      String klasifikasiPerusahaan,
+                      String kualifikasiPerusahaan,
+                      String telepon,
+                      String email,
+                      String noHp,
+                      String alamat) {
 
-        spinnerJenis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        int idxJenis = -1;
+        int idxKlasifikasi = -1;
+        int idxKualifikasi = -1;
+
+        String[] jenisPerusahaanArray = getResources().getStringArray(R.array.jenis_perusahaan_arrays);
+        String[] klasifikasiPerusahaanArray = getResources().getStringArray(R.array.klasifikasi_perusahaan_arrays);
+        String[] kualifikasiPerusahaanArray = getResources().getStringArray(R.array.kualifikasi_perusahaan_arrays);
+
+        for(int i = 0; i < jenisPerusahaanArray.length; i++){
+            if(jenisPerusahaanArray[i].equals(jenisPerusahaan)){
+                idxJenis = i;
+            }
+        }
+
+        for(int i = 0; i < klasifikasiPerusahaanArray.length; i++){
+            if(klasifikasiPerusahaanArray[i].equals(klasifikasiPerusahaan)){
+                idxKlasifikasi = i;
+            }
+        }
+
+        for(int i = 0; i < kualifikasiPerusahaanArray.length; i++){
+            if(kualifikasiPerusahaanArray[i].equals(kualifikasiPerusahaan)){
+                idxKualifikasi =i;
 
             }
+        }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        spinnerJenis.setSelection(idxJenis);
+        spinnerKlasifikasi.setSelection(idxKlasifikasi);
+        spinnerKualifikasi.setSelection(idxKualifikasi);
         etNamaPemasok.setText(namaPemasok);
         etTelepon.setText(telepon);
         etEmail.setText(email);

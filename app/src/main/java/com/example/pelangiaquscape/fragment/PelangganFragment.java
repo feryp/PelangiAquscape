@@ -220,7 +220,7 @@ public class PelangganFragment extends Fragment {
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(getActivity().getApplicationContext(), "item" + pelanggan.getNamaPelanggan() + "item" + pelanggan.getNoHp() + "item" + pelanggan.getAlamat() + " telah terhapus", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity().getApplicationContext(), "item " + pelanggan.getNamaPelanggan() + " item " + pelanggan.getNoHp() + " item " + pelanggan.getAlamat() + " telah terhapus ", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                         dialog.dismiss();

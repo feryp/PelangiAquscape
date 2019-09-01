@@ -29,6 +29,7 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
         tv_noHp_pelanggan = itemView.findViewById(R.id.tv_nohp_pelanggan);
         tv_alamat_pelanggan = itemView.findViewById(R.id.tv_alamat_pelanggan);
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void bindData(Pelanggan pelanggan) {

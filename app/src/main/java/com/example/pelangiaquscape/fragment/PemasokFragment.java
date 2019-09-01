@@ -114,6 +114,7 @@ public class PemasokFragment extends Fragment {
                         pemasok.putExtra("alamat", model.getAlamatPemasok());
 
                         System.out.println("ID Pemasok " + adapter.getRef(position).getKey());
+                        pemasok.putExtra("fromPemasokFragment", true);
                         startActivity(pemasok);
                     }
                 });
@@ -178,7 +179,7 @@ public class PemasokFragment extends Fragment {
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(getActivity().getApplicationContext(), "item" + pemasok.getJenisPerusahaan() + "item" + pemasok.getNamaPemasok() + "item" + pemasok.getNoHpPemasok() + "item" + pemasok.getAlamatPemasok() + " telah terhapus", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity().getApplicationContext(), "item " + pemasok.getJenisPerusahaan() + " item " + pemasok.getNamaPemasok() + " item " + pemasok.getNoHpPemasok() + " item " + pemasok.getAlamatPemasok() + " telah terhapus", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                         dialog.dismiss();

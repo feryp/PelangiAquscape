@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.pelangiaquscape.AkunTokoActivity;
 import com.example.pelangiaquscape.BantuanActivity;
 import com.example.pelangiaquscape.EditProfileActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
@@ -39,12 +41,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.squareup.picasso.Picasso;
 
+import java.net.Inet4Address;
+
 public class ProfileFragment extends Fragment {
 
     TextView tvNamaPengguna, tvStatusJabatan, tvBiodata;
     Button editAkun;
     ImageView imgFotoProfile;
-    RelativeLayout notifikasi, bantuan, tentangkami, keluar;
+    LinearLayout akunToko, notifikasi, bantuan, tentangkami, keluar;
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
@@ -82,6 +86,7 @@ public class ProfileFragment extends Fragment {
         tvStatusJabatan = v.findViewById(R.id.status_jabatan_profile);
         tvBiodata = v.findViewById(R.id.bio_profile);
         editAkun = v.findViewById(R.id.btn_edit_akun);
+        akunToko = v.findViewById(R.id.akun_toko);
         notifikasi = v.findViewById(R.id.notifikasi);
         bantuan = v.findViewById(R.id.bantuan);
         tentangkami = v.findViewById(R.id.tentangkami);
@@ -131,14 +136,26 @@ public class ProfileFragment extends Fragment {
         editAkun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivity().getApplicationContext(), "Edit Akun", Toast.LENGTH_LONG).show();
                 Intent ediitAkun = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(ediitAkun);
+            }
+        });
+
+        akunToko.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getApplicationContext(), "Akun Toko", Toast.LENGTH_LONG).show();
+                Intent akunToko = new Intent(getActivity(), AkunTokoActivity.class);
+                startActivity(akunToko);
+
             }
         });
 
         notifikasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivity().getApplicationContext(), "Notifikasi", Toast.LENGTH_LONG).show();
                 Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
                 startActivity(notifikasi);
             }
@@ -147,6 +164,7 @@ public class ProfileFragment extends Fragment {
         bantuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivity().getApplicationContext(), "Bantuan", Toast.LENGTH_LONG).show();
                 Intent bantuan = new Intent(getActivity(), BantuanActivity.class);
                 startActivity(bantuan);
             }
@@ -155,6 +173,7 @@ public class ProfileFragment extends Fragment {
         tentangkami.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivity().getApplicationContext(), "Tentang Kami", Toast.LENGTH_LONG).show();
                 Intent tentangkami = new Intent(getActivity(), TentangKamiActivity.class);
                 startActivity(tentangkami);
             }
@@ -164,6 +183,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getActivity().getApplicationContext(), "Keluar", Toast.LENGTH_LONG).show();
                 Intent keluar = new Intent(getActivity(), LoginActivity.class);
                 startActivity(keluar);
             }

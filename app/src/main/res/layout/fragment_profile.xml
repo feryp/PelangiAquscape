@@ -22,9 +22,9 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:padding="10dp"
                 android:background="@color/colorBlue"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -99,148 +99,269 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:id="@+id/akun_toko"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_box_grey"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/ic_toko" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Akun Toko"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_arrow_blue" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/notifikasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_box_grey">
+                    android:background="@drawable/border_box_grey"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:src="@drawable/ic_notif" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:fontFamily="@font/roboto_bold"
-                        android:paddingRight="180dp"
-                        android:text="Notifikasi"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="15sp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/ic_notif" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:rotation="180"
-                        android:src="@drawable/ic_arrow_blue" />
+                    </LinearLayout>
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
 
-                <RelativeLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Notifikasi"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_arrow_blue" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/bantuan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_box_grey">
+                    android:background="@drawable/border_box_grey"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:src="@drawable/ic_bantuan" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:fontFamily="@font/roboto_bold"
-                        android:paddingRight="190dp"
-                        android:text="Bantuan"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="15sp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/ic_bantuan" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:rotation="180"
-                        android:src="@drawable/ic_arrow_blue" />
+                    </LinearLayout>
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
 
-                <RelativeLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Bantuan"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_arrow_blue" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/tentangkami"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_box_grey">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:src="@drawable/ic_info" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/roboto_bold"
-                        android:paddingRight="155dp"
-                        android:text="Tentang Kami"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="15sp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/ic_info" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="20dp"
-                        android:rotation="180"
-                        android:src="@drawable/ic_arrow_blue" />
+                    </LinearLayout>
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
 
-                <RelativeLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Tentang Kami"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_arrow_blue" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/keluar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_box_grey">
+                    android:background="@drawable/border_box_grey"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:src="@drawable/ic_keluar" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="20dp"
-                        android:fontFamily="@font/roboto_bold"
-                        android:paddingRight="190dp"
-                        android:text="Keluar"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="15sp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/ic_keluar" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="20dp"
-                        android:rotation="180"
-                        android:src="@drawable/ic_arrow_blue" />
+                    </LinearLayout>
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Keluar"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_arrow_blue" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 

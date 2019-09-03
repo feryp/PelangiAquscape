@@ -20,6 +20,7 @@
 
     <string name="bulan_prompt">Pilih Bulan</string>
     <string name="merek_prompt">Pilih Merek</string>
+    <string name="keterangan_lokasi">Pastikan lokasi yang kamu tandai di peta sesuai dengan alamat yang kamu isi diatas.</string>
 
     <string-array name="bulan_arrays">
         <item>Januari</item>
@@ -51,7 +52,7 @@
         <item>Admin</item>
     </string-array>
 
-    <string-array name="keterangan_barang_arrays">
+    <string-array name="status_barang_arrays">
         <item>Barang Masuk</item>
         <item>Barang Keluar</item>
     </string-array>

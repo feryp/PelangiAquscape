@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F6F6"
     android:orientation="vertical"
-    tools:context=".TambahPenyimpananActivity">
+    tools:context=".AkunTokoActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar"
@@ -38,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Tambah Penyimpanan"
+                    android:text="Akun Toko"
                     android:textColor="@color/colorBlue"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -72,154 +71,179 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/container_search_bantuan"
                 android:elevation="6dp"
                 android:padding="15dp">
 
                 <TextView
-                    android:id="@+id/tv_pengisian_gudang"
+                    android:id="@+id/tv_profile_toko"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Pengisian Inventory"
+                    android:text="Profile Toko"
                     android:textColor="#636262"
                     android:textSize="12sp" />
 
-                <RelativeLayout
-                    android:id="@+id/status_barang"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nama_toko"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_profile_toko"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_nama_toko"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Toko"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/container_search_bantuan"
+                android:elevation="6dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_detail_toko"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Profile Toko"
+                    android:textColor="#636262"
+                    android:textSize="12sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/no_telepon_toko"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_detail_toko"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_no_telepon_toko"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="No. Telepon"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/alamat_toko"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/no_telepon_toko"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_alamat_toko"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alamat"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/kode_pos"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/alamat_toko"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_kode_pos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Kode Pos"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/container_search_bantuan"
+                android:elevation="6dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_lokasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Lokasi"
+                    android:textColor="#636262"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/im_lokasi"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/tv_pengisian_gudang"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/spinner_border">
-
-                    <Spinner
-                        android:id="@+id/spinner_status_barang"
-                        style="@style/spinnerItemStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:entries="@array/status_barang_arrays"
-                        android:spinnerMode="dropdown" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="18dp"
-                        android:src="@drawable/ic_drop_down" />
-
-                </RelativeLayout>
+                    android:layout_below="@+id/tv_lokasi"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/border_icon_lokasi" />
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/nama_barang_inventory"
+                    android:id="@+id/pilih_lokasi"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
+                    android:layout_width="290dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/status_barang"
+                    android:layout_below="@+id/tv_lokasi"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/im_lokasi"
                     android:gravity="center"
                     app:boxStrokeColor="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_nama_barang_inventory"
+                        android:id="@+id/et_pilih_lokasi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nama Barang"
+                        android:hint="Pilih Lokasi"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/merek_barang_inventory"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/nama_barang_inventory"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    app:boxStrokeColor="@color/colorAccent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_merek_barang_inventory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Merek Barang"
-                        android:inputType="text"
-                        android:textColor="@color/colorBlack"
-                        android:textColorHint="@color/colorBlack" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/jumlah_stok_inventory"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/merek_barang_inventory"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    app:boxStrokeColor="@color/colorAccent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_jumlah_stok_inventory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Stok Barang"
-                        android:inputType="number"
-                        android:textColor="@color/colorBlack"
-                        android:textColorHint="@color/colorBlack" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/tanggal_input_inventory"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/jumlah_stok_inventory"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    app:boxStrokeColor="@color/colorAccent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_tanggal_input_inventory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Tanggal Masuk"
-                        android:inputType="text"
-                        android:textColor="@color/colorBlack"
-                        android:textColorHint="@color/colorBlack" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/keterangan_inventory"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tanggal_input_inventory"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    app:boxStrokeColor="@color/colorAccent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_keterangan_inventory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Keterangan"
-                        android:inputType="text"
-                        android:textColor="@color/colorBlack"
-                        android:textColorHint="@color/colorBlack" />
-
-                </android.support.design.widget.TextInputLayout>
+                    android:layout_below="@+id/im_lokasi"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/keterangan_lokasi" />
 
             </RelativeLayout>
 

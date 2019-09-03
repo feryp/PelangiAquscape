@@ -20,12 +20,13 @@ public class TambahPenyimpananActivity extends AppCompatActivity implements View
 
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
+        save = findViewById(R.id.im_save);
 
-        spinnerKeteranganBarang = findViewById(R.id.spinner_keterangan_barang);
+        spinnerKeteranganBarang = findViewById(R.id.spinner_status_barang);
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.keterangan_barang_arrays,
+                R.array.status_barang_arrays,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinnerKeteranganBarang.setAdapter(adapter);
@@ -33,34 +34,6 @@ public class TambahPenyimpananActivity extends AppCompatActivity implements View
         cancel.setOnClickListener(this);
         save.setOnClickListener(this);
 
-
-//        // FORMAT DATE
-//        Calendar c = Calendar.getInstance();
-//        c.setTimeInMillis(tglInput);
-//        SimpleDateFormat simple = new SimpleDateFormat("dd MMM yyyy");
-//        Date da = c.getTime();
-//        String fors = simple.format(da);
-//        // FORMAT DATE END
-////        etTanggalInputGudang.setText(fors);
-
-
-//    @Override
-//    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//        Calendar c = Calendar.getInstance();
-//        c.set(year, month, dayOfMonth);
-//        DateFormat format = new SimpleDateFormat("dd MMM yyyy");
-//
-//        etTanggalInputGudang.setText(format.format(c.getTime()));
-//
-//        tglInput = c.getTimeInMillis();
-//
-//        Calendar s = Calendar.getInstance();
-//        s.setTimeInMillis(tglInput);
-//
-////        Log.v("testinsert", String.valueOf(s.getTimeInMillis()));
-////        Log.v("testinsert", String.valueOf(s.get(Calendar.MONTH)));
-//
-//
     }
 
     private void save() {

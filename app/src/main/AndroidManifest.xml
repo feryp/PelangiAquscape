@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".AkunTokoActivity"></activity>
+        <activity android:name=".DetailProsesPembelianActivity"></activity>
+        <activity android:name=".AkunTokoActivity" />
         <activity android:name=".KartuPelangganActivity" />
         <activity android:name=".ListMerekActivity" />
         <activity android:name=".PenerimaanActivity" />
@@ -48,7 +49,7 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".TambahBarangActivity" />
         <activity android:name=".BarangActivity" />
-        <activity android:name=".FormPembelianActivity" />
+        <activity android:name=".TambahPembelianActivity" />
         <activity android:name=".PembelianActivity" />
         <activity android:name=".TambahPemasokActivity" />
         <activity android:name=".TambahPelangganActivity" />

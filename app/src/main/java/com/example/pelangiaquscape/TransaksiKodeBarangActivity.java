@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.example.pelangiaquscape.Database.ItemKeranjangContract.ItemKeranjangEntry;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
+import com.example.pelangiaquscape.Database.ItemPembelianContract;
+import com.example.pelangiaquscape.Database.ItemPembelianDbHelper;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.Merek;
@@ -54,19 +56,33 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
     SearchView searchView;
     Button btnJual;
 
+    boolean fromTambahBarang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi_kode_barang);
+         fromTambahBarang = false;
+        try{
+            fromTambahBarang = getIntent().getExtras().getBoolean("fromTambahPembelian");
 
+        }catch (NullPointerException ex){
+
+        }
+
+        System.out.println("FROM TAMBAH BARANG " +fromTambahBarang);
         cancel =  findViewById(R.id.im_cancel);
         btnJual = findViewById(R.id.btn_jual);
         btnJual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TransaksiKodeBarangActivity.this, KeranjangPenjualanActivity.class);
-                startActivity(i);
+                if(!fromTambahBarang){
+                    Intent i = new Intent(TransaksiKodeBarangActivity.this, KeranjangPenjualanActivity.class);
+                    startActivity(i);
+                }else{
 
+
+                }
             }
         });
 
@@ -163,8 +179,17 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
-                        ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
-                        hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
+
+
+
+                        if(!fromTambahBarang){
+                            ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
+                            hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
+                        }else{
+                            ItemPembelianDbHelper hp = new ItemPembelianDbHelper(getBaseContext());
+                            hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
+                        }
+
 
                     }
                 });
@@ -226,9 +251,6 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     }
 
                 };
-
-
-
             }
 
             @Override

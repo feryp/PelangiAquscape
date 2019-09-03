@@ -1,8 +1,6 @@
 package com.example.pelangiaquscape.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,9 +12,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.pelangiaquscape.FormPembelianActivity;
+import com.example.pelangiaquscape.TambahPembelianActivity;
 import com.example.pelangiaquscape.R;
-import com.example.pelangiaquscape.TambahPelangganActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -48,7 +45,7 @@ public class ProsesPembelianFragment extends Fragment {
 
         //init firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("ProsesPembelian");
+        databaseReference = firebaseDatabase.getReference("Pembelian");
 
         //load data pembelian
         rvProsesPembelian = v.findViewById(R.id.rv_proses_pembelian);
@@ -60,7 +57,7 @@ public class ProsesPembelianFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity().getApplicationContext(), "Tambah List Pembelian",Toast.LENGTH_LONG).show();
-                Intent fab_pembelian = new Intent(getActivity(), FormPembelianActivity.class);
+                Intent fab_pembelian = new Intent(getActivity(), TambahPembelianActivity.class);
                 startActivity(fab_pembelian);
             }
         });

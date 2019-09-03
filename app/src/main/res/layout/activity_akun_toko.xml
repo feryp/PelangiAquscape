@@ -106,31 +106,12 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/container_search_bantuan"
-                android:elevation="6dp"
-                android:padding="15dp">
-
-                <TextView
-                    android:id="@+id/tv_detail_toko"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Profile Toko"
-                    android:textColor="#636262"
-                    android:textSize="12sp" />
-
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/no_telepon_toko"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_detail_toko"
+                    android:layout_below="@+id/nama_toko"
                     android:layout_marginTop="15dp"
                     android:gravity="center"
                     app:boxStrokeColor="@color/colorAccent">
@@ -140,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="No. Telepon"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -182,7 +163,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Kode Pos"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
 
@@ -190,62 +171,62 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/container_search_bantuan"
-                android:elevation="6dp"
-                android:padding="15dp">
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:background="@drawable/container_search_bantuan"-->
+            <!--android:elevation="6dp"-->
+            <!--android:padding="15dp">-->
 
-                <TextView
-                    android:id="@+id/tv_lokasi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Lokasi"
-                    android:textColor="#636262"
-                    android:textSize="12sp" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv_lokasi"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fontFamily="@font/roboto_bold"-->
+            <!--android:text="Lokasi"-->
+            <!--android:textColor="#636262"-->
+            <!--android:textSize="12sp" />-->
 
-                <ImageView
-                    android:id="@+id/im_lokasi"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/tv_lokasi"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/border_icon_lokasi" />
+            <!--<ImageView-->
+            <!--android:id="@+id/im_lokasi"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_below="@+id/tv_lokasi"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:background="@drawable/border_icon_lokasi" />-->
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/pilih_lokasi"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_lokasi"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_toRightOf="@+id/im_lokasi"
-                    android:gravity="center"
-                    app:boxStrokeColor="@color/colorAccent">
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/pilih_lokasi"-->
+            <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+            <!--android:layout_width="290dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/tv_lokasi"-->
+            <!--android:layout_marginLeft="16dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_toRightOf="@+id/im_lokasi"-->
+            <!--android:gravity="center"-->
+            <!--app:boxStrokeColor="@color/colorAccent">-->
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_pilih_lokasi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Pilih Lokasi"
-                        android:inputType="text"
-                        android:textColor="@color/colorBlack"
-                        android:textColorHint="@color/colorBlack" />
+            <!--<android.support.design.widget.TextInputEditText-->
+            <!--android:id="@+id/et_pilih_lokasi"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Pilih Lokasi"-->
+            <!--android:inputType="text"-->
+            <!--android:textColor="@color/colorBlack"-->
+            <!--android:textColorHint="@color/colorBlack" />-->
 
-                </android.support.design.widget.TextInputLayout>
+            <!--</android.support.design.widget.TextInputLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/im_lokasi"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/keterangan_lokasi" />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/im_lokasi"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:text="@string/keterangan_lokasi" />-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
         </LinearLayout>
 

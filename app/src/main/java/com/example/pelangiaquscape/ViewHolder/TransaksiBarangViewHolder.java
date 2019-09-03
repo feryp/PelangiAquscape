@@ -47,7 +47,7 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
         min = itemView.findViewById(R.id.btn_minus);
         max = itemView.findViewById(R.id.btn_plus);
         tvQuantity.setText("0");
-        itemView.setOnClickListener(this);
+//        itemView.setOnClickListener(this);
         min.setOnClickListener(this);
         max.setOnClickListener(this);
 

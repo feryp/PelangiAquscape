@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FormPembelianActivity">
+    tools:context=".TambahPembelianActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar"
@@ -59,7 +59,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -211,7 +211,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/container_search_bantuan"
                 android:elevation="6dp"
@@ -222,64 +222,92 @@
                     android:id="@+id/tv_barang_pesanan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_bold"
                     android:text="Barang Pesanan"
                     android:textColor="#636262"
                     android:textSize="12sp" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/nama_barang"
-                        android:layout_width="wrap_content"
+
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="No"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="Nama Barang"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/jumlah_barang"
-                        android:layout_width="wrap_content"
+
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="Jumlah Barang"
+                        android:text="Qty"
+                        android:textAlignment="center"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/total_harga"
-                        android:layout_width="wrap_content"
+
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="Total Harga"
+                        android:textAlignment="center"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_form_barang_pesanan"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/nama_barang"
-                        android:layout_marginTop="10dp"
-                        android:scrollbars="vertical">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical" />
 
-                    </android.support.v7.widget.RecyclerView>
 
-                </RelativeLayout>
+                </LinearLayout>
 
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_form_barang_pesanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nama_barang"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="2"
+                    android:scrollbars="vertical" />
 
                 <Button
                     android:id="@+id/btn_tambah_barang"
                     android:layout_width="157dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/button_blue"
                     android:fontFamily="@font/roboto_bold"
                     android:text="Tambah Barang"

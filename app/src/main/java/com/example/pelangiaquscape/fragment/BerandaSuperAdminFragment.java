@@ -33,23 +33,19 @@ import com.google.firebase.database.ValueEventListener;
 
 public class BerandaSuperAdminFragment extends Fragment {
 
-    TextView tvNamaPengguna;
+    TextView tvNamaToko;
 
-    FirebaseUser firebaseUser;
-    FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    String namaPenggunaSuper;
+    String namaToko;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid());
+        databaseReference = firebaseDatabase.getReference("AkunToko").child("1");
 
 
     }
@@ -63,7 +59,7 @@ public class BerandaSuperAdminFragment extends Fragment {
 
         LinearLayout containerLaporan = v.findViewById(R.id.container_laporan);
 
-        tvNamaPengguna = v.findViewById(R.id.nama_pengguna_superadmin);
+        tvNamaToko = v.findViewById(R.id.nama_profile_toko);
 
         CardView cardViewPegawai = v.findViewById(R.id.cv_pegawai);
         CardView cardViewMitra = v.findViewById(R.id.cv_mitra);
@@ -149,10 +145,10 @@ public class BerandaSuperAdminFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                namaPenggunaSuper = "" + dataSnapshot.child("namapengguna").getValue();
+                namaToko = "" + dataSnapshot.child("namaToko").getValue(String.class);
 
                 //set data
-                tvNamaPengguna.setText(namaPenggunaSuper);
+                tvNamaToko.setText(namaToko);
             }
 
             @Override

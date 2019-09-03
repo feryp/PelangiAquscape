@@ -2,21 +2,23 @@ package com.example.pelangiaquscape.Model;
 
 import java.util.List;
 
-public class ProsesPembelian {
+public class Pembelian {
     private String noPesanan;
     private long tanggalPesanan;
     private String namaPemasok;
     private String metodePembayaran;
     private List<Barang> listBarang;
+    private boolean proses;
 
-    public ProsesPembelian(){}
+    public Pembelian(){}
 
-    public ProsesPembelian(String noPesanan, long tanggalPesanan, String namaPemasok, String metodePembayaran, List<Barang> listBarang) {
+    public Pembelian(String noPesanan, long tanggalPesanan, String namaPemasok, String metodePembayaran, List<Barang> listBarang, boolean proses) {
         this.noPesanan = noPesanan;
         this.tanggalPesanan = tanggalPesanan;
         this.namaPemasok = namaPemasok;
         this.metodePembayaran = metodePembayaran;
         this.listBarang = listBarang;
+        this.proses = proses;
     }
 
     public String getNoPesanan() {
@@ -57,5 +59,13 @@ public class ProsesPembelian {
 
     public void setListBarang(List<Barang> listBarang) {
         this.listBarang = listBarang;
+    }
+
+    public boolean isProses() {
+        return proses;
+    }
+
+    public void setProses(boolean proses) {
+        this.proses = proses;
     }
 }

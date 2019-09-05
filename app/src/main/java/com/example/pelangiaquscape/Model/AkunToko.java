@@ -4,14 +4,16 @@ public class AkunToko {
 
     private String namaToko;
     private String noTelepon;
+    private String emailToko;
     private String alamat;
     private String kodePos;
 
     public AkunToko(){}
 
-    public AkunToko(String namaToko, String noTelepon, String alamat, String kodePos) {
+    public AkunToko(String namaToko, String noTelepon, String emailToko, String alamat, String kodePos) {
         this.namaToko = namaToko;
         this.noTelepon = noTelepon;
+        this.emailToko = emailToko;
         this.alamat = alamat;
         this.kodePos = kodePos;
     }
@@ -31,6 +33,10 @@ public class AkunToko {
     public void setNoTelepon(String noTelepon) {
         this.noTelepon = noTelepon;
     }
+
+    public String getEmailToko(){return  emailToko;}
+
+    public void setEmailToko(String emailToko){this.emailToko = emailToko;}
 
     public String getAlamat() {
         return alamat;

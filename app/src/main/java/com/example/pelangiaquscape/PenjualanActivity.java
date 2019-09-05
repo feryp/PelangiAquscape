@@ -78,21 +78,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         query = FirebaseDatabase.getInstance().getReference().child("Penjualan").orderByChild("tanggalPenjualan");
         Log.v("query", query.toString());
 
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot ds:dataSnapshot.getChildren()){
-//                    Penjualan penjualan = ds.getValue(Penjualan.class);
-//                    Log.v("penjualanModel", penjualan.getNoPenjualan());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
         FirebaseRecyclerOptions<Penjualan> options =
                 new FirebaseRecyclerOptions.Builder<Penjualan>().setQuery(query, Penjualan.class).build();
 
@@ -147,4 +132,18 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         adapter.stopListening();
     }
 
+    //        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot ds:dataSnapshot.getChildren()){
+//                    Penjualan penjualan = ds.getValue(Penjualan.class);
+//                    Log.v("penjualanModel", penjualan.getNoPenjualan());
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 }

@@ -18,7 +18,8 @@ import java.net.Inet4Address;
 
 
 public class LapBulananFragment extends Fragment {
-
+    RelativeLayout TotalPenjualan, TotalKeuntungan;
+    Spinner spinner;
 
 
     @Override
@@ -27,15 +28,16 @@ public class LapBulananFragment extends Fragment {
 
         View v  = inflater.inflate(R.layout.fragment_lap_bulanan, container, false);
 
-        RelativeLayout TotalPenjualan = v.findViewById(R.id.container_total_penjualan);
-        RelativeLayout TotalKeuntungan = v.findViewById(R.id.container_total_keuntungan);
+        TotalPenjualan = v.findViewById(R.id.container_total_penjualan);
+        TotalKeuntungan = v.findViewById(R.id.container_total_keuntungan);
 
-        Spinner spinner = v.findViewById(R.id.spinner_bulan);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bulan_arrays,
+        spinner = v.findViewById(R.id.spinner_bulan);
+
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.bulan_arrays,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinner.setAdapter(adapter);
-
 
         TotalPenjualan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +47,6 @@ public class LapBulananFragment extends Fragment {
             }
         });
 
-
         TotalKeuntungan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,8 +54,6 @@ public class LapBulananFragment extends Fragment {
                 startActivity(TotalKeuntungan);
             }
         });
-
-
 
         // Inflate the layout for this fragment
         return v;

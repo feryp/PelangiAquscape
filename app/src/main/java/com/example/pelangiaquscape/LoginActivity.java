@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_katasandi)) {
                     Toast.makeText(LoginActivity.this, "Semua harus diisi!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.v("HERE0", "VALUE EVENT LISTENER");
+                    Log.v("HERE", "VALUE EVENT LISTENER");
                     firebaseAuth.signInWithEmailAndPassword(str_namapengguna, str_katasandi)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override

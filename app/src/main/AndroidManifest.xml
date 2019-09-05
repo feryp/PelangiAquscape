@@ -19,11 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".DetailProsesPembelianActivity"></activity>
+        <activity android:name=".PenerimaanActivity"></activity>
+        <activity android:name=".DetailProsesPembelianActivity" />
         <activity android:name=".AkunTokoActivity" />
         <activity android:name=".KartuPelangganActivity" />
         <activity android:name=".ListMerekActivity" />
-        <activity android:name=".PenerimaanActivity" />
+        <activity android:name=".UploadPenerimaanActivity" />
         <activity android:name=".TambahPenyimpananActivity" />
         <activity android:name=".PenyimpananActivity" />
 

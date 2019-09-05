@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorPrimary"
-    tools:context=".PenerimaanActivity">
+    tools:context=".UploadPenerimaanActivity">
 
     <LinearLayout
         android:id="@+id/container_list_upload"
@@ -66,54 +65,90 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/roboto_bold"
-            android:paddingLeft="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="Riwayat Pembelian"
-            android:textColor="@color/colorBlack"
-            android:textSize="20sp" />
+            android:fontFamily="@font/roboto_regular"
+            android:text="Anda perlu menggunggah"
+            android:textColor="@color/colorBlue"
+            android:textSize="18sp" />
 
-        <RelativeLayout
-            android:id="@+id/container_ilustrasi"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Faktur Penerimaan"
+            android:textColor="@color/colorBlue"
+            android:textSize="30sp" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_penerimaan"
+                android:id="@+id/rv_upload_penerimaan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
+    </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/iv_ilustrasi_penerimaankosong"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tidak_ada_penjualan" />
+    <LinearLayout
+        android:id="@+id/gunakan_kamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pilih_dari_galeri"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/border_box_blue"
+        android:orientation="horizontal"
+        android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/tv_penerimaan_kosong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Belum ada list pembelian"
-                    android:textSize="12sp" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_camera" />
 
-            </LinearLayout>
-
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Gunakan Kamera"
+            android:textColor="@color/colorBlue"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/pilih_dari_galeri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/border_box_blue"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_picture" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Pilih dari galeri"
+            android:textColor="@color/colorBlue"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

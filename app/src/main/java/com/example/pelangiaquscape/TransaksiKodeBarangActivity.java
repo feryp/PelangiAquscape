@@ -225,11 +225,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
 
                         holder.bindDataTransaksi(model, namaMerek);
-
-
                         Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
-
-
                         holder.setItemClickListener(new ItemClickListener() {
                             @Override
                             public void onClick(View view, int position, boolean isLongClick) {

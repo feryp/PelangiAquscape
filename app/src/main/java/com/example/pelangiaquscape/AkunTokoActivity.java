@@ -20,14 +20,13 @@ public class AkunTokoActivity extends AppCompatActivity implements View.OnClickL
 
     ImageView cancel, save;
 
-    TextInputEditText etNamaToko, etNoTelepon, etAlamat, etKodePos;
+    TextInputEditText etNamaToko, etNoTelepon, etEmailToko, etAlamat, etKodePos;
     FirebaseRecyclerAdapter adapter;
     FirebaseDatabase databaseAkunToko;
     DatabaseReference databaseReference;
     AkunToko akunToko;
     String id;
 
-    int idAkunToko;
     String DEBUG_TAG = "TESTMOTION";
 
     @Override
@@ -40,6 +39,7 @@ public class AkunTokoActivity extends AppCompatActivity implements View.OnClickL
         save = findViewById(R.id.im_save);
         etNamaToko = findViewById(R.id.et_nama_toko);
         etNoTelepon = findViewById(R.id.et_no_telepon_toko);
+        etEmailToko = findViewById(R.id.et_email_toko);
         etAlamat = findViewById(R.id.et_alamat_toko);
         etKodePos = findViewById(R.id.et_kode_pos);
 
@@ -55,11 +55,12 @@ public class AkunTokoActivity extends AppCompatActivity implements View.OnClickL
                 AkunToko akunToko = dataSnapshot.getValue(AkunToko.class);
                 String namaToko = akunToko.getNamaToko();
                 String noTelepon = akunToko.getNoTelepon();
+                String emailToko = akunToko.getEmailToko();
                 String alamatToko = akunToko.getAlamat();
                 String kodePos = akunToko.getKodePos();
 
                 //set data
-                bind(namaToko, noTelepon, alamatToko, kodePos);
+                bind(namaToko, noTelepon, emailToko, alamatToko, kodePos);
 
             }
 
@@ -74,6 +75,7 @@ public class AkunTokoActivity extends AppCompatActivity implements View.OnClickL
             System.out.println("ID in akun toko act " + id);
             bind(getIntent().getExtras().getString("namaToko"),
                     getIntent().getExtras().getString("noTelepon"),
+                    getIntent().getExtras().getString("emailToko"),
                     getIntent().getExtras().getString("alamatToko"),
                     getIntent().getExtras().getString("kodePos"));
         } catch (NullPointerException ex) {
@@ -89,13 +91,15 @@ public class AkunTokoActivity extends AppCompatActivity implements View.OnClickL
     private void getValues() {
         akunToko.setNamaToko(etNamaToko.getText().toString());
         akunToko.setNoTelepon(etNoTelepon.getText().toString());
+        akunToko.setEmailToko(etEmailToko.getText().toString());
         akunToko.setAlamat(etAlamat.getText().toString());
         akunToko.setKodePos(etKodePos.getText().toString());
     }
 
-    private void bind(String namaToko, String noTelepon, String alamatToko, String kodePos) {
+    private void bind(String namaToko, String noTelepon, String emailToko, String alamatToko, String kodePos) {
         etNamaToko.setText(namaToko);
         etNoTelepon.setText(noTelepon);
+        etEmailToko.setText(emailToko);
         etAlamat.setText(alamatToko);
         etKodePos.setText(kodePos);
     }

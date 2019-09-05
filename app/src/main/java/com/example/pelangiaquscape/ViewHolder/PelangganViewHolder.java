@@ -3,6 +3,7 @@ package com.example.pelangiaquscape.ViewHolder;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
@@ -16,9 +17,12 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
     public TextView tv_nama_pelanggan;
     public TextView tv_noHp_pelanggan;
     public TextView tv_alamat_pelanggan;
+    public Button btnKartuPelanggan;
 
     private Pelanggan pelanggan;
     private ItemClickListener itemClickListener;
+
+    private View.OnClickListener onClickListener;
 
     private View.OnLongClickListener longClickListener;
 
@@ -28,8 +32,10 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
         tv_nama_pelanggan = itemView.findViewById(R.id.tv_nama_pelanggan);
         tv_noHp_pelanggan = itemView.findViewById(R.id.tv_nohp_pelanggan);
         tv_alamat_pelanggan = itemView.findViewById(R.id.tv_alamat_pelanggan);
+        btnKartuPelanggan = itemView.findViewById(R.id.btn_kartu_pelanggan);
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
+        itemView.setOnClickListener(this);
     }
 
     public void bindData(Pelanggan pelanggan) {
@@ -53,6 +59,11 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
     public void setOnLongClickListener(View.OnLongClickListener longClickListener){
         this.longClickListener = longClickListener;
     }
+
+    public void setOnClickListener(View.OnClickListener onClickListener){
+        this.onClickListener = onClickListener;
+    }
+
 
 
     @Override

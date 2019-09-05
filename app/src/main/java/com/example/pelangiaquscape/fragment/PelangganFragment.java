@@ -16,11 +16,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
+import com.example.pelangiaquscape.KartuPelangganActivity;
 import com.example.pelangiaquscape.Model.Pelanggan;
 import com.example.pelangiaquscape.PegawaiActivity;
 import com.example.pelangiaquscape.R;
@@ -49,6 +51,7 @@ public class PelangganFragment extends Fragment {
     FirebaseRecyclerAdapter adapter;
     RecyclerView rvPelanggan;
     RecyclerView.LayoutManager layoutManager;
+    Button btnKartuPelanggan;
 
     Query query;
 
@@ -65,6 +68,7 @@ public class PelangganFragment extends Fragment {
 
         fab_pelanggan = v.findViewById(R.id.fab_pelanggan);
         imageLayout = v.findViewById(R.id.linear_imageviewPelanggan);
+        btnKartuPelanggan = v.findViewById(R.id.btn_kartu_pelanggan);
 
         //init firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -138,6 +142,8 @@ public class PelangganFragment extends Fragment {
                         return false;
                     }
                 });
+
+
             }
 
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,10 +19,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="@drawable/gradient_header_bantuan"
-                android:paddingTop="30dp"
-                android:padding="30dp">
+                android:orientation="vertical"
+                android:padding="30dp"
+                android:paddingTop="30dp">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -38,9 +37,9 @@
                             android:id="@+id/im_cancel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_cancel_white"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerInParent="true"
-                            android:layout_alignParentEnd="true"/>
+                            android:src="@drawable/ic_cancel_white" />
 
                     </RelativeLayout>
 
@@ -55,10 +54,10 @@
                         android:id="@+id/Hallo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hallo"
-                        android:textSize="36sp"
                         android:fontFamily="@font/roboto_regular"
-                        android:textColor="@color/colorPrimary" />
+                        android:text="Hallo"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="36sp" />
 
                     <ImageView
                         android:layout_width="30dp"
@@ -71,17 +70,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/header_bantuan"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorPrimary" />
+                    android:text="@string/header_bantuan"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/header_bantuan2"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorPrimary" />
+                    android:text="@string/header_bantuan2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -111,53 +111,66 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="20dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:id="@+id/container_carijawaban"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="20dp"
                         android:background="@drawable/container_search_bantuan"
-                        android:elevation="6dp">
+                        android:elevation="6dp"
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
                             android:text="Cari jawaban dengan cepat"
-                            android:textSize="16sp"
                             android:textColor="@color/colorBlack"
-                            android:fontFamily="@font/roboto_regular"/>
+                            android:textSize="16sp" />
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="15dp"
-                            android:layout_marginTop="20dp">
+                            android:layout_marginTop="20dp"
+                            android:padding="15dp">
 
-                            <EditText
-                                android:id="@+id/search_field_bantuan"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4">
+
+                                <EditText
+                                    android:id="@+id/search_field_bantuan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/border_box_grey2"
+                                    android:ems="10"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:hint="Mencari Jawaban..."
+                                    android:inputType="textPersonName"
+                                    android:padding="15dp"
+                                    android:textColor="#636262"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:fontFamily="@font/roboto_bold"
-                                android:background="@drawable/border_box_grey2"
-                                android:ems="10"
-                                android:padding="15dp"
-                                android:inputType="textPersonName"
-                                android:hint="Mencari Jawaban..."
-                                android:textColor="#636262"
-                                android:textSize="16sp"/>
+                                android:layout_weight="1">
 
-                            <ImageButton
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_toEndOf="@+id/search_field_bantuan"
-                                android:background="@color/colorBlue"
-                                android:src="@drawable/ic_arrow_search"/>
+                                <ImageButton
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/colorBlue"
+                                    android:src="@drawable/ic_arrow_search" />
+                            </LinearLayout>
 
-                        </RelativeLayout>
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
@@ -173,47 +186,48 @@
                 android:rowCount="3">
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cv_cara_pembelian_barang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     app:cardCornerRadius="5dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardPreventCornerOverlap="false">
 
                     <RelativeLayout
-                        android:id="@+id/container_cara_kelola_barang"
+                        android:id="@+id/container_cara_pembelian"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:background="@drawable/container_search_bantuan"
+                        android:orientation="vertical"
                         android:padding="30dp">
 
-                            <ImageView
-                                android:id="@+id/icon_question"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_question"/>
+                        <ImageView
+                            android:id="@+id/icon_question"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_question" />
 
-                            <TextView
-                                android:id="@+id/tv_cara_kelola_barang"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cari Kelola Barang"
-                               android:layout_marginStart="70dp"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorBlue"
-                                android:fontFamily="@font/roboto_regular"/>
+                        <TextView
+                            android:id="@+id/tv_cara_kelola_barang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="70dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="Cari Pembelian Barang"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="16sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/cara_kelola_barang"
-                                android:layout_marginStart="70dp"
-                                android:layout_below="@+id/tv_cara_kelola_barang"
-                                android:textSize="12sp"
-                                android:textColor="@color/colorBlack"
-                                android:fontFamily="@font/roboto_regular"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_cara_kelola_barang"
+                            android:layout_marginStart="70dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/cara_pembelian_barang"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -224,15 +238,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     app:cardCornerRadius="5dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardPreventCornerOverlap="false">
 
                     <RelativeLayout
                         android:id="@+id/container_cara_transaksi_penjualan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:background="@drawable/container_search_bantuan"
+                        android:orientation="vertical"
                         android:padding="30dp">
 
                         <ImageView
@@ -240,27 +254,27 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/ic_question"/>
+                            android:src="@drawable/ic_question" />
 
                         <TextView
                             android:id="@+id/tv_cara_transaksi_penjualan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cari Transaksi Penjualan"
                             android:layout_marginStart="70dp"
-                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="Cari Transaksi Penjualan"
                             android:textColor="@color/colorBlue"
-                            android:fontFamily="@font/roboto_regular"/>
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/cara_transaksi_penjualan"
-                            android:layout_marginStart="70dp"
                             android:layout_below="@+id/tv_cara_transaksi_penjualan"
-                            android:textSize="12sp"
+                            android:layout_marginStart="70dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/cara_transaksi_penjualan"
                             android:textColor="@color/colorBlack"
-                            android:fontFamily="@font/roboto_regular"/>
+                            android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -271,15 +285,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     app:cardCornerRadius="5dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardPreventCornerOverlap="false">
 
                     <RelativeLayout
-                        android:id="@+id/container_ringkasan_penjualan"
+                        android:id="@+id/container_penyimpanan_barang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:background="@drawable/container_search_bantuan"
+                        android:orientation="vertical"
                         android:padding="30dp">
 
                         <ImageView
@@ -287,27 +301,27 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/ic_question"/>
+                            android:src="@drawable/ic_question" />
 
                         <TextView
                             android:id="@+id/tv_ringkasan_penjualan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ringkasan Penjualan"
                             android:layout_marginStart="70dp"
-                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="Cara Penyimpanan Barang"
                             android:textColor="@color/colorBlue"
-                            android:fontFamily="@font/roboto_regular"/>
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/cara_ringkasan_penjualan"
-                            android:layout_marginStart="70dp"
                             android:layout_below="@+id/tv_ringkasan_penjualan"
-                            android:textSize="12sp"
+                            android:layout_marginStart="70dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/cara_penyimpanan_barang"
                             android:textColor="@color/colorBlack"
-                            android:fontFamily="@font/roboto_regular"/>
+                            android:textSize="12sp" />
 
                     </RelativeLayout>
 

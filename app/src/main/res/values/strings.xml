@@ -13,9 +13,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="header_bantuan">Ada yang kurang jelas?</string>
     <string name="header_bantuan2">Aquascape akan siap membantu</string>
-    <string name="cara_kelola_barang">Bagaimana cara mengelola barang di Aplikasi Aquascape ?</string>
+    <string name="cara_pembelian_barang">Bagaimana cara membeli barang di Aplikasi Aquascape ?</string>
     <string name="cara_transaksi_penjualan">Bagaimana cara melakukan transaksi pada Aplikasi Aquascape ?</string>
-    <string name="cara_ringkasan_penjualan">Bagaimana cara untuk melihat laporan keuntungan pada Aplikasi Aquascape ?</string>
+    <string name="cara_penyimpanan_barang">Bagaimana cara untuk menyimpan barang dalam gudang pada Aplikasi Aquascape ?</string>
 
 
     <string name="bulan_prompt">Pilih Bulan</string>
@@ -108,5 +108,17 @@
         <item>Kg</item>
         <item>Gr</item>
     </string-array>
+
+    <string name="judul_pemberitahuan">Stok Barang</string>
+
+    <!--Pusat Bantuan cara pembelian -->
+    <string name="pusat_bantuan_pembelian_barang">Kamu dapat melakukan pembelian barang pada menu Pembelian, berikut caranya :</string>
+    <string name="step1_pembelian">1. Pilih Menu Pembelian, jika belum ada list pembelian maka dapat menekan tombol tambah.</string>
+    <string name="step2_pembelian">2. Isi Form Pembelian barang yang akan dibeli.</string>
+    <string name="step3_pembelian">3. Tambah Barang yang akan dibeli ke pemasok, dengan menekan tombol Tambah Barang.</string>
+    <string name="step4_pembelian">4. Setelah Form Pembelian sudah diisi, tekan tombol save yang ada di pojok kanan atas.</string>
+    <string name="step5_pembelian">5. List pembelian barang akan masuk ke dalam list Proses Pembelian, untuk konfirmasi pemesanan jika barang sudah sampai di toko dengan menekan list pembelian barang tersebut.</string>
+    <string name="step6_pembelian">6. Dalam Detail Pembelian pengguna dapat melihat faktur pembelian.</string>
+    <string name="step7_pembelian">7. Jika barang pembelian sudah sampai tujuan, setelah dikonfirmasi list pembelian masuk kedalam Pembelian Selesai. </string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
+import com.example.pelangiaquscape.Model.KartuPelanggan;
 import com.example.pelangiaquscape.Model.Pelanggan;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.ViewHolder.PelangganViewHolder;
@@ -36,6 +37,17 @@ public class PelangganAdapter extends RecyclerView.Adapter<PelangganViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull PelangganViewHolder pelangganViewHolder, int i) {
         pelangganViewHolder.bindData(pelanggan.get(i));
+        KartuPelanggan kartuPelanggan = pelanggan.get(i);
+
+
+        pelangganViewHolder.tv_nama_pelanggan.setText(kartuPelanggan.getNamaPelanggan());
+        pelangganViewHolder.tv_noHp_pelanggan.setText(kartuPelanggan.getNoHpPelanggan());
+        pelangganViewHolder.tv_alamat_pelanggan.setText(kartuPelanggan.getAlamatPelanggan());
+//        pelangganViewHolder.tv_nama_toko.setText(kartuPelanggan.getNamaToko());
+//        pelangganViewHolder.tv_noTelepon_toko.setText(kartuPelanggan.getNoHpToko());
+//        pelangganViewHolder.tv_email_toko.setText(kartuPelanggan.getEmailToko());
+//        pelangganViewHolder.tv_alamat_toko.setText(kartuPelanggan.getAlamatToko());
+//
     }
 
     @Override

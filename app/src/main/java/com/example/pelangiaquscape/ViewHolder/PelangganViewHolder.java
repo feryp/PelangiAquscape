@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.ViewHolder;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
+import com.example.pelangiaquscape.KartuPelangganActivity;
+import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.Pelanggan;
 import com.example.pelangiaquscape.R;
 
@@ -33,9 +36,10 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
         tv_noHp_pelanggan = itemView.findViewById(R.id.tv_nohp_pelanggan);
         tv_alamat_pelanggan = itemView.findViewById(R.id.tv_alamat_pelanggan);
         btnKartuPelanggan = itemView.findViewById(R.id.btn_kartu_pelanggan);
+
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
-        itemView.setOnClickListener(this);
+        btnKartuPelanggan.setOnClickListener(this);
     }
 
     public void bindData(Pelanggan pelanggan) {
@@ -50,20 +54,28 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
     @Override
     public void onClick(View v) {
         itemClickListener.onClick(v, getAdapterPosition(), false);
+
+        switch (v.getId()) {
+            case R.id.btn_kartu_pelanggan:
+                Intent intent = new Intent(itemView.getContext(), KartuPelangganActivity.class);
+                itemView.getContext().startActivity(intent);
+                break;
+        }
+
+
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
-    public void setOnLongClickListener(View.OnLongClickListener longClickListener){
+    public void setOnLongClickListener(View.OnLongClickListener longClickListener) {
         this.longClickListener = longClickListener;
     }
 
-    public void setOnClickListener(View.OnClickListener onClickListener){
+    public void setOnClickListener(View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
-
 
 
     @Override

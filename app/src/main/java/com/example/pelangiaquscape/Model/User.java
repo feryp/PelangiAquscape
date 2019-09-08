@@ -14,6 +14,7 @@ public class User {
     private String bio;
 
 
+    public User(){}
 
     public User(String id, String username, String telepon, String email, String password, String ulangiPassword, String kodeLogin, String statusJabatan, String fotoProfile, String bio) {
         this.id = id;

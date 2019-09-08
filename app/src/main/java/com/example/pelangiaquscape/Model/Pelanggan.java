@@ -1,6 +1,6 @@
 package com.example.pelangiaquscape.Model;
 
-public class Pelanggan {
+public class Pelanggan extends KartuPelanggan {
 
 
     private String namaPelanggan;

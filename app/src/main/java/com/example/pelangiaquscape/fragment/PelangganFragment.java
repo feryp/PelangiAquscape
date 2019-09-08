@@ -51,7 +51,6 @@ public class PelangganFragment extends Fragment {
     FirebaseRecyclerAdapter adapter;
     RecyclerView rvPelanggan;
     RecyclerView.LayoutManager layoutManager;
-    Button btnKartuPelanggan;
 
     Query query;
 
@@ -68,7 +67,6 @@ public class PelangganFragment extends Fragment {
 
         fab_pelanggan = v.findViewById(R.id.fab_pelanggan);
         imageLayout = v.findViewById(R.id.linear_imageviewPelanggan);
-        btnKartuPelanggan = v.findViewById(R.id.btn_kartu_pelanggan);
 
         //init firebase
         firebaseDatabase = FirebaseDatabase.getInstance();

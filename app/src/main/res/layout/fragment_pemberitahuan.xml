@@ -43,23 +43,39 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
 
-        <ImageView
-            android:id="@+id/iv_ilustrasi_InboxKosong"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/inboxempty"
-            android:layout_centerInParent="true" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_pemberitahuan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
 
-        <TextView
-            android:id="@+id/tv_pemberitahuan_kosong"
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pemberitahuan Kosong"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_below="@+id/iv_ilustrasi_InboxKosong"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"/>
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/iv_ilustrasi_InboxKosong"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/inboxempty" />
+
+            <TextView
+                android:id="@+id/tv_pemberitahuan_kosong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pemberitahuan Kosong"
+                android:layout_gravity="center"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+
 
     </RelativeLayout>
 

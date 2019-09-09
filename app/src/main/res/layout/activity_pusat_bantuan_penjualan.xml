@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context=".PusatBantuanPenjualanActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            android:background="@drawable/border_grey_effect">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/im_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pusat Bantuan"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_medium"/>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlueSoft"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transaksi Penjualan"
+                android:textSize="30sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/roboto_regular" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bagaimana cara transaksi penjualan ?"
+                android:textColor="@color/colorDarkGrey"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pusat_bantuan_transaksi_penjualan"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step1_penjualan"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mockup_transaksi_merek"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step2_penjualan"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mockup_transaksi_kode"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step3_penjualan"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mockup_keranjang"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step4_penjualan"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mockup_pembayaran"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step5_penjualan"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mockup_popup_transaksi_berhasil"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step6_penjualan"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mockup_struk_penjualan"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step7_penjualan"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mockup_penjualan"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

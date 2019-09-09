@@ -10,7 +10,7 @@ import android.widget.ImageView;
 public class BantuanActivity extends AppCompatActivity {
 
     ImageView cancel;
-    CardView caraPembelian;
+    CardView caraPembelian, caraPenjualan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +19,21 @@ public class BantuanActivity extends AppCompatActivity {
 
         cancel =  findViewById(R.id.im_cancel);
         caraPembelian = findViewById(R.id.cv_cara_pembelian_barang);
+        caraPenjualan = findViewById(R.id.cv_cara_transaksi_penjualan);
 
         caraPembelian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent caraPembelian = new Intent(BantuanActivity.this, PusatBantuanPembelianActivity.class);
                 startActivity(caraPembelian);
+            }
+        });
+
+        caraPenjualan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent caraPenjualan = new Intent(BantuanActivity.this, PusatBantuanPenjualanActivity.class);
+                startActivity(caraPenjualan);
             }
         });
 

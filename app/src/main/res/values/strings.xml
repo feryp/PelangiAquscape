@@ -15,7 +15,7 @@
     <string name="header_bantuan2">Aquascape akan siap membantu</string>
     <string name="cara_pembelian_barang">Bagaimana cara membeli barang di Aplikasi Aquascape ?</string>
     <string name="cara_transaksi_penjualan">Bagaimana cara melakukan transaksi pada Aplikasi Aquascape ?</string>
-    <string name="cara_penyimpanan_barang">Bagaimana cara untuk menyimpan barang dalam gudang pada Aplikasi Aquascape ?</string>
+    <string name="cara_penyimpanan_barang">Bagaimana cara untuk menyimpan barang pada Aplikasi Aquascape ?</string>
 
 
     <string name="bulan_prompt">Pilih Bulan</string>
@@ -120,5 +120,15 @@
     <string name="step5_pembelian">5. List pembelian barang akan masuk ke dalam list Proses Pembelian, untuk konfirmasi pemesanan jika barang sudah sampai di toko dengan menekan list pembelian barang tersebut.</string>
     <string name="step6_pembelian">6. Dalam Detail Pembelian pengguna dapat melihat faktur pembelian.</string>
     <string name="step7_pembelian">7. Jika barang pembelian sudah sampai tujuan, setelah dikonfirmasi list pembelian masuk kedalam Pembelian Selesai. </string>
+
+    <!--Pusat Bantuan cara penjualan -->
+    <string name="pusat_bantuan_transaksi_penjualan">Kamu dapat melakukan transaksi penjualan pada menu Transaksi, berikut caranya :</string>
+    <string name="step1_penjualan">1. Pilih Menu Transaksi, dalam menu Transaksi pilihlah Merek barang yang ingin dijual.</string>
+    <string name="step2_penjualan">2. Setelah itu masuk ke halaman Kode Barang, lalu pilih kode barang dengan mengisi kuantitas barang yang ingin dijual.</string>
+    <string name="step3_penjualan">3. Setelah memilih barang, maka akan masuk ke list keranjang. Dalam halaman Keranjang tekan tombol Tambah Barang jika ingin menambahkan barang, jika tidak tekan tombol Konfirmasi untuk melakukan proses Pembayaran.</string>
+    <string name="step4_penjualan">4. Dalam halaman Pembayaran pengguna dapat menggunakan Diskon jika barang yang dijual memiliki diskon. Jika tidak pengguna dapat menyelesaikan pembayaran dengan tekan tombol Pilihan Pembayaran, lalu setelah itu pengguna bisa langsung tekan tombol Bayar.</string>
+    <string name="step5_penjualan">5. Setelah bayar maka akan tampil PopUp Transaksi Berhasil.</string>
+    <string name="step6_penjualan">6. Pengguna dapat melihat Struk Transaksi Penjualan. </string>
+    <string name="step7_penjualan">7. Pengguna dapat melihat list hasil transaksi penjualan yang terdapat di menu Penjualan. </string>
 
 </resources>

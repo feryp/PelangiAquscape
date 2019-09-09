@@ -171,7 +171,6 @@
 
                         </LinearLayout>
 
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -194,42 +193,118 @@
                     app:cardElevation="2dp"
                     app:cardPreventCornerOverlap="false">
 
-                    <RelativeLayout
-                        android:id="@+id/container_cara_pembelian"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/container_search_bantuan"
-                        android:orientation="vertical"
-                        android:padding="30dp">
+                        android:orientation="horizontal"
+                        android:padding="16dp">
 
-                        <ImageView
-                            android:id="@+id/icon_question"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_question" />
+                        <LinearLayout
+                            android:id="@+id/container_cara_pembelian"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
 
-                        <TextView
-                            android:id="@+id/tv_cara_kelola_barang"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="70dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="Cari Pembelian Barang"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="16sp" />
+                            <ImageView
+                                android:id="@+id/icon_question"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_question" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_cara_kelola_barang"
-                            android:layout_marginStart="70dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/cara_pembelian_barang"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="12sp" />
+                        </LinearLayout>
 
-                    </RelativeLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_cara_kelola_barang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="Cari Pembelian Barang"
+                                android:textColor="@color/colorBlue"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/cara_pembelian_barang"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_cara_transaksi_penjualan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="2dp"
+                    app:cardPreventCornerOverlap="false">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/container_search_bantuan"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:id="@+id/container_cara_transaksi_penjualan"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/icon_question2"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_question" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_cara_transaksi_penjualan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="Cari Transaksi Penjualan"
+                                android:textColor="@color/colorBlue"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/cara_transaksi_penjualan"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
 
                 </android.support.v7.widget.CardView>
 
@@ -241,89 +316,54 @@
                     app:cardElevation="2dp"
                     app:cardPreventCornerOverlap="false">
 
-                    <RelativeLayout
-                        android:id="@+id/container_cara_transaksi_penjualan"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/container_search_bantuan"
-                        android:orientation="vertical"
-                        android:padding="30dp">
+                        android:orientation="horizontal"
+                        android:padding="16dp">
 
-                        <ImageView
-                            android:id="@+id/icon_question2"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_question" />
+                        <LinearLayout
+                            android:id="@+id/container_penyimpanan_barang"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
 
-                        <TextView
-                            android:id="@+id/tv_cara_transaksi_penjualan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="70dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="Cari Transaksi Penjualan"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="16sp" />
+                            <ImageView
+                                android:id="@+id/icon_question3"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_question" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_cara_transaksi_penjualan"
-                            android:layout_marginStart="70dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/cara_transaksi_penjualan"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="12sp" />
+                        </LinearLayout>
 
-                    </RelativeLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
 
-                </android.support.v7.widget.CardView>
+                            <TextView
+                                android:id="@+id/tv_ringkasan_penjualan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="Cara Penyimpanan Barang"
+                                android:textColor="@color/colorBlue"
+                                android:textSize="16sp" />
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="2dp"
-                    app:cardPreventCornerOverlap="false">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/cara_penyimpanan_barang"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="12sp" />
 
-                    <RelativeLayout
-                        android:id="@+id/container_penyimpanan_barang"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/container_search_bantuan"
-                        android:orientation="vertical"
-                        android:padding="30dp">
+                        </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/icon_question3"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_question" />
-
-                        <TextView
-                            android:id="@+id/tv_ringkasan_penjualan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="70dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="Cara Penyimpanan Barang"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_ringkasan_penjualan"
-                            android:layout_marginStart="70dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/cara_penyimpanan_barang"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="12sp" />
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 

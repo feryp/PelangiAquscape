@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Model.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -55,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText namapengguna, katasandi;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+    FirebaseDatabase firebaseDatabase;
 
     GoogleSignInClient mGoogleSignInClient;
 
@@ -193,6 +195,17 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+//    private void createNewUser(User userFromRegistration){
+//        String username = "namapengguna";
+//        String email = userFromRegistration.getEmail();
+//        String userId = userFromRegistration.getId();
+//
+//        User user = new User(username, email);
+//
+//        firebaseDatabase.getInstance().getReference().child("User").child(userId).setValue(user);
+//
+//    }
 
     @Override
     protected void onStart() {

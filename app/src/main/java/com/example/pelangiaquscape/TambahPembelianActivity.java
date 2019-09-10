@@ -50,7 +50,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_pembelian);
+        setContentView(R.layout.activity_tambah_pembelian);
 
         // GET LIST FROM DATABASE
 

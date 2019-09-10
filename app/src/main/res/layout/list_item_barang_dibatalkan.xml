@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/colorPrimary"
+    android:padding="15dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/im_radio"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/custom_radiobutton" />
+
+        <TextView
+            android:id="@+id/kode_barang_dibatalkan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/im_radio"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Q3"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/merek_barang_dibatalkan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/kode_barang_dibatalkan"
+            android:fontFamily="@font/roboto_regular"
+            android:text="(Amara)"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/harga_barang_dibatalkan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kode_barang_dibatalkan"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/im_radio"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Rp. 30.000,00"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true">
+
+        <ImageButton
+            android:id="@+id/btn_kurang"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_minus_circle" />
+
+        <TextView
+            android:id="@+id/tv_kuantitas"
+            android:layout_width="38dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/btn_kurang"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+            android:layout_below="@+id/tv_kuantitas"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/btn_kurang"
+            android:background="@drawable/border_kuantitas" />
+
+
+        <ImageButton
+            android:id="@+id/btn_tambah"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_kuantitas"
+            android:background="@drawable/ic_plus_circle" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

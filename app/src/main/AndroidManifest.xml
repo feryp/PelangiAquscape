@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".DetailSelesaiPembelianActivity"></activity>
+        <activity android:name=".BatalkanTransaksiPembelianActivity"></activity>
+        <activity android:name=".DetailSelesaiPembelianActivity" />
         <activity android:name=".PusatBantuanPenjualanActivity" />
         <activity android:name=".PusatBantuanPembelianActivity" />
         <activity android:name=".DetailPemberitahuanActivity" />

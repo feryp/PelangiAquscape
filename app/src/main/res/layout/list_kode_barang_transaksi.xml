@@ -77,16 +77,12 @@
             android:id="@+id/btn_minus"
             android:layout_width="38dp"
             android:layout_height="38dp"
-            android:layout_below="@+id/lbl_kuantitas"
-            android:layout_centerVertical="true"
             android:background="@drawable/ic_minus" />
 
         <TextView
             android:id="@+id/tv_kuantitas"
             android:layout_width="38dp"
             android:layout_height="38dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/btn_minus"
             android:background="@drawable/button_edittext"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
@@ -98,8 +94,6 @@
             android:id="@+id/btn_plus"
             android:layout_width="38dp"
             android:layout_height="38dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/tv_kuantitas"
             android:background="@drawable/ic_plus" />
 
     </LinearLayout>

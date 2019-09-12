@@ -180,10 +180,35 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tv_judul_total_bayar"
+                android:id="@+id/tv_judul_diskon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_judul_uangmuka"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Diskon"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_popup_diskon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_popup_pilihpembayaran"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="-"
+                android:textColor="@color/disable_thumb_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_judul_total_bayar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_judul_diskon"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_regular"
@@ -195,7 +220,7 @@
                 android:id="@+id/tv_popup_totalbayar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_popup_pilihpembayaran"
+                android:layout_below="@+id/tv_popup_diskon"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"

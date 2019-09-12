@@ -35,9 +35,12 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class TambahPegawaiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView cancel, save, fotoPegawai;
+    ImageView cancel, save;
+    CircleImageView fotoPegawai, add_foto;
     Spinner spinnerHakAkses;
     TextInputEditText etNamaPegawai, etNamaPengguna,etKataSandi, etJabatan, etNoHp, etEmailPegawai;
 
@@ -66,6 +69,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         save = findViewById(R.id.im_save);
         etNamaPegawai = findViewById(R.id.et_nama_pegawai);
         fotoPegawai = findViewById(R.id.image_profile);
+        add_foto = findViewById(R.id.add_foto);
         etNamaPengguna = findViewById(R.id.et_nama_pengguna_pegawai);
         etKataSandi = findViewById(R.id.et_password);
         etJabatan = findViewById(R.id.et_jabatan);
@@ -114,7 +118,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
         cancel.setOnClickListener(this);
         save.setOnClickListener(this);
-        fotoPegawai.setOnClickListener(this);
+        add_foto.setOnClickListener(this);
 
     }
 
@@ -137,11 +141,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             }
         }
 
-        try {
-            Picasso.get().load(fotoProfilePegawai).into(fotoPegawai);
-        } catch (IllegalArgumentException e){
-            fotoPegawai.setImageResource(R.drawable.ic_foto_profile_edit);
-        }
+
 
 
         etNamaPegawai.setText(namaPegawai);
@@ -162,8 +162,35 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+//                namaPegawai = "" + dataSnapshot.child("namaPegawai").getValue();
+//                namaPengguna = "" + dataSnapshot.child("namapengguna").getValue();
+//                kataSandi = "" + dataSnapshot.child("katasandi").getValue();
+//                jabatan = "" + dataSnapshot.child("jabatan").getValue();
+////                kodeLogin = "" + dataSnapshot.child("kode_login").getValue();
+////                switch (kodeLogin) {
+////                    case "0":
+////                        hakAkses = "Super Admin";
+////                        break;
+////                    case "1":
+////                        hakAkses = "Pegawai";
+////                        break;
+////                }
+//
+//                noHp = "" + dataSnapshot.child("noHp").getValue();
+//                emailPegawai = "" + dataSnapshot.child("emailPegawai").getValue();
+
+
                 getValues();
                 databaseReference.child(String.valueOf(idPegawai)).setValue(pegawai);
+
+
+                try {
+                    Picasso.get().load(fotoProfilePegawai).into(fotoPegawai);
+                } catch (IllegalArgumentException e){
+                    fotoPegawai.setImageResource(R.drawable.ic_foto_profile_edit);
+                }
+
+
                 Toast.makeText(TambahPegawaiActivity.this, "Pegawai telah ditambah", Toast.LENGTH_SHORT).show();
 
             }
@@ -175,7 +202,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         });
 
     }
-
+//
     private void getValues(){
         pegawai.setFotoPegawai(fotoPegawai.getDrawable().toString());
         pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
@@ -277,7 +304,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 save();
                 finish();
                 break;
-            case R.id.foto_pegawai:
+            case R.id.add_foto:
                 ubah_foto();
                 finish();
                 break;

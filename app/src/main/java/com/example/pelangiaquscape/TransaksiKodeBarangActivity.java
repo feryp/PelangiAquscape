@@ -8,6 +8,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,6 +45,16 @@ import java.util.List;
 
 public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 10 || resultCode == 10){
+            btnJual.setText("asdljaslkjdflsadkjf");
+        }
+    }
+
+
+
     FirebaseDatabase fd;
     DatabaseReference dr;
     FirebaseRecyclerAdapter adapter;
@@ -62,15 +73,12 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi_kode_barang);
+
+
          fromTambahBarang = false;
-        try{
-            fromTambahBarang = getIntent().getExtras().getBoolean("fromTambahPembelian");
 
-        }catch (NullPointerException ex){
 
-        }
-
-        System.out.println("FROM TAMBAH BARANG " +fromTambahBarang);
+        System.out.println("FROM TAMBAH BARANG " +  fromTambahBarang);
         cancel =  findViewById(R.id.im_cancel);
         btnJual = findViewById(R.id.btn_jual);
         btnJual.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +144,15 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         });
 
         loadBarang(id);
+        try{
+            fromTambahBarang = getIntent().getExtras().getBoolean("fromTambahPembelian");
+            if(fromTambahBarang){
+                btnJual.setText("Tambah Barang");
+            }
+
+        }catch (NullPointerException ex){
+
+        }
 
     }
 

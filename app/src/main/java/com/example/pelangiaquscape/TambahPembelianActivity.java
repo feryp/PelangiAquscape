@@ -102,13 +102,14 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
     public void onRadioButtonClick(View view) {
         radioMetodePembayaran = findViewById(R.id.radio_metode_pembayaran);
         radioButton = findViewById(radioMetodePembayaran.getCheckedRadioButtonId());
-//        Toast.makeText(this, "Pilih " + radioButton.getText(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Pilih " + radioButton.getText(), Toast.LENGTH_SHORT).show();
     }
 
     private void save() {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getValues();
                 reference.child(String.valueOf(id)).setValue(prosesPembelian);
                 Toast.makeText(TambahPembelianActivity.this, "List Pembelian telah ditambah", Toast.LENGTH_SHORT).show();
             }
@@ -120,10 +121,18 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         });
     }
 
+    private void getValues(){
+        prosesPembelian.setNoPesanan(etNoPesanan.getText().toString());
+        prosesPembelian.setNamaPemasok(etNamaPemasok.getText().toString());
+        prosesPembelian.setTanggalPesanan(Long.parseLong(etTglPesanan.getText().toString()));
+        prosesPembelian.setMetodePembayaran(radioButton.getText().toString());
+        prosesPembelian.setListBarang(barangList);
+    }
+
     private void tambahBarang() {
         Intent tambahBarang = new Intent(TambahPembelianActivity.this, TransaksiActivity.class);
         tambahBarang.putExtra("fromTambahPembelian", true);
-        startActivity(tambahBarang);
+        startActivityForResult(tambahBarang, 10);
 //        Toast.makeText(TambahPembelianActivity.this, "tambah barang", Toast.LENGTH_SHORT).show();
     }
 
@@ -136,7 +145,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
                 finish();
                 break;
             case R.id.im_save:
-//                save();
+                save();
                 finish();
                 break;
             case  R.id.btn_tambah_barang:

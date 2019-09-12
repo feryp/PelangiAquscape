@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +37,8 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
     Bundle bundle = new Bundle();
 
     double totalAllItemPrice;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +134,8 @@ public class KeranjangPenjualanActivity extends AppCompatActivity {
         }
 //        listItemKeranjang.addAll(list);
         bundle.putParcelableArrayList("listItemKeranjang",list);
+
+
 
 
         cursor.close();

@@ -131,4 +131,11 @@
     <string name="step6_penjualan">6. Pengguna dapat melihat Struk Transaksi Penjualan. </string>
     <string name="step7_penjualan">7. Pengguna dapat melihat list hasil transaksi penjualan yang terdapat di menu Penjualan. </string>
 
+    <!--Pusat Bantuan cara penyimpanan -->
+    <string name="pusat_bantuan_penyimpanan">Kamu dapat melakukan penyimpanan barang pada menu Penyimpanan, berikut caranya :</string>
+    <string name="step1_penyimpanan">1. Pilih Menu Penyimpanan, dalam menu Penyimpanan terdapat list barang masuk dan barang keluar. Apabila anda ingin melakukan stock opname maka dapat menekan tombol tambah.</string>
+    <string name="step2_penyimpanan">2. Setelah itu masuk ke halaman Tambah Penyimpanan, lalu isi atau ubah data barang yang ingin disimpan di gudang. Setelah Tambah Penyimpanan sudah diisi, tekan tombol save yang ada di pojok kanan atas.</string>
+    <string name="step3_penyimpanan">4. Lalu list penyimpanan akan bertambah atau berubah datanya sesuai dengan data yang diinput.</string>
+
+
 </resources>

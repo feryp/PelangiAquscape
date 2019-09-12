@@ -131,7 +131,7 @@ public class TransaksiActivity extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent merek = new Intent(TransaksiActivity.this, TransaksiKodeBarangActivity.class);
 
-                        boolean fromTambahBarang ;
+                        boolean fromTambahBarang;
                         try{
                             fromTambahBarang = getIntent().getExtras().getBoolean("fromTambahPembelian");
                             merek.putExtra("fromTambahPembelian", fromTambahBarang);
@@ -142,6 +142,7 @@ public class TransaksiActivity extends AppCompatActivity {
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
                         merek.putExtra("namaMerek", model.getNama());
                         Log.v("GET IDMEREK",  clickItem.getNama() + " " + adapter.getRef(position).getKey());
+
                         startActivity(merek);
                     }
                 });

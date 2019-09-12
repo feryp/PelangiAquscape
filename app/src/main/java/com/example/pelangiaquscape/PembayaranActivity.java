@@ -439,11 +439,13 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         TextView tvTanggal = view.findViewById(R.id.tv_waktu_transaksi);
         final ImageView imClosePopUp = view.findViewById(R.id.close_popup);
+        final Button btnLihatStruk = view.findViewById(R.id.btn_lihat_struk);
 
 
         TextView tvNamaPelanggan = view.findViewById(R.id.tv_popup_namapelanggan);
         TextView tvNoHp = view.findViewById(R.id.tv_popup_nohp);
         TextView tvUangBayar = view.findViewById(R.id.tv_popup_pilihpembayaran);
+        TextView tvDiskon = view.findViewById(R.id.tv_popup_diskon);
         TextView tvTotalBayarTransaksi = view.findViewById(R.id.tv_popup_totalbayar);
         TextView tvKembalianTransaksi = view.findViewById(R.id.tv_popup_kembalian);
 
@@ -453,6 +455,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         tvTanggal.setText(date.concat(" WIB"));
         tvNamaPelanggan.setText(etNamaPelanggan.getText().toString());
         tvNoHp.setText(etNoHp.getText().toString());
+        tvDiskon.setText(etDiskon.getText().toString());
         tvTotalBayarTransaksi.setText("Rp. " + String.valueOf(fmt.format(totalHarga)));
         tvKembalianTransaksi.setText("Rp. " + String.valueOf(fmt.format(totalKembalian)));
 
@@ -474,9 +477,16 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View v) {
                 Intent close = new Intent(PembayaranActivity.this, TransaksiActivity.class);
                 close.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-
                 startActivity(close);
+            }
+        });
+
+        btnLihatStruk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lihatStruk = new Intent(PembayaranActivity.this, StrukPenjualanActivity.class);
+                lihatStruk.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(lihatStruk);
             }
         });
     }

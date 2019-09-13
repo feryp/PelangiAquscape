@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -45,15 +46,6 @@ import java.util.List;
 
 public class TransaksiKodeBarangActivity extends AppCompatActivity {
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 10 || resultCode == 10){
-            btnJual.setText("asdljaslkjdflsadkjf");
-        }
-    }
-
-
 
     FirebaseDatabase fd;
     DatabaseReference dr;
@@ -67,7 +59,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
     SearchView searchView;
     Button btnJual;
 
-    boolean fromTambahBarang;
+    boolean fromTambahPembelian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,25 +67,37 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transaksi_kode_barang);
 
 
-         fromTambahBarang = false;
+        fromTambahPembelian = false;
+        try {
+            fromTambahPembelian = getIntent().getExtras().getBoolean("fromTambahPembelian");
+        } catch (Exception e) {
+
+        }
 
 
-        System.out.println("FROM TAMBAH BARANG " +  fromTambahBarang);
-        cancel =  findViewById(R.id.im_cancel);
+        System.out.println("FROM TAMBAH BARANG " + fromTambahPembelian);
+        cancel = findViewById(R.id.im_cancel);
         btnJual = findViewById(R.id.btn_jual);
         btnJual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!fromTambahBarang){
+                if (!fromTambahPembelian) {
                     Intent i = new Intent(TransaksiKodeBarangActivity.this, KeranjangPenjualanActivity.class);
                     startActivity(i);
-                }else{
+                } else {
 
+
+//                    Intent i = new Intent("finish_pembelian");
+//                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+//                    sendBroadcast(i);
+                    setResult(Activity.RESULT_OK);
+//                    startActivity(i);
+
+                    finish();
 
                 }
             }
         });
-
 
 
         Intent i = getIntent();
@@ -144,18 +148,12 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
         });
 
         loadBarang(id);
-        try{
-            fromTambahBarang = getIntent().getExtras().getBoolean("fromTambahPembelian");
-            if(fromTambahBarang){
-                btnJual.setText("Tambah Barang");
-            }
-
-        }catch (NullPointerException ex){
-
+        if (fromTambahPembelian) {
+            btnJual.setText("Tambah Barang");
         }
 
-    }
 
+    }
 
 
     @Override
@@ -186,10 +184,10 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
 
-                holder.bindDataTransaksi(model, namaMerek);
+                holder.bindDataTransaksi(model, namaMerek, fromTambahPembelian);
 
 
-                Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
+//                Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
 
 
                 holder.setItemClickListener(new ItemClickListener() {
@@ -198,13 +196,12 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                         Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
 
 
-
-                        if(!fromTambahBarang){
+                        if (!fromTambahPembelian) {
                             ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
-                            hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
-                        }else{
+                            hp.insertOrDelete(model, ids, holder.tvQuantity.getText().toString(), holder.tvQuantity.getText().toString());
+                        } else {
                             ItemPembelianDbHelper hp = new ItemPembelianDbHelper(getBaseContext());
-                            hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
+                            hp.insertOrDelete(model, ids, holder.tvQuantity.getText().toString(), holder.tvQuantity.getText().toString());
                         }
 
 
@@ -227,7 +224,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
     }
 
 
-    void searchBarang(final String searchText, final String ids){
+    void searchBarang(final String searchText, final String ids) {
         FirebaseDatabase.getInstance().getReference().child("Barang").orderByChild("merek").equalTo(ids).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -241,14 +238,14 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
 
-                        holder.bindDataTransaksi(model, namaMerek);
+                        holder.bindDataTransaksi(model, namaMerek, fromTambahPembelian);
                         Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
                         holder.setItemClickListener(new ItemClickListener() {
                             @Override
                             public void onClick(View view, int position, boolean isLongClick) {
                                 Toast.makeText(TransaksiKodeBarangActivity.this, position + "", Toast.LENGTH_SHORT).show();
                                 ItemKeranjangDbHelper hp = new ItemKeranjangDbHelper(getBaseContext());
-                                hp.insertOrDelete(model,ids, holder.tvQuantity.getText().toString(),holder.tvQuantity.getText().toString());
+                                hp.insertOrDelete(model, ids, holder.tvQuantity.getText().toString(), holder.tvQuantity.getText().toString());
 
                             }
                         });

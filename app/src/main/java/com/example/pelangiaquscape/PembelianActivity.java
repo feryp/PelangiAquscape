@@ -19,14 +19,14 @@ public class PembelianActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pembelian);
 
-        cancel =  (ImageView) findViewById(R.id.im_cancel);
+        cancel =  findViewById(R.id.im_cancel);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Diproses"));
         tabLayout.addTab(tabLayout.newTab().setText("Selesai"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final ViewPager viewPager = findViewById(R.id.pager);
         final PageAdapterPembelian pageAdapterPembelian = new PageAdapterPembelian(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapterPembelian);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -55,4 +55,6 @@ public class PembelianActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

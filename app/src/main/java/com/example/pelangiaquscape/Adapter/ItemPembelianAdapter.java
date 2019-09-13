@@ -24,6 +24,10 @@ public class ItemPembelianAdapter extends RecyclerView.Adapter<ItemPembelianView
         this.context = context;
     }
 
+    public void setListItemBarang(List<ItemKeranjang> listItemBarang) {
+        this.listItemBarang = listItemBarang;
+    }
+
     @NonNull
     @Override
     public ItemPembelianViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

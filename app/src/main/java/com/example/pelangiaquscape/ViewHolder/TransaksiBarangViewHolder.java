@@ -30,10 +30,14 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
     public TextView tvMerk;
     public AppCompatImageButton min;
     public AppCompatImageButton max;
+    SharedPreferences sharedPref;
+
+    String PACKAGE_NAME = "com.example.pelangiaquascape.";
 
     int qty = 0;
 
     private ItemClickListener itemClickListener;
+    private boolean fromPembelian;
 
 
     public TransaksiBarangViewHolder(@NonNull View itemView) {
@@ -53,9 +57,10 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
 
     }
 
-    public void bindDataTransaksi(Barang barang, String namaMerek){
+    public void bindDataTransaksi(Barang barang, String namaMerek, boolean fromPembelian){
         tvKode.setText(barang.getKode());
         tvMerk.setText(namaMerek);
+        this.fromPembelian = fromPembelian;
 
 
         // DIGANTI JADI HARGA JUAL NANTI
@@ -64,9 +69,15 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
         tvHarga.setText("Rp. " + as);
         // DIGANTI JADI HARGA JUAL NANTI
 
-        SharedPreferences sharedPref = itemView.getContext().getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
-        int qty = sharedPref.getInt(tvKode.getText().toString(), 0);
 
+        if(!this.fromPembelian) {
+            sharedPref = itemView.getContext().getSharedPreferences(PACKAGE_NAME+"PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+
+        }else{
+            sharedPref = itemView.getContext().getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KEY", Context.MODE_PRIVATE);
+        }
+
+        int qty = sharedPref.getInt(tvKode.getText().toString(), 0);
         tvQuantity.setText(String.valueOf(qty));
 
     }
@@ -78,9 +89,16 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
         int value =qty;
         Context context = itemView.getContext();
 
-        SharedPreferences sh = context
-                .getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sh.edit();
+        SharedPreferences.Editor editor = sharedPref.edit();
+//        if(!fromPembelian){
+//
+//        }
+//        SharedPreferences sh = context
+//                .getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sh.edit();
+//
+//        SharedPreferences sharedPembelian = context.getSharedPreferences("com.example.pelangiaquascape.PEMBELIAN_KEY", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editorPembelian = sharedPembelian.edit();
 
         switch(v.getId()){
             case R.id.btn_plus:

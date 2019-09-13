@@ -1,7 +1,11 @@
 package com.example.pelangiaquscape;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,10 +38,41 @@ public class TransaksiActivity extends AppCompatActivity {
     ImageView keranjang;
     SearchView searchView;
 
+    boolean fromTambahPembelian;
+    final int REQUEST_PEMBELIAN = 15;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == REQUEST_PEMBELIAN){
+            setResult(resultCode);
+            finish();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi);
+
+            fromTambahPembelian = false;
+        try{
+            fromTambahPembelian = getIntent().getExtras().getBoolean("fromTambahPembelian");
+        }catch(Exception e){
+
+        }
+//
+//        BroadcastReceiver receiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                String action = intent.getAction();
+//                if(action.equals("finish_pembelian")){
+//                    finish();
+//                    unregisterReceiver(this);
+//                }
+//
+//            }
+//        };
+//        registerReceiver(receiver, new IntentFilter("finish_pembelian"));
 
         cancel =  findViewById(R.id.im_cancel);
         keranjang = findViewById(R.id.im_keranjang);
@@ -104,6 +139,7 @@ public class TransaksiActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -131,19 +167,21 @@ public class TransaksiActivity extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent merek = new Intent(TransaksiActivity.this, TransaksiKodeBarangActivity.class);
 
-                        boolean fromTambahBarang;
-                        try{
-                            fromTambahBarang = getIntent().getExtras().getBoolean("fromTambahPembelian");
-                            merek.putExtra("fromTambahPembelian", fromTambahBarang);
-                        }catch (NullPointerException ex){
 
-                        }
 
+                        merek.putExtra("fromTambahPembelian", fromTambahPembelian);
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
                         merek.putExtra("namaMerek", model.getNama());
                         Log.v("GET IDMEREK",  clickItem.getNama() + " " + adapter.getRef(position).getKey());
 
-                        startActivity(merek);
+
+//                        startActivity(merek);
+                        if(!fromTambahPembelian){
+
+                            startActivity(merek);
+                        }else{
+                            startActivityForResult(merek, REQUEST_PEMBELIAN);
+                        }
                     }
                 });
             }

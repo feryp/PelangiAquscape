@@ -17,6 +17,8 @@ public class ItemPembelianViewHolder extends RecyclerView.ViewHolder implements 
     public ItemPembelianViewHolder(@NonNull View v) {
         super(v);
 
+
+
         tvNo = v.findViewById(R.id.list_no);
         tvNamaBarang = v.findViewById(R.id.list_nama_barang);
         tvQty = v.findViewById(R.id.list_jumlah_barang);

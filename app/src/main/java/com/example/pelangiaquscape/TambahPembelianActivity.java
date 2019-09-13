@@ -1,9 +1,15 @@
 package com.example.pelangiaquscape;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +22,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.ItemPembelianAdapter;
+import com.example.pelangiaquscape.Database.ItemKeranjangContract;
+import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Database.ItemPembelianDbHelper;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
@@ -42,20 +50,29 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
     String id;
     RecyclerView rvItem;
     int idProsesPembelian;
+    SharedPreferences preferences;
 
     String DEBUG_TAG = "TESTMOTION";
 
+
     ItemPembelianAdapter adapter;
+
+    final int REQUEST_PEMBELIAN = 15;
+    final String PACKAGE_NAME = "com.example.pelangiaquascape.";
+    ItemPembelianDbHelper helper;
+    List<ItemKeranjang> listKeranjang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_pembelian);
 
+
+        preferences = getSharedPreferences(PACKAGE_NAME+"PEMBELIAN_KEY", Context.MODE_PRIVATE);
         // GET LIST FROM DATABASE
 
-        ItemPembelianDbHelper helper;
-        List<ItemKeranjang> listKeranjang;
+
+
         try{
             helper = new ItemPembelianDbHelper(this);
             listKeranjang = helper.selectAll();
@@ -129,10 +146,24 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         prosesPembelian.setListBarang(barangList);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        System.out.println("REQUEST CODE " + requestCode);
+        System.out.println("RESULT CODE " + resultCode);
+        if(requestCode == REQUEST_PEMBELIAN){
+            if(resultCode == RESULT_OK){
+                listKeranjang = helper.selectAll();
+                adapter.setListItemBarang(listKeranjang);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
+
     private void tambahBarang() {
         Intent tambahBarang = new Intent(TambahPembelianActivity.this, TransaksiActivity.class);
         tambahBarang.putExtra("fromTambahPembelian", true);
-        startActivityForResult(tambahBarang, 10);
+        startActivityForResult(tambahBarang, REQUEST_PEMBELIAN);
 //        Toast.makeText(TambahPembelianActivity.this, "tambah barang", Toast.LENGTH_SHORT).show();
     }
 
@@ -154,7 +185,46 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if(listKeranjang.size() > 0 ){
+            showBackDialog();
+        }else{
+            super.onBackPressed();
+        }
+
+    }
+
+    private void showBackDialog(){
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Hapus Pesanan");
+        alertDialog.setMessage("Apakah anda ingin membatalkan pesanan pembelian ini ? ");
+        alertDialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        SharedPreferences.Editor edit = preferences.edit();
+                        edit.clear();
+                        edit.apply();
 
 
+                        Toast.makeText(getBaseContext(), "Pesanan Dibatalkan", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
 
+                        ItemPembelianDbHelper helper = new ItemPembelianDbHelper(TambahPembelianActivity.this);
+                        helper.deleteAll();
+
+                        finish();
+                    }
+                });
+        alertDialog.setButton(android.app.AlertDialog.BUTTON_NEGATIVE, "CANCEL",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
 }

@@ -132,15 +132,19 @@
                 android:layout_gravity="center"/>
 
             <TextView
+
                 android:id="@+id/tv_edit_pesanan"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Edit Pesanan"
+                android:gravity="center"
                 android:textColor="@color/colorBlue"
                 android:textSize="14sp"
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/roboto_regular"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"/>
 
 
         <TextView

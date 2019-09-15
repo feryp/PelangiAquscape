@@ -1,18 +1,22 @@
 package com.example.pelangiaquscape.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Pembelian {
+public class Pembelian implements Parcelable {
     private String noPesanan;
     private long tanggalPesanan;
     private String namaPemasok;
-    private String metodePembayaran;
-    private List<Barang> listBarang;
+    private int metodePembayaran;
+    private List<ItemKeranjang> listBarang;
     private boolean proses;
 
     public Pembelian(){}
 
-    public Pembelian(String noPesanan, long tanggalPesanan, String namaPemasok, String metodePembayaran, List<Barang> listBarang, boolean proses) {
+    public Pembelian(String noPesanan, long tanggalPesanan, String namaPemasok,
+                     int metodePembayaran, List<ItemKeranjang> listBarang, boolean proses) {
         this.noPesanan = noPesanan;
         this.tanggalPesanan = tanggalPesanan;
         this.namaPemasok = namaPemasok;
@@ -20,6 +24,16 @@ public class Pembelian {
         this.listBarang = listBarang;
         this.proses = proses;
     }
+
+    protected Pembelian(Parcel in) {
+        noPesanan = in.readString();
+        tanggalPesanan = in.readLong();
+        namaPemasok = in.readString();
+        metodePembayaran = in.readInt();
+        listBarang = in.createTypedArrayList(ItemKeranjang.CREATOR);
+        proses = in.readByte() != 0;
+    }
+
 
     public String getNoPesanan() {
         return noPesanan;
@@ -45,27 +59,63 @@ public class Pembelian {
         this.namaPemasok = namaPemasok;
     }
 
-    public String getMetodePembayaran() {
+    public int getMetodePembayaran() {
         return metodePembayaran;
     }
 
-    public void setMetodePembayaran(String metodePembayaran) {
+    public void setMetodePembayaran(int metodePembayaran) {
         this.metodePembayaran = metodePembayaran;
     }
 
-    public List<Barang> getListBarang() {
+    public List<ItemKeranjang> getListBarang() {
         return listBarang;
     }
 
-    public void setListBarang(List<Barang> listBarang) {
+    public void setListBarang(List<ItemKeranjang> listBarang) {
         this.listBarang = listBarang;
     }
 
-    public boolean isProses() {
+    public boolean getProses() {
         return proses;
     }
 
     public void setProses(boolean proses) {
         this.proses = proses;
     }
+
+    public double getTotalHarga(){
+        double total = 0;
+        for(ItemKeranjang keranjang:listBarang){
+            total = total + keranjang.getHargaBeli();
+        }
+
+        return total;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(noPesanan);
+        dest.writeLong(tanggalPesanan);
+        dest.writeString(namaPemasok);
+        dest.writeInt(metodePembayaran);
+        dest.writeTypedList(listBarang);
+        dest.writeByte((byte) (proses ? 1 : 0));
+    }
+
+    public static final Creator<Pembelian> CREATOR = new Creator<Pembelian>() {
+        @Override
+        public Pembelian createFromParcel(Parcel in) {
+            return new Pembelian(in);
+        }
+
+        @Override
+        public Pembelian[] newArray(int size) {
+            return new Pembelian[size];
+        }
+    };
 }

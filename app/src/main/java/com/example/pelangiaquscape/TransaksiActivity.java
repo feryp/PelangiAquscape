@@ -60,19 +60,7 @@ public class TransaksiActivity extends AppCompatActivity {
         }catch(Exception e){
 
         }
-//
-//        BroadcastReceiver receiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                String action = intent.getAction();
-//                if(action.equals("finish_pembelian")){
-//                    finish();
-//                    unregisterReceiver(this);
-//                }
-//
-//            }
-//        };
-//        registerReceiver(receiver, new IntentFilter("finish_pembelian"));
+
 
         cancel =  findViewById(R.id.im_cancel);
         keranjang = findViewById(R.id.im_keranjang);

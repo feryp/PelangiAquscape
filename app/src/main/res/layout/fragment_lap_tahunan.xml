@@ -6,7 +6,7 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".fragment.LapTahunanFragment">
+    tools:context=".Fragment.LapTahunanFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

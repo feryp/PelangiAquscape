@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.pelangiaquscape.fragment.BerandaSuperAdminFragment;
-import com.example.pelangiaquscape.fragment.PemberitahuanFragment;
-import com.example.pelangiaquscape.fragment.ProfileFragment;
-import com.example.pelangiaquscape.fragment.RekapFragment;
+import com.example.pelangiaquscape.Fragment.BerandaSuperAdminFragment;
+import com.example.pelangiaquscape.Fragment.PemberitahuanFragment;
+import com.example.pelangiaquscape.Fragment.ProfileFragment;
+import com.example.pelangiaquscape.Fragment.RekapFragment;
 
 public class MainActivity extends AppCompatActivity {
 

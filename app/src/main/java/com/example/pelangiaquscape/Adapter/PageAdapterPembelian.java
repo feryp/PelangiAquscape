@@ -4,10 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.pelangiaquscape.fragment.PelangganFragment;
-import com.example.pelangiaquscape.fragment.PemasokFragment;
-import com.example.pelangiaquscape.fragment.ProsesPembelianFragment;
-import com.example.pelangiaquscape.fragment.SelesaiPembelianFragment;
+import com.example.pelangiaquscape.Fragment.ProsesPembelianFragment;
+import com.example.pelangiaquscape.Fragment.SelesaiPembelianFragment;
 
 public class PageAdapterPembelian extends FragmentStatePagerAdapter {
 

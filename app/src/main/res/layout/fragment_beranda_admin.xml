@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    tools:context=".fragment.BerandaAdminFragment">
+    tools:context=".Fragment.BerandaAdminFragment">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -12,7 +12,8 @@ public class KartuPelanggan {
 
     public KartuPelanggan(){}
 
-    public KartuPelanggan(String namaPelanggan, String noHpPelanggan, String alamatPelanggan, String namaToko, String noHpToko, String emailToko, String alamatToko) {
+    public KartuPelanggan(String namaPelanggan, String noHpPelanggan, String alamatPelanggan,
+                          String namaToko, String noHpToko, String emailToko, String alamatToko) {
         this.namaPelanggan = namaPelanggan;
         this.noHpPelanggan = noHpPelanggan;
         this.alamatPelanggan = alamatPelanggan;

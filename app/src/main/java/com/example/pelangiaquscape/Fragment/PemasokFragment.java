@@ -1,4 +1,4 @@
-package com.example.pelangiaquscape.fragment;
+package com.example.pelangiaquscape.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

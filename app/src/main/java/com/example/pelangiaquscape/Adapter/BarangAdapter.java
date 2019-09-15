@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -22,12 +23,14 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangViewHolder> {
     Context context;
     List<Barang> barang;
     List<String> merek;
+    boolean fromTambahPenyimpananActivity;
 
 
-    public BarangAdapter(Context context, List<Barang> barang, List<String> merek) {
+    public BarangAdapter(Context context, List<Barang> barang, List<String> merek, boolean fromTambahPenyimpananActivity) {
         this.context = context;
         this.barang = barang;
         this.merek = merek;
+        this.fromTambahPenyimpananActivity = fromTambahPenyimpananActivity;
     }
 
     @NonNull
@@ -38,14 +41,30 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BarangViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull BarangViewHolder holder,int i) {
         holder.bindData(barang.get(i), merek);
+
+
+
+
         holder.setOnClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
-                Intent i = new Intent(context, TambahBarangActivity.class);
-                i.putExtra("idBarang", position+1);
-                context.startActivity(i);
+                final Barang b = barang.get(position);
+                final int mer = Integer.parseInt(barang.get(position).getMerek())-1;
+                String merek1 = merek.get(mer);
+                if(fromTambahPenyimpananActivity){
+                    Intent i = new Intent();
+                    i.putExtra("barang", b);
+                    i.putExtra("merek", merek1);
+                    ((Activity)context).setResult(Activity.RESULT_OK, i);
+                    ((Activity)context).finish();
+                }else{
+                    Intent i = new Intent(context, TambahBarangActivity.class);
+                    i.putExtra("idBarang", position+1);
+                    context.startActivity(i);
+                }
+
             }
         });
 

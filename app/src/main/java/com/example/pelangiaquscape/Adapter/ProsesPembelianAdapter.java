@@ -38,7 +38,6 @@ public class ProsesPembelianAdapter extends RecyclerView.Adapter<ProsesPembelian
                 filterKey.add(listKey.get(listPembelian.indexOf(pembelian)));
             }
         }
-
     }
 
     public void setListPembelian(List<Pembelian> listPembelian) {

@@ -1,4 +1,4 @@
-package com.example.pelangiaquscape.fragment;
+package com.example.pelangiaquscape.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import com.example.pelangiaquscape.PenerimaanActivity;
 import com.example.pelangiaquscape.PenyimpananActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.MitraBisnisActivity;
-import com.example.pelangiaquscape.UploadPenerimaanActivity;
 import com.example.pelangiaquscape.PenjualanActivity;
 import com.example.pelangiaquscape.TransaksiActivity;
 import com.example.pelangiaquscape.R;

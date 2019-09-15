@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.pelangiaquscape.fragment.LapBulananFragment;
-import com.example.pelangiaquscape.fragment.LapTahunanFragment;
+import com.example.pelangiaquscape.Fragment.LapBulananFragment;
+import com.example.pelangiaquscape.Fragment.LapTahunanFragment;
 
 public class PageAdapterLaporan extends FragmentStatePagerAdapter {
     int counttab;

@@ -6,12 +6,27 @@ public class Penyimpanan {
     private String id;
     private long timeInMilis;
     private String kodeBarang;
-    private String jumlahBarang;
-    private String keteranganBarang;
-    private String jenisPenyimpanan;
 
-    public Penyimpanan(String id, long timeInMilis, String kodeBarang, String jumlahBarang, String keteranganBarang, String jenisPenyimpanan) {
+    private int jumlahBarang;
+    private String keteranganBarang;
+    /**
+     * 1 = Barang masuk
+     * 2 = Barang keluar
+     */
+    private int jenisPenyimpanan;
+
+    public Penyimpanan(String id, long timeInMilis, String kodeBarang,
+                       int jumlahBarang, String keteranganBarang, int jenisPenyimpanan) {
         this.id = id;
+        this.timeInMilis = timeInMilis;
+        this.kodeBarang = kodeBarang;
+        this.jumlahBarang = jumlahBarang;
+        this.keteranganBarang = keteranganBarang;
+        this.jenisPenyimpanan = jenisPenyimpanan;
+    }
+
+    public Penyimpanan(long timeInMilis, String kodeBarang,
+                       int jumlahBarang, String keteranganBarang, int jenisPenyimpanan) {
         this.timeInMilis = timeInMilis;
         this.kodeBarang = kodeBarang;
         this.jumlahBarang = jumlahBarang;
@@ -43,11 +58,11 @@ public class Penyimpanan {
         this.kodeBarang = namaBarang;
     }
 
-    public String getJumlahBarang() {
+    public int getJumlahBarang() {
         return jumlahBarang;
     }
 
-    public void setJumlahBarang(String jumlahBarang) {
+    public void setJumlahBarang(int jumlahBarang) {
         this.jumlahBarang = jumlahBarang;
     }
 
@@ -59,11 +74,11 @@ public class Penyimpanan {
         this.keteranganBarang = keteranganBarang;
     }
 
-    public String getJenisPenyimpanan() {
+    public int getJenisPenyimpanan() {
         return jenisPenyimpanan;
     }
 
-    public void setJenisPenyimpanan(String jenisPenyimpanan) {
+    public void setJenisPenyimpanan(int jenisPenyimpanan) {
         this.jenisPenyimpanan = jenisPenyimpanan;
     }
 }

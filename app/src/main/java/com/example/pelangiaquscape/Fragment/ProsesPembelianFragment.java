@@ -1,6 +1,5 @@
-package com.example.pelangiaquscape.fragment;
+package com.example.pelangiaquscape.Fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +15,6 @@ import android.widget.RelativeLayout;
 
 import com.example.pelangiaquscape.Adapter.ProsesPembelianAdapter;
 import com.example.pelangiaquscape.Model.Pembelian;
-import com.example.pelangiaquscape.PembelianActivity;
 import com.example.pelangiaquscape.TambahPembelianActivity;
 import com.example.pelangiaquscape.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

@@ -1,9 +1,6 @@
-package com.example.pelangiaquscape.fragment;
+package com.example.pelangiaquscape.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,17 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.pelangiaquscape.AkunTokoActivity;
 import com.example.pelangiaquscape.BantuanActivity;
 import com.example.pelangiaquscape.EditProfileActivity;
-import com.example.pelangiaquscape.LaporanPenjualanActivity;
 import com.example.pelangiaquscape.LoginActivity;
-import com.example.pelangiaquscape.Model.User;
 import com.example.pelangiaquscape.NotifikasiActivity;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.TentangKamiActivity;
@@ -34,14 +27,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.squareup.picasso.Picasso;
-
-import java.net.Inet4Address;
 
 public class ProfileFragment extends Fragment {
 

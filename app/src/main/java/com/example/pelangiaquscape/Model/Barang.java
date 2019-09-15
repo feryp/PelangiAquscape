@@ -1,6 +1,9 @@
 package com.example.pelangiaquscape.Model;
 
-public class Barang {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Barang implements Parcelable {
 
     private String kode;
     private double hargaBeli;
@@ -28,6 +31,29 @@ public class Barang {
         this.satuan = satuan;
         this.merek = merek;
     }
+
+    protected Barang(Parcel in) {
+        kode = in.readString();
+        hargaBeli = in.readDouble();
+        hargaJual = in.readDouble();
+        satuan = in.readString();
+        merek = in.readString();
+        stok = in.readInt();
+        minStok = in.readInt();
+    }
+
+    public static final Creator<Barang> CREATOR = new Creator<Barang>() {
+        @Override
+        public Barang createFromParcel(Parcel in) {
+            return new Barang(in);
+        }
+
+        @Override
+        public Barang[] newArray(int size) {
+            return new Barang[size];
+        }
+    };
+
     public String getKode() {
         return kode;
     }
@@ -82,5 +108,21 @@ public class Barang {
 
     public void setMinStok(int minStok) {
         this.minStok = minStok;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(kode);
+        dest.writeDouble(hargaBeli);
+        dest.writeDouble(hargaJual);
+        dest.writeString(satuan);
+        dest.writeString(merek);
+        dest.writeInt(stok);
+        dest.writeInt(minStok);
     }
 }

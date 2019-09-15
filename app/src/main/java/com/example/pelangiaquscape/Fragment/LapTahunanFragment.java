@@ -1,8 +1,6 @@
-package com.example.pelangiaquscape.fragment;
+package com.example.pelangiaquscape.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,9 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
-import com.example.pelangiaquscape.GrafikKeuntunganBulanActivity;
 import com.example.pelangiaquscape.GrafikKeuntunganTahunActivity;
-import com.example.pelangiaquscape.GrafikPenjualanBulanActivity;
 import com.example.pelangiaquscape.GrafikPenjualanTahunActivity;
 import com.example.pelangiaquscape.R;
 

@@ -2,7 +2,6 @@ package com.example.pelangiaquscape;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -17,9 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.bumptech.glide.Glide;
-import com.bumptech.glide.Glide;
-import com.example.pelangiaquscape.Model.User;
-import com.example.pelangiaquscape.fragment.ProfileFragment;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,7 +35,6 @@ import com.squareup.picasso.Picasso;
 //import com.theartofdev.edmodo.cropper.CropImage;
 //import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
 

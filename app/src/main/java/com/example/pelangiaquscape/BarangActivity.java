@@ -59,11 +59,17 @@ public class BarangActivity extends AppCompatActivity {
     private MerekCallback callback;
     BarangAdapter adapter;
 
+    boolean fromTambahPenyimpananActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barang);
+
+        // GET INTENT
+        Intent i= getIntent();
+        fromTambahPenyimpananActivity = i.getExtras().getBoolean("fromTambahPenyimpananActivity", false);
 
         // INIT VIEW
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -152,7 +158,7 @@ public class BarangActivity extends AppCompatActivity {
 
                 }
 
-                adapter = new BarangAdapter(BarangActivity.this, listBarang, merek);
+                adapter = new BarangAdapter(BarangActivity.this, listBarang, merek, fromTambahPenyimpananActivity);
                 rvBarang.setAdapter(adapter);
                 if (adapter.getItemCount() > 0) {
                     imageLayout.setVisibility(View.GONE);

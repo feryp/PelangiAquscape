@@ -15,7 +15,7 @@ import com.example.pelangiaquscape.ViewHolder.KartuPelangganViewHolder;
 
 import java.util.List;
 
-public class KartuPelangganAdapater extends RecyclerView.Adapter<KartuPelangganViewHolder> {
+public class KartuPelangganAdapter extends RecyclerView.Adapter<KartuPelangganViewHolder> {
 
     Context context;
     List<Pelanggan> pelanggan;

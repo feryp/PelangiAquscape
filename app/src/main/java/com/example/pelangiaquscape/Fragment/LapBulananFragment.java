@@ -1,4 +1,4 @@
-package com.example.pelangiaquscape.fragment;
+package com.example.pelangiaquscape.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,6 @@ import android.widget.Spinner;
 import com.example.pelangiaquscape.GrafikKeuntunganBulanActivity;
 import com.example.pelangiaquscape.GrafikPenjualanBulanActivity;
 import com.example.pelangiaquscape.R;
-
-import java.net.Inet4Address;
 
 
 public class LapBulananFragment extends Fragment {

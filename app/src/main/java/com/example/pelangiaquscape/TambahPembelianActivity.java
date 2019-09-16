@@ -83,7 +83,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
         save = findViewById(R.id.im_save);
-        etNoPesanan = findViewById(R.id.et_no_pesanan);
+//        etNoPesanan = findViewById(R.id.et_no_pesanan);
         etNamaPemasok = findViewById(R.id.et_pemasok);
         etTglPesanan = findViewById(R.id.et_tgl_pesanan);
         btnTambahBarang = findViewById(R.id.btn_tambah_barang);

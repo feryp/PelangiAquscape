@@ -1,6 +1,9 @@
 package com.example.pelangiaquscape.Model;
 
-public class Pemasok {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pemasok implements Parcelable {
 
     private String jenisPerusahaan;
     private String namaPemasok;
@@ -21,6 +24,29 @@ public class Pemasok {
         this.noHpPemasok = noHpPemasok;
         this.alamatPemasok = alamatPemasok;
     }
+
+    protected Pemasok(Parcel in) {
+        jenisPerusahaan = in.readString();
+        namaPemasok = in.readString();
+        klasifikasiPerusahaan = in.readString();
+        kualifikasiPerusahaan = in.readString();
+        telepon = in.readString();
+        emailPemasok = in.readString();
+        noHpPemasok = in.readString();
+        alamatPemasok = in.readString();
+    }
+
+    public static final Creator<Pemasok> CREATOR = new Creator<Pemasok>() {
+        @Override
+        public Pemasok createFromParcel(Parcel in) {
+            return new Pemasok(in);
+        }
+
+        @Override
+        public Pemasok[] newArray(int size) {
+            return new Pemasok[size];
+        }
+    };
 
     public String getJenisPerusahaan() {
         return jenisPerusahaan;
@@ -87,4 +113,21 @@ public class Pemasok {
     }
 
     public Pemasok(){}
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(jenisPerusahaan);
+        dest.writeString(namaPemasok);
+        dest.writeString(klasifikasiPerusahaan);
+        dest.writeString(kualifikasiPerusahaan);
+        dest.writeString(telepon);
+        dest.writeString(emailPemasok);
+        dest.writeString(noHpPemasok);
+        dest.writeString(alamatPemasok);
+    }
 }

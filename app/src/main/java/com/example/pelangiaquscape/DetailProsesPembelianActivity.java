@@ -83,10 +83,9 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         String dateFormat = format.format(date);
         tvTanggalPesanan.setText(dateFormat);
 
-        tvPemesan.setText("Pelangi Aquascape");
+        tvPemesan.setText(pembelian.getNamaPemasok());
 
         List<ItemKeranjang> listItem = pembelian.getListBarang();
-
 
         DetailProsesPembelianAdapter adapter = new DetailProsesPembelianAdapter(listItem, this);
         rvItem.setAdapter(adapter);
@@ -95,6 +94,9 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         cicilan_expand = findViewById(R.id.expand_cicilan);
         cicilan_expand.collapse();
 
+
+
+        // SWITCH BUTTON
         toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

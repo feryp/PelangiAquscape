@@ -28,6 +28,8 @@ import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Database.ItemPembelianDbHelper;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Pelanggan;
+import com.example.pelangiaquscape.Model.Pemasok;
 import com.example.pelangiaquscape.Model.Pembelian;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,6 +64,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
     private ItemPembelianAdapter adapter;
 
     final int REQUEST_PEMBELIAN = 15;
+    final int REQUEST_PELANGGAN = 30;
     final String PACKAGE_NAME = "com.example.pelangiaquascape.";
     ItemPembelianDbHelper helper;
     List<ItemKeranjang> listKeranjang;
@@ -94,6 +97,17 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         rvItem.setLayoutManager(new LinearLayoutManager(this));
         rvItem.setAdapter(adapter);
 
+        // ON TOUCH
+        etNamaPemasok.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    Intent i = new Intent(TambahPembelianActivity.this, MitraBisnisActivity.class);
+                    i.putExtra("fromTambahPembelian", true);
+                    startActivityForResult(i, REQUEST_PELANGGAN);
+                }
+            }
+        });
 
         //INIT FIREBASE
         databasePembelian = FirebaseDatabase.getInstance();
@@ -224,6 +238,13 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
                 listKeranjang = helper.selectAll();
                 adapter.setListItemBarang(listKeranjang);
                 adapter.notifyDataSetChanged();
+            }
+        }
+
+        if(requestCode == REQUEST_PELANGGAN){
+            if (resultCode == RESULT_OK) {
+                Pemasok pelanggan = data.getParcelableExtra("pemasok");
+                etNamaPemasok.setText(pelanggan.getNamaPemasok());
             }
         }
     }

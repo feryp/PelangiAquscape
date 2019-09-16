@@ -69,8 +69,11 @@ public class BarangActivity extends AppCompatActivity {
 
         // GET INTENT
         Intent i= getIntent();
-        fromTambahPenyimpananActivity = i.getExtras().getBoolean("fromTambahPenyimpananActivity", false);
+        try {
+            fromTambahPenyimpananActivity = i.getExtras().getBoolean("fromTambahPenyimpananActivity", false);
+        }catch(NullPointerException e){
 
+        }
         // INIT VIEW
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Barang");

@@ -1,15 +1,21 @@
 package com.example.pelangiaquscape;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
+import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.Adapter.DetailProsesPembelianAdapter;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Pembelian;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,6 +28,10 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
 
 
     TextView tvNoPesanan, tvMetodePembayaran, tvTanggalPesanan, tvPemesan;
+    SwitchCompat toogle_switch;
+    ExpandableRelativeLayout cicilan_expand;
+    TextInputLayout tvKeteranganCicilan, tvTanggalCicilan, tvJumlahCicilan;
+    TextInputEditText etKeteranganCicilan, etTanggalCicilan, etJumlahCicilan;
     RecyclerView rvItem;
 
     Pembelian pembelian;
@@ -45,6 +55,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         tvMetodePembayaran = findViewById(R.id.tv_status_pembayaran);
         tvTanggalPesanan = findViewById(R.id.tv_detail_tgl_pembelian);
         tvPemesan = findViewById(R.id.tv_detail_nama_pemasok);
+        toogle_switch = findViewById(R.id.toogle_switch);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian);
         rvItem.setHasFixedSize(true);
@@ -55,12 +66,13 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         tvNoPesanan.setText(pembelian.getNoPesanan());
         switch(pembelian.getMetodePembayaran()){
             case 1:
-                tvMetodePembayaran.setText("COD");
+                tvMetodePembayaran.setText("Bayar di tempat (COD)");
                 break;
             case 2:
                 tvMetodePembayaran.setText("Cicil");
                 break;
         }
+
 
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(pembelian.getTanggalPesanan());
@@ -79,6 +91,32 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         DetailProsesPembelianAdapter adapter = new DetailProsesPembelianAdapter(listItem, this);
         rvItem.setAdapter(adapter);
 
+        toogle_switch.setChecked(false);
+        cicilan_expand = findViewById(R.id.expand_cicilan);
+        cicilan_expand.collapse();
+
+        toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (!isChecked){
+                    cicilan_expand.collapse();
+//                    etKeteranganCicilan.setText("");
+//                    etTanggalCicilan.setText("");
+//                    etJumlahCicilan.setText("");
+//                    etKeteranganCicilan.clearFocus();
+//                    etTanggalCicilan.clearFocus();
+//                    etJumlahCicilan.clearFocus();
+
+                } else {
+                    cicilan_expand.expand();
+
+
+                }
+            }
+        });
+
     }
+
 
 }

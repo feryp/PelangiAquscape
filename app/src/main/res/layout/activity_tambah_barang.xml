@@ -177,23 +177,23 @@
                     android:textSize="12sp" />
 
                 <!--<android.support.design.widget.TextInputLayout-->
-                    <!--android:id="@+id/kode_barang"-->
-                    <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_below="@+id/tv_variasi_barang"-->
-                    <!--android:layout_marginTop="15dp"-->
-                    <!--android:gravity="center"-->
-                    <!--app:boxStrokeColor="@color/colorAccent">-->
+                <!--android:id="@+id/kode_barang"-->
+                <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/tv_variasi_barang"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:gravity="center"-->
+                <!--app:boxStrokeColor="@color/colorAccent">-->
 
-                    <!--<android.support.design.widget.TextInputEditText-->
-                        <!--android:id="@+id/et_kode_barang"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:hint="Kode Barang"-->
-                        <!--android:inputType="text"-->
-                        <!--android:textColor="@color/colorBlack"-->
-                        <!--android:textColorHint="@color/colorBlack" />-->
+                <!--<android.support.design.widget.TextInputEditText-->
+                <!--android:id="@+id/et_kode_barang"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="Kode Barang"-->
+                <!--android:inputType="text"-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textColorHint="@color/colorBlack" />-->
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -307,82 +307,79 @@
             </RelativeLayout>
 
             <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginTop="15dp"-->
-            <!--android:background="@drawable/container_search_bantuan"-->
-            <!--android:padding="15dp">-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:background="@drawable/container_search_bantuan"-->
+                <!--android:padding="15dp">-->
 
-            <!--<RelativeLayout-->
-            <!--android:id="@+id/layout_expand"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/layout_expand"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
 
-            <!--<TextView-->
-            <!--android:id="@+id/tv_barang_mempunyai_stok"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:fontFamily="@font/roboto_bold"-->
-            <!--android:text="Barang ini mempunyai stok?"-->
-            <!--android:textColor="#636262"-->
-            <!--android:textSize="12sp" />-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_barang_mempunyai_stok"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:fontFamily="@font/roboto_bold"-->
+                        <!--android:text="Barang ini mempunyai stok?"-->
+                        <!--android:textColor="#636262"-->
+                        <!--android:textSize="12sp" />-->
 
-            <!--<android.support.v7.widget.SwitchCompat-->
-            <!--android:id="@+id/toogle_switch"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:checked="false"-->
-            <!--android:switchMinWidth="25dp"-->
-            <!--android:theme="@style/SCBSwitch" />-->
+                    <!--<android.support.v7.widget.SwitchCompat-->
+                        <!--android:id="@+id/toogle_switch"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:checked="false"-->
+                        <!--android:switchMinWidth="25dp"-->
+                        <!--android:theme="@style/SCBSwitch" />-->
 
-            <!--</RelativeLayout>-->
+                <!--</RelativeLayout>-->
 
-            <!--<com.github.aakira.expandablelayout.ExpandableRelativeLayout-->
-            <!--android:id="@+id/expand_barang"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/layout_expand"-->
-            <!--app:ael_duration="200"-->
-            <!--app:ael_expanded="false"-->
-            <!--app:ael_interpolator="accelerate"-->
-            <!--app:ael_orientation="vertical">-->
+                <!--<com.github.aakira.expandablelayout.ExpandableRelativeLayout-->
+                    <!--android:id="@+id/expand_barang"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/layout_expand"-->
+                    <!--app:ael_duration="200"-->
+                    <!--app:ael_expanded="false"-->
+                    <!--app:ael_interpolator="accelerate"-->
+                    <!--app:ael_orientation="vertical">-->
 
-            <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/satuan_unit"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="50dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_below="@+id/nama_barang"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:background="@drawable/spinner_border">&ndash;&gt;-->
+                    <!--<RelativeLayout-->
+                    <!--android:id="@+id/satuan_unit"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_below="@+id/nama_barang"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--android:background="@drawable/spinner_border">-->
 
-            <!--&lt;!&ndash;<Spinner&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/spinner_satuan_unit"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_margin="10dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:background="@android:color/transparent"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:entries="@array/satuan_unit_array"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:spinnerMode="dropdown" />&ndash;&gt;-->
+                    <!--<Spinner-->
+                    <!--android:id="@+id/spinner_satuan_unit"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:background="@android:color/transparent"-->
+                    <!--android:entries="@array/satuan_unit_array"-->
+                    <!--android:spinnerMode="dropdown" />-->
 
-            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_alignParentRight="true"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_marginRight="18dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:src="@drawable/ic_drop_down" />&ndash;&gt;-->
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_marginRight="18dp"-->
+                    <!--android:src="@drawable/ic_drop_down" />-->
 
-            <!--&lt;!&ndash;</RelativeLayout>&ndash;&gt;-->
-
-
-            <!---->
+                    <!--</RelativeLayout>-->
 
 
-            <!--</com.github.aakira.expandablelayout.ExpandableRelativeLayout>-->
+                <!--</com.github.aakira.expandablelayout.ExpandableRelativeLayout>-->
 
             <!--</RelativeLayout>-->
 

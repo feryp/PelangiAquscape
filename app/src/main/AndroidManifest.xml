@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".PusatBantuanPenyimpananActivity"></activity>
+        <activity android:name=".PreviewFakturPenerimaanActivity"></activity>
+        <activity android:name=".PusatBantuanPenyimpananActivity" />
         <activity android:name=".StrukPenjualanActivity" />
         <activity android:name=".DetailTransaksiDibatalkanActivity" />
         <activity android:name=".BatalkanTransaksiPembelianActivity" />

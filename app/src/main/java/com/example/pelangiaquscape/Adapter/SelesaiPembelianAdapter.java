@@ -22,13 +22,13 @@ public class SelesaiPembelianAdapter extends RecyclerView.Adapter<SelesaiPembeli
     List<String> filterKey = new ArrayList<>();
     Context context;
 
-    public SelesaiPembelianAdapter(List<Pembelian> listPembelian,List<String> listKey, Context context) {
+    public SelesaiPembelianAdapter(List<Pembelian> listPembelian, List<String> listKey, Context context) {
         this.listPembelian = listPembelian;
         this.listKey = listKey;
         this.context = context;
 
-        for(Pembelian pembelian: listPembelian){
-            if(!pembelian.getProses()){
+        for (Pembelian pembelian : listPembelian) {
+            if (!pembelian.getProses()) {
                 filterPembelianSelesai.add(pembelian);
                 filterKey.add(listKey.get(listPembelian.indexOf(pembelian)));
             }
@@ -39,20 +39,16 @@ public class SelesaiPembelianAdapter extends RecyclerView.Adapter<SelesaiPembeli
     @Override
     public SelesaiPembelianViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(context).inflate(R.layout.list_item_selesai_pembelian, viewGroup, false);
-        if(filterPembelianSelesai.size() > 0){
-            return new SelesaiPembelianViewHolder(v,context);
-        }else{
-            return null;
-        }
+        return new SelesaiPembelianViewHolder(v, context);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull SelesaiPembelianViewHolder holder, int i) {
-        if(filterPembelianSelesai.size()> 0){
 
-            holder.bindData(filterPembelianSelesai.get(i), filterKey.get(i));
-        }
+
+        holder.bindData(filterPembelianSelesai.get(i), filterKey.get(i));
+
     }
 
     @Override

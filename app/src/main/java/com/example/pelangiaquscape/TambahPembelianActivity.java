@@ -39,7 +39,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class TambahPembelianActivity extends AppCompatActivity implements View.OnClickListener {
@@ -172,8 +174,11 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
 
 
         Calendar cal = Calendar.getInstance();
-
-        String noPesanan = etNoPesanan.getText().toString();
+        SimpleDateFormat fmt = new SimpleDateFormat("ddMMyyyy/hhmmss");
+        Date date = cal.getTime();
+        String formatedDate = fmt.format(date);
+        String noPembelian = "PO/"+formatedDate;
+//        String noPesanan = etNoPesanan.getText().toString();
         long tanggalPesanan = cal.getTimeInMillis();
         String namaPemasok = etNamaPemasok.getText().toString();
         int metodePembayaran = KODE_UNTUK_METODE_PEMBAYARAN;
@@ -181,7 +186,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         boolean proses = true;
 
 
-        Pembelian p = new Pembelian(noPesanan, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
+        Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
 
         if (key != null) {
             reference.child(key).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {

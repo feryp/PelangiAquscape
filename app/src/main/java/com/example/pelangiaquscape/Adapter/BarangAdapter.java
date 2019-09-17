@@ -41,7 +41,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BarangViewHolder holder,int i) {
+    public void onBindViewHolder(@NonNull BarangViewHolder holder, final int i) {
         holder.bindData(barang.get(i), merek);
 
 
@@ -60,9 +60,10 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangViewHolder> {
                     ((Activity)context).setResult(Activity.RESULT_OK, i);
                     ((Activity)context).finish();
                 }else{
-                    Intent i = new Intent(context, TambahBarangActivity.class);
-                    i.putExtra("idBarang", position+1);
-                    context.startActivity(i);
+                    Intent intent = new Intent(context, TambahBarangActivity.class);
+                    intent.putExtra("barang", barang.get(i));
+                    intent.putExtra("idBarang", position+1);
+                    context.startActivity(intent);
                 }
 
             }

@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,12 +48,16 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
 
     String DEBUG_TAG = "TESTMOTION";
 
+    Barang barang;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 1){
-            etMerekBarang.setText(data.getStringExtra("idMerek"));
+        if(requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                etMerekBarang.setText(data.getStringExtra("idMerek"));
 
+            }
         }
     }
 
@@ -60,6 +65,17 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_barang);
+
+        // GET INTENT
+        Intent i = getIntent();
+        try{
+            barang = i.getExtras().getParcelable("barang");
+            id = i.getIntExtra("idBarang", -1);
+//            System.out.println("ID BARANG" + id);
+        }catch(NullPointerException ex){
+
+        }
+
 
 
         // INIT VIEW
@@ -74,103 +90,70 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
         etMinimumStok = findViewById(R.id.et_minimum_stok);
         // END INIT VIEW
 
-        etMerekBarang.setOnKeyListener(new View.OnKeyListener() {
+
+        // FOCUS LISTENER
+        etMerekBarang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-
-                Log.v("keycodeasd", event.toString() + " " + keyCode);
-                return false;
-            }
-
-
-        });
-
-        etMerekBarang.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getActionMasked();
-
-                switch(action) {
-                    case (MotionEvent.ACTION_DOWN) :
-                        Log.d(DEBUG_TAG,"Action was DOWN");
-                        return true;
-                    case (MotionEvent.ACTION_MOVE) :
-                        Log.d(DEBUG_TAG,"Action was MOVE");
-                        return true;
-                    case (MotionEvent.ACTION_UP) :
-
-                        Log.d(DEBUG_TAG,"Action was UP");
-                        Intent i = new Intent(TambahBarangActivity.this, ListMerekActivity.class);
-                        startActivityForResult(i, 1);
-                        return true;
-                    case (MotionEvent.ACTION_CANCEL) :
-                        Log.d(DEBUG_TAG,"Action was CANCEL");
-                        return true;
-                    case (MotionEvent.ACTION_OUTSIDE) :
-                        Log.d(DEBUG_TAG,"Movement occurred outside bounds " +
-                                "of current screen element");
-                        return true;
-                    default :
-                        return TambahBarangActivity.super.onTouchEvent(event);
-                }
+            public void onFocusChange(View v, boolean hasFocus) {
+                Intent i = new Intent(TambahBarangActivity.this, ListMerekActivity.class);
+                startActivityForResult(i, 1);
             }
         });
-
-        Intent i = getIntent();
-        id = i.getIntExtra("idBarang", -1);
-        if (id > 0) {
-            etStokAwal.setHint("Stok saat ini");
-            FirebaseDatabase.getInstance().getReference().child("Barang").child(String.valueOf(id)).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Barang barang = dataSnapshot.getValue(Barang.class);
-                    Log.v("linkasd", dataSnapshot.getRef().getPath().toString());
-
-                    if (barang != null) {
-                        etNamaBarang.setText(barang.getKode() == null ? "" : barang.getKode());
-                    }
-                    String merek = dataSnapshot.child("merek").getValue(String.class);
-                    etMerekBarang.setText(merek);
-                    etHargaJual.setText(String.valueOf(barang.getHargaJual()));
-                    etHargaModal.setText(String.valueOf(barang.getHargaBeli()));
-
-                    etSatuanUnit.setText(barang.getSatuan());
-
-                    if (barang.getStok() < 0) {
-
-                    }
-                    etStokAwal.setText(!String.valueOf(barang.getStok()).isEmpty()?String.valueOf(barang.getStok()):"0");
-                    etMinimumStok.setText(!String.valueOf(barang.getMinStok()).isEmpty()?String.valueOf(barang.getMinStok()):"0");
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
-
-//        etMerekBarang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(TambahBarangActivity.this, ListMerekActivity.class);
-//                startActivity(i);
-//
-//            }
-//        });
 
 //        etMerekBarang.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
+//                int action = event.getActionMasked();
 //
+//                switch(action) {
+//                    case (MotionEvent.ACTION_DOWN) :
+//                        Log.d(DEBUG_TAG,"Action was DOWN");
+//                        return true;
+//                    case (MotionEvent.ACTION_MOVE) :
+//                        Log.d(DEBUG_TAG,"Action was MOVE");
+//                        return true;
+//                    case (MotionEvent.ACTION_UP) :
+//
+//                        Log.d(DEBUG_TAG,"Action was UP");
+//
+//                        return true;
+//                    case (MotionEvent.ACTION_CANCEL) :
+//                        Log.d(DEBUG_TAG,"Action was CANCEL");
+//                        return true;
+//                    case (MotionEvent.ACTION_OUTSIDE) :
+//                        Log.d(DEBUG_TAG,"Movement occurred outside bounds " +
+//                                "of current screen element");
+//                        return true;
+//                    default :
+//                        return TambahBarangActivity.super.onTouchEvent(event);
+//                }
 //            }
 //        });
+
+
+        if (id > 0) {
+            etStokAwal.setHint("Stok saat ini");
+            etNamaBarang.setText(barang.getKode());
+            etMerekBarang.setText(barang.getMerek());
+            BigDecimal dr = new BigDecimal(barang.getHargaJual());
+            etHargaJual.setText(dr.toString());
+            dr = new BigDecimal(barang.getHargaBeli());
+            etHargaModal.setText(dr.toString());
+            etSatuanUnit.setText(barang.getSatuan());
+            etStokAwal.setText(!String.valueOf(barang.getStok()).isEmpty()?String.valueOf(barang.getStok()):"0");
+            etMinimumStok.setText(!String.valueOf(barang.getMinStok()).isEmpty()?String.valueOf(barang.getMinStok()):"0");
+
+        }
+
+
+
+
 
 
         // SET LISTENER
         cancel.setOnClickListener(this);
         save.setOnClickListener(this);
-//        etMerekBarang.setOnClickListener(this);
+
         // END SET LISTENER
 
     }

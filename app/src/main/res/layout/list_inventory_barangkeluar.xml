@@ -112,6 +112,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_ket"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -127,10 +128,13 @@
             android:fontFamily="@font/roboto_bold"
             android:text="Barang Keluar"
             android:textAllCaps="false"
+
             android:textColor="@color/colorPrimary"
             android:textSize="14sp" />
 
+
     </LinearLayout>
+
 
 
 </LinearLayout>

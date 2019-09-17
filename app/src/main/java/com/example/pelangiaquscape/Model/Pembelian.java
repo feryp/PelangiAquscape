@@ -86,7 +86,7 @@ public class Pembelian implements Parcelable {
     public double getTotalHarga(){
         double total = 0;
         for(ItemKeranjang keranjang:listBarang){
-            total = total + keranjang.getHargaBeli();
+            total = total + (keranjang.getHargaBeli()* keranjang.getQty());
         }
 
         return total;

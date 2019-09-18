@@ -103,7 +103,7 @@ public class ProsesPembelianFragment extends Fragment {
 
                 for(DataSnapshot snapShot: dataSnapshot.getChildren()){
 //                    mapping.put(dataSnapshot.getKey(), snapShot.getValue(Pembelian.class));
-                    listKey.add(dataSnapshot.getKey());
+                    listKey.add(snapShot.getKey());
                     listPembelian.add(snapShot.getValue(Pembelian.class));
 
 

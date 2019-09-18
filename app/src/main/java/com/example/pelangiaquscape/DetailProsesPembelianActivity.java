@@ -114,5 +114,9 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
                 }
             }
         });
+
+        if(pembelian.getMetodePembayaran() == 1){
+            toogle_switch.setEnabled(false);
+        }
     }
 }

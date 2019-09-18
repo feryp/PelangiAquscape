@@ -146,6 +146,8 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
             setValueFromPembelian();
         }
 
+
+
         // SET ADAPTER
         adapter = new ItemPembelianAdapter(listKeranjang, this);
         rvItem.setAdapter(adapter);
@@ -185,9 +187,13 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         boolean proses = true;
 
 
-        Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
+
 
         if (key != null) {
+            Pembelian p = pembelian;
+            p.setListBarang(listKeranjang);
+            p.setNamaPemasok(etNamaPemasok.getText().toString());
+            p.setMetodePembayaran(KODE_UNTUK_METODE_PEMBAYARAN);
             reference.child(key).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -195,6 +201,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
                 }
             });
         } else {
+            Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
             reference.push().setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

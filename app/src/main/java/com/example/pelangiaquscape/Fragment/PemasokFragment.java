@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -44,10 +45,19 @@ public class PemasokFragment extends Fragment {
 
     FloatingActionButton fab_pemasok;
 
+    boolean fromTambahPembelianActivity;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        fromTambahPembelianActivity = false;
+        try {
+            fromTambahPembelianActivity = getArguments().getBoolean("fromTambahPembelian");
+        } catch (NullPointerException ex) {
+
+        }
         View v = inflater.inflate(R.layout.fragment_pemasok, container, false);
 
         fab_pemasok = v.findViewById(R.id.fab_pemasok);
@@ -99,25 +109,38 @@ public class PemasokFragment extends Fragment {
 
                 final int size = this.getItemCount();
 
-                holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent pemasok = new Intent(getActivity(), TambahPemasokActivity.class);
-                        pemasok.putExtra("idForPemasok", adapter.getRef(position).getKey());
-                        pemasok.putExtra("jenisPerusahaan", model.getJenisPerusahaan());
-                        pemasok.putExtra("namaPemasok", model.getNamaPemasok());
-                        pemasok.putExtra("klasifikasiPerusahaan", model.getKlasifikasiPerusahaan());
-                        pemasok.putExtra("kualifikasiPerusahaan", model.getKualifikasiPerusahaan());
-                        pemasok.putExtra("telepon", model.getTelepon());
-                        pemasok.putExtra("email", model.getEmailPemasok());
-                        pemasok.putExtra("noHp", model.getNoHpPemasok());
-                        pemasok.putExtra("alamat", model.getAlamatPemasok());
+                if (!fromTambahPembelianActivity) {
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent pemasok = new Intent(getActivity(), TambahPemasokActivity.class);
+                            pemasok.putExtra("idForPemasok", adapter.getRef(position).getKey());
+                            pemasok.putExtra("jenisPerusahaan", model.getJenisPerusahaan());
+                            pemasok.putExtra("namaPemasok", model.getNamaPemasok());
+                            pemasok.putExtra("klasifikasiPerusahaan", model.getKlasifikasiPerusahaan());
+                            pemasok.putExtra("kualifikasiPerusahaan", model.getKualifikasiPerusahaan());
+                            pemasok.putExtra("telepon", model.getTelepon());
+                            pemasok.putExtra("email", model.getEmailPemasok());
+                            pemasok.putExtra("noHp", model.getNoHpPemasok());
+                            pemasok.putExtra("alamat", model.getAlamatPemasok());
 
-                        System.out.println("ID Pemasok " + adapter.getRef(position).getKey());
-                        pemasok.putExtra("fromPemasokFragment", true);
-                        startActivity(pemasok);
-                    }
-                });
+                            System.out.println("ID Pemasok " + adapter.getRef(position).getKey());
+                            pemasok.putExtra("fromPemasokFragment", true);
+                            startActivity(pemasok);
+                        }
+                    });
+                } else {
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent i = new Intent();
+                            i.putExtra("pemasok", model);
+                            ((Activity) getContext()).setResult(Activity.RESULT_OK, i);
+                            ((Activity) getContext()).finish();
+                        }
+                    });
+                }
+
 
                 holder.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
@@ -165,7 +188,7 @@ public class PemasokFragment extends Fragment {
         adapter.stopListening();
     }
 
-    void showDialog(final String key, final Pemasok pemasok){
+    void showDialog(final String key, final Pemasok pemasok) {
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
         alertDialog.setTitle("Hapus Data");
         alertDialog.setMessage("Apakah anda ingin mengahapus Pelaanggan ini ? ");

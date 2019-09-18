@@ -20,6 +20,7 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,7 +29,7 @@ import java.util.List;
 public class DetailProsesPembelianActivity extends AppCompatActivity {
 
 
-    TextView tvNoPesanan, tvMetodePembayaran, tvTanggalPesanan, tvPemesan;
+    TextView tvNoPesanan, tvMetodePembayaran, tvTanggalPesanan, tvPemesan, tvTotalHargaPembelian;
     Button btnLihatFaktur, btnKonfirmasi;
     SwitchCompat toogle_switch;
     ExpandableRelativeLayout cicilan_expand;
@@ -58,6 +59,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         tvTanggalPesanan = findViewById(R.id.tv_detail_tgl_pembelian);
         tvPemesan = findViewById(R.id.tv_detail_nama_pemasok);
         toogle_switch = findViewById(R.id.toogle_switch);
+        tvTotalHargaPembelian = findViewById(R.id.tv_total_harga_pembelian);
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_pembelian);
 
@@ -91,14 +93,18 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
 
         Date date = c.getTime();
 
-        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
         String dateFormat = format.format(date);
         tvTanggalPesanan.setText(dateFormat);
-
-        tvPemesan.setText("Pelangi Aquascape");
+        tvPemesan.setText(pembelian.getNamaPemasok());
 
         List<ItemKeranjang> listItem = pembelian.getListBarang();
-
+        double total = 0;
+        for(ItemKeranjang keranjang:listItem){
+            total = total + keranjang.getTotalPrice();
+        }
+        BigDecimal decimal = new BigDecimal(total);
+        tvTotalHargaPembelian.setText(decimal.toString());
 
         DetailProsesPembelianAdapter adapter = new DetailProsesPembelianAdapter(listItem, this);
         rvItem.setAdapter(adapter);
@@ -107,28 +113,18 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         cicilan_expand = findViewById(R.id.expand_cicilan);
         cicilan_expand.collapse();
 
+
+
+        // SWITCH BUTTON
         toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if (!isChecked){
                     cicilan_expand.collapse();
-//                    etKeteranganCicilan.setText("");
-//                    etTanggalCicilan.setText("");
-//                    etJumlahCicilan.setText("");
-//                    etKeteranganCicilan.clearFocus();
-//                    etTanggalCicilan.clearFocus();
-//                    etJumlahCicilan.clearFocus();
-
                 } else {
                     cicilan_expand.expand();
-
-
                 }
             }
         });
-
     }
-
-
 }

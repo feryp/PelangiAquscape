@@ -28,6 +28,8 @@ import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
 import com.example.pelangiaquscape.Database.ItemPembelianDbHelper;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Pelanggan;
+import com.example.pelangiaquscape.Model.Pemasok;
 import com.example.pelangiaquscape.Model.Pembelian;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +39,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class TambahPembelianActivity extends AppCompatActivity implements View.OnClickListener {
@@ -62,6 +66,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
     private ItemPembelianAdapter adapter;
 
     final int REQUEST_PEMBELIAN = 15;
+    final int REQUEST_PELANGGAN = 30;
     final String PACKAGE_NAME = "com.example.pelangiaquascape.";
     ItemPembelianDbHelper helper;
     List<ItemKeranjang> listKeranjang;
@@ -83,7 +88,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
         save = findViewById(R.id.im_save);
-//        etNoPesanan = findViewById(R.id.et_no_pesanan);
+        etNoPesanan = findViewById(R.id.et_no_pesanan);
         etNamaPemasok = findViewById(R.id.et_pemasok);
         etTglPesanan = findViewById(R.id.et_tgl_pesanan);
         btnTambahBarang = findViewById(R.id.btn_tambah_barang);
@@ -94,6 +99,17 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         rvItem.setLayoutManager(new LinearLayoutManager(this));
         rvItem.setAdapter(adapter);
 
+        // ON TOUCH
+        etNamaPemasok.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    Intent i = new Intent(TambahPembelianActivity.this, MitraBisnisActivity.class);
+                    i.putExtra("fromTambahPembelian", true);
+                    startActivityForResult(i, REQUEST_PELANGGAN);
+                }
+            }
+        });
 
         //INIT FIREBASE
         databasePembelian = FirebaseDatabase.getInstance();
@@ -107,7 +123,6 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
 
         // GET PARCELABLE
         Intent i = getIntent();
-
         pembelian = i.getParcelableExtra("value");
         key = i.getStringExtra("key");
 
@@ -158,8 +173,11 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
 
 
         Calendar cal = Calendar.getInstance();
-
-        String noPesanan = etNoPesanan.getText().toString();
+        SimpleDateFormat fmt = new SimpleDateFormat("ddMMyyyy/hhmmss");
+        Date date = cal.getTime();
+        String formatedDate = fmt.format(date);
+        String noPembelian = "PO/"+formatedDate;
+//        String noPesanan = etNoPesanan.getText().toString();
         long tanggalPesanan = cal.getTimeInMillis();
         String namaPemasok = etNamaPemasok.getText().toString();
         int metodePembayaran = KODE_UNTUK_METODE_PEMBAYARAN;
@@ -167,7 +185,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         boolean proses = true;
 
 
-        Pembelian p = new Pembelian(noPesanan, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
+        Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
 
         if (key != null) {
             reference.child(key).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -224,6 +242,13 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
                 listKeranjang = helper.selectAll();
                 adapter.setListItemBarang(listKeranjang);
                 adapter.notifyDataSetChanged();
+            }
+        }
+
+        if(requestCode == REQUEST_PELANGGAN){
+            if (resultCode == RESULT_OK) {
+                Pemasok pelanggan = data.getParcelableExtra("pemasok");
+                etNamaPemasok.setText(pelanggan.getNamaPemasok());
             }
         }
     }

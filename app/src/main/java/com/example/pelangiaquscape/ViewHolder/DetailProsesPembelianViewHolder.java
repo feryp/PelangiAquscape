@@ -1,6 +1,7 @@
 package com.example.pelangiaquscape.ViewHolder;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,6 +19,7 @@ public class DetailProsesPembelianViewHolder extends RecyclerView.ViewHolder {
 
     private TextView tvKode, tvMerek, tvHargaSatuan, tvQty, tvTotalHarga;
 
+    SharedPreferences preferences;
     public DetailProsesPembelianViewHolder(@NonNull View v, Context c) {
         super(v);
         this.context = c;
@@ -26,13 +28,17 @@ public class DetailProsesPembelianViewHolder extends RecyclerView.ViewHolder {
         tvHargaSatuan = v.findViewById(R.id.list_harga_barang);
         tvQty = v.findViewById(R.id.list_kuantitas_barang);
         tvTotalHarga = v.findViewById(R.id.list_total_harga_barang);
+        preferences = context.getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
+
 
     }
 
     public void bindData(ItemKeranjang itemKeranjang) {
         this.itemKeranjang = itemKeranjang;
+        int noMerek = Integer.valueOf(itemKeranjang.getMerek());
+        String merek = preferences.getString(String.valueOf(noMerek), "unknown");
         tvKode.setText(itemKeranjang.getKode());
-        tvMerek.setText(itemKeranjang.getMerek());
+        tvMerek.setText(merek);
         BigDecimal bg = new BigDecimal(itemKeranjang.getHargaBeli());
         tvHargaSatuan.setText(bg.toString());
         tvQty.setText(String.valueOf(itemKeranjang.getQty()));

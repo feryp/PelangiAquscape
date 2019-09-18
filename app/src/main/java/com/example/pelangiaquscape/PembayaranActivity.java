@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -31,16 +32,22 @@ import android.widget.Toast;
 
 import com.example.pelangiaquscape.Database.ItemKeranjangContract;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
+import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
+import com.example.pelangiaquscape.Model.Penyimpanan;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -71,10 +78,16 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     DecimalFormat fmt = new DecimalFormat("#,###.00");
     List<ItemKeranjang> listKeranjang;
 
+    SharedPreferences sharedPref;
+    String PACKAGE_NAME = "com.example.pelangiaquascape.";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pembayaran);
+
+        sharedPref = getSharedPreferences(PACKAGE_NAME + "PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+
 
         totalKembalian = 0;
         final Intent i = getIntent();
@@ -384,23 +397,26 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 diskonRp = true;
                 etDiskon.setText("");
                 break;
+
             case R.id.btn_bayar:
                 showPembayaranBerhasilDialog();
                 SimpleDateFormat fmt = new SimpleDateFormat("ddMMyyyy-hhmmss");
                 Calendar c = Calendar.getInstance();
                 Date date = c.getTime();
                 String formatedDate = fmt.format(date);
-                String noPenjualan = "INV-"+formatedDate;
+                String noPenjualan = "INV-" + formatedDate;
 
                 Penjualan p = new Penjualan(noPenjualan,
                         "Tunai",
                         c.getTimeInMillis(),
                         FirebaseAuth.getInstance().getUid(),
                         listKeranjang,
-                        etNamaPelanggan.getText().toString() != null? etNamaPelanggan.getText().toString():"",
-                        etNoHp.getText().toString() != null ? etNoHp.getText().toString():"",
+                        etNamaPelanggan.getText().toString() != null ? etNamaPelanggan.getText().toString() : "",
+                        etNoHp.getText().toString() != null ? etNoHp.getText().toString() : "",
                         totalHarga
-                        );
+                );
+
+
                 FirebaseDatabase db = FirebaseDatabase.getInstance();
                 DatabaseReference dr = db.getReference().child("Penjualan");
                 dr.push().setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -415,7 +431,85 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                     }
                 });
 
-                SharedPreferences pref = getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
+                final List<Penyimpanan> listPenyimpanan = new ArrayList<>();
+                Task<Void> task = null;
+                for (ItemKeranjang keranjang : listKeranjang) {
+                    Penyimpanan pe = new Penyimpanan(c.getTimeInMillis(),
+                            sharedPref.getString(keranjang.getKode().concat("key"), ""), keranjang.getKode(), keranjang.getQty(), "Penjualan", 1);
+
+                    task = FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(pe);
+                    listPenyimpanan.add(pe);
+
+                }
+
+                task.addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(PembayaranActivity.this, listPenyimpanan.size() + " item masuk penyimpanan", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                db.getReference("Barang").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot sn : dataSnapshot.getChildren()) {
+
+                            for (Penyimpanan p : listPenyimpanan) {
+                                System.out.println("snapshot "+ sn.getKey() + " key " + p.getKeyBarang());
+
+                                if(p.getKeyBarang().equals(sn.getKey())){
+                                    Barang barang = sn.getValue(Barang.class);
+
+                                    int stok = barang.getStok() - p.getJumlahBarang();
+                                    System.out.println("NAMA BARANG" + barang.getKode());
+                                    System.out.println("STOK BARANG" + stok);
+                                    barang.setStok(stok);
+                                    sn.getRef().setValue(barang);
+
+                                }
+//                            dataSnapshot.getRef().child(p.getKeyBarang()).child("")
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                db.getReference("Barang").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot sn : dataSnapshot.getChildren()) {
+//
+//                            for (Penyimpanan p : listPenyimpanan) {
+//                                System.out.println("snapshot "+ sn.getKey() + " key " + p.getKeyBarang());
+//
+//                                if(p.getKeyBarang().equals(sn.getKey())){
+//                                    Barang barang = sn.getValue(Barang.class);
+//
+//                                    int stok = barang.getStok() - p.getJumlahBarang();
+//                                    System.out.println("NAMA BARANG" + barang.getKode());
+//                                    System.out.println("STOK BARANG" + stok);
+//                                    barang.setStok(stok);
+//                                    sn.getRef().setValue(barang);
+//
+//                                }
+////                            dataSnapshot.getRef().child(p.getKeyBarang()).child("")
+//                            }
+//                        }
+//                    }
+//
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+
+
+                SharedPreferences pref = getSharedPreferences(PACKAGE_NAME+"PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = pref.edit();
                 edit.clear();
                 edit.apply();
@@ -476,7 +570,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 Intent close = new Intent(PembayaranActivity.this, TransaksiActivity.class);
-                close.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                close.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(close);
             }
         });
@@ -485,13 +579,13 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 Intent lihatStruk = new Intent(PembayaranActivity.this, StrukPenjualanActivity.class);
-                lihatStruk.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                lihatStruk.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(lihatStruk);
             }
         });
     }
 
-    void showDeleteDialog(){
+    void showDeleteDialog() {
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Hapus Pesanan");
@@ -503,7 +597,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
                         SQLiteDatabase db = itemDb.getWritableDatabase();
 
-                        SharedPreferences pref = PembayaranActivity.this.getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY",Context.MODE_PRIVATE);
+                        SharedPreferences pref = PembayaranActivity.this.getSharedPreferences("com.example.pelangiaquscape.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
                         SharedPreferences.Editor edit = pref.edit();
                         edit.clear();
                         edit.apply();
@@ -512,9 +606,9 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                         int deletedRows = db.delete(ItemKeranjangContract.ItemKeranjangEntry.TABLE_NAME, null, null);
 
 
-                        Toast.makeText(PembayaranActivity.this, deletedRows+" item terhapus", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PembayaranActivity.this, deletedRows + " item terhapus", Toast.LENGTH_SHORT).show();
                         Intent close = new Intent(PembayaranActivity.this, TransaksiActivity.class);
-                        close.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        close.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
                         startActivity(close);
                         dialog.dismiss();

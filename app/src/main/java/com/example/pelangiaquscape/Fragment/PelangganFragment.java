@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,11 +44,19 @@ public class PelangganFragment extends Fragment {
     LinearLayout imageLayout;
 
     FloatingActionButton fab_pelanggan;
-
+    boolean fromTambahPembelianActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        fromTambahPembelianActivity = false;
+        try{
+            fromTambahPembelianActivity = getArguments().getBoolean("fromTambahPembelian");
+        }catch(NullPointerException ex){
+
+        }
+
 
         View v = inflater.inflate(R.layout.fragment_pelanggan, container, false);
 
@@ -103,21 +112,34 @@ public class PelangganFragment extends Fragment {
                 final int size = this.getItemCount();
 
 
-                holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent pelanggan = new Intent(getActivity(), TambahPelangganActivity.class);
-                        pelanggan.putExtra("idForPelanggan", adapter.getRef(position).getKey());
-                        pelanggan.putExtra("namaPelanggan", model.getNamaPelanggan());
-                        pelanggan.putExtra("noHp", model.getNoHp());
-                        pelanggan.putExtra("alamat", model.getAlamat());
-                        pelanggan.putExtra("catatan", model.getCatatan());
+                if(!fromTambahPembelianActivity){
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent pelanggan = new Intent(getActivity(), TambahPelangganActivity.class);
+                            pelanggan.putExtra("idForPelanggan", adapter.getRef(position).getKey());
+                            pelanggan.putExtra("namaPelanggan", model.getNamaPelanggan());
+                            pelanggan.putExtra("noHp", model.getNoHp());
+                            pelanggan.putExtra("alamat", model.getAlamat());
+                            pelanggan.putExtra("catatan", model.getCatatan());
 
-                        System.out.println("ID Pelanggan " + adapter.getRef(position).getKey());
+                            System.out.println("ID Pelanggan " + adapter.getRef(position).getKey());
 //                        Log.i("GET IDPELANGGAN", pelanggan.getStringExtra("newIdForPelanggan") + adapter.getRef(position).getKey());
-                        startActivity(pelanggan);
-                    }
-                });
+                            startActivity(pelanggan);
+                        }
+                    });
+                }else{
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent i = new Intent();
+                            i.putExtra("pelanggan", model);
+                            ((Activity)getContext()).setResult(Activity.RESULT_OK, i);
+                            ((Activity)getContext()).finish();
+                        }
+                    });
+                }
+
 
                 holder.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
@@ -167,35 +189,6 @@ public class PelangganFragment extends Fragment {
         adapter.stopListening();
     }
 
-//    void showDialog(final String key, final Pelanggan pelanggan) {
-//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-//        alertDialogBuilder.setTitle("Hapus Data");
-//        alertDialogBuilder.setMessage("Apakah anda ingin menghapus Pelanggan ini ? ")
-//                .setCancelable(false)
-//                .setPositiveButton("YA", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                FirebaseDatabase.getInstance().getReference("Pelanggan")
-//                        .child(key)
-//                        .removeValue()
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                Toast.makeText(getActivity().getApplicationContext(), "item" + pelanggan.getNamaPelanggan() + "item" + pelanggan.getNoHp() + "item" + pelanggan.getAlamat() + " telah terhapus", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//            }
-//        }).setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.cancel();
-//            }
-//        });
-//
-//        AlertDialog alertDialog = alertDialogBuilder.create();
-//        alertDialog.show();
-//
-//    }
     void showDialog(final String key, final Pelanggan pelanggan){
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
         alertDialog.setTitle("Hapus Data");

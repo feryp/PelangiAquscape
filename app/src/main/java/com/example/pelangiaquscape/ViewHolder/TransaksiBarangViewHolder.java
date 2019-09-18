@@ -39,6 +39,8 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
     private ItemClickListener itemClickListener;
     private boolean fromPembelian;
 
+    String barangKey;
+
 
     public TransaksiBarangViewHolder(@NonNull View itemView) {
 
@@ -57,10 +59,11 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
 
     }
 
-    public void bindDataTransaksi(Barang barang, String namaMerek, boolean fromPembelian){
+    public void bindDataTransaksi(Barang barang, String namaMerek, boolean fromPembelian, String barangKey){
         tvKode.setText(barang.getKode());
         tvMerk.setText(namaMerek);
         this.fromPembelian = fromPembelian;
+        this.barangKey = barangKey;
 
 
         // DIGANTI JADI HARGA JUAL NANTI
@@ -109,6 +112,7 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
                 value = Integer.parseInt(tvQuantity.getText().toString());
 
                 editor.putInt(tvKode.getText().toString(), value);
+                editor.putString(tvKode.getText().toString().concat("key"), barangKey);
                 editor.apply();
 
                 break;
@@ -118,6 +122,7 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
                 tvQuantity.setText(String.valueOf(qty));
 
                 editor.putInt(tvKode.getText().toString(), value);
+                editor.putString(tvKode.getText().toString().concat("key"), barangKey);
                 editor.apply();
 
                 break;

@@ -130,7 +130,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
             }
         });
 
-        Log.v("IDMEREK", id);
+//        Log.v("IDMEREK", id);
         fd = FirebaseDatabase.getInstance();
         dr = fd.getReference().child("Barang");
 
@@ -184,8 +184,8 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
 
-                holder.bindDataTransaksi(model, namaMerek, fromTambahPembelian);
 
+                holder.bindDataTransaksi(model, namaMerek, fromTambahPembelian, this.getRef(position).getKey());
 
 //                Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
 
@@ -203,8 +203,6 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                             ItemPembelianDbHelper hp = new ItemPembelianDbHelper(getBaseContext());
                             hp.insertOrDelete(model, ids, holder.tvQuantity.getText().toString(), holder.tvQuantity.getText().toString());
                         }
-
-
                     }
                 });
             }
@@ -238,7 +236,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
 
-                        holder.bindDataTransaksi(model, namaMerek, fromTambahPembelian);
+                        holder.bindDataTransaksi(model, namaMerek, fromTambahPembelian, this    .getRef(position).getKey());
                         Log.i("INFORMATION", model.getKode() + " " + model.getMerek());
                         holder.setItemClickListener(new ItemClickListener() {
                             @Override

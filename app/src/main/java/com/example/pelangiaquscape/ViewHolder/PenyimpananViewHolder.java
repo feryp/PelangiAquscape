@@ -42,7 +42,7 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(penyimpanan.getTimeInMilis());
         Date date = cal.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
         String dateFormat = format.format(date);
 
 

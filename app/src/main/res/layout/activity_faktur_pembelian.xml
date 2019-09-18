@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D1D1D1"
+    tools:context=".FakturPembelianActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:id="@+id/header_struk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp">
+
+            <TextView
+                android:id="@+id/tv_faktur_pembelian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Faktur Pembelian"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/faktur_nama_toko"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_faktur_pembelian"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Pelangi Aquascape"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/faktur_alamat_toko"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/faktur_nama_toko"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Jl. Pusdilkat Depnaker, RT. 4/ RW. 4, Makasar, Kota Jakarta Timur"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/faktur_no_telepon_toko"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/faktur_alamat_toko"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_regular"
+                android:text="0838-7287-4262"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_faktur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_struk"
+            android:padding="1dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_no_faktur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="No. Faktur :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/no_faktur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="001"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left">
+
+                    <TextView
+                        android:id="@+id/tv_no_pesanan_faktur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="No. Pesanan :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/no_pesanan_faktur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="OR/2019/01"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_tgl_faktur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Tgl Faktur  :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tgl_faktur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="1 Oktober 2019"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left">
+
+                    <TextView
+                        android:id="@+id/tv_nama_pemasok_faktur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Pemasok        :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/faktur_nama_pemasok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="PT. Nama"
+                        android:textColor="@color/disable_thumb_grey"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border_table">
+
+                <!-- Row 2 with 5 columns -->
+
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/judul_tabel_kode_barang"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Kode Barang"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/judul_tabel_merek_barang"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Merek Barang"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/judul_tabel_kts_barang"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Kts"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/judul_tabel_harga_satuan"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Harga Satuan"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/judul_tabel_jumlah"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Jumlah"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Kode"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Merek"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="0"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Rp. 0"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Rp. 0"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_terbilang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Terbilang :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/terbilang_nominal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_italic"
+                        android:text="Lima ratus tujuh pulug ribu"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right">
+
+                    <TextView
+                        android:id="@+id/tv_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Total :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Rp. 0.000,00"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_keterangan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Keterangan :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/keterangan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text=""
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right">
+
+                    <TextView
+                        android:id="@+id/tv_pembayaran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Pembyaran :"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/pembayaran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Rp. 0.000,00"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left">
+
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="PENGIRIM"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginTop="35dp"
+                            android:src="@drawable/garis" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right">
+
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="PENERIMA"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginTop="35dp"
+                            android:src="@drawable/garis" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_print"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorBlue"
+        android:elevation="6dp"
+        android:src="@drawable/ic_print"
+        app:borderWidth="0dp"
+        app:fabSize="normal" />
+
+
+</RelativeLayout>

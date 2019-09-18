@@ -46,7 +46,7 @@ public class SelesaiPembelianViewHolder extends RecyclerView.ViewHolder {
         Date date = cal.getTime();
 
         SimpleDateFormat formatHour =  new SimpleDateFormat("hh:mm");
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd MMMM yyyy");
 
         String hour = formatHour.format(date);
         String dt = formatDate.format(date);

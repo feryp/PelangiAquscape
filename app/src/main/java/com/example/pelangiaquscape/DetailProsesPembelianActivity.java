@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
 
 
     TextView tvNoPesanan, tvMetodePembayaran, tvTanggalPesanan, tvPemesan, tvTotalHargaPembelian;
+    Button btnLihatFaktur, btnKonfirmasi;
     SwitchCompat toogle_switch;
     ExpandableRelativeLayout cicilan_expand;
     TextInputLayout tvKeteranganCicilan, tvTanggalCicilan, tvJumlahCicilan;
@@ -58,6 +60,8 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
         tvPemesan = findViewById(R.id.tv_detail_nama_pemasok);
         toogle_switch = findViewById(R.id.toogle_switch);
         tvTotalHargaPembelian = findViewById(R.id.tv_total_harga_pembelian);
+        btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
+        btnKonfirmasi = findViewById(R.id.btn_konfirmasi_pembelian);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian);
         rvItem.setHasFixedSize(true);
@@ -75,13 +79,21 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
                 break;
         }
 
+        btnLihatFaktur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lihat_faktur = new Intent(DetailProsesPembelianActivity.this, FakturPembelianActivity.class);
+                startActivity(lihat_faktur);
+            }
+        });
+
 
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(pembelian.getTanggalPesanan());
 
         Date date = c.getTime();
 
-        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
         String dateFormat = format.format(date);
         tvTanggalPesanan.setText(dateFormat);
         tvPemesan.setText(pembelian.getNamaPemasok());

@@ -68,11 +68,12 @@
             android:orientation="vertical"
             android:padding="15dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/container_search_bantuan"
                 android:elevation="6dp"
+                android:orientation="vertical"
                 android:padding="15dp">
 
                 <TextView
@@ -84,26 +85,27 @@
                     android:textColor="#636262"
                     android:textSize="12sp" />
 
-                <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:id="@+id/no_pesanan"-->
-                <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@+id/tv_pengisian_pesananan"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:gravity="center"-->
-                <!--app:boxStrokeColor="@color/colorAccent">-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/no_pesanan"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_pengisian_pesananan"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    app:boxStrokeColor="@color/colorAccent">
 
-                <!--<android.support.design.widget.TextInputEditText-->
-                <!--android:id="@+id/et_no_pesanan"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:hint="No Pesanan"-->
-                <!--android:inputType="text"-->
-                <!--android:textColor="@color/colorBlack"-->
-                <!--android:textColorHint="@color/colorBlack" />-->
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_no_pesanan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomer Order (Terisi secara Otomatis)"
+                        android:enabled="false"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorBlack" />
 
-                <!--</android.support.design.widget.TextInputLayout>-->
+                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/pemasok"
@@ -147,7 +149,7 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"

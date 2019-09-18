@@ -1,16 +1,27 @@
 package com.example.pelangiaquscape;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.pelangiaquscape.Fragment.BerandaSuperAdminFragment;
 import com.example.pelangiaquscape.Fragment.PemberitahuanFragment;
 import com.example.pelangiaquscape.Fragment.ProfileFragment;
 import com.example.pelangiaquscape.Fragment.RekapFragment;
+import com.example.pelangiaquscape.Model.Merek;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,10 +31,45 @@ public class MainActivity extends AppCompatActivity {
     final String EXTRA = "INTENT_EDIT_TO_MAIN";
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final SharedPreferences pref = getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
+
+
+        FirebaseDatabase.getInstance().getReference("Merek").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                int i = 1;
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    System.out.println("MEREK KEY: "+ dataSnapshot.getKey() + " VALUE: "+ dataSnapshot.getChildren());
+                    Log.v("MainActivity", dataSnapshot.getKey());
+
+                    Merek m = ds.getValue(Merek.class);
+
+//                    listMap.put(dataSnapshot.getRef().getKey(), ds.getValue(Merek.class));
+
+                    SharedPreferences.Editor edit = pref.edit();
+                    edit.putString(String.valueOf(i), m.getNama());
+                    edit.apply();
+
+                    i++;
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -42,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
                             selectedFragment = new BerandaSuperAdminFragment();
+
+
+
 //                            Toast.makeText(MainActivity.this, "Home",Toast.LENGTH_SHORT).show();
                             break;
                         case R.id.nav_rekap:

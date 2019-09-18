@@ -52,8 +52,11 @@ public class BerandaSuperAdminFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
         // Inflate the layout for this fragment
         View v  = inflater.inflate(R.layout.fragment_beranda_superadmin, container, false);
+
 
         LinearLayout containerLaporan = v.findViewById(R.id.container_laporan);
 

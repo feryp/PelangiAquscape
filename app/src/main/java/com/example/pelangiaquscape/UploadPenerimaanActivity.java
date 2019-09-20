@@ -3,6 +3,7 @@ package com.example.pelangiaquscape;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UploadPenerimaanActivity extends AppCompatActivity {
+public class UploadPenerimaanActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cancel;
 
@@ -37,21 +38,35 @@ public class UploadPenerimaanActivity extends AppCompatActivity {
     private UploadPenerimaanAdapter uploadPenerimaanAdapter;
     private StorageReference mStorage;
 
+    static final int REQUEST_IMAGE_CAPTURE = 80;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_penerimaan);
 
+        // INIT FIREBASE STORAGE
         mStorage = FirebaseStorage.getInstance().getReference();
+
 
         cancel = findViewById(R.id.im_cancel);
         containerKamera = findViewById(R.id.gunakan_kamera);
         containerGaleri = findViewById(R.id.pilih_dari_galeri);
         rv_upload_penerimaan = findViewById(R.id.rv_upload_penerimaan);
 
+
+        // REGISTER LISTENER
+        cancel.setOnClickListener(this);
+        containerKamera.setOnClickListener(this);
+        containerGaleri.setOnClickListener(this);
+
+
+
+        // INIT LIST
         fileNameList = new ArrayList<>();
         fileDoneList = new ArrayList<>();
 
+        // INIT ADAPTER
         uploadPenerimaanAdapter = new UploadPenerimaanAdapter(fileNameList, fileDoneList);
 
         //RecyclerView
@@ -59,23 +74,7 @@ public class UploadPenerimaanActivity extends AppCompatActivity {
         rv_upload_penerimaan.setHasFixedSize(true);
         rv_upload_penerimaan.setAdapter(uploadPenerimaanAdapter);
 
-        containerGaleri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
-            }
-        });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
     @Override
@@ -141,5 +140,38 @@ public class UploadPenerimaanActivity extends AppCompatActivity {
             }
         }
         return result;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.gunakan_kamera:
+                dispatchTakePictureIntent();
+                break;
+
+            case R.id.pilih_dari_galeri:
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
+                break;
+
+            case R.id.im_cancel:
+                break;
+
+            case R.id.im_save:
+                finish();
+                break;
+
+        }
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//        }
     }
 }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container_list_penjualan"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="80dp"
     android:layout_margin="10dp"
     android:background="@drawable/container_barang"
     android:orientation="horizontal"
@@ -93,6 +93,17 @@
             android:textColor="@color/colorDarkGray"
             android:textSize="9sp" />
 
+        <TextView
+            android:id="@+id/status_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="Sudah Upload"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

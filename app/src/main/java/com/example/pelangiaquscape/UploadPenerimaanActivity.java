@@ -47,99 +47,99 @@ public class UploadPenerimaanActivity extends AppCompatActivity {
         cancel = findViewById(R.id.im_cancel);
         containerKamera = findViewById(R.id.gunakan_kamera);
         containerGaleri = findViewById(R.id.pilih_dari_galeri);
-        rv_upload_penerimaan = findViewById(R.id.rv_upload_penerimaan);
-
-        fileNameList = new ArrayList<>();
-        fileDoneList = new ArrayList<>();
-
-        uploadPenerimaanAdapter = new UploadPenerimaanAdapter(fileNameList, fileDoneList);
-
-        //RecyclerView
-        rv_upload_penerimaan.setLayoutManager(new LinearLayoutManager(this));
-        rv_upload_penerimaan.setHasFixedSize(true);
-        rv_upload_penerimaan.setAdapter(uploadPenerimaanAdapter);
-
-        containerGaleri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
-            }
-        });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
-
-            if (data.getClipData() != null) {
-
-                int totalItemSelected = data.getClipData().getItemCount();
-
-                for (int i = 0; i < totalItemSelected; i++) {
-
-                    Uri fileUri = data.getClipData().getItemAt(i).getUri();
-
-                    String fileName = getFileName(fileUri);
-
-                    fileNameList.add(fileName);
-                    fileDoneList.add("uploading");
-                    uploadPenerimaanAdapter.notifyDataSetChanged();
-
-                    StorageReference fileToUpload = mStorage.child("Faktur").child(fileName);
-
-                    final int finalI = i;
-                    fileToUpload.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            fileDoneList.remove(finalI);
-                            fileDoneList.add(finalI, "Selesai");
-
-                            uploadPenerimaanAdapter.notifyDataSetChanged();
-                        }
-                    });
-                }
-//                Toast.makeText(UploadPenerimaanActivity.this, "Selected Multiple Files", Toast.LENGTH_SHORT).show();
-
-            } else if (data.getData() != null) {
-
-                Toast.makeText(UploadPenerimaanActivity.this, "Selected Single Files", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    public String getFileName(Uri uri) {
-        String result = null;
-        if (uri.getScheme().equals("content")) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-        if (result == null) {
-            result = uri.getPath();
-            int cut = result.lastIndexOf('/');
-            if (cut != -1) {
-                result = result.substring(cut + 1);
-            }
-        }
-        return result;
+//        rv_upload_penerimaan = findViewById(R.id.rv_upload_penerimaan);
+//
+//        fileNameList = new ArrayList<>();
+//        fileDoneList = new ArrayList<>();
+//
+//        uploadPenerimaanAdapter = new UploadPenerimaanAdapter(fileNameList, fileDoneList);
+//
+//        //RecyclerView
+//        rv_upload_penerimaan.setLayoutManager(new LinearLayoutManager(this));
+//        rv_upload_penerimaan.setHasFixedSize(true);
+//        rv_upload_penerimaan.setAdapter(uploadPenerimaanAdapter);
+//
+//        containerGaleri.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
+//            }
+//        });
+//
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+//
+//            if (data.getClipData() != null) {
+//
+//                int totalItemSelected = data.getClipData().getItemCount();
+//
+//                for (int i = 0; i < totalItemSelected; i++) {
+//
+//                    Uri fileUri = data.getClipData().getItemAt(i).getUri();
+//
+//                    String fileName = getFileName(fileUri);
+//
+//                    fileNameList.add(fileName);
+//                    fileDoneList.add("uploading");
+//                    uploadPenerimaanAdapter.notifyDataSetChanged();
+//
+//                    StorageReference fileToUpload = mStorage.child("Faktur").child(fileName);
+//
+//                    final int finalI = i;
+//                    fileToUpload.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                            fileDoneList.remove(finalI);
+//                            fileDoneList.add(finalI, "Selesai");
+//
+//                            uploadPenerimaanAdapter.notifyDataSetChanged();
+//                        }
+//                    });
+//                }
+////                Toast.makeText(UploadPenerimaanActivity.this, "Selected Multiple Files", Toast.LENGTH_SHORT).show();
+//
+//            } else if (data.getData() != null) {
+//
+//                Toast.makeText(UploadPenerimaanActivity.this, "Selected Single Files", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+//
+//    public String getFileName(Uri uri) {
+//        String result = null;
+//        if (uri.getScheme().equals("content")) {
+//            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+//            try {
+//                if (cursor != null && cursor.moveToFirst()) {
+//                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+//                }
+//            } finally {
+//                cursor.close();
+//            }
+//        }
+//        if (result == null) {
+//            result = uri.getPath();
+//            int cut = result.lastIndexOf('/');
+//            if (cut != -1) {
+//                result = result.substring(cut + 1);
+//            }
+//        }
+//        return result;
     }
 }

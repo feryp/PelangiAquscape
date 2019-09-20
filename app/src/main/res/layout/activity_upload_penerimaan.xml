@@ -36,25 +36,26 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_back" />
+                        android:src="@drawable/ic_cancel" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Penerimaan"
+                        android:text="Unggah Faktur"
                         android:textColor="@color/colorBlue"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <View
+                    <ImageView
                         android:id="@+id/im_save"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_save" />
 
                 </RelativeLayout>
 
@@ -82,14 +83,30 @@
             android:textColor="@color/colorBlue"
             android:textSize="30sp" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_upload_penerimaan"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:scrollbars="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-            </android.support.v7.widget.RecyclerView>
+            <ImageView
+                android:id="@+id/preview_faktur"
+                android:layout_width="280dp"
+                android:layout_height="380dp"
+                android:background="@drawable/border_preview_gambar" />
+
+            <TextView
+                android:id="@+id/nama_gambar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_marginTop="15dp"
+                android:text="Faktur Penerimaan.jpg"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

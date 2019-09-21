@@ -8,11 +8,7 @@
     android:orientation="vertical"
     tools:context=".PreviewFakturPenerimaanActivity">
 
-    <LinearLayout
-        android:id="@+id/container_list_upload"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/bar"
@@ -72,6 +68,7 @@
                 android:textSize="30sp" />
 
             <ImageView
+                android:id="@+id/im_ket_terunggah"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/faktur_anda"
@@ -106,7 +103,5 @@
                 android:textSize="20sp" />
 
         </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>

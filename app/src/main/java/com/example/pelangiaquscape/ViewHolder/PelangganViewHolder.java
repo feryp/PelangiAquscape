@@ -53,16 +53,15 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View v) {
-        itemClickListener.onClick(v, getAdapterPosition(), false);
-
         switch (v.getId()) {
             case R.id.btn_kartu_pelanggan:
                 Intent intent = new Intent(itemView.getContext(), KartuPelangganActivity.class);
                 itemView.getContext().startActivity(intent);
                 break;
+            default:
+                itemClickListener.onClick(v, getAdapterPosition(), false);
+                break;
         }
-
-
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

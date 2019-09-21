@@ -26,7 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DetailProsesPembelianActivity extends AppCompatActivity {
+public class DetailProsesPembelianActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     TextView tvNoPesanan, tvMetodePembayaran, tvTanggalPesanan, tvPemesan, tvTotalHargaPembelian;
@@ -126,5 +126,16 @@ public class DetailProsesPembelianActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_lihat_faktur:
+                Intent i = new Intent(DetailProsesPembelianActivity.this, PreviewFakturPenerimaanActivity.class);
+                i.putExtra("pembelian", pembelian);
+                startActivity(i);
+                break;
+        }
     }
 }

@@ -127,41 +127,6 @@ public class UploadPenerimaanActivity extends AppCompatActivity implements View.
             imPhoto.setImageURI(uri);
             tvNamaFoto.setText(getFileName(uri));
 
-
-//            if (data.getClipData() != null) {
-//
-//                int totalItemSelected = data.getClipData().getItemCount();
-//
-//                for (int i = 0; i < totalItemSelected; i++) {
-//
-//                    Uri fileUri = data.getClipData().getItemAt(i).getUri();
-//
-//                    String fileName = getFileName(fileUri);
-//
-//                    fileNameList.add(fileName);
-//                    fileDoneList.add("uploading");
-//                    uploadPenerimaanAdapter.notifyDataSetChanged();
-//
-//                    StorageReference fileToUpload = mStorage.child("Faktur").child(fileName);
-//
-//                    final int finalI = i;
-//                    fileToUpload.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                            fileDoneList.remove(finalI);
-//                            fileDoneList.add(finalI, "Selesai");
-//
-//                            uploadPenerimaanAdapter.notifyDataSetChanged();
-//                        }
-//                    });
-//                }
-//                Toast.makeText(UploadPenerimaanActivity.this, "Selected Multiple Files", Toast.LENGTH_SHORT).show();
-
-//            } else if (data.getData() != null) {
-//
-//                Toast.makeText(UploadPenerimaanActivity.this, "Selected Single Files", Toast.LENGTH_SHORT).show();
-//            }
         }
     }
 
@@ -278,7 +243,7 @@ public class UploadPenerimaanActivity extends AppCompatActivity implements View.
 
     private void showLimitDialog() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Foto tidak dipilih");
+        builder1.setMessage("Foto belum dipilih");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(

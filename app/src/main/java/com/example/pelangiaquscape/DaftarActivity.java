@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,24 +19,52 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Password;
+import com.mobsandgeeks.saripaar.annotation.Pattern;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class DaftarActivity extends AppCompatActivity {
+public class DaftarActivity extends AppCompatActivity implements View.OnClickListener, Validator.ValidationListener {
 
-    TextInputEditText namapengguna, telepon, email, katasandi, ulangiKataSandi;
-    Button btn_daftar;
-    TextView masuk;
 
-    DatabaseReference databaseReference;
-    FirebaseAuth firebaseAuth;
-    ProgressDialog pd;
+    @NotEmpty
+    TextInputEditText namapengguna;
+
+    @NotEmpty
+    TextInputEditText telepon;
+
+    @NotEmpty
+    TextInputEditText email;
+
+    @NotEmpty
+    @Password
+    TextInputEditText katasandi;
+
+    @ConfirmPassword
+    TextInputEditText ulangiKataSandi;
+
+    private Button btn_daftar;
+    private TextView masuk;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog pd;
+    private Validator validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
 
+        // VALIDATOR
+        validator = new Validator(this);
+        validator.setValidationListener(this);
+
+        // INIT VIEW
         namapengguna = findViewById(R.id.et_nama_pengguna);
         telepon = findViewById(R.id.et_telepon);
         email = findViewById(R.id.et_email);
@@ -44,48 +73,20 @@ public class DaftarActivity extends AppCompatActivity {
         btn_daftar = findViewById(R.id.btn_daftar);
         masuk = findViewById(R.id.tv_masuk);
 
-
+        // INIT FIREBASE
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
 
-        masuk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent masuk = new Intent(DaftarActivity.this, LoginActivity.class);
-                startActivity(masuk);
-            }
-        });
+        // REGISTER LISTENER
+        masuk.setOnClickListener(this);
+        btn_daftar.setOnClickListener(this);
 
-        btn_daftar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pd = new ProgressDialog(DaftarActivity.this);
-                pd.setMessage("Tunggu Sebentar...");
-                pd.show();
-
-                String str_namapengguna = namapengguna.getText().toString();
-                String str_telepon = telepon.getText().toString();
-                String str_email = email.getText().toString();
-                String str_katasandi = katasandi.getText().toString();
-                String str_ulangi = ulangiKataSandi.getText().toString();
-                String str_kode_login = "1";
-
-                if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_telepon) ||
-                        TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_katasandi)
-                        || TextUtils.isEmpty(str_ulangi) || TextUtils.isEmpty(str_kode_login)) {
-                    Toast.makeText(DaftarActivity.this, "Semua data harus diisi!", Toast.LENGTH_SHORT).show();
-                } else if (str_katasandi.length() < 6) {
-                    Toast.makeText(DaftarActivity.this, "Kata Sandi harus 6 karakter", Toast.LENGTH_SHORT).show();
-                } else {
-                    btn_daftar(str_namapengguna, str_telepon, str_email, str_katasandi, str_ulangi, str_kode_login);
-                }
-
-            }
-        });
     }
 
-    private void btn_daftar(final String namapengguna, final String telepon, final String email, final String
-            katasandi, final String ulangi, final String kodelogin) {
+    private void daftar(final String namapengguna,
+                        final String telepon,
+                        final String email,
+                        final String katasandi) {
 
         firebaseAuth.createUserWithEmailAndPassword(email, katasandi)
                 .addOnCompleteListener(DaftarActivity.this, new OnCompleteListener<AuthResult>() {
@@ -97,25 +98,22 @@ public class DaftarActivity extends AppCompatActivity {
 
                             databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(userid);
 
-                            HashMap<String, Object> hashMap = new HashMap<>();
-                            hashMap.put("id", userid);
-                            hashMap.put("namapengguna", namapengguna.toLowerCase());
-                            hashMap.put("telepon", telepon);
-                            hashMap.put("email", email);
-                            hashMap.put("katasandi", katasandi);
-                            hashMap.put("ulangkatasandi", ulangi);
-                            hashMap.put("kode_login", kodelogin);
-                            hashMap.put("status_jabatan","");
-                            hashMap.put("bio","");
-                            hashMap.put("fotoProfile","");
+                            User user = new User();
+                            user.setId(userid);
+                            user.setUsername(namapengguna.toLowerCase());
+                            user.setTelepon(telepon);
+                            user.setEmail(email);
+                            user.setPassword(katasandi);
+                            user.setKodeLogin("0");
+                            user.setBio("");
+                            user.setFotoProfile("");
 
-
-                            databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            databaseReference.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         pd.dismiss();
-                                        Intent intent = new Intent(DaftarActivity.this, Main2Activity.class);
+                                        Intent intent = new Intent(DaftarActivity.this, MainActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
                                     }
@@ -127,5 +125,49 @@ public class DaftarActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_daftar:
+                validator.validate();
+
+                pd = new ProgressDialog(DaftarActivity.this);
+                pd.setMessage("Tunggu Sebentar...");
+                pd.show();
+
+                String str_namapengguna = namapengguna.getText().toString();
+                String str_telepon = telepon.getText().toString();
+                String str_email = email.getText().toString();
+                String str_katasandi = katasandi.getText().toString();
+                daftar(str_namapengguna, str_telepon, str_email, str_katasandi);
+                break;
+
+            case R.id.tv_masuk:
+                Intent masuk = new Intent(DaftarActivity.this, LoginActivity.class);
+                startActivity(masuk);
+                break;
+        }
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(this);
+            // Display error messages
+            if (view instanceof TextInputEditText) {
+                ((TextInputEditText) view).setError(message);
+            } else {
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
 }

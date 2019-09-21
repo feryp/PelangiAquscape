@@ -1,34 +1,58 @@
 package com.example.pelangiaquscape.Model;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
 
     private String id;
     private String username;
     private String telepon;
     private String email;
     private String password;
-    private String ulangiPassword;
     private String kodeLogin;
-    private String statusJabatan;
     private String fotoProfile;
     private String bio;
 
 
-    public User(String username, String email){}
+    public User() {
+    }
 
-    public User(String id, String username, String telepon, String email, String password, String ulangiPassword, String kodeLogin, String statusJabatan, String fotoProfile, String bio) {
+    public User(String id, String username, String telepon, String email, String password,  String kodeLogin, String fotoProfile, String bio) {
         this.id = id;
         this.username = username;
         this.telepon = telepon;
         this.email = email;
         this.password = password;
-        this.ulangiPassword = ulangiPassword;
+
         this.kodeLogin = kodeLogin;
-        this.statusJabatan = statusJabatan;
         this.fotoProfile = fotoProfile;
         this.bio = bio;
-
     }
+
+    protected User(Parcel in) {
+        id = in.readString();
+        username = in.readString();
+        telepon = in.readString();
+        email = in.readString();
+        password = in.readString();
+
+        kodeLogin = in.readString();
+        fotoProfile = in.readString();
+        bio = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -70,13 +94,7 @@ public class User {
         this.password = password;
     }
 
-    public String getUlangiPassword() {
-        return ulangiPassword;
-    }
 
-    public void setUlangiPassword(String ulangiPassword) {
-        this.ulangiPassword = ulangiPassword;
-    }
 
     public String getKodeLogin() {
         return kodeLogin;
@@ -84,14 +102,6 @@ public class User {
 
     public void setKodeLogin(String kodeLogin) {
         this.kodeLogin = kodeLogin;
-    }
-
-    public String getStatusJabatan() {
-        return statusJabatan;
-    }
-
-    public void setStatusJabatan(String statusJabatan) {
-        this.statusJabatan = statusJabatan;
     }
 
     public String getFotoProfile() {
@@ -110,4 +120,21 @@ public class User {
         this.bio = bio;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(username);
+        dest.writeString(telepon);
+        dest.writeString(email);
+        dest.writeString(password);
+
+        dest.writeString(kodeLogin);
+        dest.writeString(fotoProfile);
+        dest.writeString(bio);
+    }
 }

@@ -18,6 +18,7 @@ import com.example.pelangiaquscape.AkunTokoActivity;
 import com.example.pelangiaquscape.BantuanActivity;
 import com.example.pelangiaquscape.EditProfileActivity;
 import com.example.pelangiaquscape.LoginActivity;
+import com.example.pelangiaquscape.Model.User;
 import com.example.pelangiaquscape.NotifikasiActivity;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.TentangKamiActivity;
@@ -31,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     TextView tvNamaPengguna, tvStatusJabatan, tvBiodata;
     Button editAkun;
@@ -45,8 +46,8 @@ public class ProfileFragment extends Fragment {
     StorageReference storageReference;
 
 
-
     String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
+    User user;
 
 
     @Override
@@ -80,13 +81,15 @@ public class ProfileFragment extends Fragment {
         tentangkami = v.findViewById(R.id.tentangkami);
         keluar = v.findViewById(R.id.keluar);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user1 = dataSnapshot.getValue(User.class);
+                user = user1;
 
-                namaPengguna = "" + dataSnapshot.child("namapengguna").getValue();
+                namaPengguna = "" + dataSnapshot.child("username").getValue();
 
-                kodeLogin = "" + dataSnapshot.child("kode_login").getValue();
+                kodeLogin = "" + dataSnapshot.child("kodeLogin").getValue();
                 switch (kodeLogin) {
                     case "0":
                         statusJabatan = "Super Admin";
@@ -111,6 +114,14 @@ public class ProfileFragment extends Fragment {
                 tvStatusJabatan.setText(statusJabatan);
                 tvBiodata.setText(biodata);
 
+                // REGISTER LISTENER
+                editAkun.setOnClickListener(ProfileFragment.this);
+                akunToko.setOnClickListener(ProfileFragment.this);
+                notifikasi.setOnClickListener(ProfileFragment.this);
+                bantuan.setOnClickListener(ProfileFragment.this);
+                tentangkami.setOnClickListener(ProfileFragment.this);
+                keluar.setOnClickListener(ProfileFragment.this);
+
             }
 
             @Override
@@ -121,66 +132,49 @@ public class ProfileFragment extends Fragment {
 
 
 
-        editAkun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity().getApplicationContext(), "Edit Akun", Toast.LENGTH_LONG).show();
-                Intent ediitAkun = new Intent(getActivity(), EditProfileActivity.class);
-                startActivity(ediitAkun);
-            }
-        });
-
-        akunToko.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "Akun Toko", Toast.LENGTH_LONG).show();
-                Intent akunToko = new Intent(getActivity(), AkunTokoActivity.class);
-                startActivity(akunToko);
-
-            }
-        });
-
-        notifikasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity().getApplicationContext(), "Notifikasi", Toast.LENGTH_LONG).show();
-                Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
-                startActivity(notifikasi);
-            }
-        });
-
-        bantuan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity().getApplicationContext(), "Bantuan", Toast.LENGTH_LONG).show();
-                Intent bantuan = new Intent(getActivity(), BantuanActivity.class);
-                startActivity(bantuan);
-            }
-        });
-
-        tentangkami.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity().getApplicationContext(), "Tentang Kami", Toast.LENGTH_LONG).show();
-                Intent tentangkami = new Intent(getActivity(), TentangKamiActivity.class);
-                startActivity(tentangkami);
-            }
-        });
-
-        keluar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getActivity().getApplicationContext(), "Keluar", Toast.LENGTH_LONG).show();
-                Intent keluar = new Intent(getActivity(), LoginActivity.class);
-                startActivity(keluar);
-            }
-        });
 
 
         return v;
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_edit_akun:
+                Toast.makeText(getActivity().getApplicationContext(), "Edit Akun", Toast.LENGTH_LONG).show();
+                Intent ediitAkun = new Intent(getActivity(), EditProfileActivity.class);
+                ediitAkun.putExtra("user", user);
+                startActivity(ediitAkun);
+                break;
+            case R.id.akun_toko:
+                Toast.makeText(getActivity().getApplicationContext(), "Akun Toko", Toast.LENGTH_LONG).show();
+                Intent akunToko = new Intent(getActivity(), AkunTokoActivity.class);
+                startActivity(akunToko);
+                break;
+            case R.id.notifikasi:
+                Toast.makeText(getActivity().getApplicationContext(), "Notifikasi", Toast.LENGTH_LONG).show();
+                Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
+                startActivity(notifikasi);
+                break;
+            case R.id.bantuan:
+                Toast.makeText(getActivity().getApplicationContext(), "Bantuan", Toast.LENGTH_LONG).show();
+                Intent bantuan = new Intent(getActivity(), BantuanActivity.class);
+                startActivity(bantuan);
+                break;
+            case R.id.tentangkami:
+                Toast.makeText(getActivity().getApplicationContext(), "Tentang Kami", Toast.LENGTH_LONG).show();
+                Intent tentangkami = new Intent(getActivity(), TentangKamiActivity.class);
+                startActivity(tentangkami);
+                break;
+            case R.id.keluar:
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getActivity().getApplicationContext(), "Keluar", Toast.LENGTH_LONG).show();
+                Intent keluar = new Intent(getActivity(), LoginActivity.class);
+                startActivity(keluar);
+                break;
+        }
+    }
 
 }
+

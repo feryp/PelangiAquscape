@@ -30,6 +30,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -43,9 +45,9 @@ import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static int RC_SIGN_IN = 1;
+    private static int RC_SIGN_IN = 10;
     private static String TAG = "LoginActivity";
 
     ImageView bgapp, clover;
@@ -67,23 +69,22 @@ public class LoginActivity extends AppCompatActivity {
 
         frombottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
 
-        bgapp = (ImageView) findViewById(R.id.bgapp);
-        clover = (ImageView) findViewById(R.id.clover);
-        logosplash = (LinearLayout) findViewById(R.id.logosplash);
-        container_user = (LinearLayout) findViewById(R.id.container_user);
-        container_pwd = (LinearLayout) findViewById(R.id.container_pwd);
-        container_lupa_password = (LinearLayout) findViewById(R.id.container_lupa_password);
-        btn_google = (Button) findViewById(R.id.btn_google);
-        container_daftar = (LinearLayout) findViewById(R.id.container_daftar);
-        btn_masuk = (Button) findViewById(R.id.btn_masuk);
-
+        // INIT VIEW
+        bgapp = findViewById(R.id.bgapp);
+        clover =  findViewById(R.id.clover);
+        logosplash = findViewById(R.id.logosplash);
+        container_user =  findViewById(R.id.container_user);
+        container_pwd = findViewById(R.id.container_pwd);
+        container_lupa_password =  findViewById(R.id.container_lupa_password);
+        btn_google =  findViewById(R.id.btn_google);
+        container_daftar =  findViewById(R.id.container_daftar);
+        btn_masuk =  findViewById(R.id.btn_masuk);
         namapengguna = findViewById(R.id.et_nama_pengguna);
         katasandi = findViewById(R.id.et_kata_sandi);
+        daftar =  findViewById(R.id.tv_daftar);
+        lupa_password = findViewById(R.id.tv_lupa_password);
 
-        daftar = (TextView) findViewById(R.id.tv_daftar);
-        lupa_password = (TextView) findViewById(R.id.tv_lupa_password);
-
-
+        // ANIMATION
         bgapp.animate().translationY(-1500).setDuration(1000).setStartDelay(1500);
         clover.animate().alpha(0).setDuration(1000).setStartDelay(600);
         logosplash.animate().translationY(-330).setDuration(1500).setStartDelay(1000);
@@ -95,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         container_daftar.startAnimation(frombottom);
         container_lupa_password.startAnimation(frombottom);
 
-        // Configure Google Sign In
+        // GOOGLE SIGN IN
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -106,107 +107,15 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        daftar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent daftar = new Intent(LoginActivity.this, DaftarActivity.class);
-                startActivity(daftar);
-            }
-        });
+        // REGISTER LISTENER
+        daftar.setOnClickListener(this);
+        lupa_password.setOnClickListener(this);
+        btn_google.setOnClickListener(this);
+        btn_masuk.setOnClickListener(this);
 
-        lupa_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent lupa_password = new Intent(LoginActivity.this, LupaPasswordActivity.class);
-                startActivity(lupa_password);
-            }
-        });
-
-        btn_masuk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
-
-                pd.setMessage("Tunggu Sebentar ...");
-                pd.show();
-
-                String str_namapengguna = namapengguna.getText().toString();
-                String str_katasandi = katasandi.getText().toString();
-
-                if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_katasandi)) {
-                    Toast.makeText(LoginActivity.this, "Semua harus diisi!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.v("HERE", "VALUE EVENT LISTENER");
-                    firebaseAuth.signInWithEmailAndPassword(str_namapengguna, str_katasandi)
-                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-
-                                        Log.v("HERE1", "VALUE EVENT LISTENER");
-
-
-                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
-                                                .child(firebaseAuth.getCurrentUser().getUid()).child("kode_login");
-
-
-                                        reference.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                                pd.dismiss();
-                                                Log.v("HERE2", "VALUE EVENT LISTENER");
-                                                int as = Integer.parseInt(dataSnapshot.getValue().toString());
-                                                if (as == 1) {
-                                                    Intent i = new Intent(LoginActivity.this, Main2Activity.class);
-                                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                    startActivity(i);
-                                                    finish();
-                                                } else if (as == 0) {
-                                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                    startActivity(intent);
-                                                    finish();
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                                pd.dismiss();
-
-                                            }
-                                        });
-                                    } else {
-                                        pd.dismiss();
-                                        Toast.makeText(LoginActivity.this, "Otentikasi gagal!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-
-                }
-            }
-
-        });
-
-        btn_google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
-            }
-        });
 
     }
 
-//    private void createNewUser(User userFromRegistration){
-//        String username = "namapengguna";
-//        String email = userFromRegistration.getEmail();
-//        String userId = userFromRegistration.getId();
-//
-//        User user = new User(username, email);
-//
-//        firebaseDatabase.getInstance().getReference().child("User").child(userId).setValue(user);
-//
-//    }
 
     @Override
     protected void onStart() {
@@ -218,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
             pd.setMessage("Tunggu Sebentar ...");
             pd.show();
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
-                    .child(currentUser.getUid()).child("kode_login");
+                    .child(currentUser.getUid()).child("kodeLogin");
 
 
             reference.addValueEventListener(new ValueEventListener() {
@@ -226,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     pd.dismiss();
-                    Log.v("HERE2", "VALUE EVENT LISTENER");
+//                    Log.v("HERE2", "VALUE EVENT LISTENER");
                     int as = Integer.parseInt(dataSnapshot.getValue().toString());
                     if (as == 1) {
                         Intent i = new Intent(LoginActivity.this, Main2Activity.class);
@@ -264,12 +173,15 @@ public class LoginActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 //            handleSignResult(task);
             try {
+//                Log.v(TAG, "HERE");
+                System.out.println("sini1");
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
+                System.out.println("sini2");
                 // ...
             }
         }
@@ -334,5 +246,92 @@ public class LoginActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btn_masuk:
+                final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+
+                pd.setMessage("Tunggu Sebentar ...");
+                pd.show();
+
+                String str_namapengguna = namapengguna.getText().toString();
+                String str_katasandi = katasandi.getText().toString();
+
+                if (TextUtils.isEmpty(str_namapengguna) || TextUtils.isEmpty(str_katasandi)) {
+                    Toast.makeText(LoginActivity.this, "Semua harus diisi!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.v("HERE", "VALUE EVENT LISTENER");
+                    AuthCredential credential = EmailAuthProvider.getCredential(str_namapengguna, str_katasandi);
+
+                    firebaseAuth.getCurrentUser().linkWithCredential(credential)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                }
+                            });
+                    firebaseAuth.signInWithEmailAndPassword(str_namapengguna, str_katasandi)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+
+                                        Log.v("HERE1", "VALUE EVENT LISTENER");
+
+
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
+                                                .child(firebaseAuth.getCurrentUser().getUid()).child("kode_login");
+
+
+                                        reference.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                                pd.dismiss();
+                                                Log.v("HERE2", "VALUE EVENT LISTENER");
+                                                int as = Integer.parseInt(dataSnapshot.getValue().toString());
+                                                if (as == 1) {
+                                                    Intent i = new Intent(LoginActivity.this, Main2Activity.class);
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(i);
+                                                    finish();
+                                                } else if (as == 0) {
+                                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                pd.dismiss();
+
+                                            }
+                                        });
+                                    } else {
+                                        pd.dismiss();
+                                        Toast.makeText(LoginActivity.this, "Otentikasi gagal!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+                break;
+            case R.id.tv_daftar:
+                Intent daftar = new Intent(LoginActivity.this, DaftarActivity.class);
+                startActivity(daftar);
+                break;
+            case R.id.tv_lupa_password:
+                Intent lupa_password = new Intent(LoginActivity.this, LupaPasswordActivity.class);
+                startActivity(lupa_password);
+                break;
+            case R.id.btn_google:
+                signIn();
+                break;
+        }
     }
 }

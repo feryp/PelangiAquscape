@@ -1,6 +1,9 @@
 package com.example.pelangiaquscape.Model;
 
-public class AkunToko {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class AkunToko implements Parcelable {
 
     private String namaToko;
     private String noTelepon;
@@ -17,6 +20,26 @@ public class AkunToko {
         this.alamat = alamat;
         this.kodePos = kodePos;
     }
+
+    protected AkunToko(Parcel in) {
+        namaToko = in.readString();
+        noTelepon = in.readString();
+        emailToko = in.readString();
+        alamat = in.readString();
+        kodePos = in.readString();
+    }
+
+    public static final Creator<AkunToko> CREATOR = new Creator<AkunToko>() {
+        @Override
+        public AkunToko createFromParcel(Parcel in) {
+            return new AkunToko(in);
+        }
+
+        @Override
+        public AkunToko[] newArray(int size) {
+            return new AkunToko[size];
+        }
+    };
 
     public String getNamaToko() {
         return namaToko;
@@ -52,5 +75,19 @@ public class AkunToko {
 
     public void setKodePos(String kodePos) {
         this.kodePos = kodePos;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(namaToko);
+        dest.writeString(noTelepon);
+        dest.writeString(emailToko);
+        dest.writeString(alamat);
+        dest.writeString(kodePos);
     }
 }

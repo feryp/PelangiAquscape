@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.bumptech.glide.Glide;
+import com.example.pelangiaquscape.Model.User;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -36,24 +37,24 @@ import com.squareup.picasso.Picasso;
 //import com.theartofdev.edmodo.cropper.CropImageView;
 
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     final String EXTRA = "INTENT_EDIT_TO_MAIN";
     ImageView cancel, save, imgFotoprofile;
-    TextView ubah_foto;
-    TextInputEditText nama_akun_pengguna, status_jabatan, bio;
+    TextView tvUbah;
+    TextInputEditText etNamaAkun, etStatusJabatan, etBio;
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    StorageReference storageReference;
 
-    private static final int IMAGE_REQUEST = 1;
+    private static final int RESULT_LOAD_IMAGE = 1;
     private Uri mImageUri;
     private StorageTask uploadTask;
 
     String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
+    private Uri currentPhotoUri;
+
+    User user;
 
 
     @Override
@@ -61,57 +62,52 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+
+
+        // INIT VIEW
         cancel = findViewById(R.id.im_cancel);
         save = findViewById(R.id.im_save);
         imgFotoprofile = findViewById(R.id.image_profile);
-        ubah_foto = findViewById(R.id.tv_ubah_foto);
-        nama_akun_pengguna = findViewById(R.id.et_nama_akun_pengguna);
-        status_jabatan = findViewById(R.id.et_status_jabatan);
-        bio = findViewById(R.id.et_bio);
+        tvUbah = findViewById(R.id.tv_ubah_foto);
+        etNamaAkun = findViewById(R.id.et_nama_akun_pengguna);
+        etStatusJabatan = findViewById(R.id.et_status_jabatan);
+        etBio = findViewById(R.id.et_bio);
 
+        // INIT FIREBASE
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid());
-        storageReference = FirebaseStorage.getInstance().getReference("uploads");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        // REGISTER LISTENER
+        cancel.setOnClickListener(this);
+        tvUbah.setOnClickListener(this);
+
+        loadProfile();
+    }
+
+    void loadProfile(){
+        FirebaseDatabase fd = FirebaseDatabase.getInstance();
+        DatabaseReference dr = fd.getReference("User");
+
+        dr.child(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-//                User user = dataSnapshot.getValue(User.class);
-//                nama_akun_pengguna.setText(user.getUsername());
-//                status_jabatan.setText(user.getStatusJabatan());
-//                bio.setText(user.getBio());
-//                if (user.getFotoProfile().equals("default")){
-//                    imgFotoprofile.setImageResource(R.drawable.ic_foto_profile);
-//                } else {
-//                    Glide.with(getApplicationContext()).load(user.getFotoProfile()).into(imgFotoprofile);
-//                }
-                namaPengguna = "" + dataSnapshot.child("namapengguna").getValue();
-                kodeLogin = "" + dataSnapshot.child("kode_login").getValue();
-                switch (kodeLogin) {
-                    case "0":
-                        statusJabatan = "Super Admin";
-                        break;
-                    case "1":
-                        statusJabatan = "Pegawai";
-                        break;
-                }
-                biodata = "" + dataSnapshot.child("bio").getValue();
-                fotoProfile = "" + dataSnapshot.child("fotoProfile").getValue();
+                User user1 = dataSnapshot.getValue(User.class);
+                System.out.println("EditProfileActivity "+user1.getId());
+                if(user1 != null) {
+                    etNamaAkun.setText(user1.getUsername());
+                    etBio.setText(user1.getBio());
+//                    if (user1.getKodeLogin().equals("1")) {
+//                        etStatusJabatan.setText("Admin");
+//                    } else {
+//                        etStatusJabatan.setText("Super Admin");
+//                    }
 
 
-                try {
-                    Picasso.get().load(fotoProfile).into(imgFotoprofile);
-                } catch (IllegalArgumentException e) {
-                    imgFotoprofile.setImageResource(R.drawable.ic_foto_profile);
+                    user = user1;
                 }
 
-                //set data
-                nama_akun_pengguna.setText(namaPengguna);
-                status_jabatan.setText(statusJabatan);
-                bio.setText(biodata);
+                save.setOnClickListener(EditProfileActivity.this);
+
             }
 
             @Override
@@ -119,133 +115,73 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
-//
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-//
-        ubah_foto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openImage();
-            }
-        });
-
-//        imgFotoprofile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateProfile(
-                        nama_akun_pengguna.getText().toString(),
-                        status_jabatan.getText().toString(),
-                        bio.getText().toString());
-            }
-        });
     }
 
-    private void openImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMAGE_REQUEST);
-    }
-
-    private void updateProfile(String nama_akun_pengguna, String status_jabatan, String bio) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
-
-//        HashMap<String, Object> hashMap = new HashMap<>();
-//        hashMap.put("nama_akun_pengguna", nama_akun_pengguna);
-//        hashMap.put("status_jabatan", status_jabatan);
-//        hashMap.put("bio", bio);
-
-//        reference.updateChildren(hashMap);
-
-    }
-
-    private String getFileExtension(Uri uri){
-        ContentResolver contentResolver = getApplicationContext().getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
-
-    private void uploadImage(){
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("Diunggah");
-        pd.show();
-
-        if (mImageUri != null){
-            final StorageReference filereference = storageReference.child(System.currentTimeMillis()
-                    +"."+ getFileExtension(mImageUri));
-
-            uploadTask = filereference.putFile(mImageUri);
-            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()){
-                        throw task.getException();
-                    }
-
-                    return filereference.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()){
-                        Uri downloadUri = task.getResult();
-                        String myUrl = downloadUri.toString();
-
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
-//
-//                        HashMap<String, Object> hashMap = new HashMap<>();
-//                        hashMap.put("imageURL", myUrl);
-//
-//                        reference.updateChildren(hashMap);
-//                        pd.dismiss();
-
-                    } else {
-
-                        Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    pd.dismiss();
-                }
-            });
-
-        } else {
-
-            Toast.makeText(this,"Tidak ada gambar yang dipilih", Toast.LENGTH_SHORT).show();
-
-        }
-    }
-
-    //Ctrl + O
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK
-            && data != null && data.getData() != null){
-            mImageUri = data.getData();
-
-            if (uploadTask != null && uploadTask.isInProgress()){
-                Toast.makeText(getApplicationContext(), "Unggah sedang dalam proses", Toast.LENGTH_SHORT).show();
-            } else {
-                uploadImage();
-            }
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+            Uri uri = data.getData();
+            currentPhotoUri = uri;
+            imgFotoprofile.setImageURI(uri);
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.im_cancel:
+                finish();
+                break;
+            case R.id.im_save:
+                uploadToCloudStorage();
+                break;
+            case R.id.image_profile:
+                break;
+            case R.id.tv_ubah_foto:
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
+                break;
+        }
+    }
+
+    void uploadToCloudStorage() {
+
+
+        Uri file = currentPhotoUri;
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference fakturRef = storageRef.child("Profile").child(user.getId()+".jpg");
+
+
+        UploadTask uploadTask = fakturRef.putFile(file);
+
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask
+                .addOnProgressListener(taskSnapshot -> {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
+                    ProgressDialog dialog = new ProgressDialog(EditProfileActivity.this);
+                    dialog.setMessage("Sedang mengupload foto profil...");
+                    dialog.setIndeterminate(false);
+                    dialog.setProgress((int)progress);
+                    dialog.show();
+
+                })
+                .addOnFailureListener(exception -> {
+                    // Handle unsuccessful uploads
+                })
+                .addOnSuccessListener(taskSnapshot -> {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    Toast.makeText(this, "Upload Foto Profil berhasil", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
+                    finish();
+                });
+    }
+
+
 }

@@ -53,7 +53,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
 
         // INIT VIEW
-        cancel =  findViewById(R.id.im_cancel);
+        cancel =  findViewById(R.id.im_kembali);
         rvPenjualan = findViewById(R.id.rv_penjualan);
         rvPenjualan.setHasFixedSize(true);
 //        rvPenjualan.setLayoutManager(new LinearLayoutManager(this));
@@ -72,7 +72,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.im_cancel:
+            case R.id.im_kembali:
                 finish();
                 break;
         }

@@ -90,12 +90,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
+            android:layout_marginTop="50dp"
             android:padding="15dp">
 
             <ImageView
                 android:id="@+id/preview_faktur"
-                android:layout_width="280dp"
-                android:layout_height="380dp"
+                android:layout_width="310dp"
+                android:layout_height="280dp"
                 android:background="@drawable/border_preview_gambar" />
 
             <TextView

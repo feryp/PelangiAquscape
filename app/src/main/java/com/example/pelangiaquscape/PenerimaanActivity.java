@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.pelangiaquscape.Adapter.PenerimaanAdapter;
@@ -27,6 +28,7 @@ public class PenerimaanActivity extends AppCompatActivity {
     LinearLayout llPenerimaan;
     List<Pembelian> listPembelian;
     List<String> listKey;
+    ImageView cancel;
 
 
     @Override
@@ -48,6 +50,16 @@ public class PenerimaanActivity extends AppCompatActivity {
         rvPenerimaan.setHasFixedSize(true);
         rvPenerimaan.setLayoutManager(new LinearLayoutManager(this));
         llPenerimaan = findViewById(R.id.ll_penerimaan);
+
+        cancel = findViewById(R.id.im_cancel);
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         loadPembelian();
 

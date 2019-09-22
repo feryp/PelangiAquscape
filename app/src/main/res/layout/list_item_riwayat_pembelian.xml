@@ -6,25 +6,24 @@
     android:layout_margin="10dp"
     android:background="@drawable/container_barang"
     android:orientation="horizontal"
-    android:paddingLeft="16dp"
+    android:paddingLeft="15dp"
     android:paddingTop="4dp"
-    android:paddingRight="16dp"
+    android:paddingRight="15dp"
     android:paddingBottom="4dp">
 
     <ImageView
         android:id="@+id/im_icon_struk"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginRight="16dp"
-        android:layout_weight="1"
-        android:padding="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="15dp"
+        android:layout_weight="2"
         android:src="@drawable/ic_struk" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="7"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -48,7 +47,7 @@
             android:text="Rp. 215000"
             android:textAllCaps="false"
             android:textColor="@color/colorBlack"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

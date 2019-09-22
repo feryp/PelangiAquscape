@@ -125,4 +125,19 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_pengeluaran"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </com.github.mikephil.charting.charts.BarChart>
+
+    </LinearLayout>
+
 </LinearLayout>

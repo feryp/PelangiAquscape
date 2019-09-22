@@ -155,8 +155,6 @@ public class TransaksiActivity extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent merek = new Intent(TransaksiActivity.this, TransaksiKodeBarangActivity.class);
 
-
-
                         merek.putExtra("fromTambahPembelian", fromTambahPembelian);
                         merek.putExtra("idMerek", adapter.getRef(position).getKey());
                         merek.putExtra("namaMerek", model.getNama());

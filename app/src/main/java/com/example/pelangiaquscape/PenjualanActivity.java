@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +37,9 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     FirebaseDatabase fd;
     DatabaseReference dr;
     FirebaseRecyclerAdapter adapter;
+
+    private Penjualan penjualan;
+    private String key;
 
 
     ImageView iv;
@@ -84,13 +88,17 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
 
             @Override
-            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int positiona, @NonNull Penjualan model) {
+            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int positiona, @NonNull final Penjualan model) {
                 Log.v("modelPenjualan", model.getNoPenjualan());
                 holder.bindData(model);
                 holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {
                     @Override
                     public void onClick(View v, int position) {
                         Toast.makeText(PenjualanActivity.this, position+"", Toast.LENGTH_SHORT).show();
+                        Intent p = new Intent(PenjualanActivity.this, DetailPenjualanActivity.class);
+                        p.putExtra("key", key);
+                        p.putExtra("penjualan", model);
+                        startActivity(p);
                     }
                 });
             }

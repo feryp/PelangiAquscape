@@ -1,8 +1,11 @@
 package com.example.pelangiaquscape.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Penjualan {
+public class Penjualan implements Parcelable {
     private String noPenjualan;
     private String jenisPembayaran;
     private long tanggalPenjualan;
@@ -25,6 +28,29 @@ public class Penjualan {
         this.noTelpKustomer = noTelpKustomer;
         this.totalPenjualan = totalPenjualan;
     }
+
+    protected Penjualan(Parcel in) {
+        noPenjualan = in.readString();
+        jenisPembayaran = in.readString();
+        tanggalPenjualan = in.readLong();
+        namaPenjual = in.readString();
+        listItemKeranjang = in.createTypedArrayList(ItemKeranjang.CREATOR);
+        namaKustomer = in.readString();
+        noTelpKustomer = in.readString();
+        totalPenjualan = in.readDouble();
+    }
+
+    public static final Creator<Penjualan> CREATOR = new Creator<Penjualan>() {
+        @Override
+        public Penjualan createFromParcel(Parcel in) {
+            return new Penjualan(in);
+        }
+
+        @Override
+        public Penjualan[] newArray(int size) {
+            return new Penjualan[size];
+        }
+    };
 
     public String getNoPenjualan() {
         return noPenjualan;
@@ -88,5 +114,24 @@ public class Penjualan {
 
     public void setTotalPenjualan(double totalPenjualan) {
         this.totalPenjualan = totalPenjualan;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(noPenjualan);
+        dest.writeString(jenisPembayaran);
+        dest.writeLong(tanggalPenjualan);
+        dest.writeString(namaPenjual);
+        dest.writeTypedList(listItemKeranjang);
+        dest.writeString(namaKustomer);
+        dest.writeString(noTelpKustomer);
+        dest.writeDouble(totalPenjualan);
+
     }
 }

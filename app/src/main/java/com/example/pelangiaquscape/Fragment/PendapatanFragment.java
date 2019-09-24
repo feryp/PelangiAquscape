@@ -100,19 +100,18 @@ public class PendapatanFragment extends Fragment {
         Legend legend = barChart.getLegend();
         legend.setFormSize(10f);
         legend.setForm(Legend.LegendForm.CIRCLE);
-////        legend.setTypeface(font);
-//        legend.setTextSize(12f);
-//        legend.setTextColor(Color.BLACK);
+        legend.setTextSize(12f);
+        legend.setTextColor(Color.BLACK);
 //        List<LegendEntry> legendEntries = new ArrayList<>();
 //        for (int i = 0; i < pendapatan.size(); i++){
 //            LegendEntry entry = new LegendEntry();
-//            entry.formColor = ColorTemplate.VORDIPLOM_COLORS[i];
+//            entry.formColor = Color.parseColor("#238BD8");
 //            entry.label = pendapatan.get(i);
 //            legendEntries.add(entry);
 //
 //        }
-//        legend.setXEntrySpace(5f);
-//        legend.setYEntrySpace(5f);
+        legend.setXEntrySpace(5f);
+        legend.setYEntrySpace(5f);
 //        legend.setCustom(legendEntries);
 
         return v;

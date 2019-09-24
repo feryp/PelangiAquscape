@@ -1,17 +1,26 @@
 package com.example.pelangiaquscape;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.Adapter.DetailPenjualanAdapter;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
+import com.example.pelangiaquscape.ViewHolder.DetailPenjualanViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -27,6 +36,7 @@ public class DetailPenjualanActivity extends AppCompatActivity {
 
     Penjualan penjualan;
     String key;
+
 
 
     @Override
@@ -52,6 +62,7 @@ public class DetailPenjualanActivity extends AppCompatActivity {
         rvDetailItem = findViewById(R.id.rv_list_detail_penjualan);
         rvDetailItem.setHasFixedSize(true);
         rvDetailItem.setLayoutManager(new LinearLayoutManager(this));
+
 
         //SET TEXT
         tvNoStruk.setText(penjualan.getNoPenjualan());
@@ -84,10 +95,11 @@ public class DetailPenjualanActivity extends AppCompatActivity {
         btnLihatStruk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent lihatStruk = new Intent(DetailPenjualanActivity.this, StrukPenjualanActivity.class );
+                Intent lihatStruk = new Intent(DetailPenjualanActivity.this, StrukPenjualanActivity.class);
                 startActivity(lihatStruk);
             }
         });
 
     }
+
 }

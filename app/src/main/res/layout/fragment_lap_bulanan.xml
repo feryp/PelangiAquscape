@@ -237,9 +237,15 @@
             android:fontFamily="@font/roboto_regular"
             android:text="0"
             android:textColor="@color/colorBlack"
-            android:textSize="14sp"
+            android:textSize="14sp" />
 
-            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_bulan_produk_paling_laku"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_produk_paling_laku">
+
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 
@@ -272,6 +278,14 @@
             android:text="0"
             android:textColor="@color/colorBlack"
             android:textSize="14sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_bulan_produk_paling_tidak_laku"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_produk_paling_tidaklaku">
+
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 

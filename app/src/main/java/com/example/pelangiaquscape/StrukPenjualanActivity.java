@@ -14,6 +14,7 @@ import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -26,6 +27,8 @@ public class StrukPenjualanActivity extends AppCompatActivity {
     TextView tvNamaToko, tvAlamatToko, tvNoTeleponToko, tvNamaKasir, tvTglTransaksi, tvWaktuTransaksi, tvNoStruk, tvDiskon, tvTotalHarga, tvUangBayar, tvUangKembalian;
     RecyclerView rvItemBarang;
     FloatingActionButton fabCetak, fabBagikan;
+    FloatingActionsMenu fabMenu;
+
 
     Penjualan penjualan;
     AkunToko akunToko;
@@ -57,6 +60,7 @@ public class StrukPenjualanActivity extends AppCompatActivity {
 
         fabCetak = findViewById(R.id.fab_action_print);
         fabBagikan = findViewById(R.id.fab_action_bagikan);
+        fabMenu = findViewById(R.id.fab_menu);
 
         rvItemBarang = findViewById(R.id.rv_list_struk_barang);
         rvItemBarang.setHasFixedSize(true);

@@ -20,6 +20,7 @@ import com.example.pelangiaquscape.EditProfileActivity;
 import com.example.pelangiaquscape.LoginActivity;
 import com.example.pelangiaquscape.Model.User;
 import com.example.pelangiaquscape.NotifikasiActivity;
+import com.example.pelangiaquscape.PengaturanActivity;
 import com.example.pelangiaquscape.R;
 import com.example.pelangiaquscape.TentangKamiActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,10 +35,10 @@ import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    TextView tvNamaPengguna, tvStatusJabatan, tvBiodata;
+    TextView tvNamaPengguna, tvStatusJabatan, tvNoHp, tvBiodata;
     Button editAkun;
     ImageView imgFotoProfile;
-    LinearLayout akunToko, notifikasi, bantuan, tentangkami, keluar;
+    LinearLayout akunToko, notifikasi, bantuan, pengaturan, tentangkami, keluar;
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
@@ -46,7 +47,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     StorageReference storageReference;
 
 
-    String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
+    String namaPengguna, statusJabatan, noHp, biodata, fotoProfile, kodeLogin;
     User user;
 
 
@@ -73,11 +74,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         imgFotoProfile = v.findViewById(R.id.image_profile);
         tvNamaPengguna = v.findViewById(R.id.nama_pengguna_profile);
         tvStatusJabatan = v.findViewById(R.id.status_jabatan_profile);
+        tvNoHp = v.findViewById(R.id.no_hp_profile);
         tvBiodata = v.findViewById(R.id.bio_profile);
         editAkun = v.findViewById(R.id.btn_edit_akun);
         akunToko = v.findViewById(R.id.akun_toko);
         notifikasi = v.findViewById(R.id.notifikasi);
         bantuan = v.findViewById(R.id.bantuan);
+        pengaturan = v.findViewById(R.id.pengaturan);
         tentangkami = v.findViewById(R.id.tentangkami);
         keluar = v.findViewById(R.id.keluar);
 
@@ -99,6 +102,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         break;
                 }
 
+                noHp = "" + dataSnapshot.child("telepon").getValue();
                 biodata = "" + dataSnapshot.child("bio").getValue();
                 fotoProfile = "" + dataSnapshot.child("fotoProfile").getValue();
 
@@ -112,6 +116,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 //set data
                 tvNamaPengguna.setText(namaPengguna);
                 tvStatusJabatan.setText(statusJabatan);
+                tvNoHp.setText(noHp);
                 tvBiodata.setText(biodata);
 
                 // REGISTER LISTENER
@@ -119,6 +124,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 akunToko.setOnClickListener(ProfileFragment.this);
                 notifikasi.setOnClickListener(ProfileFragment.this);
                 bantuan.setOnClickListener(ProfileFragment.this);
+                pengaturan.setOnClickListener(ProfileFragment.this);
                 tentangkami.setOnClickListener(ProfileFragment.this);
                 keluar.setOnClickListener(ProfileFragment.this);
 
@@ -161,6 +167,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity().getApplicationContext(), "Bantuan", Toast.LENGTH_LONG).show();
                 Intent bantuan = new Intent(getActivity(), BantuanActivity.class);
                 startActivity(bantuan);
+                break;
+            case R.id.pengaturan:
+                Toast.makeText(getActivity().getApplicationContext(), "Pengaturan", Toast.LENGTH_LONG).show();
+                Intent pengaturan = new Intent(getActivity(), PengaturanActivity.class);
+                startActivity(pengaturan);
                 break;
             case R.id.tentangkami:
                 Toast.makeText(getActivity().getApplicationContext(), "Tentang Kami", Toast.LENGTH_LONG).show();

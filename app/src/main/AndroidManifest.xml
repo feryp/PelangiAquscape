@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pelangiaquscape">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".FakturPembelianActivity"></activity>
+        <activity android:name=".PrinterActivity"></activity>
+        <activity android:name=".PengaturanActivity" />
+        <activity android:name=".FakturPembelianActivity" />
         <activity android:name=".PreviewFakturPenerimaanActivity" />
         <activity android:name=".PusatBantuanPenyimpananActivity" />
         <activity android:name=".StrukPenjualanActivity" />

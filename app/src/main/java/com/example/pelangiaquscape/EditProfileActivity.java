@@ -42,7 +42,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     final String EXTRA = "INTENT_EDIT_TO_MAIN";
     ImageView cancel, save, imgFotoprofile;
     TextView tvUbah;
-    TextInputEditText etNamaAkun, etStatusJabatan, etBio;
+    TextInputEditText etNamaAkun, etStatusJabatan, etNoHp, etBio;
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
@@ -71,6 +71,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         tvUbah = findViewById(R.id.tv_ubah_foto);
         etNamaAkun = findViewById(R.id.et_nama_akun_pengguna);
         etStatusJabatan = findViewById(R.id.et_status_jabatan);
+        etNoHp = findViewById(R.id.et_telepon);
         etBio = findViewById(R.id.et_bio);
 
         // INIT FIREBASE
@@ -95,12 +96,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 System.out.println("EditProfileActivity "+user1.getId());
                 if(user1 != null) {
                     etNamaAkun.setText(user1.getUsername());
+                    etNoHp.setText(user1.getTelepon());
                     etBio.setText(user1.getBio());
-//                    if (user1.getKodeLogin().equals("1")) {
-//                        etStatusJabatan.setText("Admin");
-//                    } else {
-//                        etStatusJabatan.setText("Super Admin");
-//                    }
+                    if (user1.getKodeLogin().equals("1")) {
+                        etStatusJabatan.setText("Admin");
+                    } else {
+                        etStatusJabatan.setText("Super Admin");
+                    }
 
 
                     user = user1;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".PegawaiActivity">
+    tools:context=".PrinterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Pegawai"
+                        android:text="Printer"
                         android:textColor="@color/colorBlue"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -61,61 +61,49 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/colorPrimary"
-            android:padding="12dp">
-
-
-            <SearchView
-                android:id="@+id/search_data_pegawai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/container_search_view"
-                android:searchHintIcon="@color/colorPrimary"
-                app:queryHint="Cari data rutin" />
-
-        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/container_ilustrasi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/colorPrimary">
 
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_pegawai"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical">
-
-            </android.support.v7.widget.RecyclerView>
-
             <LinearLayout
-                android:id="@+id/linear_imageview_pegawai"
+                android:id="@+id/linear_imageview_printer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerInParent="true">
 
                 <ImageView
-                    android:id="@+id/iv_ilustrasi_pegawaikosong"
+                    android:id="@+id/iv_ilustrasi_printer"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:src="@drawable/tidak_ada_pegawai" />
+                    android:layout_gravity="center"
+                    android:src="@drawable/ilustrasi_printer" />
 
                 <TextView
-                    android:id="@+id/tv_pemberitahuan_kosong"
+                    android:id="@+id/tv_printer_kosong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Belum ada pegawai ditambahkan"
-                    android:textSize="12sp" />
+                    android:text="Belum ada printer ditambahkan"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_cari_printer"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_blue"
+                    android:text="Cari Printer"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="15dp"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/roboto_bold"/>
 
             </LinearLayout>
 
@@ -123,17 +111,5 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_pegawai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorBlue"
-        app:elevation="6dp"
-        android:src="@drawable/ic_add_white"
-        app:borderWidth="0dp"
-        app:fabSize="normal" />
 
 </RelativeLayout>

@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".PrinterActivity"></activity>
+        <activity android:name=".CariBluetoothActivity"></activity>
+        <activity android:name=".PrinterActivity" />
         <activity android:name=".PengaturanActivity" />
         <activity android:name=".FakturPembelianActivity" />
         <activity android:name=".PreviewFakturPenerimaanActivity" />

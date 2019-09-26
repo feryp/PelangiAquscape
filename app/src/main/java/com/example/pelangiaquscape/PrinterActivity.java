@@ -32,11 +32,13 @@ public class PrinterActivity extends AppCompatActivity {
         cariPrinter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (!bluetoothAdapter.isDiscovering()){
-//                    showToast("Membuat perangkat anda dapat ditemukan");
-//                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-//                    startActivityForResult(intent, REQUEST_DISCOVER_BT);
-//                }
+                Intent cariPrinter = new Intent(PrinterActivity.this, CariBluetoothActivity.class);
+                startActivity(cariPrinter);
+                if (!bluetoothAdapter.isDiscovering()){
+                    showToast("Membuat perangkat anda dapat ditemukan");
+                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+                    startActivityForResult(intent, REQUEST_DISCOVER_BT);
+                }
             }
         });
 

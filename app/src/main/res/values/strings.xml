@@ -137,5 +137,132 @@
     <string name="step2_penyimpanan">2. Setelah itu masuk ke halaman Tambah Penyimpanan, lalu isi atau ubah data barang yang ingin disimpan di gudang. Setelah Tambah Penyimpanan sudah diisi, tekan tombol save yang ada di pojok kanan atas.</string>
     <string name="step3_penyimpanan">4. Lalu list penyimpanan akan bertambah atau berubah datanya sesuai dengan data yang diinput.</string>
 
+    <!--Syarat dan Ketentuan Penggunaan -->
+    <string name="judul">Syarat dan Ketentuan Penggunaan</string>
+    <string name="penting">
+        PENTING: Anda dimohon untuk membaca Syarat dan Ketentuan Penggunaan (“Ketentuan Penggunaan”)
+        ini dan Kebijakan Privasi kami dengan hati-hati dan seksama sebelum mengakses portal dan/atau aplikasi Pelangi Aquascape.
+        (“Aplikasi”) maupun menggunakan setiap fitur dan/atau layanan yang tersedia dalam Aplikasi (“Layanan”). </string>
+
+    <string name="penting1">
+        Dengan mengunduh, mengakses dan/atau menggunakan Aplikasi, anda setuju bahwa anda telah membaca, memahami,
+        mengetahui, menyetujui, dan menerima seluruh informasi, syarat,
+        dan ketentuan penggunaan Layanan yang terdapat dalam Ketentuan Penggunaan ini.
+        Ketentuan Penggunaan ini merupakan suatu perjanjian yang sah antara Toko Pelangi Aquascape ( “Kami”)
+        dan anda terkait tata cara dan persyaratan penggunaan Aplikasi yang berlaku antara anda dan Kami.
+    </string>
+
+    <string name="penting2">
+        Anda dapat menghapus Aplikasi dalam perangkat mobile anda, termasuk mengajukan permintaan penghapusan akun (apabila anda telah melakukan pendaftaran sebagai pengguna Aplikasi),
+        jika anda tidak setuju terhadap Ketentuan Penggunaan ini. 
+        Mohon diperhatikan bahwa penggunaan Aplikasi tunduk pada Ketentuan Penggunaan dan Kebijakan Privasi yang Kami keluarkan dan/atau perbaharui dari waktu ke waktu.
+    </string>
+    
+    <string name="ketentuan_umum">Ketentuan Umum</string>
+
+    <string name="isi_ketentuan_umum_1">
+        1. Aplikasi ini merupakan milik Toko Pelangi Aquascape .
+        Kami bekerja sama dengan pihak ketiga (“Mitra Kami”) untuk mengembangkan, menambah dan/atau meningkatkan fitur serta fungsi dalam Aplikasi, dan/atau menyediakan produk dan/atau layanan
+    </string>
+
+    <string name="isi_ketentuan_umum_2">
+        2. Pengunduhan dan/atau penggunaan Aplikasi ini bebas biaya.
+        Koneksi kepada jaringan internet diperlukan untuk dapat menggunakan Layanan ini.
+        Segala biaya yang timbul atas koneksi perangkat mobile anda dengan jaringan internet sepenuhnya ditanggung oleh anda.
+    </string>
+
+    <string name="isi_ketentuan_umum_3">
+        3. Aplikasi ini dapat digunakan oleh anda dengan terlebih dahulu melakukan pendaftaran yang disertai pemberian informasi data pribadi anda sebagaimana diminta dalam Aplikasi (“Data Pribadi”).
+        Informasi terkait Data Pribadi yang diberikan hanya akan digunakan untuk pemberian Layanan dan tujuan lain yang dimuat dalam Kebijakan Privasi.
+        Informasi tambahan wajib anda berikan untuk dapat mempergunakan Layanan tertentu dalam Aplikasi.
+        Hal-hal terkait Data Pribadi diatur dalam Kebijakan Privasi sebagai bagian dari Ketentuan Penggunaan ini.
+    </string>
+
+    <string name="isi_ketentuan_umum_4">
+        4. Aplikasi ini bertujuan untuk memberikan informasi secara umum terkait dengan produk dan layanan yang disediakan oleh Kami maupun Mitra Kami.
+        Kami senantiasa berupaya untuk menjaga kebenaran dan kekinian dari informasi tersebut.
+        Kami tidak membuat pernyataan atau memberikan jaminan apapun, baik tersurat maupun tersirat,
+        mengenai kelengkapan, akurasi, keandalan, kesesuaian, kepuasan, keamanan, kecepatan, ketersediaan fitur, informasi, produk, layanan, gambar,
+        estimasi biaya atau grafis terkait yang terdapat dalam Aplikasi untuk setiap tujuan apapun juga.
+        Gambar, grafis dan/atau foto yang ada dalam Aplikasi mungkin tunduk terhadap suatu hak kekayaan intelektual yang dimiliki oleh pihak ketiga dan Kami tidak menjamin dalam bentuk apapun juga atas hak tersebut.
+    </string>
+
+    <string name="isi_ketentuan_umum_5">
+        5. Kami memiliki kebijakan sendiri dan menyeluruh untuk menerima atau menunda atau menolak permintaan anda atas Layanan.
+    </string>
+
+    <string name="ketentuan_penggunaan_aplikasi">Ketentuan Penggunaan Aplikasi</string>
+
+    <string name="isi_ketentuan_penggunaan_1">
+        1. Anda menyatakan dan menjamin bahwa anda adalah individu yang secara hukum berhak dan cakap untuk mengadakan
+        dan mengikatkan diri dalam perjanjian berdasarkan hukum Negara Republik Indonesia, khususnya Ketentuan Penggunaan, untuk menggunakan Aplikasi.
+        Apabila ketentuan tersebut tidak terpenuhi, Kami atau afiliasi Kami atau Mitra Kami, berhak berdasarkan hukum untuk membatalkan setiap perjanjian yang dibuat dengan anda.
+        Anda selanjutnya menyatakan dan menjamin bahwa anda memiliki hak, wewenang dan kapasitas untuk menggunakan Layanan dan mematuhi Ketentuan Penggunaan.
+        Jika anda mendaftarkan untuk dan atas nama suatu institusi, anda juga menyatakan dan menjamin bahwa anda berwenang untuk bertindak untuk
+        dan atas nama institusi tersebut dalam mengadakan serta mengikatkan institusi tersebut pada Ketentuan Penggunaan ini dan mendaftarkan institusi tersebut untuk penggunaan Layanan dalam
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_2">
+        2. Kami mengumpulkan dan memproses informasi dan Data Pribadi anda seperti nama, alamat, nomor telepon, nomor handphone, alamat surat elektronik,
+        tanggal lahir dan lokasi toko anda ketika anda mendaftarkan diri pada Aplikasi.
+        Anda wajib untuk memberikan informasi yang akurat dan lengkap serta memperbaharui informasi tersebut dari waktu ke waktu dan setuju
+        untuk memberikan kepada Kami bukti identitas apapun yang secara wajar Kami minta agar Kami dapat menyediakan Layanan secara lengkap dan maksimal kepada anda.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_3">
+        3. Dalam hal terjadi pengungkapan kata sandi atas akun Aplikasi anda dengan cara apapun yang terjadi bukan atas kesalahan Kami dan mengakibatkan penggunaan yang tidak sah dan/atau tanpa kewenangan atas akun Aplikasi anda,
+        permintaan informasi yang dilakukan melalui Aplikasi akan tetap dianggap sebagai permintaan yang sah kecuali anda memberitahu Kami tentang hal tersebut sebelum Kami memberikan Layanan yang diminta tersebut.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_4">
+        4. Anda wajib melaporkan kepada Kami bila anda kehilangan kendali atas akun Aplikasi anda.
+        Anda bertanggung jawab atas setiap penggunaan akun Aplikasi anda meskipun jika akun tersebut telah disalahgunakan oleh pihak lain.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_5">
+        5. Anda dapat melakukan pengunggahan informasi, foto atau gambar dalam fitur produk review yang terdapat dalam Aplikasi,
+        dimana hasil unggahan anda akan dapat dikonsumsi oleh pengguna Aplikasi lainnya.
+        Anda dilarang untuk melakukan pengunggahan yang mengandung unsur suku, agama, ras dan antargolongan (“SARA”), pornografi, pelanggaran hak kekayaan intelektual.
+        Kami berhak untuk melakukan penghapusan atau pemblokiran atas hasil unggahan anda apabila unggahan tersebut melanggar Ketentuan Penggunaan.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_6">
+        6. Anda tidak diperkenankan untuk membahayakan, menyalahgunakan, mengubah atau memodifikasi Aplikasi dengan cara apapun.
+        Kami berhak untuk menghentikan penggunaan atas akun Aplikasi anda lebih lanjut jika anda menggunakan Aplikasi tanpa mematuhi Ketentuan Penggunaan.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_7">
+        7. Anda hanya diizinkan untuk menggunakan Aplikasi ini untuk mempergunakan Layanan yang disediakan dalam Aplikasi ini dan keperluan lain sesuai peraturan perundang-undangan yang berlaku.
+        Untuk lebih tegasnya, anda dilarang menggunakan Aplikasi ini untuk melakukan penipuan dalam bentuk apapun dan/atau membuat ketidaknyamanan terhadap pihak lain maupun pihak yang menyediakan Layanan,
+        menyalahgunakan segala informasi yang anda peroleh dari penggunaan Layanan, serta melakukan tindakan apapun yang melecehkan atau mengancam pihak yang menyediakan Layanan.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_8">
+        8. Informasi yang diberikan oleh Kami dan/atau Mitra Kami tidak dapat diartikan sebagai suatu penawaran mengikat atau saran.
+        Keputusan untuk menggunakan Layanan sepenuhnya berada dalam kekuasaan anda.
+        Setiap hal yang anda putuskan dan/atau lakukan atas dasar kebergantungan pada informasi dalam Aplikasi ini merupakan risiko yang ditanggung oleh anda sendiri sepenuhnya.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_9">
+        9. Anda memahami dan setuju bahwa penggunaan Aplikasi oleh anda tunduk pula pada Kebijakan Privasi Kami sebagaimana dapat diubah dari waktu ke waktu.
+        Dengan menggunakan Aplikasi, anda dianggap memberikan persetujuan yang diatur dalam Kebijakan Privasi Kami.
+    </string>
+
+    <string name="isi_ketentuan_penggunaan_10">
+        10. Anda dilarang menggunakan Layanan dalam Aplikasi untuk hal-hal yang dilarang oleh hukum dan peraturan perundang-undangan yang berlaku.
+    </string>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </resources>

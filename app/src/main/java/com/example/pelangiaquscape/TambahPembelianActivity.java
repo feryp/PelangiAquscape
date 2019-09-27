@@ -185,7 +185,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         boolean proses = true;
 
 
-        Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
+        Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian,  proses);
 
         if (key != null) {
             reference.child(key).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {

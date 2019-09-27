@@ -35,7 +35,7 @@ public class PrinterActivity extends AppCompatActivity {
                 Intent cariPrinter = new Intent(PrinterActivity.this, CariBluetoothActivity.class);
                 startActivity(cariPrinter);
                 if (!bluetoothAdapter.isDiscovering()){
-                    showToast("Membuat perangkat anda dapat ditemukan");
+                    showToast("Membuat perangkat dapat ditemukan");
                     Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
                     startActivityForResult(intent, REQUEST_DISCOVER_BT);
                 }

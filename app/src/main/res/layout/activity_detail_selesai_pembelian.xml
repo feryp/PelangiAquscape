@@ -268,7 +268,7 @@
                 android:padding="15dp">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_list_detail_pembelian"
+                    android:id="@+id/rv_list_detail_pembelian_selesai"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:background="@color/colorPrimary"

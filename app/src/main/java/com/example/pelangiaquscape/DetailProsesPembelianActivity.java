@@ -11,6 +11,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.Adapter.DetailProsesPembelianAdapter;
@@ -29,17 +30,17 @@ import java.util.List;
 public class DetailProsesPembelianActivity extends AppCompatActivity implements View.OnClickListener {
 
 
+    ImageView cancel;
     TextView tvNoPesanan, tvMetodePembayaran, tvTanggalPesanan, tvPemesan, tvTotalHargaPembelian;
-    Button btnLihatFaktur, btnKonfirmasi;
+    Button btnLihatFaktur, btnKonfirmasi, btnSimpanCicilan;
     SwitchCompat toogle_switch;
     ExpandableRelativeLayout cicilan_expand;
     TextInputLayout tvKeteranganCicilan, tvTanggalCicilan, tvJumlahCicilan;
     TextInputEditText etKeteranganCicilan, etTanggalCicilan, etJumlahCicilan;
-    RecyclerView rvItem;
+    RecyclerView rvItem, rvCicilan;
 
     Pembelian pembelian;
     String key;
-
 
 
     @Override
@@ -54,6 +55,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 
 
         // INIT VIEW
+        cancel = findViewById(R.id.im_cancel);
         tvNoPesanan = findViewById(R.id.tv_no_pesanan);
         tvMetodePembayaran = findViewById(R.id.tv_status_pembayaran);
         tvTanggalPesanan = findViewById(R.id.tv_detail_tgl_pembelian);
@@ -62,15 +64,17 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         tvTotalHargaPembelian = findViewById(R.id.tv_total_harga_pembelian);
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_pembelian);
+        btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian);
+        rvCicilan = findViewById(R.id.rv_cicilan);
         rvItem.setHasFixedSize(true);
         rvItem.setLayoutManager(new LinearLayoutManager(this));
 
 
         // SET TEXT
         tvNoPesanan.setText(pembelian.getNoPesanan());
-        switch(pembelian.getMetodePembayaran()){
+        switch (pembelian.getMetodePembayaran()) {
             case 1:
                 tvMetodePembayaran.setText("Bayar di tempat (COD)");
                 break;
@@ -78,14 +82,6 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
                 tvMetodePembayaran.setText("Cicil");
                 break;
         }
-
-        btnLihatFaktur.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent lihat_faktur = new Intent(DetailProsesPembelianActivity.this, FakturPembelianActivity.class);
-                startActivity(lihat_faktur);
-            }
-        });
 
 
         Calendar c = Calendar.getInstance();
@@ -100,7 +96,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 
         List<ItemKeranjang> listItem = pembelian.getListBarang();
         double total = 0;
-        for(ItemKeranjang keranjang:listItem){
+        for (ItemKeranjang keranjang : listItem) {
             total = total + keranjang.getTotalPrice();
         }
         BigDecimal decimal = new BigDecimal(total);
@@ -114,12 +110,11 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         cicilan_expand.collapse();
 
 
-
         // SWITCH BUTTON
         toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (!isChecked){
+                if (!isChecked) {
                     cicilan_expand.collapse();
                 } else {
                     cicilan_expand.expand();
@@ -130,11 +125,16 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
+            case R.id.im_cancel:
+                finish();
+                break;
             case R.id.btn_lihat_faktur:
-                Intent i = new Intent(DetailProsesPembelianActivity.this, PreviewFakturPenerimaanActivity.class);
-                i.putExtra("pembelian", pembelian);
-                startActivity(i);
+                Intent lihat_faktur = new Intent(DetailProsesPembelianActivity.this, FakturPembelianActivity.class);
+                startActivity(lihat_faktur);
+//                Intent i = new Intent(DetailProsesPembelianActivity.this, PreviewFakturPenerimaanActivity.class);
+//                i.putExtra("pembelian", pembelian);
+//                startActivity(i);
                 break;
         }
     }

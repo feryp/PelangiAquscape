@@ -11,6 +11,10 @@ public class Pembelian implements Parcelable {
     private String namaPemasok;
     private int metodePembayaran;
     private List<ItemKeranjang> listBarang;
+//    private int statusPembelian;
+
+
+
     private boolean proses;
 
     public Pembelian(){}
@@ -22,6 +26,7 @@ public class Pembelian implements Parcelable {
         this.namaPemasok = namaPemasok;
         this.metodePembayaran = metodePembayaran;
         this.listBarang = listBarang;
+//        this.statusPembelian = statusPembelian;
         this.proses = proses;
     }
 
@@ -31,6 +36,7 @@ public class Pembelian implements Parcelable {
         namaPemasok = in.readString();
         metodePembayaran = in.readInt();
         listBarang = in.createTypedArrayList(ItemKeranjang.CREATOR);
+//        statusPembelian = in.readInt();
         proses = in.readByte() != 0;
     }
 
@@ -74,6 +80,14 @@ public class Pembelian implements Parcelable {
     public void setListBarang(List<ItemKeranjang> listBarang) {
         this.listBarang = listBarang;
     }
+
+//    public int getStatusPembelian() {
+//        return statusPembelian;
+//    }
+//
+//    public void setStatusPembelian(int statusPembelian) {
+//        this.statusPembelian = statusPembelian;
+//    }
 
     public boolean getProses() {
         return proses;

@@ -1,13 +1,132 @@
 package com.example.pelangiaquscape;
 
+import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class DetailSelesaiPembelianActivity extends AppCompatActivity {
+import com.example.pelangiaquscape.Adapter.DetailSelesaiPembelianAdapter;
+import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Pembelian;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+public class DetailSelesaiPembelianActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ImageView cancel;
+    TextView tvNoPesanan, tvStatusPembelian, tvNoFaktur, tvTglPembelian, tvNamaPemasok, tvTotalHargaPembelian;
+    Button btnBatalkan, btnLihatFaktur, btnSimpanCicilan;
+    SwitchCompat toogle_switch;
+    ExpandableRelativeLayout cicilan_expand;
+    TextInputLayout tvKeteranganCicilan, tvTanggalCicilan, tvJumlahCicilan;
+    TextInputEditText etKeteranganCicilan, etTanggalCicilan, etJumlahCicilan;
+    RecyclerView rvItem, rvCicilan;
+
+    Pembelian pembelian;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_selesai_pembelian);
+
+        //INIT VIEW
+        cancel = findViewById(R.id.im_cancel);
+        tvNoPesanan = findViewById(R.id.tv_no_pesanan);
+        tvStatusPembelian = findViewById(R.id.tv_status_pembelian);
+        tvNoFaktur = findViewById(R.id.tv_no_faktur);
+        tvTglPembelian = findViewById(R.id.tv_detail_tgl_pembelian);
+        tvNamaPemasok = findViewById(R.id.tv_detail_nama_pemasok);
+        tvTotalHargaPembelian = findViewById(R.id.tv_total_harga_pembelian);
+        btnBatalkan = findViewById(R.id.btn_batalkan_pembelian);
+        btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
+        btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
+
+        rvItem = findViewById(R.id.rv_list_detail_pembelian_selesai);
+        rvCicilan = findViewById(R.id.rv_cicilan);
+
+        rvItem.setHasFixedSize(true);
+        rvItem.setLayoutManager(new LinearLayoutManager(this));
+
+        tvNoPesanan.setText(pembelian.getNoPesanan());
+//        switch (pembelian.getStatusPembelian()) {
+//            case 1:
+//                tvStatusPembelian.setText("Lunas");
+//                break;
+//            case 2:
+//                tvStatusPembelian.setText("Belum Lunas");
+//                break;
+//        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(pembelian.getTanggalPesanan());
+
+        Date date = calendar.getTime();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        String dateFormat = simpleDateFormat.format(date);
+        tvTglPembelian.setText(dateFormat);
+        tvNamaPemasok.setText(pembelian.getNamaPemasok());
+
+        List<ItemKeranjang> listBarang = pembelian.getListBarang();
+        double total = 0;
+        for (ItemKeranjang keranjang : listBarang) {
+            total = total + keranjang.getTotalPrice();
+
+        }
+        BigDecimal decimal = new BigDecimal(total);
+        tvTotalHargaPembelian.setText(decimal.toString());
+
+        DetailSelesaiPembelianAdapter adapter = new DetailSelesaiPembelianAdapter(listBarang, this);
+        rvItem.setAdapter(adapter);
+
+        toogle_switch.setChecked(false);
+        cicilan_expand = findViewById(R.id.expand_cicilan);
+        cicilan_expand.collapse();
+
+        //SWITCH BUTTON
+        toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked) {
+                    cicilan_expand.collapse();
+                } else {
+                    cicilan_expand.expand();
+                }
+            }
+        });
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.im_cancel:
+                finish();
+                break;
+            case R.id.btn_lihat_faktur:
+                Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);
+                startActivity(lihat_faktur);
+                break;
+            case R.id.btn_batalkan_pembelian:
+                Intent batalkan_pembelian = new Intent(DetailSelesaiPembelianActivity.this, BatalkanTransaksiPembelianActivity.class);
+                startActivity(batalkan_pembelian);
+                break;
+        }
     }
 }

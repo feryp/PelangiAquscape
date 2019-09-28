@@ -18,6 +18,7 @@ import com.example.pelangiaquscape.TambahPembelianActivity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,10 +63,11 @@ public class ProsesPembelianViewHolder extends RecyclerView.ViewHolder implement
         date.setTime(cal.getTimeInMillis());
         DateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
         String tanggalPesanan = format.format(date);
-
         tv_tgl_pesanan.setText(tanggalPesanan);
-        BigDecimal de = new BigDecimal(pembelian.getTotalHarga());
-        tv_total_harga.setText(de.toString());
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String totalHarga = decimalFormat.format(pembelian.getTotalHarga());
+        tv_total_harga.setText("Rp. " + totalHarga);
 
         this.pembelian = pembelian;
         this.key = key;

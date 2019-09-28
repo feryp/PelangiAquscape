@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -86,8 +87,10 @@ public class DetailPenjualanActivity extends AppCompatActivity {
             total = total + keranjang.getTotalPrice();
         }
 
-        BigDecimal decimal = new BigDecimal(total);
-        tvTotalHargaPenjualan.setText(decimal.toString());
+//        BigDecimal decimal = new BigDecimal(total);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String totalHargaPenjualan = decimalFormat.format(total);
+        tvTotalHargaPenjualan.setText("Rp. " + totalHargaPenjualan);
 
         DetailPenjualanAdapter adapter = new DetailPenjualanAdapter(listItemPenjualan, this);
         rvDetailItem.setAdapter(adapter);

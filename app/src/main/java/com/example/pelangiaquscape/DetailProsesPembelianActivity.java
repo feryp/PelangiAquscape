@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,7 +56,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 
 
         // INIT VIEW
-        cancel = findViewById(R.id.im_cancel);
+        cancel = findViewById(R.id.im_kembali);
         tvNoPesanan = findViewById(R.id.tv_no_pesanan);
         tvMetodePembayaran = findViewById(R.id.tv_status_pembayaran);
         tvTanggalPesanan = findViewById(R.id.tv_detail_tgl_pembelian);
@@ -99,8 +100,12 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         for (ItemKeranjang keranjang : listItem) {
             total = total + keranjang.getTotalPrice();
         }
-        BigDecimal decimal = new BigDecimal(total);
-        tvTotalHargaPembelian.setText(decimal.toString());
+
+//        BigDecimal decimal = new BigDecimal(total);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String totalHargaPembelian = decimalFormat.format(total);
+
+        tvTotalHargaPembelian.setText("Rp. " + totalHargaPembelian);
 
         DetailProsesPembelianAdapter adapter = new DetailProsesPembelianAdapter(listItem, this);
         rvItem.setAdapter(adapter);
@@ -126,9 +131,11 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.im_cancel:
+
+            case R.id.im_kembali:
                 finish();
                 break;
+
             case R.id.btn_lihat_faktur:
                 Intent lihat_faktur = new Intent(DetailProsesPembelianActivity.this, FakturPembelianActivity.class);
                 startActivity(lihat_faktur);

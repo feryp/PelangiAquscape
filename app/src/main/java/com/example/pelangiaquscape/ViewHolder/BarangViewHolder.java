@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class BarangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
@@ -61,8 +62,12 @@ public class BarangViewHolder extends RecyclerView.ViewHolder implements View.On
         }
 
         tvSatuan.setText(barang.getSatuan());
-        tvHargaBeli.setText(String.valueOf(barang.getHargaBeli()));
-        tvHargaJual.setText(String.valueOf(barang.getHargaJual()));
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String hargaBeli = decimalFormat.format(barang.getHargaBeli());
+        String hargaJual = decimalFormat.format(barang.getHargaJual());
+        tvHargaBeli.setText("Rp. " + hargaBeli);
+        tvHargaJual.setText("Rp. " + hargaJual);
     }
 
     public void setOnClickListener(ItemClickListener listener){

@@ -13,6 +13,7 @@ import com.example.pelangiaquscape.Model.Pembelian;
 import com.example.pelangiaquscape.R;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,8 +45,10 @@ public class SelesaiPembelianViewHolder extends RecyclerView.ViewHolder implemen
         this.pembelian = pembelian;
 
         tvKode.setText(pembelian.getNoPesanan());
-        BigDecimal decimal = new BigDecimal(pembelian.getTotalHarga());
-        tvHarga.setText(decimal.toString());
+//        BigDecimal decimal = new BigDecimal(pembelian.getTotalHarga());
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String harga = decimalFormat.format(pembelian.getTotalHarga());
+        tvHarga.setText("Rp. " + harga);
         tvStatus.setText("Lunas");
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(pembelian.getTanggalPesanan());

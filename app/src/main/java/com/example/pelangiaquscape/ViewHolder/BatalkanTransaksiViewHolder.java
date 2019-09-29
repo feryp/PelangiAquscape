@@ -13,30 +13,32 @@ import com.example.pelangiaquscape.R;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-public class DetailSelesaiPembelianViewHolder extends RecyclerView.ViewHolder {
+public class BatalkanTransaksiViewHolder extends RecyclerView.ViewHolder {
 
     private Context context;
     private ItemKeranjang itemKeranjang;
 
+
     private TextView tvKode, tvMerek, tvHargaSatuan, tvQty, tvTotalHarga;
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences preferences;
 
-    public DetailSelesaiPembelianViewHolder(@NonNull View view, Context context) {
-        super(view);
+    public BatalkanTransaksiViewHolder(@NonNull View itemView, Context context) {
+        super(itemView);
         this.context = context;
-        tvKode = view.findViewById(R.id.list_kode_barang_pembelian);
-        tvMerek = view.findViewById(R.id.list_merek_barang_pembelian);
-        tvHargaSatuan = view.findViewById(R.id.list_harga_barang);
-        tvQty = view.findViewById(R.id.list_kuantitas_barang);
-        tvTotalHarga = view.findViewById(R.id.list_total_harga_barang);
-        sharedPreferences = context.getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
+        tvKode = itemView.findViewById(R.id.kode_barang_dibatalkan);
+        tvMerek = itemView.findViewById(R.id.merek_barang_dibatalkan);
+        tvHargaSatuan = itemView.findViewById(R.id.harga_barang_dibatalkan);
+        tvQty = itemView.findViewById(R.id.kuantitas_barang);
+        preferences = context.getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
+
     }
 
-    public void BindData(ItemKeranjang itemKeranjang){
+
+    public void bindData(ItemKeranjang itemKeranjang) {
         this.itemKeranjang = itemKeranjang;
         int noMerek = Integer.valueOf(itemKeranjang.getMerek());
-        String merek = sharedPreferences.getString(String.valueOf(noMerek), "unknown");
+        String merek = preferences.getString(String.valueOf(noMerek), "unknown");
         tvKode.setText(itemKeranjang.getKode());
         tvMerek.setText("( " + merek + " ) ");
         BigDecimal bigDecimal = new BigDecimal(itemKeranjang.getHargaBeli());
@@ -45,9 +47,6 @@ public class DetailSelesaiPembelianViewHolder extends RecyclerView.ViewHolder {
         String totalHarga = decimalFormat.format(bigDecimal.multiply(new BigDecimal(itemKeranjang.getQty())));
         tvHargaSatuan.setText("Rp. " + hargaSatuan);
         tvQty.setText(String.valueOf(itemKeranjang.getQty()));
-        tvTotalHarga.setText("Rp. " + totalHarga);
 
     }
-
-
 }

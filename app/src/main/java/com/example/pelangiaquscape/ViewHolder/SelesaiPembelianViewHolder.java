@@ -36,6 +36,7 @@ public class SelesaiPembelianViewHolder extends RecyclerView.ViewHolder implemen
         tvStatus = v.findViewById(R.id.tv_status_pembelian);
         tvJam = v.findViewById(R.id.tv_jam_pembelian);
         tvTanggal = v.findViewById(R.id.tv_tgl_pembelian);
+        v.setOnClickListener(this);
 
     }
 

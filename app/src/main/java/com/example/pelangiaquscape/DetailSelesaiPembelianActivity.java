@@ -134,8 +134,8 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                 finish();
                 break;
             case R.id.btn_lihat_faktur:
-//                Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);
-//                startActivity(lihat_faktur);
+                Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);
+                startActivity(lihat_faktur);
                 break;
             case R.id.btn_batalkan_pembelian:
                 Intent batalkan_pembelian = new Intent(DetailSelesaiPembelianActivity.this, BatalkanTransaksiPembelianActivity.class);

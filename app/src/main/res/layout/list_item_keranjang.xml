@@ -8,7 +8,7 @@
         android:layout_height="80dp"
         android:layout_margin="15dp"
         android:background="@drawable/container_barang"
-        android:padding="10dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/tv_kode"
@@ -43,6 +43,7 @@
             android:layout_below="@+id/tv_merek"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/roboto_bold"
+            android:layout_marginTop="8dp"
             android:text="Rp. 0"
             android:textColor="@color/colorBlack"
             android:textSize="14sp" />

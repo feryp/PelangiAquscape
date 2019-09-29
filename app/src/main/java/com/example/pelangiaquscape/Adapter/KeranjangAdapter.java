@@ -1,6 +1,7 @@
 package com.example.pelangiaquscape.Adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,10 +22,12 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
     List<ItemKeranjang> listKeranjang;
 
 
+    SharedPreferences preferences;
 
     public KeranjangAdapter(Context context, List<ItemKeranjang> listKeranjang) {
         this.context = context;
         this.listKeranjang = listKeranjang;
+        preferences = context.getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
     }
 
 
@@ -44,7 +47,10 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
         String as = fmt.format(listKeranjang.get(i).getTotalPrice());
         holder.tvHarga.setText("Rp. "+ as);
         holder.tvQty.setText(String.valueOf(listKeranjang.get(i).getQty()));
-        holder.tvMerek.setText(listKeranjang.get(i).getMerek());
+        int noMerek = Integer.valueOf(listKeranjang.get(i).getMerek());
+        String merek = preferences.getString(String.valueOf(noMerek), "unknown");
+        holder.tvMerek.setText(merek);
+//        holder.tvMerek.setText(listKeranjang.get(i).getMerek());
         holder.bind(listKeranjang.get(i));
 
     }

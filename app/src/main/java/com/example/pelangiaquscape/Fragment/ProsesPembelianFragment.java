@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class ProsesPembelianFragment extends Fragment {
 
@@ -50,6 +53,18 @@ public class ProsesPembelianFragment extends Fragment {
     List<String> listKey;
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 20 && resultCode == RESULT_OK){
+            listPembelian.clear();
+            listKey.clear();
+            adapter.notifyDataSetChanged();
+            loadPembelian();
+
+
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,7 +118,7 @@ public class ProsesPembelianFragment extends Fragment {
 
                 for(DataSnapshot snapShot: dataSnapshot.getChildren()){
 //                    mapping.put(dataSnapshot.getKey(), snapShot.getValue(Pembelian.class));
-                    listKey.add(dataSnapshot.getKey());
+                    listKey.add(snapShot.getKey());
                     listPembelian.add(snapShot.getValue(Pembelian.class));
 
 
@@ -128,5 +143,8 @@ public class ProsesPembelianFragment extends Fragment {
             }
         });
     }
+
+
+
 
 }

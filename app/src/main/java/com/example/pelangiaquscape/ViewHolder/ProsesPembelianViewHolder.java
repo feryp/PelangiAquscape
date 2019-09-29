@@ -95,7 +95,7 @@ public class ProsesPembelianViewHolder extends RecyclerView.ViewHolder implement
                 Intent j = new Intent(c, DetailProsesPembelianActivity.class);
                 j.putExtra("key", key);
                 j.putExtra("value", pembelian);
-                c.startActivity(j);
+                ((Activity)c).startActivityForResult(j, 20);
                 break;
 
 

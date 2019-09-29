@@ -1,6 +1,8 @@
 package com.example.pelangiaquscape;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +15,14 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.DetailProsesPembelianAdapter;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Pembelian;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -66,6 +71,10 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_pembelian);
         btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
+
+        // REGISTER LISTENER
+        btnKonfirmasi.setOnClickListener(this);
+        btnLihatFaktur.setOnClickListener(this);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian);
         rvCicilan = findViewById(R.id.rv_cicilan);
@@ -143,6 +152,46 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 //                i.putExtra("pembelian", pembelian);
 //                startActivity(i);
                 break;
+            case R.id.btn_konfirmasi_pembelian:
+                showConfirmationDialog();
+                break;
         }
+    }
+
+    void confirm(){
+        pembelian.setProses(false);
+        FirebaseDatabase.getInstance().getReference("Pembelian").child(key).setValue(pembelian)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        setResult(RESULT_OK);
+                        finish();
+
+                    }
+                });
+    }
+    private void showConfirmationDialog(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Konfirmasi Pembelian ?");
+        builder1.setCancelable(true);
+
+        builder1.setNeutralButton(
+                "YES",
+                (dialog, id) ->{
+                    confirm();
+                    dialog.dismiss();
+                    Toast.makeText(this, "Pembelian terkonfirmasi", Toast.LENGTH_SHORT).show();
+                });
+
+        builder1.setNegativeButton(
+                "NO",
+                (dialogInterface, i) -> {
+
+                    dialogInterface.dismiss();
+                });
+
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }

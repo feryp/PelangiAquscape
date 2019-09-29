@@ -61,11 +61,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseDatabase firebaseDatabase;
 
     GoogleSignInClient mGoogleSignInClient;
+    ProgressDialog pd = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        pd = new ProgressDialog(LoginActivity.this);
 
         frombottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
 
@@ -181,6 +184,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+
+            pd.setMessage("Tunggu sebentar...");
+            pd.show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 //            handleSignResult(task);
             try {
@@ -217,14 +223,49 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
+
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
+                                    .child(firebaseAuth.getCurrentUser().getUid()).child("kodeLogin");
+
+
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                    pd.dismiss();
+                                    Log.v("HERE2", "VALUE EVENT LISTENER");
+                                    int as = Integer.parseInt(dataSnapshot.getValue().toString());
+                                    if (as == 1) {
+                                        Intent i = new Intent(LoginActivity.this, Main2Activity.class);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(i);
+                                        finish();
+                                    } else if (as == 0) {
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    pd.dismiss();
+
+                                }
+                            });
+
 //                            FirebaseUser user = firebaseAuth.getCurrentUser();
 //                            String email = firebaseUser.getEmail();
 //                            String userid = firebaseUser.getUid();
@@ -263,7 +304,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.btn_masuk:
-                final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
 
                 pd.setMessage("Tunggu Sebentar ...");
                 pd.show();

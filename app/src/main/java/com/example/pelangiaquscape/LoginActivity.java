@@ -121,13 +121,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
         final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+//        Log.v("CURRENT USER", currentUser.getUid());
+//        System.out.println("Current User " + currentUser.getUid());
         if (currentUser != null) {
 
             final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
             pd.setMessage("Tunggu Sebentar ...");
             pd.show();
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
-                    .child(currentUser.getUid()).child("kodeLogin");
+                    .child(currentUser.getUid());
 
 
             reference.addValueEventListener(new ValueEventListener() {
@@ -136,18 +138,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     pd.dismiss();
 //                    Log.v("HERE2", "VALUE EVENT LISTENER");
-                    int as = Integer.parseInt(dataSnapshot.getValue().toString());
-                    if (as == 1) {
-                        Intent i = new Intent(LoginActivity.this, Main2Activity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(i);
-                        finish();
-                    } else if (as == 0) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
+                    User user = dataSnapshot.getValue(User.class);
+
+                    try {
+                        int as = Integer.parseInt(user.getKodeLogin());
+                        if (as == 1) {
+                            Intent i = new Intent(LoginActivity.this, Main2Activity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
+                            finish();
+                        } else if (as == 0) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }catch(NullPointerException ex){
+                        firebaseAuth.signOut();
                     }
+
+
+
                 }
 
                 @Override
@@ -264,15 +275,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "Semua harus diisi!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.v("HERE", "VALUE EVENT LISTENER");
-                    AuthCredential credential = EmailAuthProvider.getCredential(str_namapengguna, str_katasandi);
-
-                    firebaseAuth.getCurrentUser().linkWithCredential(credential)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                }
-                            });
+//                    AuthCredential credential = EmailAuthProvider.getCredential(str_namapengguna, str_katasandi);
+//
+//                    firebaseAuth.getCurrentUser().linkWithCredential(credential)
+//                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//                                }
+//                            });
                     firebaseAuth.signInWithEmailAndPassword(str_namapengguna, str_katasandi)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -283,7 +294,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User")
-                                                .child(firebaseAuth.getCurrentUser().getUid()).child("kode_login");
+                                                .child(firebaseAuth.getCurrentUser().getUid()).child("kodeLogin");
 
 
                                         reference.addValueEventListener(new ValueEventListener() {

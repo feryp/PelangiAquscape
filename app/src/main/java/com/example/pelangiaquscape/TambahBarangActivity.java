@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Model.Barang;
+import com.example.pelangiaquscape.Model.Penyimpanan;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,19 +38,22 @@ import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class TambahBarangActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cancel, save;
-
-    TextInputEditText etNamaBarang, etMerekBarang, etHargaJual, etHargaModal, etStokAwal, etSatuanUnit, etMinimumStok;
+    TextInputEditText
+            etNamaBarang, etMerekBarang,
+            etHargaJual, etHargaModal,
+            etStokAwal, etSatuanUnit,
+            etMinimumStok;
     int id;
-
     String DEBUG_TAG = "TESTMOTION";
-
     Barang barang;
 
+    int currentQty = 0;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -77,18 +81,9 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
         }
 
 
+        initView();
 
-        // INIT VIEW
-        cancel = findViewById(R.id.im_cancel);
-        save = findViewById(R.id.im_save);
-        etNamaBarang = findViewById(R.id.et_nama_barang);
-        etMerekBarang = findViewById(R.id.et_merek_barang);
-        etHargaJual = findViewById(R.id.et_harga_jual);
-        etHargaModal = findViewById(R.id.et_harga_modal);
-        etStokAwal = findViewById(R.id.et_stok_awal);
-        etSatuanUnit = findViewById(R.id.et_satuan_unit);
-        etMinimumStok = findViewById(R.id.et_minimum_stok);
-        // END INIT VIEW
+
 
 
         // FOCUS LISTENER
@@ -142,6 +137,7 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
             etSatuanUnit.setText(barang.getSatuan());
             etStokAwal.setText(!String.valueOf(barang.getStok()).isEmpty()?String.valueOf(barang.getStok()):"0");
             etMinimumStok.setText(!String.valueOf(barang.getMinStok()).isEmpty()?String.valueOf(barang.getMinStok()):"0");
+            currentQty = barang.getStok();
 
         }
 
@@ -156,6 +152,20 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
 
         // END SET LISTENER
 
+    }
+
+    void initView(){
+        // INIT VIEW
+        cancel = findViewById(R.id.im_cancel);
+        save = findViewById(R.id.im_save);
+        etNamaBarang = findViewById(R.id.et_nama_barang);
+        etMerekBarang = findViewById(R.id.et_merek_barang);
+        etHargaJual = findViewById(R.id.et_harga_jual);
+        etHargaModal = findViewById(R.id.et_harga_modal);
+        etStokAwal = findViewById(R.id.et_stok_awal);
+        etSatuanUnit = findViewById(R.id.et_satuan_unit);
+        etMinimumStok = findViewById(R.id.et_minimum_stok);
+        // END INIT VIEW
     }
 
     @Override
@@ -176,6 +186,17 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                 int theId;
                 if(id > 0){
                     theId = id;
+                    Penyimpanan penyimpanan;
+                    int inputStok = Integer.parseInt(etStokAwal.getText().toString());
+                    if(inputStok > currentQty) {
+
+                        penyimpanan = new Penyimpanan(Calendar.getInstance().getTimeInMillis(), String.valueOf(id), barang.getKode(),inputStok - currentQty , "Stok Opname", 0);
+                    }else{
+                        penyimpanan = new Penyimpanan(Calendar.getInstance().getTimeInMillis(), String.valueOf(id), barang.getKode(), currentQty - inputStok, "Stok Opname", 1);
+                    }
+
+                    FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(penyimpanan);
+
                 }else{
                     theId = getIntent().getIntExtra("sizeOfListBarang", -1);
                 }

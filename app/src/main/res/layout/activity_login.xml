@@ -30,9 +30,9 @@
         app:layout_editor_absoluteY="303dp">
 
         <ImageView
-            android:layout_width="249dp"
+            android:layout_width="wrap_content"
             android:layout_height="119dp"
-            android:src="@drawable/logoblack" />
+            android:src="@drawable/logo_optimal" />
 
     </LinearLayout>
 

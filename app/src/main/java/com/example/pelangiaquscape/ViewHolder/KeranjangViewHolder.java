@@ -29,6 +29,7 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder  implements Vie
 
     Context context;
 
+    SharedPreferences preferences;
     public KeranjangViewHolder(@NonNull View iv, Context context) {
         super(iv);
 
@@ -40,6 +41,7 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder  implements Vie
         this.context = context;
         iv.setOnClickListener(this);
         iv.setOnLongClickListener(this);
+
 
     }
 

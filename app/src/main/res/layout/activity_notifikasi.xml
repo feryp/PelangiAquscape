@@ -92,6 +92,7 @@
                     android:textSize="18sp" />
 
                 <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_notifikasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -137,6 +138,7 @@
                     android:textSize="12sp" />
 
                 <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -172,6 +174,7 @@
                     android:textSize="12sp" />
 
                 <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_sms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

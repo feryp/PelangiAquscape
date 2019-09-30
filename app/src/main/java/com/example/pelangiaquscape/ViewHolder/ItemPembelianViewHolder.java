@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.R;
 
+import java.text.DecimalFormat;
+
 public class ItemPembelianViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     private TextView tvNo, tvNamaBarang, tvQty, tvTotalHarga;
@@ -35,8 +37,11 @@ public class ItemPembelianViewHolder extends RecyclerView.ViewHolder implements 
         tvNo.setText(String.valueOf(no));
         tvNamaBarang.setText(keranjang.getKode());
         tvQty.setText(String.valueOf(keranjang.getQty()));
-        double totalHargaBeli = keranjang.getHargaBeli() * keranjang.getQty();
-        tvTotalHarga.setText(String.valueOf(totalHargaBeli));
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        double totalHargaBeli =  keranjang.getHargaBeli() * keranjang.getQty();
+        String totalHargaBeli2 = decimalFormat.format(totalHargaBeli);
+        tvTotalHarga.setText("Rp. "  + totalHargaBeli2);
     }
 
     @Override

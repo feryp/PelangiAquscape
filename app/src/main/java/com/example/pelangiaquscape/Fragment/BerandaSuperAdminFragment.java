@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.BarangActivity;
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.PenerimaanActivity;
 import com.example.pelangiaquscape.PenyimpananActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
@@ -28,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 
 public class BerandaSuperAdminFragment extends Fragment {
 
@@ -38,6 +41,7 @@ public class BerandaSuperAdminFragment extends Fragment {
 
     String namaToko;
 
+    List<Merek> listMerek;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +75,17 @@ public class BerandaSuperAdminFragment extends Fragment {
         CardView cardViewGudang = v.findViewById(R.id.cv_gudang);
         CardView cardViewPenerimaan = v.findViewById(R.id.cv_penerimaan);
 
+        FirebaseDatabase.getInstance().getReference("Merek").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         cardViewPegawai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

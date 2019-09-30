@@ -35,7 +35,7 @@ public class PenyimpananAdapter extends RecyclerView.Adapter<PenyimpananViewHold
 
     @Override
     public void onBindViewHolder(@NonNull PenyimpananViewHolder holder, int i) {
-        holder.bindData(listPenyimpanan.get(i), listKey.get(i));
+        holder.bindData(listPenyimpanan.get(i));
 
     }
 

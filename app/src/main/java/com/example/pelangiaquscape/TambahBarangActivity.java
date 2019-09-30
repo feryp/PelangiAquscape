@@ -255,7 +255,6 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                                 });
                     }
 
-
                 }
 
 

@@ -20,6 +20,7 @@ import com.example.pelangiaquscape.Model.User;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -89,6 +90,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         FirebaseDatabase fd = FirebaseDatabase.getInstance();
         DatabaseReference dr = fd.getReference("User");
 
+
+
         dr.child(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -116,6 +119,19 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+        });
+
+        String uid = FirebaseAuth.getInstance().getUid();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference fakturRef = storageRef.child("Profile").child(uid+".jpg");
+        fakturRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            if(uri != null){
+                currentPhotoUri = uri;
+                Picasso.get().load(uri).into(imgFotoprofile);
+
+            }
+//            tvNamaFoto.setText(file.getName());
         });
     }
 

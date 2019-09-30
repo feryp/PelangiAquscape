@@ -82,7 +82,7 @@ public class BarangViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public boolean onLongClick(View v) {
 
-        showDialog();
+//        showDialog();
         return false;
     }
 

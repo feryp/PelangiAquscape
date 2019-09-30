@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -136,7 +137,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        String uid = FirebaseAuth.getInstance().getUid();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference fakturRef = storageRef.child("Profile").child(uid+".jpg");
+        fakturRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            if(uri != null){
 
+                Picasso.get().load(uri).into(imgFotoProfile);
+
+            }
+//            tvNamaFoto.setText(file.getName());
+        });
 
 
 

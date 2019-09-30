@@ -80,7 +80,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     void loadDataPenjualan(){
         query = FirebaseDatabase.getInstance().getReference().child("Penjualan").orderByChild("tanggalPenjualan");
-        Log.v("query", query.toString());
+        Log.v("query", query.getPath().toString());
 
         FirebaseRecyclerOptions<Penjualan> options =
                 new FirebaseRecyclerOptions.Builder<Penjualan>().setQuery(query, Penjualan.class).build();

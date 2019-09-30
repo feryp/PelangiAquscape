@@ -36,7 +36,7 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bindData(Penyimpanan penyimpanan, String s) {
+    public void bindData(Penyimpanan penyimpanan) {
 
         // GET CALENDAR FROM PENYIMPANAN
         Calendar cal = Calendar.getInstance();

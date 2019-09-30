@@ -142,7 +142,7 @@
                         android:id="@+id/et_tgl_pesanan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Tgl. Pesanan"
+                        android:hint="Tgl. Pesanan (Terisi secara Otomatis)"
                         android:inputType="text"
                         android:textColor="@color/colorBlack"
                         android:textColorHint="@color/colorBlack" />
@@ -278,7 +278,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="2"
+                        android:layout_weight="3"
                         android:fontFamily="@font/roboto_regular"
                         android:text="Total Harga"
                         android:textAlignment="center"

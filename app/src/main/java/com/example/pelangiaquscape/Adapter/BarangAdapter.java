@@ -63,6 +63,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangViewHolder> {
                     Intent intent = new Intent(context, TambahBarangActivity.class);
                     intent.putExtra("barang", barang.get(i));
                     intent.putExtra("idBarang", position+1);
+                    intent.putExtra("merek", merek1);
                     context.startActivity(intent);
                 }
 

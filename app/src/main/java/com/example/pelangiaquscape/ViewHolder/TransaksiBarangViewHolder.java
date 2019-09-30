@@ -68,7 +68,7 @@ public class TransaksiBarangViewHolder extends RecyclerView.ViewHolder implement
 
         // DIGANTI JADI HARGA JUAL NANTI
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
-        String as = decimalFormat.format(barang.getHargaBeli());
+        String as = decimalFormat.format(barang.getHargaJual());
         tvHarga.setText("Rp. " + as);
         // DIGANTI JADI HARGA JUAL NANTI
 

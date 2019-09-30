@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Model.Barang;
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Penyimpanan;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,6 +51,7 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
             etStokAwal, etSatuanUnit,
             etMinimumStok;
     int id;
+    String currentIdMerek;
     String DEBUG_TAG = "TESTMOTION";
     Barang barang;
 
@@ -59,7 +61,9 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                etMerekBarang.setText(data.getStringExtra("idMerek"));
+                String merekBarang = data.getStringExtra("namaMerek");
+                currentIdMerek = data.getStringExtra("idMerek");
+                etMerekBarang.setText(merekBarang);
 
             }
         }
@@ -70,18 +74,26 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_barang);
 
+        // INIT VIEW
+        initView();
+
+        id = 0;
+
+        String merek = null;
         // GET INTENT
         Intent i = getIntent();
         try{
             barang = i.getExtras().getParcelable("barang");
             id = i.getIntExtra("idBarang", -1);
+            merek = i.getStringExtra("merek");
+            currentIdMerek = barang.getMerek();
+
 //            System.out.println("ID BARANG" + id);
         }catch(NullPointerException ex){
 
         }
 
 
-        initView();
 
 
 
@@ -90,8 +102,11 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
         etMerekBarang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Intent i = new Intent(TambahBarangActivity.this, ListMerekActivity.class);
-                startActivityForResult(i, 1);
+                if(hasFocus){
+                    Intent i = new Intent(TambahBarangActivity.this, ListMerekActivity.class);
+                    startActivityForResult(i, 1);
+                }
+
             }
         });
 
@@ -129,7 +144,7 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
         if (id > 0) {
             etStokAwal.setHint("Stok saat ini");
             etNamaBarang.setText(barang.getKode());
-            etMerekBarang.setText(barang.getMerek());
+            etMerekBarang.setText(merek);
             BigDecimal dr = new BigDecimal(barang.getHargaJual());
             etHargaJual.setText(dr.toString());
             dr = new BigDecimal(barang.getHargaBeli());
@@ -140,11 +155,6 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
             currentQty = barang.getStok();
 
         }
-
-
-
-
-
 
         // SET LISTENER
         cancel.setOnClickListener(this);
@@ -176,10 +186,22 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.im_save:
 
+                Barang currentBarang;
+//                if(id > 0){
+//                    currentBarang = barang;
+//                    currentBarang.setKode(etNamaBarang.getText().toString() != null ? etNamaBarang.getText().toString(): "");
+//                    currentBarang.setHargaBeli(Double.valueOf(etHargaModal.getText().toString()!= null ? etHargaModal.getText().toString(): "0"));
+//                    currentBarang.setHargaJual(Double.valueOf(etHargaJual.getText().toString() != null ? etHargaJual.getText().toString() : "0"));
+//                    currentBarang.setSatuan(etSatuanUnit.getText().toString() != null ? etSatuanUnit.getText().toString() : "");
+//                    currentBarang.setStok( Integer.parseInt(etStokAwal.getText().toString() != null ? etStokAwal.getText().toString(): "0"));
+//                    currentBarang.setMinStok(Integer.parseInt(etMinimumStok.getText().toString() != null ? etMinimumStok.getText().toString() : "10"));
+//                    currentBarang.setMerek(String.valueOf(currentIdMerek));
+//                }
+
                 Barang barang = new Barang(etNamaBarang.getText().toString(),
                         Double.valueOf(etHargaModal.getText().toString()),
                         Double.valueOf(etHargaJual.getText().toString()),
-                        etSatuanUnit.getText().toString(), etMerekBarang.getText().toString(),
+                        etSatuanUnit.getText().toString(),currentIdMerek ,
                         Integer.parseInt(etStokAwal.getText().toString()),
                         Integer.parseInt(etMinimumStok.getText().toString()));
 
@@ -198,18 +220,29 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                     FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(penyimpanan);
 
                 }else{
+
                     theId = getIntent().getIntExtra("sizeOfListBarang", -1);
                 }
 
-                FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(theId)).setValue(barang)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(TambahBarangActivity.this, "Barang berhasil diinput", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                        });
-
+                if(id == -1 ){
+                    FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(1)).setValue(barang)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(TambahBarangActivity.this, "Barang berhasil diinput", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            });
+                }else {
+                    FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(theId)).setValue(barang)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(TambahBarangActivity.this, "Barang berhasil diinput", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            });
+                }
 
                 break;
             case R.id.et_merek_barang:

@@ -89,7 +89,7 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
 
 
             @Override
-            protected void onBindViewHolder(@NonNull ListMerekViewHolder holder, final int position, @NonNull final Merek model) {
+            protected void onBindViewHolder(@NonNull ListMerekViewHolder holder, int position, @NonNull final Merek model) {
                 holder.bindDataMerek(model);
 
                 Log.i("INFORMATION", model.getNama() + " " + model.getNama());
@@ -97,15 +97,15 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent merek = new Intent(ListMerekActivity.this, TambahBarangActivity.class);
+                        Intent merek = new Intent();
 
-                        merek.putExtra("idMerek", adapter.getRef(position).getKey());
+                        merek.putExtra("idMerek", adapter.getRef(holder.getAdapterPosition()).getKey());
                         merek.putExtra("namaMerek", model.getNama());
 //                        merek.putExtra("listSize", size);
 
 
                         Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
-                        setResult(1, merek);
+                        setResult(RESULT_OK, merek);
                         finish();
                     }
                 });

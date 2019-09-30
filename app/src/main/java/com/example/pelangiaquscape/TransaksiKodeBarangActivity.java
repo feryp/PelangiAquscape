@@ -86,13 +86,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
                     startActivity(i);
                 } else {
 
-
-//                    Intent i = new Intent("finish_pembelian");
-//                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-//                    sendBroadcast(i);
                     setResult(Activity.RESULT_OK);
-//                    startActivity(i);
-
                     finish();
 
                 }

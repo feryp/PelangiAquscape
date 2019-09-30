@@ -63,7 +63,7 @@ public class ItemKeranjangDbHelper extends SQLiteOpenHelper {
         return db.delete(ItemKeranjangEntry.TABLE_NAME, null, null);
     }
 
-    public void insertOrDelete(Barang model,String ids, String qty, String hargaBeli){
+    public void insertOrDelete(Barang model,String ids, String qty, String hargaJual){
         SQLiteDatabase db =this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -72,7 +72,7 @@ public class ItemKeranjangDbHelper extends SQLiteOpenHelper {
         values.put(ItemKeranjangEntry.COLUMN_NAME_QTY,qty);
         values.put(ItemKeranjangEntry.COLUMN_NAME_MEREK, ids);
         values.put(ItemKeranjangEntry.COLUMN_NAME_SATUAN, "-");
-        double total = model.getHargaBeli() * Double.parseDouble(hargaBeli);
+        double total = model.getHargaJual() * Double.parseDouble(hargaJual);
         values.put(ItemKeranjangEntry.COLUMN_NAME_TOTAL_PRICE, total);
         values.put(ItemKeranjangEntry.COLUMN_NAME_HARGA_JUAL, model.getHargaJual());
 

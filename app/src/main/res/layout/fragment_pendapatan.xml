@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="right"
-                    android:text="19 Juli 2019"
+                    android:text="30 September 2019"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="12sp" />
 
@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Rp. 0.000.000,00"
+                    android:text="Rp. 85,000,00"
                     android:textColor="@color/colorBlack"
                     android:textSize="30sp" />
 

@@ -16,6 +16,16 @@
     <string name="cara_pembelian_barang">Bagaimana cara membeli barang di Aplikasi Optimal ?</string>
     <string name="cara_transaksi_penjualan">Bagaimana cara melakukan transaksi penjualan pada Aplikasi Optimal ?</string>
     <string name="cara_penyimpanan_barang">Bagaimana cara untuk menyimpan barang digudang pada Aplikasi Optimal ?</string>
+    <string name="cara_tambah_barang">Bagaimana cara untuk manambah barang pada Aplikasi Optimal ?</string>
+    <string name="cara_penerimaan_barang">Bagaimana cara untuk penerimaan barang dari proses pembelian pada Aplikasi Optimal ?</string>
+    <string name="cara_mitra_bisnis">Bagaimana cara untuk menambahkan data mitra bisnis pada Aplikasi Optimal ?</string>
+    <string name="cara_tambah_pegawai">Bagaimana cara untuk menambahkan data pegawai pada Aplikasi Optimal ?</string>
+    <string name="cara_lihat_laporan">Bagaimana cara untuk melihat laporan penjualan pada Aplikasi Optimal ?</string>
+    <string name="cara_lihat_rekap">Bagaimana cara untuk melihat rekap kas pada Aplikasi Optimal ?</string>
+    <string name="cara_lihat_pemberitahuan">Bagaimana cara untuk melihat pemberitahuan pada Aplikasi Optimal ?</string>
+    <string name="cara_edit_akun">Bagaimana cara untuk mengubah akun pada Aplikasi Optimal ?</string>
+    <string name="cara_edit_akun_toko">Bagaimana cara untuk mengubah akun toko pada Aplikasi Optimal ?</string>
+    <string name="cara_setting_printer">Bagaimana cara untuk mengatur printer pada Aplikasi Optimal ?</string>
 
 
     <string name="bulan_prompt">Pilih Bulan</string>
@@ -134,8 +144,72 @@
     <!--Pusat Bantuan cara penyimpanan -->
     <string name="pusat_bantuan_penyimpanan">Kamu dapat melakukan penyimpanan barang pada menu Penyimpanan, berikut caranya :</string>
     <string name="step1_penyimpanan">1. Pilih Menu Penyimpanan, dalam menu Penyimpanan terdapat list barang masuk dan barang keluar. Apabila anda ingin melakukan stock opname maka dapat menekan tombol tambah.</string>
-    <string name="step2_penyimpanan">2. Setelah itu masuk ke halaman Tambah Penyimpanan, lalu isi atau ubah data barang yang ingin disimpan di gudang. Setelah Tambah Penyimpanan sudah diisi, tekan tombol save yang ada di pojok kanan atas.</string>
-    <string name="step3_penyimpanan">4. Lalu list penyimpanan akan bertambah atau berubah datanya sesuai dengan data yang diinput.</string>
+    <string name="step2_penyimpanan">2. Setelah itu masuk ke halaman Tambah Penyimpanan, lalu isi atau ubah data barang yang ingin disimpan di gudang. Setelah Tambah Penyimpanan sudah diisi, tekan tombol ceklis yang ada di pojok kanan atas.</string>
+    <string name="step3_penyimpanan">3. Lalu list penyimpanan akan bertambah atau berubah datanya sesuai dengan data yang dimasukkan.</string>
+
+    <!--Pusat Bantuan cara tambah barang -->
+    <string name="pusat_bantuan_tambah_barang">Kamu dapat melakukan menambahkan barang pada menu Barang, berikut caranya :</string>
+    <string name="step1_barang">1. Pilih Menu Barang, dalam menu Barang terdapat ilustrasi barang kosong. lalu untuk menambahkan barang maka dapat menekan tombol tambah.</string>
+    <string name="step2_barang">2. Setelah itu masuk ke halaman Tambah Barang, lalu isi atau ubah data barang yang ingin disimpan. Setelah Tambah Barang sudah diisi, tekan tombol ceklis yang ada di pojok kanan atas.</string>
+    <string name="step3_barang">3. Lalu list barang akan bertambah atau berubah datanya sesuai dengan data yang dimasukkan.</string>
+
+    <!--Pusat Bantuan cara penerimaan barang -->
+    <string name="pusat_bantuan_penerimaan_barang">Kamu dapat melakukan mengunggah faktur penerimaan barang pada menu Barang, berikut caranya :</string>
+    <string name="step1_penerimaan">1. Pilih Menu Penerimaan, dalam menu Penerimaan terdapat list riwayat pembelian. lalu untuk menggunggah faktur penerimaan barang maka dapat menekan list tersebut.</string>
+    <string name="step2_penerimaan">2. Setelah itu masuk ke halaman Unggah Faktur, lalu unggah faktur penerimaan barang yang berupa foto. Setelah faktur terunggah, tekan tombol ceklis yang ada di pojok kanan atas.</string>
+    <string name="step3_penerimaan">3. Lalu list riwayat pembelian akan ceklis sesuai dengan data yang disudah memiliki faktur penerimaan.</string>
+
+    <!--Pusat Bantuan cara mitra bisnis -->
+    <string name="pusat_bantuan_mitra_bisnis">Kamu dapat melakukan menambahkan data pelanggan dan pemasok dalam menu Mitra Bisnis, berikut caranya :</string>
+    <string name="step1_mitrabisnis">1. Pilih Menu Mitra Bisnis, dalam menu Mitra Bisnis terdapat dua tab yaitu pelanggan dan pemasok yang didalamnya terdapat ilustrasi data kosong. lalu untuk menambahkan data pelanggan dan pemasok maka dapat menekan tombol tambah.</string>
+    <string name="step2_mitrabisnis">2. Setelah itu masuk ke halaman Tambah Pelanggan, lalu isi atau ubah data pelanggan yang ingin disimpan. Setelah Tambah Pelanggan sudah diisi, tekan tombol ceklis yang ada di pojok kanan atas.</string>
+    <string name="step3_mitrabisnis">3. Setelah itu jika ingin menambahkan data pemasok masuk ke halaman Tambah Pemasok, lalu isi atau ubah data pemasok yang ingin disimpan. Setelah Tambah Pemasok sudah diisi, tekan tombol ceklis yang ada di pojok kanan atas.</string>
+    <string name="step4_mitrabisnis">4. Lalu list pelanggan akan bertambah atau berubah datanya sesuai dengan data yang dimasukkan.</string>
+    <string name="step5_mitrabisnis">4. Lalu list pemasok akan bertambah atau berubah datanya sesuai dengan data yang dimasukkan.</string>
+
+    <!--Pusat Bantuan cara pegawai -->
+    <string name="pusat_bantuan_pegawai">Kamu dapat melakukan menambahkan data pegawai dalam menu Pegawai, berikut caranya :</string>
+    <string name="step1_pegawai">1. Pilih Menu Pegawai, dalam menu Pegawai terdapat ilustrasi data pegawai kosong, lalu untuk menambahkan data pegawai maka dapat menekan tombol tambah.</string>
+    <string name="step2_pegawai">2. Setelah itu masuk ke halaman Tambah Pegawai, lalu isi atau ubah data pegawai yang ingin disimpan. Setelah Tambah Pegawai sudah diisi, tekan tombol ceklis yang ada di pojok kanan atas.</string>
+    <string name="step3_pegawai">3. Lalu list pegawai akan bertambah atau berubah datanya sesuai dengan data yang dimasukkan.</string>
+
+    <!--Pusat Bantuan cara laporan -->
+    <string name="pusat_bantuan_laporan">Kamu dapat melakukan melihat data laporan penjualan dalam menu Laporan Penjualan, berikut caranya :</string>
+    <string name="step1_laporan">1. Pilih Menu Laporan Penjualan, dalam menu Laporan Penjualan terdapat dua tab yaitu bulan dan tahun. Dari setiap tab menampilkan Total Penjualan, Total Keuntungan, Transaksi, Produk Terjual, Produk Paling Laku, dan Produk Paling Tidak Laku.</string>
+    <string name="step2_laporan">2. Setelah itu masuk ke halaman Laporan Penjualan, anda dapat melihat hasil laporan dari penjualan berdasarkan bulan atau tahun Lalu disetiap fitur dalam Menu Laporan Penjualan hanya Total Penjualan dan Total Keuntungan yang dapat melihat grafik. Dengan cara klik Total Penjualan atau Total Keuntungan.</string>
+    <string name="step3_laporan">3. Lalu akan tampil grafik sesuai dengan bulan dan tahun yang ditetapkan.</string>
+
+    <!--Pusat Bantuan rekap -->
+    <string name="pusat_bantuan_rekap">Kamu dapat melakukan melihat data rekap kas dalam menu Rekap Kas, berikut caranya :</string>
+    <string name="step1_rekap">1. Pilih Menu Rekap Kas, dengan menggeser ke Menu Rekap Kas pada Bottom Navigation.</string>
+    <string name="step2_rekap">2. Setelah itu anda dapat melihat hasil rekapan keuangan berdasarkan pendapatan dan pengeluaran .</string>
+
+    <!--Pusat Bantuan pemberitahuan -->
+    <string name="pusat_bantuan_pemberitahuan">Kamu dapat melakukan melihat pemberitahuan dalam menu Pemberitahuan, berikut caranya :</string>
+    <string name="step1_pemberitahuan">1. Pilih Menu Pemberitahuan, dengan menggeser ke Menu Pemberitahuan pada Bottom Navigation.</string>
+    <string name="step2_pemberitahuan">2. Setelah itu anda dapat melihat pemberitahuan pesan masuk .</string>
+    <string name="step3_pemberitahuan">3. Lalu anda dapat melihat detail pemberitahuan pesan yang masuk dengan cara klik list pesan yang masuk .</string>
+
+    <!--Pusat Bantuan akun -->
+    <string name="pusat_bantuan_akun">Kamu dapat mengubah akun dalam menu Edit Akun, berikut caranya :</string>
+    <string name="step1_akun">1. Pilih Menu Akun, dengan menggeser ke Menu Akun pada Bottom Navigation.</string>
+    <string name="step2_akun">2. Lalu anda dapat mengubah akun dengan cara klik tombol Edit Akun.</string>
+    <string name="step3_akun">3. Lalu data akun akan berubah sesuai dengan data yang dimasukkan.</string>
+
+    <!--Pusat Bantuan akun toko -->
+    <string name="pusat_bantuan_akun_toko">Kamu dapat mengubah akun toko dalam menu Akun Toko, berikut caranya :</string>
+    <string name="step1_akun_toko">1. Pilih Menu Akun, dengan menggeser ke Menu Akun pada Bottom Navigation.</string>
+    <string name="step2_akun_toko">2. Lalu anda dapat mengubah akun dengan cara klik menu Akun Toko.</string>
+    <string name="step3_akun_toko">3. Lalu data akun toko akan berubah sesuai dengan data yang dimasukkan.</string>
+
+    <!--Pusat Bantuan akun toko -->
+    <string name="pusat_bantuan_printer">Kamu dapat mengatur pengaturan printer dalam menu Pengaturan, berikut caranya :</string>
+    <string name="step1_printer">1. Pilih Menu Akun, dengan menggeser ke Menu Akun pada Bottom Navigation.</string>
+    <string name="step2_printer">2. Lalu anda dapat mengatur printer dengan cara klik menu Pengaturan.</string>
+    <string name="step3_printer">3. Lalu dalam halaman Printer menyalakan bluetooth untuk mendapatkan perangkat printer.</string>
+    <string name="step4_printer">4. Lalu dalam halaman Tambah Printer tekan tombol cari perangkat.</string>
+    <string name="step5_printer">4. Lalu  akan mencari perangkat printer.</string>
+
 
     <!--Syarat dan Ketentuan Penggunaan -->
     <string name="judul">Syarat dan Ketentuan Penggunaan</string>
@@ -157,7 +231,7 @@
         jika anda tidak setuju terhadap Ketentuan Penggunaan ini. 
         Mohon diperhatikan bahwa penggunaan Aplikasi tunduk pada Ketentuan Penggunaan dan Kebijakan Privasi yang Kami keluarkan dan/atau perbaharui dari waktu ke waktu.
     </string>
-    
+
     <string name="ketentuan_umum">Ketentuan Umum</string>
 
     <string name="isi_ketentuan_umum_1">
@@ -251,18 +325,6 @@
     <string name="isi_ketentuan_penggunaan_10">
         10. Anda dilarang menggunakan Layanan dalam Aplikasi untuk hal-hal yang dilarang oleh hukum dan peraturan perundang-undangan yang berlaku.
     </string>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </resources>

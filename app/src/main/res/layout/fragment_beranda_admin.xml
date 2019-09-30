@@ -24,14 +24,14 @@
                 android:orientation="vertical"
                 android:paddingTop="30dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Selamat Datang, "
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="24sp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="6dp"-->
+                    <!--android:fontFamily="@font/roboto_regular"-->
+                    <!--android:text="Selamat Datang, "-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:textSize="24sp" />-->
 
                 <TextView
                     android:id="@+id/nama_profile_toko"
@@ -114,7 +114,7 @@
                                 android:layout_marginStart="85dp"
                                 android:fontFamily="@font/roboto_regular"
                                 android:padding="10dp"
-                                android:text="Mei 2019"
+                                android:text="September 2019"
                                 android:textColor="@color/colorBlue"
                                 android:textSize="14sp" />
 
@@ -137,7 +137,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="Rp. 0"
+                                android:text="Rp. 100,000.00"
                                 android:textColor="@color/colorBlue"
                                 android:textSize="30sp" />
 

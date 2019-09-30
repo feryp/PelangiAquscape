@@ -53,7 +53,7 @@
         android:textSize="12sp" />
 
     <ImageView
-        android:id="@+id/iv_delete_item"
+        android:id="@+id/iv_delete"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="center_vertical"

@@ -114,7 +114,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="2">
 
                     <TextView
                         android:id="@+id/tv_detail_pesanan"
@@ -130,8 +130,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="right"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -147,11 +147,11 @@
                         android:id="@+id/tv_no_pesanan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="4dp"
                         android:fontFamily="@font/roboto_bold"
                         android:text="OR/2019/01"
                         android:textColor="@color/colorBlack"
-                        android:textSize="16sp" />
+                        android:textSize="11sp" />
 
                 </LinearLayout>
 
@@ -191,6 +191,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
                     android:layout_weight="2"
                     android:orientation="vertical">
 
@@ -198,7 +199,6 @@
                         android:id="@+id/tv_status_pembelian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="Belum Lunas"
                         android:textColor="@color/colorBlack"
@@ -208,8 +208,7 @@
                         android:id="@+id/tv_no_faktur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="17dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="001"
                         android:textColor="@color/colorBlack"
@@ -220,7 +219,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -242,8 +241,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="3"
                     android:orientation="vertical">
 
                     <TextView
@@ -259,7 +258,7 @@
                         android:id="@+id/tv_detail_nama_pemasok"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="17dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="Udin"
                         android:textColor="@color/colorBlack"

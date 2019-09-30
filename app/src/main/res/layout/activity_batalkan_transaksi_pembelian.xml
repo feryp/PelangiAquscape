@@ -81,12 +81,12 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_detail_pesanan"
+                    android:id="@+id/tv_total_harga_pesanan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Rp. 30.000,00"
+                    android:text="Rp. 0"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlue"
                     android:textSize="24sp" />
@@ -116,11 +116,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:background="@color/colorPrimary"
-                android:orientation="horizontal"
-                android:padding="15dp">
+                android:orientation="horizontal">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_list_detail_pembelian"
+                    android:id="@+id/rv_list_detail_barang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary" />
@@ -219,17 +218,26 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_batalkan_transaksi"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/colorBlue"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Batalkan"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btn_batalkan_transaksi"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="@color/colorBlue"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Batalkan"
+                    android:textAllCaps="false"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
 
         </LinearLayout>
 

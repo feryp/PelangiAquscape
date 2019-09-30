@@ -65,7 +65,7 @@
             android:background="@drawable/ic_minus_circle" />
 
         <TextView
-            android:id="@+id/tv_kuantitas"
+            android:id="@+id/kuantitas_barang"
             android:layout_width="38dp"
             android:layout_height="30dp"
             android:layout_gravity="bottom"
@@ -80,7 +80,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="38dp"
-            android:layout_below="@+id/tv_kuantitas"
+            android:layout_below="@+id/kuantitas_barang"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/btn_kurang"
             android:background="@drawable/border_kuantitas" />
@@ -92,7 +92,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_kuantitas"
+            android:layout_toRightOf="@+id/kuantitas_barang"
             android:background="@drawable/ic_plus_circle" />
 
     </RelativeLayout>

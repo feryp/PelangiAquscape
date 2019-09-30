@@ -20,12 +20,13 @@ import com.example.pelangiaquscape.Model.Pembelian;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DetailSelesaiPembelianActivity extends AppCompatActivity implements View.OnClickListener {
+public class DetailSelesaiPembelianActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageView cancel;
     TextView tvNoPesanan, tvStatusPembelian, tvNoFaktur, tvTglPembelian, tvNamaPemasok, tvTotalHargaPembelian;
@@ -44,6 +45,11 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_selesai_pembelian);
 
+        // GET DATA
+        Intent i = getIntent();
+        pembelian = i.getParcelableExtra("value");
+        key = i.getStringExtra("key");
+
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
         tvNoPesanan = findViewById(R.id.tv_no_pesanan);
@@ -55,12 +61,18 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         btnBatalkan = findViewById(R.id.btn_batalkan_pembelian);
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
         btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
+        toogle_switch = findViewById(R.id.toogle_switch);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian_selesai);
         rvCicilan = findViewById(R.id.rv_cicilan);
 
         rvItem.setHasFixedSize(true);
         rvItem.setLayoutManager(new LinearLayoutManager(this));
+
+        //SET LISTENER
+        btnLihatFaktur.setOnClickListener(this);
+        cancel.setOnClickListener(this);
+        btnBatalkan.setOnClickListener(this);
 
         tvNoPesanan.setText(pembelian.getNoPesanan());
 //        switch (pembelian.getStatusPembelian()) {
@@ -88,8 +100,10 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
             total = total + keranjang.getTotalPrice();
 
         }
-        BigDecimal decimal = new BigDecimal(total);
-        tvTotalHargaPembelian.setText(decimal.toString());
+//        BigDecimal decimal = new BigDecimal(total);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String totalHargaPembelian = decimalFormat.format(total);
+        tvTotalHargaPembelian.setText("Rp. " + totalHargaPembelian);
 
         DetailSelesaiPembelianAdapter adapter = new DetailSelesaiPembelianAdapter(listBarang, this);
         rvItem.setAdapter(adapter);
@@ -110,8 +124,8 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
             }
         });
 
-
     }
+
 
     @Override
     public void onClick(View v) {

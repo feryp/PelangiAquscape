@@ -1,7 +1,9 @@
 package com.example.pelangiaquscape;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -18,17 +20,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.DetailProsesPembelianAdapter;
+import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Pembelian;
+import com.example.pelangiaquscape.Model.Penyimpanan;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +56,10 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
     Pembelian pembelian;
     String key;
 
+    String PACKAGE_NAME = "com.example.pelangiaquascape.";
 
+    SharedPreferences sharedPref;
+    List<ItemKeranjang> listItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +70,8 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         pembelian = i.getParcelableExtra("value");
         key = i.getStringExtra("key");
 
+        // SHARED PREFERENCE
+        sharedPref = getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KEY", Context.MODE_PRIVATE);
 
         // INIT VIEW
         cancel = findViewById(R.id.im_kembali);
@@ -104,7 +117,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         tvTanggalPesanan.setText(dateFormat);
         tvPemesan.setText(pembelian.getNamaPemasok());
 
-        List<ItemKeranjang> listItem = pembelian.getListBarang();
+        listItem = pembelian.getListBarang();
         double total = 0;
         for (ItemKeranjang keranjang : listItem) {
             total = total + keranjang.getTotalPrice();
@@ -160,6 +173,56 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 
     void confirm(){
         pembelian.setProses(false);
+        Calendar c = Calendar.getInstance();
+        final List<Penyimpanan> listPenyimpanan = new ArrayList<>();
+        Task<Void> task = null;
+        for (ItemKeranjang keranjang : listItem) {
+            Penyimpanan pe = new Penyimpanan(c.getTimeInMillis(),
+                    sharedPref.getString(keranjang.getKode().concat("key"), ""), keranjang.getKode(), keranjang.getQty(), "Pembelian", 0);
+
+            task = FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(pe);
+            listPenyimpanan.add(pe);
+
+        }
+
+        task.addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(DetailProsesPembelianActivity.this, listPenyimpanan.size() + " item masuk penyimpanan", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        FirebaseDatabase.getInstance().getReference("Barang").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot sn : dataSnapshot.getChildren()) {
+
+                    for (Penyimpanan p : listPenyimpanan) {
+                        System.out.println("snapshot "+ sn.getKey() + " key " + p.getKeyBarang());
+
+                        if(p.getKeyBarang().equals(sn.getKey())){
+                            Barang barang = sn.getValue(Barang.class);
+
+                            int stok = barang.getStok() + p.getJumlahBarang();
+                            System.out.println("NAMA BARANG" + barang.getKode());
+                            System.out.println("STOK BARANG" + stok);
+                            barang.setStok(stok);
+                            sn.getRef().setValue(barang);
+
+                        }
+//                            dataSnapshot.getRef().child(p.getKeyBarang()).child("")
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         FirebaseDatabase.getInstance().getReference("Pembelian").child(key).setValue(pembelian)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

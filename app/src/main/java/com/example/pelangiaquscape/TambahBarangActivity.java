@@ -220,29 +220,45 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                     FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(penyimpanan);
 
                 }else{
-
                     theId = getIntent().getIntExtra("sizeOfListBarang", -1);
+                    if(theId < 0 ){
+                        Penyimpanan penyimpanan;
+                        int inputStok = Integer.parseInt(etStokAwal.getText().toString());
+                        penyimpanan = new Penyimpanan(Calendar.getInstance().getTimeInMillis(), String.valueOf(1), barang.getKode(),inputStok , "Barang Baru", 0);
+                        FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(penyimpanan);
+
+                        FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(1)).setValue(barang)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(TambahBarangActivity.this, "Barang berhasil diinput", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                });
+
+                    }else {
+
+                        int next = theId + 1;
+
+                        Penyimpanan penyimpanan;
+                        int inputStok = Integer.parseInt(etStokAwal.getText().toString());
+                        penyimpanan = new Penyimpanan(Calendar.getInstance().getTimeInMillis(), String.valueOf(next), barang.getKode(),inputStok , "Barang Baru", 0);
+                        FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(penyimpanan);
+
+                        FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(next)).setValue(barang)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(TambahBarangActivity.this, "Barang berhasil diinput", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                });
+                    }
+
+
                 }
 
-                if(id == -1 ){
-                    FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(1)).setValue(barang)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(TambahBarangActivity.this, "Barang berhasil diinput", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            });
-                }else {
-                    FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(theId)).setValue(barang)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(TambahBarangActivity.this, "Barang berhasil diinput", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            });
-                }
+
 
                 break;
             case R.id.et_merek_barang:

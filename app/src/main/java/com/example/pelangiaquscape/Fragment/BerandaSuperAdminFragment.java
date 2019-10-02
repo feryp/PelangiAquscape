@@ -158,20 +158,20 @@ public class BerandaSuperAdminFragment extends Fragment {
             }
         });
 
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                namaToko = "" + dataSnapshot.child("namaToko").getValue(String.class);
-//
-//                //set data
-//                tvNamaToko.setText(namaToko);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                namaToko = "" + dataSnapshot.child("namaToko").getValue(String.class);
+
+                //set data
+                tvNamaToko.setText(namaToko);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         return v;
     }

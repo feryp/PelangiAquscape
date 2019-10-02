@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "147637719839",
-    "firebase_url": "https://optimal-e9ce6.firebaseio.com",
-    "project_id": "optimal-e9ce6",
-    "storage_bucket": "optimal-e9ce6.appspot.com"
+    "project_number": "748176016018",
+    "firebase_url": "https://pelangiaquscape.firebaseio.com",
+    "project_id": "pelangiaquscape",
+    "storage_bucket": "pelangiaquscape.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:147637719839:android:dddce1ebd923d11322d62a",
+        "mobilesdk_app_id": "1:748176016018:android:8a96ceae76a0cee4",
         "android_client_info": {
-          "package_name": "com.santuy.optimalapp"
+          "package_name": "com.example.pelangiaquscape"
         }
       },
       "oauth_client": [
         {
-          "client_id": "147637719839-halg12lioccgjkhs6abe4ma5k3r7jeh4.apps.googleusercontent.com",
+          "client_id": "748176016018-4u9e9ujjl7kur2kmvu79lrh2f7evsub6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.santuy.optimalapp",
-            "certificate_hash": "972071407711fdefea964a9291d045995818b2b4"
+            "package_name": "com.example.pelangiaquscape",
+            "certificate_hash": "ba45e3fadfc2023261e4d394110c9ae99d400c1d"
           }
         },
         {
-          "client_id": "147637719839-a2j82jnffqop19tfnr00v4m52k6un4nn.apps.googleusercontent.com",
+          "client_id": "748176016018-c0c9avkvuit6lh679b3dqclesvurb6b4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBChoFhda8e1pJEKyfOoQU8mPeO4lv1p2o"
+          "current_key": "AIzaSyBPPqaceLXFvfo0-31XveFkjJXMyti9BLE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "147637719839-a2j82jnffqop19tfnr00v4m52k6un4nn.apps.googleusercontent.com",
+              "client_id": "748176016018-c0c9avkvuit6lh679b3dqclesvurb6b4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

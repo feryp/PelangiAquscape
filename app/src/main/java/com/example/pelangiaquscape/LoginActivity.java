@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ImageView bgapp, clover;
     LinearLayout logosplash, container_user, container_pwd, container_daftar, container_lupa_password;
     Animation frombottom;
-    Button btn_masuk, btn_google;
+    Button btn_masuk;
     TextView daftar, lupa_password;
     TextInputEditText namapengguna, katasandi;
     FirebaseAuth firebaseAuth;
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         container_user =  findViewById(R.id.container_user);
         container_pwd = findViewById(R.id.container_pwd);
         container_lupa_password =  findViewById(R.id.container_lupa_password);
-        btn_google =  findViewById(R.id.btn_google);
+//        btn_google =  findViewById(R.id.btn_google);
         container_daftar =  findViewById(R.id.container_daftar);
         btn_masuk =  findViewById(R.id.btn_masuk);
         namapengguna = findViewById(R.id.et_nama_pengguna);
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         container_user.startAnimation(frombottom);
         container_pwd.startAnimation(frombottom);
         btn_masuk.startAnimation(frombottom);
-        btn_google.startAnimation(frombottom);
+//        btn_google.startAnimation(frombottom);
         container_daftar.startAnimation(frombottom);
         container_lupa_password.startAnimation(frombottom);
 
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // REGISTER LISTENER
         daftar.setOnClickListener(this);
         lupa_password.setOnClickListener(this);
-        btn_google.setOnClickListener(this);
+//        btn_google.setOnClickListener(this);
         btn_masuk.setOnClickListener(this);
 
 
@@ -174,10 +174,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+//    private void signIn() {
+//        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+//        startActivityForResult(signInIntent, RC_SIGN_IN);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -380,9 +380,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent lupa_password = new Intent(LoginActivity.this, LupaPasswordActivity.class);
                 startActivity(lupa_password);
                 break;
-            case R.id.btn_google:
-                signIn();
-                break;
+//            case R.id.btn_google:
+//                signIn();
+//                break;
         }
     }
 }

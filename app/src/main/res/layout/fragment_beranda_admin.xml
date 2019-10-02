@@ -24,14 +24,14 @@
                 android:orientation="vertical"
                 android:paddingTop="30dp">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_margin="6dp"-->
-                    <!--android:fontFamily="@font/roboto_regular"-->
-                    <!--android:text="Selamat Datang, "-->
-                    <!--android:textColor="@color/colorPrimary"-->
-                    <!--android:textSize="24sp" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Selamat Datang, "
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/nama_profile_toko"

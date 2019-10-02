@@ -32,7 +32,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="119dp"
-            android:src="@drawable/logo_optimal" />
+            android:src="@drawable/logoblack" />
 
     </LinearLayout>
 
@@ -58,9 +58,9 @@
                 android:id="@+id/et_nama_pengguna"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_username"
+                android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="10dp"
-                android:hint="Nama Penguna"
+                android:hint="Email"
                 android:inputType="text"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorBlack" />
@@ -144,24 +144,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_lupa_password" />
 
-    <Button
-        android:id="@+id/btn_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_google"
-        android:drawablePadding="20dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Masuk dengan Google"
-        android:textAllCaps="false"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_masuk" />
+    <!--<Button-->
+        <!--android:id="@+id/btn_google"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:drawableStart="@drawable/ic_google"-->
+        <!--android:drawablePadding="20dp"-->
+        <!--android:fontFamily="@font/roboto_bold"-->
+        <!--android:text="Masuk dengan Google"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textSize="12sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/btn_masuk" />-->
 
     <LinearLayout
         android:id="@+id/container_daftar"
@@ -175,7 +175,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google">
+        app:layout_constraintTop_toBottomOf="@+id/btn_masuk">
 
         <TextView
             android:layout_width="wrap_content"

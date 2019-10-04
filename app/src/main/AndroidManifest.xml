@@ -89,7 +89,8 @@
         <activity android:name=".GrafikKeuntunganBulanActivity" />
         <activity android:name=".GrafikPenjualanBulanActivity" />
         <activity android:name=".TentangKamiActivity" />
-        <activity android:name=".BantuanActivity" />
+        <activity android:name=".BantuanActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".NotifikasiActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".LaporanPenjualanActivity" />

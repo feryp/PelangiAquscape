@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +16,16 @@ import android.widget.TextView;
 import com.example.pelangiaquscape.Adapter.DetailPenjualanAdapter;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
+import com.example.pelangiaquscape.Model.User;
 import com.example.pelangiaquscape.ViewHolder.DetailPenjualanViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -39,6 +44,8 @@ public class DetailPenjualanActivity extends AppCompatActivity {
     String key;
 
 
+    User user;
+    ProgressDialog dialog ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class DetailPenjualanActivity extends AppCompatActivity {
         penjualan = p.getParcelableExtra("penjualan");
         key = p.getStringExtra("key");
 
+        dialog = new ProgressDialog(this);
         //INIT VIEW
         tvNoStruk = findViewById(R.id.tv_no_struk_detail_penjualan);
         tvKeteranganPembayaran = findViewById(R.id.tv_keterangan_pembayaran_detail);
@@ -99,10 +107,38 @@ public class DetailPenjualanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent lihatStruk = new Intent(DetailPenjualanActivity.this, StrukPenjualanActivity.class);
+                lihatStruk.putExtra("penjualan", penjualan);
+                if(user != null) {
+                    lihatStruk.putExtra("namaKasir", user.getUsername());
+                }
                 startActivity(lihatStruk);
             }
         });
 
+
+        dialog.show();
+
+        loadUser(penjualan.getNamaPenjual());
+
+
+    }
+
+    void loadUser(String key){
+        FirebaseDatabase.getInstance().getReference("User").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                if(user != null){
+                    tvNamaKasir.setText(user.getUsername());
+                }
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }

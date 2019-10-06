@@ -74,6 +74,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
     boolean diskonPersen, diskonRp;
 
+    Penjualan penjualan;
+
 
     DecimalFormat fmt = new DecimalFormat("#,###.00");
     List<ItemKeranjang> listKeranjang;
@@ -416,6 +418,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                         totalHarga
                 );
 
+                penjualan = p;
+
 
                 FirebaseDatabase db = FirebaseDatabase.getInstance();
                 DatabaseReference dr = db.getReference().child("Penjualan");
@@ -579,6 +583,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 Intent lihatStruk = new Intent(PembayaranActivity.this, StrukPenjualanActivity.class);
+                lihatStruk.putExtra("penjualan", penjualan);
                 lihatStruk.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(lihatStruk);
             }

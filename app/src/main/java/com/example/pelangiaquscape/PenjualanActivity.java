@@ -96,6 +96,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                     public void onClick(View v, int position) {
                         Toast.makeText(PenjualanActivity.this, position+"", Toast.LENGTH_SHORT).show();
                         Intent p = new Intent(PenjualanActivity.this, DetailPenjualanActivity.class);
+                        p.putExtra("penjualan", penjualan);
                         p.putExtra("key", key);
                         p.putExtra("penjualan", model);
                         startActivity(p);

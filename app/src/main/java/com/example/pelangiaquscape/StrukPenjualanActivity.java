@@ -1,6 +1,7 @@
 package com.example.pelangiaquscape;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,12 @@ import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -32,6 +39,7 @@ public class StrukPenjualanActivity extends AppCompatActivity {
 
     Penjualan penjualan;
     AkunToko akunToko;
+    String namaKasir;
     String key;
 
     @Override
@@ -42,8 +50,9 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         //GET DATA
         Intent p = getIntent();
         penjualan = p.getParcelableExtra("penjualan");
-        akunToko = p.getParcelableExtra("akuntoko");
-        key = p.getStringExtra("key");
+        namaKasir = p.getStringExtra("namaKasir");
+//        akunToko = p.getParcelableExtra("akuntoko");
+//        key = p.getStringExtra("key");
 
         //INIT VIEW
         tvNamaToko = findViewById(R.id.tv_nama_toko);
@@ -67,32 +76,35 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         rvItemBarang.setLayoutManager(new LinearLayoutManager(this));
 
         //SET TEXT
-//        tvNamaToko.setText(akunToko.getNamaToko());
-//        tvAlamatToko.setText(akunToko.getAlamat());
-//        tvNoTeleponToko.setText(akunToko.getNoTelepon());
-//        tvNamaKasir.setText(penjualan.getNamaPenjual());
 
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(penjualan.getTanggalPenjualan());
-//
-//        Date date = calendar.getTime();
-//
-//        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
-//        String dateFormat = format.format(date);
-//        tvTglTransaksi.setText(dateFormat);
-//
-//        tvNoStruk.setText(penjualan.getNoPenjualan());
-//        List<ItemKeranjang> listItemTransaksi = penjualan.getListItemKeranjang();
-//        double total = 0;
-//        for (ItemKeranjang itemKeranjang:listItemTransaksi){
-//            total = total + itemKeranjang.getTotalPrice();
-//        }
-//
-//        BigDecimal bigDecimal = new BigDecimal(total);
-//        tvTotalHarga.setText(bigDecimal.toString());
-//
-//        StrukPenjualanAdapter adapter = new StrukPenjualanAdapter(listItemTransaksi, this);
-//        rvItemBarang.setAdapter(adapter);
+
+        if(namaKasir != null){
+            tvNamaKasir.setText(namaKasir);
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(penjualan.getTanggalPenjualan());
+
+        Date date = calendar.getTime();
+
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+        String dateFormat = format.format(date);
+        tvTglTransaksi.setText(dateFormat);
+
+        tvNoStruk.setText(penjualan.getNoPenjualan());
+        List<ItemKeranjang> listItemTransaksi = penjualan.getListItemKeranjang();
+        double total = 0;
+        for (ItemKeranjang itemKeranjang:listItemTransaksi){
+            total = total + itemKeranjang.getTotalPrice();
+        }
+
+        BigDecimal bigDecimal = new BigDecimal(total);
+        tvTotalHarga.setText(bigDecimal.toString());
+
+        StrukPenjualanAdapter adapter = new StrukPenjualanAdapter(listItemTransaksi, this);
+        rvItemBarang.setAdapter(adapter);
+
+//        loadAkun();
 
         fabCetak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,4 +124,29 @@ public class StrukPenjualanActivity extends AppCompatActivity {
     public void showToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+
+//    void loadAkun(){
+//        FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                AkunToko akunToko = dataSnapshot.getValue(AkunToko.class);
+//
+//                tvNamaToko.setText(akunToko.getNamaToko());
+//                tvAlamatToko.setText(akunToko.getAlamat());
+//                tvNoTeleponToko.setText(akunToko.getNoTelepon());
+//
+//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//                tvNamaKasir.setText(user.getDisplayName());
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 }

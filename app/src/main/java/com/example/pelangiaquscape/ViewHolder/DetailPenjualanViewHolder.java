@@ -36,10 +36,10 @@ public class DetailPenjualanViewHolder extends RecyclerView.ViewHolder {
 
     public void bindData(ItemKeranjang itemKeranjang){
         this.itemKeranjang = itemKeranjang;
-//        int noMerek = Integer.valueOf(itemKeranjang.getMerek());
+        int noMerek = Integer.valueOf(itemKeranjang.getMerek());
 //        String merek = preferences.getString(String.valueOf(noMerek), "unknown");
         tvKode.setText(itemKeranjang.getKode());
-//        tvMerek.setText(merek);
+//        tvMerek.setText("( " + merek + " ) ");
         BigDecimal bg = new BigDecimal(itemKeranjang.getHargaJual());
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
         String hargaSatuan = decimalFormat.format(itemKeranjang.getHargaJual());

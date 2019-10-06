@@ -86,11 +86,11 @@
                 android:layout_weight="4">
 
                 <TextView
-                    android:id="@+id/total_saldo"
+                    android:id="@+id/total_saldo_pengeluaran"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Rp. 101,000.00"
+                    android:text="Rp. 0"
                     android:textColor="@color/colorBlack"
                     android:textSize="30sp" />
 

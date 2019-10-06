@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.pelangiaquscape.Model.Pembelian;
 import com.example.pelangiaquscape.Model.Penjualan;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -34,6 +36,7 @@ import java.util.List;
 public class PengeluaranFragment extends Fragment {
 
     BarChart barChart;
+    TextView tvTotalPengeluaran;
     final String[] bulan = {"Januari",
             "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
     double jan, feb, mar, apr, may, june, jul, aug, sep, oct, nov, dec;
@@ -50,6 +53,7 @@ public class PengeluaranFragment extends Fragment {
         RAINBOW_COLOR = getContext().getResources().getIntArray(R.array.rainbow);
 
         barChart = v.findViewById(R.id.bar_pengeluaran);
+        tvTotalPengeluaran = v.findViewById(R.id.total_saldo_pengeluaran);
 
 //        ArrayList<BarEntry> barEntries = new ArrayList<>();
 //        barEntries.add(new BarEntry(10f, 0));
@@ -200,8 +204,9 @@ public class PengeluaranFragment extends Fragment {
                         total += totalHarga;
                     }
 
-
-//                    tvTotal.setText(String.valueOf(total));
+                    DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+                    String totalPengeluaran = decimalFormat.format(total);
+                    tvTotalPengeluaran.setText("Rp. " + totalPengeluaran);
 
                 }
 

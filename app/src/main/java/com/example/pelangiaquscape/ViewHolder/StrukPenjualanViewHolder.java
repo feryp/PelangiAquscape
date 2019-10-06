@@ -11,6 +11,7 @@ import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.R;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class StrukPenjualanViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,9 +41,11 @@ public class StrukPenjualanViewHolder extends RecyclerView.ViewHolder {
         tvKode.setText(itemKeranjang.getKode());
 //        tvMerek.setText(merek);
         BigDecimal bg = new BigDecimal(itemKeranjang.getHargaJual());
-        tvHargaSatuan.setText(bg.toString());
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String hargaSatuan = decimalFormat.format(itemKeranjang.getHargaJual());
+        String totalHarga = decimalFormat.format(bg.multiply(new BigDecimal(itemKeranjang.getQty())));
+        tvHargaSatuan.setText("Rp. " + hargaSatuan);
         tvQty.setText(String.valueOf(itemKeranjang.getQty()));
-
-        tvTotalHarga.setText(bg.multiply(new BigDecimal(itemKeranjang.getQty())).toString());
+        tvTotalHarga.setText("Rp. " + totalHarga);
     }
 }

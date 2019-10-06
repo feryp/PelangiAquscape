@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -41,7 +42,7 @@ import java.util.List;
 public class PendapatanFragment extends Fragment {
 
     BarChart barChart;
-    TextView tvTotal;
+    TextView tvTotalPendapatan;
     Spinner spinner;
 
     List<Penjualan> listPenjualan = new ArrayList<>();
@@ -60,7 +61,7 @@ public class PendapatanFragment extends Fragment {
 
 //        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "res/font/roboto_regular.ttf");
 
-        tvTotal = v.findViewById(R.id.total_saldo);
+        tvTotalPendapatan = v.findViewById(R.id.total_saldo);
         barChart = v.findViewById(R.id.bar_pendapatan);
         spinner = v.findViewById(R.id.spinner_tahun_pendapatan);
 
@@ -105,6 +106,7 @@ public class PendapatanFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Calendar c = Calendar.getInstance();
+
 
                 double total = 0;
 
@@ -173,7 +175,9 @@ public class PendapatanFragment extends Fragment {
                     }
 
 
-                    tvTotal.setText(String.valueOf(total));
+                    DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+                    String totalHarga = decimalFormat.format(total);
+                    tvTotalPendapatan.setText("Rp. " + totalHarga);
 
 
 

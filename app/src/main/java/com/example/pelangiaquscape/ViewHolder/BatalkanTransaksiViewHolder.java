@@ -30,6 +30,7 @@ public class BatalkanTransaksiViewHolder extends RecyclerView.ViewHolder {
         tvMerek = itemView.findViewById(R.id.merek_barang_dibatalkan);
         tvHargaSatuan = itemView.findViewById(R.id.harga_barang_dibatalkan);
         tvQty = itemView.findViewById(R.id.kuantitas_barang);
+        tvTotalHarga = itemView.findViewById(R.id.tv_total_harga_pesanan);
         preferences = context.getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
 
     }
@@ -46,6 +47,7 @@ public class BatalkanTransaksiViewHolder extends RecyclerView.ViewHolder {
         String hargaSatuan =  decimalFormat.format(itemKeranjang.getHargaBeli());
         String totalHarga = decimalFormat.format(bigDecimal.multiply(new BigDecimal(itemKeranjang.getQty())));
         tvHargaSatuan.setText("Rp. " + hargaSatuan);
+        tvTotalHarga.setText("Rp. " + totalHarga);
         tvQty.setText(String.valueOf(itemKeranjang.getQty()));
 
     }

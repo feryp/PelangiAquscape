@@ -95,9 +95,6 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
 
 
 
-
-
-
         // FOCUS LISTENER
         etMerekBarang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

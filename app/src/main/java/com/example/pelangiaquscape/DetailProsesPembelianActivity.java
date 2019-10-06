@@ -84,6 +84,9 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_pembelian);
         btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
+        etKeteranganCicilan = findViewById(R.id.et_keterangan_cicilan);
+        etTanggalCicilan = findViewById(R.id.et_tgl_cicilan);
+        etJumlahCicilan = findViewById(R.id.et_jumlah_cicilan);
 
         // REGISTER LISTENER
         btnKonfirmasi.setOnClickListener(this);

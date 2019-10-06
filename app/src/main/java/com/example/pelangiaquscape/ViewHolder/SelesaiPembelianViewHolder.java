@@ -50,6 +50,15 @@ public class SelesaiPembelianViewHolder extends RecyclerView.ViewHolder implemen
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
         String harga = decimalFormat.format(pembelian.getTotalHarga());
         tvHarga.setText("Rp. " + harga);
+        //        switch (pembelian.getStatusPembelian()) {
+//            case 1:
+//                tvStatusPembelian.setText("Lunas");
+//                break;
+//            case 2:
+//                tvStatusPembelian.setText("Belum Lunas");
+//                break;
+//        }
+
         tvStatus.setText("Lunas");
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(pembelian.getTanggalPesanan());

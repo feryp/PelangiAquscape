@@ -1,12 +1,19 @@
 package com.example.pelangiaquscape;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +42,11 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TambahPegawaiActivity extends AppCompatActivity implements View.OnClickListener {
@@ -54,6 +66,9 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     String idPegawai;
 
     private static final int IMAGE_REQUEST = 1;
+    private static final int RESULT_LOAD_IMAGE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 80;
+    private String currentPhotoPath;
     private Uri mImageUri;
     private StorageTask uploadTask;
 
@@ -87,6 +102,11 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
         pegawai = new Pegawai();
 
+        //SET IMAGE
+        if (mImageUri != null){
+            Picasso.get().load(mImageUri).into(fotoPegawai);
+        }
+
 
         try {
             idPegawai = getIntent().getExtras().getString("idForPegawai");
@@ -116,6 +136,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 //
 //        }
 
+        //REGISTER LISTENER
         cancel.setOnClickListener(this);
         save.setOnClickListener(this);
         add_foto.setOnClickListener(this);
@@ -221,78 +242,91 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     }
 
     private void openImage(){
+
         Intent intent = new Intent();
         intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
     }
 
-    private String getFileExtension(Uri uri) {
-        ContentResolver contentResolver = getApplicationContext().getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
 
+//    private String getFileExtension(Uri uri) {
+//        ContentResolver contentResolver = getApplicationContext().getContentResolver();
+//        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+//        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+//
+//
+//    }
 
-    }
-
-    private void uploadImage(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Diunggah");
-        progressDialog.show();
-
-        if (mImageUri != null){
-            final StorageReference filereference = storageReference.child(System.currentTimeMillis()
-            + "." + getFileExtension(mImageUri));
-
-            uploadTask = filereference.putFile(mImageUri);
-            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                   if (!task.isSuccessful()){
-                       throw task.getException();
-                   }
-                    return filereference.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()){
-                        Uri downloadUri = task.getResult();
-                        String myUrl = downloadUri.toString();
-
-//                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pegawai").child(firebaseUser.getUid());
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-            });
-        } else {
-            Toast.makeText(this,"Tidak ada gambar yang dipilih", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private void uploadImage(){
+//        final ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Diunggah");
+//        progressDialog.show();
+//
+//        if (mImageUri != null){
+//            final StorageReference filereference = storageReference.child(System.currentTimeMillis()
+//            + "." + getFileExtension(mImageUri));
+//
+//            uploadTask = filereference.putFile(mImageUri);
+//            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//                @Override
+//                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+//                   if (!task.isSuccessful()){
+//                       throw task.getException();
+//                   }
+//                    return filereference.getDownloadUrl();
+//                }
+//            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                @Override
+//                public void onComplete(@NonNull Task<Uri> task) {
+//                    if (task.isSuccessful()){
+//                        Uri downloadUri = task.getResult();
+//                        String myUrl = downloadUri.toString();
+//
+////                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pegawai").child(firebaseUser.getUid());
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    progressDialog.dismiss();
+//                }
+//            });
+//        } else {
+//            Toast.makeText(this,"Tidak ada gambar yang dipilih", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == IMAGE_REQUEST && requestCode == RESULT_OK
-        && data != null && data.getData() != null){
-            mImageUri = data.getData();
-
-            if (uploadTask != null && uploadTask.isInProgress()){
-                Toast.makeText(getApplicationContext(), "Unggah sedang dalam proses", Toast.LENGTH_SHORT).show();
-
-            } else {
-                uploadImage();
-            }
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+            Uri uri = data.getData();
+            mImageUri = uri;
+            fotoPegawai.setImageURI(uri);
         }
+
+//        if (requestCode == IMAGE_REQUEST && requestCode == RESULT_OK
+//        && data != null && data.getData() != null){
+//
+//            galleryAddPic();
+//
+//            mImageUri = data.getData();
+//
+//            if (uploadTask != null && uploadTask.isInProgress()){
+//                Toast.makeText(getApplicationContext(), "Unggah sedang dalam proses", Toast.LENGTH_SHORT).show();
+//
+//            } else {
+//                uploadImage();
+//            }
+//        }
     }
+
 
     @Override
     public void onClick(View v) {
@@ -302,6 +336,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.im_save:
                 save();
+                uploadToCloudStorage();
                 finish();
                 break;
             case R.id.add_foto:
@@ -312,7 +347,38 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    private void uploadToCloudStorage() {
+        Uri file = mImageUri;
 
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(pegawai.getId()+".jpg");
+
+
+        UploadTask uploadTask = pegawaiRef.putFile(file);
+
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask
+                .addOnProgressListener(taskSnapshot -> {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
+                    ProgressDialog dialog = new ProgressDialog(TambahPegawaiActivity.this);
+                    dialog.setMessage("Sedang mengupload foto ...");
+                    dialog.setIndeterminate(false);
+                    dialog.setProgress((int)progress);
+                    dialog.show();
+
+                })
+                .addOnFailureListener(exception -> {
+                    // Handle unsuccessful uploads
+                })
+                .addOnSuccessListener(taskSnapshot -> {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    Toast.makeText(this, "Upload Foto Profil berhasil", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
+                    finish();
+                });
+    }
 
 
 }

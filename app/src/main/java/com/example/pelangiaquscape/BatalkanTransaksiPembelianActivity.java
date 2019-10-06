@@ -37,7 +37,7 @@ public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implem
    private TextView tvTotalHargaPesanan;
    private RadioGroup radioAlasanPembatalan;
    private RadioButton radioButton;
-   List<ItemKeranjang> listItem;
+
 
     Pembelian pembelian;
     String key;
@@ -69,7 +69,7 @@ public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implem
         btnBatalkanTransaksi.setOnClickListener(this);
         cancel.setOnClickListener(this);
 
-//        listItem = pembelian.getListBarang();
+//        List<ItemKeranjang> listItem = pembelian.getListBarang();
 //        double total = 0;
 //        for (ItemKeranjang keranjang : listItem){
 //            total = total + keranjang.getTotalPrice();
@@ -85,7 +85,7 @@ public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implem
 
     public void onRadioButtonClick(View view){
 
-        boolean checked = ((RadioButton) view).isChecked();
+//        boolean checked = ((RadioButton) view).isChecked();
         switch (view.getId()){
             case R.id.pengembalian_barang:
                 ALASAN_PEMBATALAN = 1;
@@ -104,6 +104,7 @@ public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implem
         Toast.makeText(this, "Pilih " + ((RadioButton) view).getText(), Toast.LENGTH_SHORT).show();
 
     }
+
 
 
     @Override

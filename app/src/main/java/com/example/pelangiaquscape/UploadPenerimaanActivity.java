@@ -207,7 +207,7 @@ public class UploadPenerimaanActivity extends AppCompatActivity implements View.
 
 
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this, "com.santuy.optimal.fileprovider", photoFile);
+                Uri photoURI = FileProvider.getUriForFile(this, "com.example.pelangiaquscape.fileprovider", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 

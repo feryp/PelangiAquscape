@@ -2,6 +2,7 @@ package com.example.pelangiaquscape;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +15,6 @@ import com.example.pelangiaquscape.Adapter.StrukPenjualanAdapter;
 import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,10 +32,9 @@ import java.util.List;
 
 public class StrukPenjualanActivity extends AppCompatActivity {
 
-    TextView tvNamaToko, tvAlamatToko, tvNoTeleponToko, tvNamaKasir, tvTglTransaksi, tvWaktuTransaksi, tvNoStruk, tvDiskon, tvTotalHarga, tvUangBayar, tvUangKembalian;
+    TextView tvNamaToko, tvAlamatToko, tvNoTeleponToko, tvNamaKasir, tvTglTransaksi, tvJamTransaksi, tvWaktuTransaksi, tvNoStruk, tvDiskon, tvTotalHarga, tvUangBayar, tvUangKembalian;
     RecyclerView rvItemBarang;
-    FloatingActionButton fabCetak, fabBagikan;
-    FloatingActionsMenu fabMenu;
+    FloatingActionButton fabCetak;
 
 
     Penjualan penjualan;
@@ -50,6 +50,7 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         //GET DATA
         Intent p = getIntent();
         penjualan = p.getParcelableExtra("penjualan");
+        key = p.getStringExtra("key");
         namaKasir = p.getStringExtra("namaKasir");
 //        akunToko = p.getParcelableExtra("akuntoko");
 //        key = p.getStringExtra("key");
@@ -60,16 +61,14 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         tvNoTeleponToko = findViewById(R.id.tv_no_telepon_toko);
         tvNamaKasir = findViewById(R.id.nama_kasir);
         tvTglTransaksi = findViewById(R.id.tanggal_transaksi);
+        tvJamTransaksi = findViewById(R.id.waktu_transaksi);
         tvWaktuTransaksi = findViewById(R.id.waktu_transaksi);
         tvNoStruk = findViewById(R.id.no_struk);
         tvDiskon = findViewById(R.id.diskon_struk);
         tvTotalHarga = findViewById(R.id.total_harga_struk);
         tvUangBayar = findViewById(R.id.bayar_struk);
         tvUangKembalian = findViewById(R.id.kembalian_struk);
-
         fabCetak = findViewById(R.id.fab_action_print);
-        fabBagikan = findViewById(R.id.fab_action_bagikan);
-        fabMenu = findViewById(R.id.fab_menu);
 
         rvItemBarang = findViewById(R.id.rv_list_struk_barang);
         rvItemBarang.setHasFixedSize(true);
@@ -82,14 +81,19 @@ public class StrukPenjualanActivity extends AppCompatActivity {
             tvNamaKasir.setText(namaKasir);
         }
 
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(penjualan.getTanggalPenjualan());
 
-        Date date = calendar.getTime();
 
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
-        String dateFormat = format.format(date);
-        tvTglTransaksi.setText(dateFormat);
+
+        SimpleDateFormat formatTgl = new SimpleDateFormat("dd MMMM yyyy");
+        SimpleDateFormat formatJam = new SimpleDateFormat("HH:mm");
+        Date da = calendar.getTime();
+        String jamFormat = formatJam.format(da);
+        String tglFormat = formatTgl.format(da);
+        tvTglTransaksi.setText(tglFormat);
+        tvJamTransaksi.setText(jamFormat + " WIB");
 
         tvNoStruk.setText(penjualan.getNoPenjualan());
         List<ItemKeranjang> listItemTransaksi = penjualan.getListItemKeranjang();
@@ -98,13 +102,15 @@ public class StrukPenjualanActivity extends AppCompatActivity {
             total = total + itemKeranjang.getTotalPrice();
         }
 
-        BigDecimal bigDecimal = new BigDecimal(total);
-        tvTotalHarga.setText(bigDecimal.toString());
+//        BigDecimal bigDecimal = new BigDecimal(total);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String totalHargaPesanan = decimalFormat.format(total);
+        tvTotalHarga.setText("Rp. " + totalHargaPesanan);
 
         StrukPenjualanAdapter adapter = new StrukPenjualanAdapter(listItemTransaksi, this);
         rvItemBarang.setAdapter(adapter);
 
-//        loadAkun();
+        loadAkun();
 
         fabCetak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,12 +119,6 @@ public class StrukPenjualanActivity extends AppCompatActivity {
             }
         });
 
-        fabBagikan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("Bagikan");
-            }
-        });
     }
 
     public void showToast(String message){
@@ -126,27 +126,27 @@ public class StrukPenjualanActivity extends AppCompatActivity {
     }
 
 
-//    void loadAkun(){
-//        FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                AkunToko akunToko = dataSnapshot.getValue(AkunToko.class);
-//
-//                tvNamaToko.setText(akunToko.getNamaToko());
-//                tvAlamatToko.setText(akunToko.getAlamat());
-//                tvNoTeleponToko.setText(akunToko.getNoTelepon());
-//
+    void loadAkun(){
+        FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                AkunToko akunToko = dataSnapshot.getValue(AkunToko.class);
+
+                tvNamaToko.setText(akunToko.getNamaToko());
+                tvAlamatToko.setText(akunToko.getAlamat());
+                tvNoTeleponToko.setText(akunToko.getNoTelepon());
+
 //                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //
 //                tvNamaKasir.setText(user.getDisplayName());
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

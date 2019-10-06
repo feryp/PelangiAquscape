@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Pelangi Aquascape"
+                android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp" />
 
@@ -37,7 +37,7 @@
                 android:layout_below="@+id/tv_nama_toko"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Jl. Pusdilkat Depnaker, RT. 4/ RW. 4, Makasar, Kota Jakarta Timur"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp" />
@@ -49,7 +49,7 @@
                 android:layout_below="@+id/tv_alamat_toko"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/roboto_regular"
-                android:text="0838-7287-4262"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp" />
@@ -403,38 +403,52 @@
 
         </RelativeLayout>
 
-        <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:id="@+id/fab_menu"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_action_print"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            app:fab_addButtonColorNormal="@color/colorBlue"
-            app:fab_addButtonColorPressed="@color/colorDarkBlue"
-            app:fab_addButtonPlusIconColor="@color/colorPrimary"
-            app:fab_labelStyle="@style/customFab">
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/colorBlue"
+            android:elevation="6dp"
+            android:src="@drawable/ic_print"
+            app:borderWidth="0dp"
+            app:fabSize="normal" />
 
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_action_print"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:fab_size="mini"
-                app:fab_colorNormal="@color/colorPrimary"
-                app:fab_colorPressed="@color/colorWhiteMisty"
-                app:fab_icon="@drawable/ic_print_blue"
-                app:fab_title="Cetak" />
 
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_action_bagikan"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:fab_size="mini"
-                app:fab_colorNormal="@color/colorPrimary"
-                app:fab_colorPressed="@color/colorWhiteMisty"
-                app:fab_icon="@drawable/ic_share"
-                app:fab_title="Bagikan" />
+        <!--<com.getbase.floatingactionbutton.FloatingActionsMenu-->
+            <!--android:id="@+id/fab_menu"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--app:fab_addButtonColorNormal="@color/colorBlue"-->
+            <!--app:fab_addButtonColorPressed="@color/colorDarkBlue"-->
+            <!--app:fab_addButtonPlusIconColor="@color/colorPrimary"-->
+            <!--app:fab_labelStyle="@style/customFab">-->
 
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+            <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
+                <!--android:id="@+id/fab_action_print"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--app:fab_size="mini"-->
+                <!--app:fab_colorNormal="@color/colorPrimary"-->
+                <!--app:fab_colorPressed="@color/colorWhiteMisty"-->
+                <!--app:fab_icon="@drawable/ic_print_blue"-->
+                <!--app:fab_title="Cetak" />-->
+
+            <!--&lt;!&ndash;<com.getbase.floatingactionbutton.FloatingActionButton&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/fab_action_bagikan"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:fab_size="mini"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:fab_colorNormal="@color/colorPrimary"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:fab_colorPressed="@color/colorWhiteMisty"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:fab_icon="@drawable/ic_share"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:fab_title="Bagikan" />&ndash;&gt;-->
+
+        <!--</com.getbase.floatingactionbutton.FloatingActionsMenu>-->
 
 
     </RelativeLayout>

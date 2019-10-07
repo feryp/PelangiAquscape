@@ -114,7 +114,7 @@ public class PengeluaranFragment extends Fragment {
                     int month = c.get(Calendar.MONTH);
                     int year1 = c.get(Calendar.YEAR);
 
-                    if(year == year1){
+                    if(year == year1 && !pembelian.getProses()){
                         switch (month) {
                             case 0:
                                 jan = jan + totalHarga;

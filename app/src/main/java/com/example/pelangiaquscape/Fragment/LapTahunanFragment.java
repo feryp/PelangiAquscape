@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -126,7 +127,9 @@ public class LapTahunanFragment extends Fragment implements View.OnClickListener
 
                 }
 
-                tvTotalPenjualan.setText(String.valueOf(totalPenjualan));
+                DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+                String totalPenjualanTahun= decimalFormat.format(totalPenjualan);
+                tvTotalPenjualan.setText("Rp " + totalPenjualanTahun);
                 tvTotalTransaksi.setText(String.valueOf(jmlTransaksi));
                 tvTotalTerjual.setText(String.valueOf(jmlProdukTerjual));
                 if(produkPalingLaku != null) {

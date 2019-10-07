@@ -129,9 +129,11 @@ public class LapTahunanFragment extends Fragment implements View.OnClickListener
                 tvTotalPenjualan.setText(String.valueOf(totalPenjualan));
                 tvTotalTransaksi.setText(String.valueOf(jmlTransaksi));
                 tvTotalTerjual.setText(String.valueOf(jmlProdukTerjual));
-                if(produkPalingLaku != null)
+                if(produkPalingLaku != null) {
                     tvTotalProdukPalingLaku.setText(produkPalingLaku.getKode());
-
+                }else{
+                    tvTotalProdukPalingLaku.setText("");
+                }
 
             }
 

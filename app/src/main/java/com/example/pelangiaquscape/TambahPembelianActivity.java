@@ -275,7 +275,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.im_save:
                 showConfirmationDialog();
-//                finish();
+                finish();
                 break;
             case R.id.btn_tambah_barang:
                 tambahBarang();

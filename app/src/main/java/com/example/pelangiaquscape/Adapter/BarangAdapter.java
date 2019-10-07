@@ -45,8 +45,6 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangViewHolder> {
         holder.bindData(barang.get(i), merek);
 
 
-
-
         holder.setOnClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {

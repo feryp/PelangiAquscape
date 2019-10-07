@@ -42,7 +42,7 @@
                 android:gravity="bottom">
 
                 <TextView
-                    android:id="@+id/tv_waktu"
+                    android:id="@+id/tv_waktu_pendapatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"

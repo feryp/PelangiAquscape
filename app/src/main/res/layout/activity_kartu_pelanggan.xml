@@ -166,7 +166,7 @@
                 </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:orientation="vertical">
@@ -175,15 +175,14 @@
                     android:id="@+id/kartu_nama_toko"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Pelangi Aquascape"
+                    android:text=""
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp" />
 
                 <View
-                    android:layout_width="196dp"
+                    android:layout_width="220dp"
                     android:layout_height="4dp"
                     android:layout_gravity="right"
                     android:background="@color/colorPrimary" />
@@ -191,7 +190,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 
@@ -216,7 +214,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 
@@ -241,7 +238,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 

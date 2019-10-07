@@ -46,6 +46,9 @@ public class PelangganFragment extends Fragment {
     FloatingActionButton fab_pelanggan;
     boolean fromTambahPembelianActivity;
 
+    private Pelanggan pelanggan;
+    private String key;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -134,6 +137,8 @@ public class PelangganFragment extends Fragment {
                         public void onClick(View view, int position, boolean isLongClick) {
                             Intent i = new Intent();
                             i.putExtra("pelanggan", model);
+                            i.putExtra("pelanggan", pelanggan);
+                            i.putExtra("idForPelanggan", key);
                             ((Activity)getContext()).setResult(Activity.RESULT_OK, i);
                             ((Activity)getContext()).finish();
                         }

@@ -116,6 +116,13 @@
                 android:textColor="@color/colorBlue"
                 android:textSize="20sp" />
 
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/bar_penjualan_bulan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.github.mikephil.charting.charts.BarChart>
+
         </LinearLayout>
 
 

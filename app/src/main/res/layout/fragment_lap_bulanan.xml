@@ -216,6 +216,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/spinner_border">
 
+
         <TextView
             android:id="@+id/tv_produk_paling_laku"
             android:layout_width="wrap_content"
@@ -228,7 +229,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_jumlah_produk_laku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -240,10 +240,9 @@
             android:textSize="14sp" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_bulan_produk_paling_laku"
+            android:id="@+id/rv_bulan_produk_laku"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tv_produk_paling_laku">
+            android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -257,18 +256,17 @@
         android:background="@drawable/spinner_border">
 
         <TextView
-            android:id="@+id/tv_produk_paling_tidaklaku"
+            android:id="@+id/tv_produk_tidak_laku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="Produk Paling Tidak Laku"
+            android:text="Produk Tidak Laku"
             android:textColor="@color/colorBlack"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_jumlah_produk_tidaklaku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -282,8 +280,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_bulan_produk_paling_tidak_laku"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tv_produk_paling_tidaklaku">
+            android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 

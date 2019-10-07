@@ -56,7 +56,9 @@ public class PelangganViewHolder extends RecyclerView.ViewHolder implements View
         switch (v.getId()) {
             case R.id.btn_kartu_pelanggan:
                 Intent intent = new Intent(itemView.getContext(), KartuPelangganActivity.class);
+                intent.putExtra("pelanggan", pelanggan);
                 itemView.getContext().startActivity(intent);
+
                 break;
             default:
                 itemClickListener.onClick(v, getAdapterPosition(), false);

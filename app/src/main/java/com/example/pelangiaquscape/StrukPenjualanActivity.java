@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,10 +44,19 @@ public class StrukPenjualanActivity extends AppCompatActivity {
     String namaKasir;
     String key;
 
+    DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+
+    double totalKembalian;
+    double bayar;
+    double diskon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_struk_penjualan);
+
+        totalKembalian = 0;
+        final Intent i = getIntent();
 
         //GET DATA
         Intent p = getIntent();
@@ -102,8 +113,16 @@ public class StrukPenjualanActivity extends AppCompatActivity {
             total = total + itemKeranjang.getTotalPrice();
         }
 
+        bayar = total;
+        tvUangBayar.setText("Rp. " + decimalFormat.format(bayar));
+
+        double kembalian = 0;
+        totalKembalian = total-bayar;
+        tvUangKembalian.setText("Rp. " + kembalian);
+//        InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+
 //        BigDecimal bigDecimal = new BigDecimal(total);
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
         String totalHargaPesanan = decimalFormat.format(total);
         tvTotalHarga.setText("Rp. " + totalHargaPesanan);
 

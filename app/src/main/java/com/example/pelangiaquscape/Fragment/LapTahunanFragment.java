@@ -18,6 +18,7 @@ import com.example.pelangiaquscape.GrafikKeuntunganTahunActivity;
 import com.example.pelangiaquscape.GrafikPenjualanBulanActivity;
 import com.example.pelangiaquscape.GrafikPenjualanTahunActivity;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Pembelian;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.example.pelangiaquscape.R;
 import com.google.firebase.database.DataSnapshot;
@@ -122,8 +123,6 @@ public class LapTahunanFragment extends Fragment implements View.OnClickListener
                         }
                     }
 
-
-
                 }
 
                 tvTotalPenjualan.setText(String.valueOf(totalPenjualan));
@@ -134,6 +133,36 @@ public class LapTahunanFragment extends Fragment implements View.OnClickListener
                 }else{
                     tvTotalProdukPalingLaku.setText("");
                 }
+
+                double finalTotalPenjualan = totalPenjualan;
+                FirebaseDatabase.getInstance().getReference("Pembelian").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Calendar c = Calendar.getInstance();
+                        double totalPembelian = 0;
+                        double totalPendapatan = 0;
+                        for(DataSnapshot data: dataSnapshot.getChildren()){
+
+                            Pembelian pembelian = data.getValue(Pembelian.class);
+                            c.setTimeInMillis(pembelian.getTanggalPesanan());
+                            int pMonth = c.get(Calendar.MONTH);
+                            int pYear = c.get(Calendar.YEAR);
+                            if(year == pYear && !pembelian.getProses()) {
+                                totalPembelian = totalPembelian + pembelian.getTotalHarga();
+                            }
+                        }
+
+                        totalPendapatan = finalTotalPenjualan - totalPembelian;
+                        tvTotalKeuntungan.setText(String.valueOf(totalPendapatan));
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
 

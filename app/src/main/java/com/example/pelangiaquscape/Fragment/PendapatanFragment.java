@@ -49,7 +49,7 @@ public class PendapatanFragment extends Fragment {
 
     final String[] bulan = {"Januari",
             "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
-    double jan, feb, mar, apr, may, june, jul, aug, sep, oct, nov, dec;
+
 
     int[] RAINBOW_COLOR ;
 
@@ -101,11 +101,40 @@ public class PendapatanFragment extends Fragment {
 
     }
 
+    void loadDataPenjulaan(int year){
+        FirebaseDatabase.getInstance().getReference("Pembelian").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Calendar c = Calendar.getInstance();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     void loadDataPendapatan(int year) {
         FirebaseDatabase.getInstance().getReference("Penjualan").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Calendar c = Calendar.getInstance();
+
+                double jan = 0,
+                        feb= 0,
+                        mar=0,
+                        apr=0,
+                        may=0,
+                        june=0,
+                        jul=0,
+                        aug=0,
+                        sep=0,
+                        oct=0,
+                        nov=0,
+                        dec=0;
 
 
                 double total = 0;
@@ -232,39 +261,34 @@ public class PendapatanFragment extends Fragment {
                 dataSet.setColors(RAINBOW_COLOR);
 
                 XAxis xAxis = barChart.getXAxis();
+//                xAxis.setEnabled(false);
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
                 xAxis.setGranularity(1f);
                 xAxis.setGranularityEnabled(true);
                 xAxis.setLabelRotationAngle(90);
 
+
+
                 YAxis yAxis = barChart.getAxisRight();
+                yAxis.setDrawGridLines(false);
+                yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
                 yAxis.setDrawLabels(false);
+
+
+
 
                 BarData barData = new BarData(dataSet);
                 barData.setBarWidth(1f); //set custom bar width
                 barData.setValueTextSize(12);
 
                 barChart.setData(barData);
+                
 
-//                Legend legend = barChart.getLegend();
-//                legend.setWordWrapEnabled(true);
-//                legend.setFormSize(10f);
-//                legend.setForm(Legend.LegendForm.SQUARE);
-//                legend.setTextSize(12f);
-//                legend.setTextColor(Color.BLACK);
-//                List<LegendEntry> legendEntries = new ArrayList<>();
-//
-//                for (int i = 0; i < entries.size(); i++) {
-//                    LegendEntry entry = new LegendEntry();
-//                    entry.formColor = RAINBOW_COLOR[i];
-//                    entry.label = bulan[i];
-//                    legendEntries.add(entry);
-//
-//                }
-//                legend.setXEntrySpace(5f);
-//                legend.setYEntrySpace(5f);
-//                legend.setCustom(legendEntries);
                 barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(bulan));
+                barChart.setDrawValueAboveBar(false);
+
+
                 barChart.invalidate();
 
             }

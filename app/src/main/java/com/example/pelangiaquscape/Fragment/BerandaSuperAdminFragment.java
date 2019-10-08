@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,15 +32,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
 public class BerandaSuperAdminFragment extends Fragment implements View.OnClickListener{
 
-    TextView tvNamaToko;
-    TextView tvLaporan;
+    TextView tvNamaToko, tvLaporan, tvWaktuLaporan;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -69,6 +71,7 @@ public class BerandaSuperAdminFragment extends Fragment implements View.OnClickL
         tvLaporan = v.findViewById(R.id.total_penjualan);
         LinearLayout containerLaporan = v.findViewById(R.id.container_laporan);
         tvNamaToko = v.findViewById(R.id.nama_profile_toko);
+        tvWaktuLaporan = v.findViewById(R.id.tgl_laporan_penjualan);
         CardView cardViewPegawai = v.findViewById(R.id.cv_pegawai);
         CardView cardViewMitra = v.findViewById(R.id.cv_mitra);
         CardView cardViewPembelian = v.findViewById(R.id.cv_pembelian);
@@ -91,6 +94,8 @@ public class BerandaSuperAdminFragment extends Fragment implements View.OnClickL
         containerLaporan.setOnClickListener(this);
 
 
+
+
         // LOAD NAMA TOKO
         loadToko();
 
@@ -104,6 +109,10 @@ public class BerandaSuperAdminFragment extends Fragment implements View.OnClickL
     }
 
     void loadToko(){
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Harap Tunggu...");
+        pd.show();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -111,6 +120,7 @@ public class BerandaSuperAdminFragment extends Fragment implements View.OnClickL
 
                 //set data
                 tvNamaToko.setText(namaToko);
+                pd.dismiss();
             }
 
             @Override
@@ -121,6 +131,11 @@ public class BerandaSuperAdminFragment extends Fragment implements View.OnClickL
     }
 
     void loadPenjualan(){
+
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Harap Tunggu...");
+        pd.show();
+
         FirebaseDatabase.getInstance().getReference("Penjualan").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -150,6 +165,11 @@ public class BerandaSuperAdminFragment extends Fragment implements View.OnClickL
                 DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
                 String totalHarga = decimalFormat.format(total);
                 tvLaporan.setText("Rp. " + totalHarga);
+
+                SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+                String date = format.format(new Date());
+                tvWaktuLaporan.setText(date);
+                pd.dismiss();
             }
 
             @Override

@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -89,6 +90,9 @@ public class PengeluaranFragment extends Fragment {
     }
 
     void loadDataPengeluaran(int year) {
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Harap Tunggu...");
+        pd.show();
         FirebaseDatabase.getInstance().getReference("Pembelian").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -264,7 +268,7 @@ public class PengeluaranFragment extends Fragment {
 
 
                 barChart.invalidate();
-
+                pd.dismiss();
 
             }
 

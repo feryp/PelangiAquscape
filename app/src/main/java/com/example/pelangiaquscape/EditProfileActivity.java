@@ -47,6 +47,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private Uri mImageUri;
@@ -189,6 +190,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     dialog.setProgress((int)progress);
                     dialog.show();
 
+//                    String nama_akun = etNamaAkun.getText().toString();
+//                    String status_jabatan = etStatusJabatan.getText().toString();
+//                    String no_hp = etNoHp.getText().toString();
+//                    String bio = etBio.getText().toString();
+//
+//                    update(nama_akun, status_jabatan, no_hp, bio);
+
                 })
                 .addOnFailureListener(exception -> {
                     // Handle unsuccessful uploads
@@ -199,7 +207,17 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     setResult(RESULT_OK);
                     finish();
                 });
+
+
     }
+
+//    private void update(final String nama_akun, final String status_jabatan,final String no_hp, final  String bio) {
+//
+//        etNamaAkun.setText(nama_akun);
+//        etStatusJabatan.setText(status_jabatan);
+//        etNoHp.setText(no_hp);
+//        etBio.setText(bio);
+//    }
 
 
 }

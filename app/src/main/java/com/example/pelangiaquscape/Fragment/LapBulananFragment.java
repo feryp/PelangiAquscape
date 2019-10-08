@@ -39,7 +39,7 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
     final int YEAR = calendar.get(Calendar.YEAR);
     final int MONTH = calendar.get(Calendar.MONTH);
 
-
+    DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +71,7 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinner.setAdapter(adapter);
 
-        spinner.setSelection(((ArrayAdapter)spinner.getAdapter()).getPosition(String.valueOf(YEAR)));
+//        spinner.setSelection(((ArrayAdapter)spinner.getAdapter()).getPosition(String.valueOf(YEAR)));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -129,7 +129,7 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
 
                 }
 
-                DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+
                 String totalPenjualanBulan= decimalFormat.format(totalPenjualan);
                 tvTotalPenjualan.setText("Rp. " + totalPenjualanBulan);
                 tvTotalTransaksi.setText(String.valueOf(jmlTransaksi));
@@ -156,7 +156,8 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
                         }
 
                         totalPendapatan = finalTotalPenjualan - totalPembelian;
-                        tvTotalKeuntungan.setText(String.valueOf(totalPendapatan));
+                        String totalKeuntunganBulan = decimalFormat.format(totalPendapatan);
+                        tvTotalKeuntungan.setText("Rp. " + totalKeuntunganBulan);
 
 
                     }

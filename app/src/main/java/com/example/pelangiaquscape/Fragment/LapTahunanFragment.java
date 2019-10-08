@@ -156,7 +156,8 @@ public class LapTahunanFragment extends Fragment implements View.OnClickListener
                         }
 
                         totalPendapatan = finalTotalPenjualan - totalPembelian;
-                        tvTotalKeuntungan.setText(String.valueOf(totalPendapatan));
+                        String totalKeuntunganTahun = decimalFormat.format(totalPendapatan);
+                        tvTotalKeuntungan.setText("Rp. " + totalKeuntunganTahun);
 
 
                     }

@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.pelangiaquscape.BarangActivity;
+import com.example.pelangiaquscape.Model.Merek;
+import com.example.pelangiaquscape.Model.Penjualan;
+import com.example.pelangiaquscape.PegawaiActivity;
+import com.example.pelangiaquscape.PembelianActivity;
 import com.example.pelangiaquscape.PenerimaanActivity;
 import com.example.pelangiaquscape.PenyimpananActivity;
 import com.example.pelangiaquscape.LaporanPenjualanActivity;
@@ -26,17 +31,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
-public class BerandaAdminFragment extends Fragment {
 
-    TextView tvNamaToko;
+public class BerandaAdminFragment extends Fragment implements View.OnClickListener {
+
+    TextView tvNamaToko, tvLaporan, tvWaktuLaporan;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
     String namaToko;
 
-
+    List<Merek> listMerek = new ArrayList<>();
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,62 +76,100 @@ public class BerandaAdminFragment extends Fragment {
         CardView cardViewGudang = v.findViewById(R.id.cv_gudang);
         CardView cardViewPenerimaan = v.findViewById(R.id.cv_penerimaan);
 
-        cardViewMitra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cv_mitra = new Intent(getActivity(), MitraBisnisActivity.class);
-                startActivity(cv_mitra);
-            }
-        });
+
+        // REGISTER LISTENER
+        cardViewMitra.setOnClickListener(this);
+        cardViewBarang.setOnClickListener(this);
+        cardViewTransaksi.setOnClickListener(this);
+        cardViewPenjualan.setOnClickListener(this);
+        cardViewGudang.setOnClickListener(this);
+        cardViewPenerimaan.setOnClickListener(this);
+        containerLaporan.setOnClickListener(this);
+
+        // LOAD NAMA TOKO
+        loadToko();
+
+        // LOAD DATA PENJUALAN
+        loadPenjualan();
+
+        // LOAD DATA MEREK
+        loadMerek();
 
 
-        cardViewBarang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cv_barang = new Intent(getActivity(), BarangActivity.class);
-                startActivity(cv_barang);
-            }
-        });
 
-        cardViewTransaksi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cv_transaksi = new Intent(getActivity(), TransaksiActivity.class);
-                startActivity(cv_transaksi);
-            }
-        });
+        return v;
+    }
 
-        cardViewPenjualan.setOnClickListener(new View.OnClickListener() {
+    private void loadMerek() {
+        FirebaseDatabase.getInstance().getReference("Merek").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Intent cv_penjualan = new Intent(getActivity(), PenjualanActivity.class);
-                startActivity(cv_penjualan);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    Merek m = ds.getValue(Merek.class);
+                    listMerek.add(m);
+                }
             }
-        });
 
-        cardViewPenerimaan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent cv_penerimaaan = new Intent(getActivity(), PenerimaanActivity.class);
-                startActivity(cv_penerimaaan);
-            }
-        });
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        cardViewGudang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cv_gudang = new Intent(getActivity(), PenyimpananActivity.class);
-                startActivity(cv_gudang);
             }
         });
+    }
 
-        containerLaporan.setOnClickListener(new View.OnClickListener() {
+    private void loadPenjualan() {
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Harap Tunggu...");
+        pd.show();
+
+        FirebaseDatabase.getInstance().getReference("Penjualan").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Intent container_laporan = new Intent(getActivity(), LaporanPenjualanActivity.class);
-                startActivity(container_laporan);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Calendar c = Calendar.getInstance();
+
+                int y = c.get(Calendar.YEAR);
+                int m = c.get(Calendar.MONTH);
+
+                double total = 0;
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Penjualan penjualan = ds.getValue(Penjualan.class);
+                    c.setTimeInMillis(penjualan.getTanggalPenjualan());
+
+
+                    int month = c.get(Calendar.MONTH);
+                    int year1 = c.get(Calendar.YEAR);
+
+                    if (y == year1) {
+                        if(m == month){
+                            total += penjualan.getTotalPenjualan();
+                        }
+
+                    }
+
+                }
+                DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+                String totalHarga = decimalFormat.format(total);
+                tvLaporan.setText("Rp. " + totalHarga);
+
+                SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+                String date = format.format(new Date());
+                tvWaktuLaporan.setText(date);
+                pd.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
+    }
+
+    private void loadToko() {
+
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Harap Tunggu...");
+        pd.show();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -128,6 +178,7 @@ public class BerandaAdminFragment extends Fragment {
 
                 //set data
                 tvNamaToko.setText(namaToko);
+                pd.dismiss();
             }
 
             @Override
@@ -135,8 +186,39 @@ public class BerandaAdminFragment extends Fragment {
 
             }
         });
-
-        return v;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.container_laporan:
+                Intent container_laporan = new Intent(getActivity(), LaporanPenjualanActivity.class);
+                startActivity(container_laporan);
+                break;
+            case R.id.cv_mitra:
+                Intent cv_mitra = new Intent(getActivity(), MitraBisnisActivity.class);
+                startActivity(cv_mitra);
+                break;
+            case R.id.cv_barang:
+                Intent cv_barang = new Intent(getActivity(), BarangActivity.class);
+                startActivity(cv_barang);
+                break;
+            case R.id.cv_transaksi:
+                Intent cv_transaksi = new Intent(getActivity(), TransaksiActivity.class);
+                startActivity(cv_transaksi);
+                break;
+            case R.id.cv_penjualan:
+                Intent cv_penjualan = new Intent(getActivity(), PenjualanActivity.class);
+                startActivity(cv_penjualan);
+                break;
+            case R.id.cv_gudang:
+                Intent cv_gudang = new Intent(getActivity(), PenyimpananActivity.class);
+                startActivity(cv_gudang);
+                break;
+            case R.id.cv_penerimaan:
+                Intent cv_penerimaaan = new Intent(getActivity(), PenerimaanActivity.class);
+                startActivity(cv_penerimaaan);
+                break;
+        }
+    }
 }

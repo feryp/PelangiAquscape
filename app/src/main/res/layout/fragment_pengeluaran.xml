@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="right"
-                    android:text="30 September 2019"
+                    android:text=""
                     android:textColor="@color/colorDarkGray"
                     android:textSize="12sp" />
 

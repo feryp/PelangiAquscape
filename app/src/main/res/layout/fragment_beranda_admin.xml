@@ -108,13 +108,13 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/bulan_laporan"
+                                android:id="@+id/tgl_laporan_penjualan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="85dp"
                                 android:fontFamily="@font/roboto_regular"
                                 android:padding="10dp"
-                                android:text="September 2019"
+                                android:text=""
                                 android:textColor="@color/colorBlue"
                                 android:textSize="14sp" />
 
@@ -137,7 +137,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="Rp. 100,000.00"
+                                android:text=""
                                 android:textColor="@color/colorBlue"
                                 android:textSize="30sp" />
 

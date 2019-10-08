@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -121,6 +122,9 @@ public class PendapatanFragment extends Fragment {
     }
 
     void loadDataPendapatan(int year) {
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Harap Tunggu...");
+        pd.show();
         FirebaseDatabase.getInstance().getReference("Penjualan").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -296,6 +300,8 @@ public class PendapatanFragment extends Fragment {
 
 
                 barChart.invalidate();
+
+                pd.dismiss();
 
             }
 

@@ -111,9 +111,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="OR/2019/01"
+                        android:text="PO/30092019/025358"
                         android:textColor="@color/colorBlack"
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_status_pembayaran"

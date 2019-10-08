@@ -24,6 +24,7 @@ public class StrukPenjualanViewHolder extends RecyclerView.ViewHolder {
 
     public StrukPenjualanViewHolder(@NonNull View itemView, Context context) {
         super(itemView);
+        this.context = context;
         tvKode = itemView.findViewById(R.id.tv_kode_barang_struk);
         tvMerek = itemView.findViewById(R.id.tv_merek_barang_struk);
         tvHargaSatuan = itemView.findViewById(R.id.tv_harga_barang_struk);
@@ -37,9 +38,9 @@ public class StrukPenjualanViewHolder extends RecyclerView.ViewHolder {
     public void bindData(ItemKeranjang itemKeranjang) {
         this.keranjang = itemKeranjang;
         int noMerek = Integer.valueOf(itemKeranjang.getMerek());
-//        String merek = preferences.getString(String.valueOf(noMerek), "unknown");
+        String merek = sharedPreferences.getString(String.valueOf(noMerek), "unknown");
         tvKode.setText(itemKeranjang.getKode());
-//        tvMerek.setText(merek);
+        tvMerek.setText("( " + merek + " ) ");
         BigDecimal bg = new BigDecimal(itemKeranjang.getHargaJual());
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
         String hargaSatuan = decimalFormat.format(itemKeranjang.getHargaJual());

@@ -24,12 +24,13 @@ public class DetailPenjualanViewHolder extends RecyclerView.ViewHolder {
 
     public DetailPenjualanViewHolder(@NonNull View v, Context c) {
         super(v);
+        this.context = c;
         tvKode = v.findViewById(R.id.list_kode_barang_penjualan);
         tvMerek = v.findViewById(R.id.list_merek_barang_penjualan);
         tvHargaSatuan = v.findViewById(R.id.list_harga_jual);
         tvQty = v.findViewById(R.id.list_kuantitas_barang);
         tvTotalHarga = v.findViewById(R.id.list_total_harga_barang);
-//        preferences = context.getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
+        preferences = context.getSharedPreferences("MEREK_KEY", Context.MODE_PRIVATE);
 
 
     }
@@ -37,9 +38,9 @@ public class DetailPenjualanViewHolder extends RecyclerView.ViewHolder {
     public void bindData(ItemKeranjang itemKeranjang){
         this.itemKeranjang = itemKeranjang;
         int noMerek = Integer.valueOf(itemKeranjang.getMerek());
-//        String merek = preferences.getString(String.valueOf(noMerek), "unknown");
+        String merek = preferences.getString(String.valueOf(noMerek), "unknown");
         tvKode.setText(itemKeranjang.getKode());
-//        tvMerek.setText("( " + merek + " ) ");
+        tvMerek.setText("( " + merek + " ) ");
         BigDecimal bg = new BigDecimal(itemKeranjang.getHargaJual());
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
         String hargaSatuan = decimalFormat.format(itemKeranjang.getHargaJual());

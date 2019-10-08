@@ -54,7 +54,7 @@ public class PendapatanFragment extends Fragment {
             "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
 
 
-    int[] RAINBOW_COLOR ;
+    int[] RAINBOW_COLOR;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -267,8 +267,10 @@ public class PendapatanFragment extends Fragment {
 //                        String bln = bulan[entries.indexOf(entry)];
 //                        listDataSet.add(new BarDataSet(entry, bln));
 //                    }
-                BarDataSet dataSet = new BarDataSet(entries, "Labels");
-                dataSet.setColors(RAINBOW_COLOR);
+                BarDataSet dataSet = new BarDataSet(entries, "Pendapatan");
+//                dataSet.setColors(RAINBOW_COLOR);
+                dataSet.setGradientColor(Color.parseColor("#2346D8"), Color.parseColor("#238BD8"));
+
 
                 XAxis xAxis = barChart.getXAxis();
 //                xAxis.setEnabled(false);
@@ -297,6 +299,10 @@ public class PendapatanFragment extends Fragment {
 
                 barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(bulan));
                 barChart.setDrawValueAboveBar(false);
+
+                Legend legend = barChart.getLegend();
+                legend.setFormSize(10f);
+                legend.setForm(Legend.LegendForm.CIRCLE);
 
 
                 barChart.invalidate();

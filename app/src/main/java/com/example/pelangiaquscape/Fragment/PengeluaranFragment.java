@@ -235,8 +235,9 @@ public class PengeluaranFragment extends Fragment {
 //                        String bln = bulan[entries.indexOf(entry)];
 //                        listDataSet.add(new BarDataSet(entry, bln));
 //                    }
-                BarDataSet dataSet = new BarDataSet(entries, "Labels");
-                dataSet.setColors(RAINBOW_COLOR);
+                BarDataSet dataSet = new BarDataSet(entries, "Pengeluaran");
+//                dataSet.setColors(RAINBOW_COLOR);
+                dataSet.setGradientColor(Color.parseColor("#F57F29"), Color.parseColor("#F8E166"));
 
                 XAxis xAxis = barChart.getXAxis();
 //                xAxis.setEnabled(false);
@@ -265,6 +266,10 @@ public class PengeluaranFragment extends Fragment {
 
                 barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(bulan));
                 barChart.setDrawValueAboveBar(false);
+
+                Legend legend = barChart.getLegend();
+                legend.setFormSize(10f);
+                legend.setForm(Legend.LegendForm.CIRCLE);
 
 
                 barChart.invalidate();

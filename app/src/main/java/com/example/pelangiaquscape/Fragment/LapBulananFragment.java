@@ -39,6 +39,8 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
     final int YEAR = calendar.get(Calendar.YEAR);
     final int MONTH = calendar.get(Calendar.MONTH);
 
+    Penjualan penjualan;
+
     DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
 
     @Override
@@ -181,6 +183,7 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
         switch(v.getId()){
             case R.id.container_total_penjualan:
                 Intent TotalPenjualan = new Intent(getActivity(), GrafikPenjualanBulanActivity.class);
+                TotalPenjualan.putExtra("penjualan", penjualan);
                 startActivity(TotalPenjualan);
                 break;
             case R.id.container_total_keuntungan:

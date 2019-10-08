@@ -24,11 +24,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Model.Pegawai;
+import com.example.pelangiaquscape.Model.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,7 +56,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     ImageView cancel, save;
     CircleImageView fotoPegawai, add_foto;
     Spinner spinnerHakAkses;
-    TextInputEditText etNamaPegawai, etNamaPengguna,etKataSandi, etJabatan, etNoHp, etEmailPegawai;
+    TextInputEditText etNamaPegawai, etNamaPengguna, etKataSandi, etJabatan, etNoHp, etEmailPegawai;
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
@@ -71,6 +73,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     private String currentPhotoPath;
     private Uri mImageUri;
     private StorageTask uploadTask;
+    private ProgressDialog pd;
 
     String namaPegawai, namaPengguna, kataSandi, jabatan, hakAkses, noHp, emailPegawai, kodeLogin, fotoProfilePegawai;
 
@@ -103,7 +106,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         pegawai = new Pegawai();
 
         //SET IMAGE
-        if (mImageUri != null){
+        if (mImageUri != null) {
             Picasso.get().load(mImageUri).into(fotoPegawai);
         }
 
@@ -111,12 +114,12 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         try {
             idPegawai = getIntent().getExtras().getString("idForPegawai");
             System.out.println("ID in tambah pegawai act " + idPegawai);
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             idPegawai = "1";
         }
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
-                this,R.array.akses_arrays, android.R.layout.simple_spinner_item);
+                this, R.array.akses_arrays, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinnerHakAkses.setAdapter(adapter);
 
@@ -143,37 +146,85 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private void bind(final String fotoProfilePegawai,
-                      String namaPegawai,
-                      String namaPengguna,
-                      String kataSandi,
-                      String jabatan,
-                      String hakAkses,
-                      String noHp,
-                      String emailPegawai){
 
-        int idxHakAkses = -1;
+    private void daftarPegawai(final String fotoProfilePegawai,
+                               final String namaPegawai,
+                               final String namaPengguna,
+                               final String kataSandi,
+                               final String jabatan,
+                               final String hakAkses,
+                               final String noHp,
+                               final String emailPegawai) {
+        firebaseAuth.createUserWithEmailAndPassword(emailPegawai, kataSandi)
+                .addOnCompleteListener(TambahPegawaiActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                            String userid = firebaseUser.getUid();
 
-        String[] aksesArray = getResources().getStringArray(R.array.akses_arrays);
+                            databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(userid);
 
-        for (int i = 0; i < aksesArray.length; i++){
-            if (aksesArray[i].equals(hakAkses)){
-                idxHakAkses = i;
-            }
-        }
+                            Pegawai pegawai = new Pegawai();
+                            pegawai.setId(userid);
+                            pegawai.setFotoPegawai("");
+                            pegawai.setNamaPegawai(namaPegawai);
+                            pegawai.setNamapengguna(namaPengguna);
+                            pegawai.setJabatan(jabatan);
+                            pegawai.setHakAkses(hakAkses);
+                            pegawai.setNoHp(noHp);
+                            pegawai.setEmailPegawai(emailPegawai);
 
-
-
-
-        etNamaPegawai.setText(namaPegawai);
-        etNamaPengguna.setText(namaPengguna);
-        etKataSandi.setText(kataSandi);
-        etJabatan.setText(jabatan);
-        spinnerHakAkses.setSelection(idxHakAkses);
-        etNoHp.setText(noHp);
-        etEmailPegawai.setText(emailPegawai);
-
+                            databaseReference.setValue(pegawai).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        pd.dismiss();
+                                        Intent intent = new Intent(TambahPegawaiActivity.this, PegawaiActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
+                        } else {
+                            pd.dismiss();
+                            Toast.makeText(TambahPegawaiActivity.this, "Anda tidak dapat mendaftar dengan email dan kata sandi ini ! ", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
+
+//    private void bind(final String fotoProfilePegawai,
+//                      String namaPegawai,
+//                      String namaPengguna,
+//                      String kataSandi,
+//                      String jabatan,
+//                      String hakAkses,
+//                      String noHp,
+//                      String emailPegawai){
+//
+//        int idxHakAkses = -1;
+//
+//        String[] aksesArray = getResources().getStringArray(R.array.akses_arrays);
+//
+//        for (int i = 0; i < aksesArray.length; i++){
+//            if (aksesArray[i].equals(hakAkses)){
+//                idxHakAkses = i;
+//            }
+//        }
+//
+//
+//
+//
+//        etNamaPegawai.setText(namaPegawai);
+//        etNamaPengguna.setText(namaPengguna);
+//        etKataSandi.setText(kataSandi);
+//        etJabatan.setText(jabatan);
+//        spinnerHakAkses.setSelection(idxHakAkses);
+//        etNoHp.setText(noHp);
+//        etEmailPegawai.setText(emailPegawai);
+//
+//    }
 
     private void save() {
 
@@ -207,7 +258,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
                 try {
                     Picasso.get().load(fotoProfilePegawai).into(fotoPegawai);
-                } catch (IllegalArgumentException e){
+                } catch (IllegalArgumentException e) {
                     fotoPegawai.setImageResource(R.drawable.ic_foto_profile_edit);
                 }
 
@@ -223,8 +274,9 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         });
 
     }
-//
-    private void getValues(){
+
+    //
+    private void getValues() {
         pegawai.setFotoPegawai(fotoPegawai.getDrawable().toString());
         pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
         pegawai.setNamapengguna(etNamaPengguna.getText().toString());
@@ -241,7 +293,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         openImage();
     }
 
-    private void openImage(){
+    private void openImage() {
 
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -330,7 +382,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.im_cancel:
                 finish();
                 break;
@@ -352,7 +404,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(pegawai.getId()+".jpg");
+        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(pegawai.getId() + ".jpg");
 
 
         UploadTask uploadTask = pegawaiRef.putFile(file);
@@ -365,7 +417,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                     ProgressDialog dialog = new ProgressDialog(TambahPegawaiActivity.this);
                     dialog.setMessage("Sedang mengupload foto ...");
                     dialog.setIndeterminate(false);
-                    dialog.setProgress((int)progress);
+                    dialog.setProgress((int) progress);
                     dialog.show();
 
                 })

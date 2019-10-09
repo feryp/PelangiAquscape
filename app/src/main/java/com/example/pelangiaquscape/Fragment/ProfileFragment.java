@@ -193,8 +193,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.keluar:
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(getActivity().getApplicationContext(), "Keluar", Toast.LENGTH_LONG).show();
+
                 Intent keluar = new Intent(getActivity(), LoginActivity.class);
+                keluar.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(keluar);
+                getActivity().finish();
+
                 break;
         }
     }

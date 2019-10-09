@@ -73,7 +73,6 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinner.setAdapter(adapter);
 
-//        spinner.setSelection(((ArrayAdapter)spinner.getAdapter()).getPosition(String.valueOf(YEAR)));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

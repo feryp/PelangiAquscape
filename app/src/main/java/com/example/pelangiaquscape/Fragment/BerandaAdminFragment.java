@@ -68,6 +68,8 @@ public class BerandaAdminFragment extends Fragment implements View.OnClickListen
         LinearLayout containerLaporan = v.findViewById(R.id.container_laporan);
 
         tvNamaToko = v.findViewById(R.id.nama_profile_toko);
+        tvLaporan = v.findViewById(R.id.total_penjualan);
+        tvWaktuLaporan = v.findViewById(R.id.tgl_laporan_penjualan);
 
         CardView cardViewMitra = v.findViewById(R.id.cv_mitra);
         CardView cardViewBarang = v.findViewById(R.id.cv_barang);

@@ -104,6 +104,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".DummyInsertDataActivity" />
+
+        <service android:name=".Notification.NotificationService" >
+            <intent-filter>
+
+                <action android:name="com.google.firebase.MESSAGIN_EVENT"/>
+            </intent-filter>
+
+        </service>
     </application>
 
 </manifest>

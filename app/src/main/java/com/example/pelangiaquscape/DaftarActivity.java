@@ -108,15 +108,12 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
                             user.setBio("");
                             user.setFotoProfile("");
 
-                            databaseReference.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        pd.dismiss();
-                                        Intent intent = new Intent(DaftarActivity.this, MainActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(intent);
-                                    }
+                            databaseReference.setValue(user).addOnCompleteListener(task1 -> {
+                                if (task1.isSuccessful()) {
+                                    pd.dismiss();
+                                    Intent intent = new Intent(DaftarActivity.this, MainActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
                                 }
                             });
                         } else {

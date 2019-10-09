@@ -59,7 +59,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.0'
     implementation 'com.firebaseui:firebase-ui-database:4.0.1'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
+//    implementation 'com.google.firebase:firebase-messaging:16.0.4'
 
+
+    annotationProcessor 'com.google.auto.value:auto-value:1.4'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

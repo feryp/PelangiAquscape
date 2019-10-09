@@ -10,6 +10,11 @@ public class User implements Parcelable {
     private String telepon;
     private String email;
     private String password;
+
+    /**
+     * 0 = SuperAdmin
+     * 1 = Admin
+     */
     private String kodeLogin;
     private String fotoProfile;
     private String bio;

@@ -135,6 +135,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                 break;
             case R.id.btn_lihat_faktur:
                 Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);
+                lihat_faktur.putExtra("pembelian", pembelian);
                 startActivity(lihat_faktur);
                 break;
             case R.id.btn_batalkan_pembelian:

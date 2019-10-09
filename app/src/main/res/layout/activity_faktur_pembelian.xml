@@ -97,7 +97,7 @@
                         android:id="@+id/no_faktur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="8dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="001"
                         android:textColor="@color/disable_thumb_grey"
@@ -108,7 +108,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:gravity="left">
 
                     <TextView
@@ -124,7 +124,7 @@
                         android:id="@+id/no_pesanan_faktur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="8dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="OR/2019/01"
                         android:textColor="@color/disable_thumb_grey"
@@ -158,7 +158,7 @@
                         android:id="@+id/tgl_faktur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="8dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="1 Oktober 2019"
                         android:textColor="@color/disable_thumb_grey"
@@ -169,7 +169,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:gravity="left">
 
                     <TextView
@@ -185,7 +185,7 @@
                         android:id="@+id/faktur_nama_pemasok"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="8dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="PT. Nama"
                         android:textColor="@color/disable_thumb_grey"
@@ -218,7 +218,7 @@
 
                     <TextView
                         android:id="@+id/judul_faktur_merek"
-                        android:layout_width="90dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/judul_faktur_kode"
                         android:background="@drawable/border_table"
@@ -246,7 +246,7 @@
 
                     <TextView
                         android:id="@+id/judul_faktur_harga_satuan"
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/judul_faktur_kts"
                         android:background="@drawable/border_table"
@@ -462,7 +462,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/total"
+                        android:id="@+id/total_faktur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -496,7 +496,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/keterangan"
+                        android:id="@+id/keterangan_faktur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -507,32 +507,32 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right">-->
 
-                    <TextView
-                        android:id="@+id/tv_pembayaran"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Pembayaran :"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_pembayaran"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:fontFamily="@font/roboto_regular"-->
+                        <!--android:text="Pembayaran :"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp" />-->
 
-                    <TextView
-                        android:id="@+id/pembayaran"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Rp. 0.000,00"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/pembayaran"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:fontFamily="@font/roboto_regular"-->
+                        <!--android:text="Rp. 0.000,00"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp" />-->
 
-                </LinearLayout>
+                <!--</LinearLayout>-->
 
             </LinearLayout>
 

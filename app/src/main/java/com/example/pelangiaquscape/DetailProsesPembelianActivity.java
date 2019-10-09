@@ -163,10 +163,8 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 
             case R.id.btn_lihat_faktur:
                 Intent lihat_faktur = new Intent(DetailProsesPembelianActivity.this, FakturPembelianActivity.class);
+                lihat_faktur.putExtra("pembelian", pembelian);
                 startActivity(lihat_faktur);
-//                Intent i = new Intent(DetailProsesPembelianActivity.this, PreviewFakturPenerimaanActivity.class);
-//                i.putExtra("pembelian", pembelian);
-//                startActivity(i);
                 break;
             case R.id.btn_konfirmasi_pembelian:
                 showConfirmationDialog();

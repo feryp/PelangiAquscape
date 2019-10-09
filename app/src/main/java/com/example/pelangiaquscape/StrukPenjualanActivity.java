@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -45,8 +46,10 @@ public class StrukPenjualanActivity extends AppCompatActivity {
     String key;
 
     DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+    List<ItemKeranjang> listKeranjang;
 
     double totalKembalian;
+    double totalHarga;
     double bayar;
     double diskon;
 
@@ -57,6 +60,16 @@ public class StrukPenjualanActivity extends AppCompatActivity {
 
         totalKembalian = 0;
         final Intent i = getIntent();
+
+        if (i != null){
+            totalHarga = i.getDoubleExtra("totalHargaKeranjang", 0);
+            Bundle bundle = getIntent().getExtras();
+            ArrayList<ItemKeranjang> k = bundle.getParcelableArrayList("listItemKeranjang");
+            listKeranjang = new ArrayList<>();
+            listKeranjang.addAll(k);
+        } else {
+            totalHarga = 0;
+        }
 
         //GET DATA
         Intent p = getIntent();
@@ -113,12 +126,12 @@ public class StrukPenjualanActivity extends AppCompatActivity {
             total = total + itemKeranjang.getTotalPrice();
         }
 
-        bayar = total;
-        tvUangBayar.setText("Rp. " + decimalFormat.format(bayar));
-
-        double kembalian = 0;
-        totalKembalian = total-bayar;
-        tvUangKembalian.setText("Rp. " + kembalian);
+        String format = decimalFormat.format(totalHarga);
+        tvUangBayar.setText("Rp. " + format);
+//
+//        double kembalian = 0;
+//        totalKembalian = total-bayar;
+//        tvUangKembalian.setText("Rp. " + kembalian);
 //        InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
 

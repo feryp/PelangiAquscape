@@ -267,7 +267,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_list_detail_pembelian_selesai"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="290dp"
                     android:background="@color/colorPrimary"
                     android:scrollbars="vertical" />
 
@@ -276,7 +276,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
                     android:orientation="horizontal"
-                    android:padding="15dp">
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -309,136 +311,136 @@
             </LinearLayout>
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:background="@color/colorPrimary"
-                android:padding="15dp">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:padding="15dp">-->
 
-                <RelativeLayout
-                    android:id="@+id/layout_expand"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/layout_expand"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
 
-                    <TextView
-                        android:id="@+id/judul_cicilan_pembayaran"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_bold"
-                        android:text="Cicilan Pembayaran"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/judul_cicilan_pembayaran"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:fontFamily="@font/roboto_bold"-->
+                        <!--android:text="Cicilan Pembayaran"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="18sp" />-->
 
-                    <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/toogle_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:checked="false"
-                        android:switchMinWidth="25dp"
-                        android:theme="@style/SCBSwitch" />
+                    <!--<android.support.v7.widget.SwitchCompat-->
+                        <!--android:id="@+id/toogle_switch"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:checked="false"-->
+                        <!--android:switchMinWidth="25dp"-->
+                        <!--android:theme="@style/SCBSwitch" />-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
-                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                    android:id="@+id/expand_cicilan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/layout_expand"
-                    app:ael_duration="200"
-                    app:ael_expanded="false"
-                    app:ael_interpolator="accelerate"
-                    app:ael_orientation="vertical">
+                <!--<com.github.aakira.expandablelayout.ExpandableRelativeLayout-->
+                    <!--android:id="@+id/expand_cicilan"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/layout_expand"-->
+                    <!--app:ael_duration="200"-->
+                    <!--app:ael_expanded="false"-->
+                    <!--app:ael_interpolator="accelerate"-->
+                    <!--app:ael_orientation="vertical">-->
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/keterangan_cicilan"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center"
-                        app:boxStrokeColor="@color/colorAccent">
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:id="@+id/keterangan_cicilan"-->
+                        <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="15dp"-->
+                        <!--android:gravity="center"-->
+                        <!--app:boxStrokeColor="@color/colorAccent">-->
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/et_keterangan_cicilan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Keterangan Cicilan"
-                            android:inputType="text"
-                            android:textColor="@color/colorBlack"
-                            android:textColorHint="@color/colorBlack" />
+                        <!--<android.support.design.widget.TextInputEditText-->
+                            <!--android:id="@+id/et_keterangan_cicilan"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="Keterangan Cicilan"-->
+                            <!--android:inputType="text"-->
+                            <!--android:textColor="@color/colorBlack"-->
+                            <!--android:textColorHint="@color/colorBlack" />-->
 
-                    </android.support.design.widget.TextInputLayout>
+                    <!--</android.support.design.widget.TextInputLayout>-->
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/tgl_cicilan"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/keterangan_cicilan"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center"
-                        app:boxStrokeColor="@color/colorAccent">
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:id="@+id/tgl_cicilan"-->
+                        <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/keterangan_cicilan"-->
+                        <!--android:layout_marginTop="12dp"-->
+                        <!--android:gravity="center"-->
+                        <!--app:boxStrokeColor="@color/colorAccent">-->
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/et_tgl_cicilan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Tanggal Cicilan"
-                            android:inputType="number"
-                            android:textColor="@color/colorBlack"
-                            android:textColorHint="@color/colorBlack" />
+                        <!--<android.support.design.widget.TextInputEditText-->
+                            <!--android:id="@+id/et_tgl_cicilan"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="Tanggal Cicilan"-->
+                            <!--android:inputType="number"-->
+                            <!--android:textColor="@color/colorBlack"-->
+                            <!--android:textColorHint="@color/colorBlack" />-->
 
-                    </android.support.design.widget.TextInputLayout>
+                    <!--</android.support.design.widget.TextInputLayout>-->
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/jumlah_cicilan"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tgl_cicilan"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center"
-                        app:boxStrokeColor="@color/colorAccent">
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:id="@+id/jumlah_cicilan"-->
+                        <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/tgl_cicilan"-->
+                        <!--android:layout_marginTop="12dp"-->
+                        <!--android:gravity="center"-->
+                        <!--app:boxStrokeColor="@color/colorAccent">-->
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/et_jumlah_cicilan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Jumlah Cicilan"
-                            android:inputType="number"
-                            android:textColor="@color/colorBlack"
-                            android:textColorHint="@color/colorBlack" />
+                        <!--<android.support.design.widget.TextInputEditText-->
+                            <!--android:id="@+id/et_jumlah_cicilan"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="Jumlah Cicilan"-->
+                            <!--android:inputType="number"-->
+                            <!--android:textColor="@color/colorBlack"-->
+                            <!--android:textColorHint="@color/colorBlack" />-->
 
-                    </android.support.design.widget.TextInputLayout>
+                    <!--</android.support.design.widget.TextInputLayout>-->
 
-                    <Button
-                        android:id="@+id/btn_simpan_cicilan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/jumlah_cicilan"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/button_blue"
-                        android:fontFamily="@font/roboto_bold"
-                        android:text="Simpan"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="14sp" />
+                    <!--<Button-->
+                        <!--android:id="@+id/btn_simpan_cicilan"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/jumlah_cicilan"-->
+                        <!--android:layout_marginTop="8dp"-->
+                        <!--android:background="@drawable/button_blue"-->
+                        <!--android:fontFamily="@font/roboto_bold"-->
+                        <!--android:text="Simpan"-->
+                        <!--android:textAllCaps="false"-->
+                        <!--android:textColor="@color/colorPrimary"-->
+                        <!--android:textSize="14sp" />-->
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_cicilan"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_below="@+id/btn_simpan_cicilan"
-                        android:layout_marginTop="2dp"
-                        android:scrollbars="vertical">
+                    <!--<android.support.v7.widget.RecyclerView-->
+                        <!--android:id="@+id/rv_cicilan"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="200dp"-->
+                        <!--android:layout_below="@+id/btn_simpan_cicilan"-->
+                        <!--android:layout_marginTop="2dp"-->
+                        <!--android:scrollbars="vertical">-->
 
-                    </android.support.v7.widget.RecyclerView>
+                    <!--</android.support.v7.widget.RecyclerView>-->
 
-                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                <!--</com.github.aakira.expandablelayout.ExpandableRelativeLayout>-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
 
             <Button
@@ -446,6 +448,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:background="@color/colorBlue"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Lihat Faktur"
                 android:textAllCaps="false"

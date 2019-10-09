@@ -155,10 +155,11 @@ public class GrafikPenjualanBulanActivity extends AppCompatActivity {
                     Penjualan penjualan = ds.getValue(Penjualan.class);
                     c.setTimeInMillis(penjualan.getTanggalPenjualan());
 
-                    int month1 = c.get(Calendar.WEEK_OF_MONTH);
+                    int week = c.get(Calendar.WEEK_OF_MONTH);
+                    int month1 = c.get(Calendar.MONTH);
 
                     if (month == month1) {
-                        switch (month) {
+                        switch (week) {
                             case 0:
                                 minggu1 = minggu1 + penjualan.getTanggalPenjualan();
                                 break;

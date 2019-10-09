@@ -32,7 +32,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
     TextView tvNoPesanan, tvStatusPembelian, tvNoFaktur, tvTglPembelian, tvNamaPemasok, tvTotalHargaPembelian;
     Button btnBatalkan, btnLihatFaktur, btnSimpanCicilan;
     SwitchCompat toogle_switch;
-    ExpandableRelativeLayout cicilan_expand;
+//    ExpandableRelativeLayout cicilan_expand;
     TextInputLayout tvKeteranganCicilan, tvTanggalCicilan, tvJumlahCicilan;
     TextInputEditText etKeteranganCicilan, etTanggalCicilan, etJumlahCicilan;
     RecyclerView rvItem, rvCicilan;
@@ -60,11 +60,11 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         tvTotalHargaPembelian = findViewById(R.id.tv_total_harga_pembelian);
         btnBatalkan = findViewById(R.id.btn_batalkan_pembelian);
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
-        btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
-        toogle_switch = findViewById(R.id.toogle_switch);
+//        btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
+//        toogle_switch = findViewById(R.id.toogle_switch);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian_selesai);
-        rvCicilan = findViewById(R.id.rv_cicilan);
+//        rvCicilan = findViewById(R.id.rv_cicilan);
 
         rvItem.setHasFixedSize(true);
         rvItem.setLayoutManager(new LinearLayoutManager(this));
@@ -108,21 +108,21 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         DetailSelesaiPembelianAdapter adapter = new DetailSelesaiPembelianAdapter(listBarang, this);
         rvItem.setAdapter(adapter);
 
-        toogle_switch.setChecked(false);
-        cicilan_expand = findViewById(R.id.expand_cicilan);
-        cicilan_expand.collapse();
+//        toogle_switch.setChecked(false);
+//        cicilan_expand = findViewById(R.id.expand_cicilan);
+//        cicilan_expand.collapse();
 
-        //SWITCH BUTTON
-        toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (!isChecked) {
-                    cicilan_expand.collapse();
-                } else {
-                    cicilan_expand.expand();
-                }
-            }
-        });
+//        //SWITCH BUTTON
+//        toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (!isChecked) {
+//                    cicilan_expand.collapse();
+//                } else {
+//                    cicilan_expand.expand();
+//                }
+//            }
+//        });
 
     }
 

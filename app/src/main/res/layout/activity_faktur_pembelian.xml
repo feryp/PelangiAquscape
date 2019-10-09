@@ -101,7 +101,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="001"
                         android:textColor="@color/disable_thumb_grey"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -128,7 +128,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="OR/2019/01"
                         android:textColor="@color/disable_thumb_grey"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -162,7 +162,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="1 Oktober 2019"
                         android:textColor="@color/disable_thumb_grey"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -189,7 +189,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:text="PT. Nama"
                         android:textColor="@color/disable_thumb_grey"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 

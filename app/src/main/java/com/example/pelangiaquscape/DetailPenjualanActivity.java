@@ -89,6 +89,7 @@ public class DetailPenjualanActivity extends AppCompatActivity {
         tvNamaKasir.setText(penjualan.getNamaPenjual());
         tvNamaPelanggan.setText(penjualan.getNamaKustomer());
 
+
         List<ItemKeranjang> listItemPenjualan = penjualan.getListItemKeranjang();
         double total = 0;
         for (ItemKeranjang keranjang:listItemPenjualan){
@@ -99,6 +100,7 @@ public class DetailPenjualanActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
         String totalHargaPenjualan = decimalFormat.format(total);
         tvTotalHargaPenjualan.setText("Rp. " + totalHargaPenjualan);
+
 
         DetailPenjualanAdapter adapter = new DetailPenjualanAdapter(listItemPenjualan, this);
         rvDetailItem.setAdapter(adapter);

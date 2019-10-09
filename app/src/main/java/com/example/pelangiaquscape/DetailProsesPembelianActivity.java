@@ -48,7 +48,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
     TextView tvNoPesanan, tvMetodePembayaran, tvTanggalPesanan, tvPemesan, tvTotalHargaPembelian;
     Button btnLihatFaktur, btnKonfirmasi, btnSimpanCicilan;
     SwitchCompat toogle_switch;
-    ExpandableRelativeLayout cicilan_expand;
+//    ExpandableRelativeLayout cicilan_expand;
     TextInputLayout tvKeteranganCicilan, tvTanggalCicilan, tvJumlahCicilan;
     TextInputEditText etKeteranganCicilan, etTanggalCicilan, etJumlahCicilan;
     RecyclerView rvItem, rvCicilan;
@@ -83,17 +83,17 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         tvTotalHargaPembelian = findViewById(R.id.tv_total_harga_pembelian);
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_pembelian);
-        btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
-        etKeteranganCicilan = findViewById(R.id.et_keterangan_cicilan);
-        etTanggalCicilan = findViewById(R.id.et_tgl_cicilan);
-        etJumlahCicilan = findViewById(R.id.et_jumlah_cicilan);
+//        btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
+//        etKeteranganCicilan = findViewById(R.id.et_keterangan_cicilan);
+//        etTanggalCicilan = findViewById(R.id.et_tgl_cicilan);
+//        etJumlahCicilan = findViewById(R.id.et_jumlah_cicilan);
 
         // REGISTER LISTENER
         btnKonfirmasi.setOnClickListener(this);
         btnLihatFaktur.setOnClickListener(this);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian);
-        rvCicilan = findViewById(R.id.rv_cicilan);
+//        rvCicilan = findViewById(R.id.rv_cicilan);
         rvItem.setHasFixedSize(true);
         rvItem.setLayoutManager(new LinearLayoutManager(this));
 
@@ -135,22 +135,22 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         DetailProsesPembelianAdapter adapter = new DetailProsesPembelianAdapter(listItem, this);
         rvItem.setAdapter(adapter);
 
-        toogle_switch.setChecked(false);
-        cicilan_expand = findViewById(R.id.expand_cicilan);
-        cicilan_expand.collapse();
+//        toogle_switch.setChecked(false);
+//        cicilan_expand = findViewById(R.id.expand_cicilan);
+//        cicilan_expand.collapse();
 
 
-        // SWITCH BUTTON
-        toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (!isChecked) {
-                    cicilan_expand.collapse();
-                } else {
-                    cicilan_expand.expand();
-                }
-            }
-        });
+//        // SWITCH BUTTON
+//        toogle_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (!isChecked) {
+//                    cicilan_expand.collapse();
+//                } else {
+//                    cicilan_expand.expand();
+//                }
+//            }
+//        });
     }
 
     @Override

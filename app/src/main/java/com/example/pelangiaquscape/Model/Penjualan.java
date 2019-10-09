@@ -14,6 +14,11 @@ public class Penjualan implements Parcelable {
     private String namaKustomer;
     private String noTelpKustomer;
     private double totalPenjualan;
+    private double uangBayar;
+    private double uangKembalian;
+    private double diskon;
+
+
 
     public Penjualan() {
     }
@@ -27,6 +32,9 @@ public class Penjualan implements Parcelable {
         this.namaKustomer = namaKustomer;
         this.noTelpKustomer = noTelpKustomer;
         this.totalPenjualan = totalPenjualan;
+//        this.uangBayar = uangBayar;
+//        this.uangKembalian = uangKembalian;
+//        this.diskon = diskon;
     }
 
     protected Penjualan(Parcel in) {
@@ -38,6 +46,9 @@ public class Penjualan implements Parcelable {
         namaKustomer = in.readString();
         noTelpKustomer = in.readString();
         totalPenjualan = in.readDouble();
+//        uangBayar = in.readDouble();
+//        uangKembalian = in.readDouble();
+//        diskon = in.readDouble();
     }
 
     public static final Creator<Penjualan> CREATOR = new Creator<Penjualan>() {
@@ -116,6 +127,30 @@ public class Penjualan implements Parcelable {
         this.totalPenjualan = totalPenjualan;
     }
 
+//    public double getUangBayar() {
+//        return uangBayar;
+//    }
+//
+//    public void setUangBayar(double uangBayar) {
+//        this.uangBayar = uangBayar;
+//    }
+//
+//    public double getUangKembalian() {
+//        return uangKembalian;
+//    }
+//
+//    public void setUangKembalian(double uangKembalian) {
+//        this.uangKembalian = uangKembalian;
+//    }
+//
+//    public double getDiskon() {
+//        return diskon;
+//    }
+//
+//    public void setDiskon(double diskon) {
+//        this.diskon = diskon;
+//    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -132,6 +167,9 @@ public class Penjualan implements Parcelable {
         dest.writeString(namaKustomer);
         dest.writeString(noTelpKustomer);
         dest.writeDouble(totalPenjualan);
+//        dest.writeDouble(uangBayar);
+//        dest.writeDouble(uangKembalian);
+//        dest.writeDouble(diskon);
 
     }
 }

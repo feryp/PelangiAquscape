@@ -1,6 +1,9 @@
 package com.example.pelangiaquscape.Model;
 
-public class Pegawai {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pegawai implements Parcelable {
 
 
     private String id;
@@ -28,6 +31,29 @@ public class Pegawai {
     public Pegawai(){}
 
 
+    protected Pegawai(Parcel in) {
+        id = in.readString();
+        fotoPegawai = in.readString();
+        namaPegawai = in.readString();
+        namapengguna = in.readString();
+        password = in.readString();
+        jabatan = in.readString();
+        hakAkses = in.readString();
+        noHp = in.readString();
+        emailPegawai = in.readString();
+    }
+
+    public static final Creator<Pegawai> CREATOR = new Creator<Pegawai>() {
+        @Override
+        public Pegawai createFromParcel(Parcel in) {
+            return new Pegawai(in);
+        }
+
+        @Override
+        public Pegawai[] newArray(int size) {
+            return new Pegawai[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -102,4 +128,21 @@ public class Pegawai {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(fotoPegawai);
+        dest.writeString(namaPegawai);
+        dest.writeString(namapengguna);
+        dest.writeString(password);
+        dest.writeString(jabatan);
+        dest.writeString(hakAkses);
+        dest.writeString(noHp);
+        dest.writeString(emailPegawai);
+    }
 }

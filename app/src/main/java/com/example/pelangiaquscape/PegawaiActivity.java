@@ -1,5 +1,7 @@
 package com.example.pelangiaquscape;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.LinkAddress;
 import android.support.annotation.NonNull;
@@ -16,10 +18,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Pegawai;
 import com.example.pelangiaquscape.ViewHolder.PegawaiViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -87,6 +92,33 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                 holder.bindData(model);
                 imageLayout.setVisibility(View.GONE);
 
+                holder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
+
+                        pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
+                        pegawai.putExtra("emailPegawai", model.getEmailPegawai());
+                        pegawai.putExtra("modelPegawai", model);
+                        startActivity(pegawai);
+//                        merek.putExtra("listSize", size);
+
+
+
+//                        Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
+//                        setResult(RESULT_OK, merek);
+
+                    }
+                });
+
+                holder.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        showDeleteDialog(String.valueOf(adapter.getRef(position).getKey()),model);
+                        return false;
+                    }
+                });
+
             }
 
             @NonNull
@@ -129,5 +161,35 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(fab_pegawai);
                 break;
         }
+    }
+
+    void showDeleteDialog(final String key, final Pegawai pegawai){
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Hapus Data");
+        alertDialog.setMessage("Apakah anda ingin menghapus Merek ini ? ");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "YA",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseDatabase.getInstance().getReference("Pegawai")
+                                .child(key)
+                                .removeValue()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(PegawaiActivity.this, "item "+pegawai.getNamapengguna() +" telah terhapus", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "TIDAK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

@@ -8,8 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Penyimpanan;
 import com.example.pelangiaquscape.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -38,6 +43,28 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
 
     public void bindData(Penyimpanan penyimpanan) {
 
+        FirebaseDatabase.getInstance().getReference("Barang").child(penyimpanan.getKeyBarang()).child("merek").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                FirebaseDatabase.getInstance().getReference("Merek").child(dataSnapshot.getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Merek m = dataSnapshot.getValue(Merek.class);
+                        tvMerek.setText(m.getNama());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         // GET CALENDAR FROM PENYIMPANAN
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(penyimpanan.getTimeInMilis());

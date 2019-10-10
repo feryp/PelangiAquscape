@@ -72,6 +72,8 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     StorageReference storageReference;
     FirebaseRecyclerAdapter firebaseRecyclerAdapter;
     Pegawai pegawai;
+
+
     String idPegawai;
 
     private static final int IMAGE_REQUEST = 1;
@@ -84,6 +86,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
 
     String token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,12 +131,14 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             Picasso.get().load(mImageUri).into(fotoPegawai);
         }
 
-
         try {
-            idPegawai = getIntent().getExtras().getString("idForPegawai");
-            System.out.println("ID in tambah pegawai act " + idPegawai);
+            idPegawai = getIntent().getExtras().getString("idPegawai");
+            pegawai = getIntent().getParcelableExtra("modelPegawai");
+            setFormFromModelPegawai();
+//            System.out.println("ID in tambah pegawai act " + idPegawai);
         } catch (NullPointerException ex) {
-            idPegawai = "1";
+//            idPegawai = "1";
+//            idPegawai =
         }
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
@@ -235,20 +240,25 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 //
     private void save() {
         spinnerHakAkses.getSelectedItem().toString();
-        daftarPegawai("", etNamaPegawai.getText().toString(),
-                etNamaPengguna.getText().toString(),
-                etKataSandi.getText().toString(),
-                etJabatan.getText().toString(),
-                String.valueOf(spinnerHakAkses.getSelectedItemPosition()),
-                etNoHp.getText().toString(),
-                etEmailPegawai.getText().toString());
+        if(idPegawai != null){
+            
+        }else{
+            daftarPegawai("", etNamaPegawai.getText().toString(),
+                    etNamaPengguna.getText().toString(),
+                    etKataSandi.getText().toString(),
+                    etJabatan.getText().toString(),
+                    String.valueOf(spinnerHakAkses.getSelectedItemPosition()),
+                    etNoHp.getText().toString(),
+                    etEmailPegawai.getText().toString());
+        }
+
 
 
     }
 
     //
-    private void getValues() {
-//        pegawai.setFotoPegawai(fotoPegawai.getDrawable().toString());
+//    private void setFormFromModelPegawai() {
+////        pegawai.setFotoPegawai(fotoPegawai.getDrawable().toString());
 //        pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
 //        pegawai.setNamapengguna(etNamaPengguna.getText().toString());
 //        pegawai.setPassword(etKataSandi.getText().toString());
@@ -256,7 +266,18 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 //        pegawai.setHakAkses(spinnerHakAkses.getSelectedItem().toString());
 //        pegawai.setNoHp(etNoHp.getText().toString());
 //        pegawai.setEmailPegawai(etEmailPegawai.getText().toString());
+//
+//    }
 
+    private void setFormFromModelPegawai(){
+//        pegawai.setFotoPegawai(pegawai.getFotoPegawai());
+        pegawai.setNamaPegawai(pegawai.getNamaPegawai());
+        pegawai.setNamapengguna(pegawai.getNamapengguna());
+        pegawai.setPassword(pegawai.getPassword());
+        pegawai.setJabatan(pegawai.getJabatan());
+//        pegawai.setHakAkses(pegawai);
+        pegawai.setNoHp(pegawai.getNoHp());
+        pegawai.setEmailPegawai(pegawai.getEmailPegawai());
     }
 
 

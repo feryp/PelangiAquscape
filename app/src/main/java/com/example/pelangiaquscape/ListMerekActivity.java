@@ -113,7 +113,7 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
                 holder.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        showDialog(String.valueOf(adapter.getRef(position).getKey()),model);
+                        showDeleteDialog(String.valueOf(adapter.getRef(position).getKey()),model);
                         return false;
                     }
                 });
@@ -174,7 +174,7 @@ public class ListMerekActivity extends FragmentActivity implements DialogTambahM
 
     }
 
-    void showDialog(final String key, final Merek merek){
+    void showDeleteDialog(final String key, final Merek merek){
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Hapus Data");
         alertDialog.setMessage("Apakah anda ingin menghapus Merek ini ? ");

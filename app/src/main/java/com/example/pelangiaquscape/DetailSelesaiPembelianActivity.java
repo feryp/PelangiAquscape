@@ -140,6 +140,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                 break;
             case R.id.btn_batalkan_pembelian:
                 Intent batalkan_pembelian = new Intent(DetailSelesaiPembelianActivity.this, BatalkanTransaksiPembelianActivity.class);
+                batalkan_pembelian.putExtra("pembelian",pembelian);
                 startActivity(batalkan_pembelian);
                 break;
         }

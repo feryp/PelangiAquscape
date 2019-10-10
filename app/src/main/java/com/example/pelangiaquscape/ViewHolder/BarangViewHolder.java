@@ -31,10 +31,11 @@ import java.util.List;
 
 public class BarangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
-    private TextView tvKode, tvMerek, tvStok, tvSatuan, tvHargaJual, tvHargaBeli;
+    public TextView tvKode, tvMerek, tvStok, tvSatuan, tvHargaJual, tvHargaBeli;
 
     private Barang barang;
 
+    private ItemClickListener itemClickListener;
     ItemClickListener listener;
 
     public BarangViewHolder(@NonNull View v) {
@@ -77,6 +78,10 @@ public class BarangViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View v) {
         listener.onClick(v, getAdapterPosition(), false);
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @Override

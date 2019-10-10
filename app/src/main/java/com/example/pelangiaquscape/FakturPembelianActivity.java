@@ -91,7 +91,7 @@ public class FakturPembelianActivity extends AppCompatActivity {
                 RuleBasedNumberFormat.SPELLOUT);
 
         String terbilang = ruleBasedNumberFormat.format(total);
-        tvTerbilang.setText(terbilang);
+        tvTerbilang.setText(terbilang + " rupiah");
 
 
         SimpleDateFormat formatTgl = new SimpleDateFormat("dd MMMM yyyy");

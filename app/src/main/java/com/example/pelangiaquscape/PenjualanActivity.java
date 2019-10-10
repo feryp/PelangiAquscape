@@ -28,8 +28,6 @@ import java.util.List;
 public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cancel;
-
-
     RecyclerView rvPenjualan;
 
     List<Penjualan> listPenjualan = new ArrayList<>();
@@ -60,6 +58,9 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
         iv = findViewById(R.id.iv_ilustrasi_pelanggankosong);
         tvImage = findViewById(R.id.tv_pelanggan_kosong);
+
+        //SET LISTENER
+        cancel.setOnClickListener(this);
 
         // INIT VIEW END
 

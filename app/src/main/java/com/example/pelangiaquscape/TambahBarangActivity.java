@@ -216,6 +216,15 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
 
                     FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(penyimpanan);
 
+                    FirebaseDatabase.getInstance().getReference("Barang").child(String.valueOf(theId)).setValue(barang)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(TambahBarangActivity.this, "Update barang berhasil", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            });
+
                 }else{
                     theId = getIntent().getIntExtra("sizeOfListBarang", -1);
                     if(theId < 0 ){

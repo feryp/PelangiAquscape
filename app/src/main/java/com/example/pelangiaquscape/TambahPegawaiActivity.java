@@ -221,8 +221,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
                 FirebaseAuth.getInstance().signOut();
 
-
-
                 Intent keluar = new Intent(TambahPegawaiActivity.this, LoginActivity.class);
 
                 keluar.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -232,12 +230,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
             }
         });
-
-
-
-
-
-
     }
 
 //

@@ -103,7 +103,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         etNamaPemasok.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     Intent i = new Intent(TambahPembelianActivity.this, MitraBisnisActivity.class);
                     i.putExtra("fromTambahPembelian", true);
                     startActivityForResult(i, REQUEST_PELANGGAN);
@@ -176,7 +176,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         SimpleDateFormat fmt = new SimpleDateFormat("ddMMyyyy/hhmmss");
         Date date = cal.getTime();
         String formatedDate = fmt.format(date);
-        String noPembelian = "PO/"+formatedDate;
+        String noPembelian = "PO/" + formatedDate;
 //        String noPesanan = etNoPesanan.getText().toString();
         long tanggalPesanan = cal.getTimeInMillis();
         String namaPemasok = etNamaPemasok.getText().toString();
@@ -185,7 +185,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
         boolean proses = true;
 
 
-        Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian,  proses);
+        Pembelian p = new Pembelian(noPembelian, tanggalPesanan, namaPemasok, metodePembayaran, daftarPembelian, proses);
 
         if (key != null) {
             reference.child(key).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -245,7 +245,7 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
             }
         }
 
-        if(requestCode == REQUEST_PELANGGAN){
+        if (requestCode == REQUEST_PELANGGAN) {
             if (resultCode == RESULT_OK) {
                 Pemasok pelanggan = data.getParcelableExtra("pemasok");
                 etNamaPemasok.setText(pelanggan.getNamaPemasok());

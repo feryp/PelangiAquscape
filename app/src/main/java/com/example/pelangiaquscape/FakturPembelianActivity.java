@@ -18,9 +18,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ibm.icu.text.IDNA;
+import com.ibm.icu.text.RuleBasedNumberFormat;
+import com.ibm.icu.util.Currency;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -84,6 +86,14 @@ public class FakturPembelianActivity extends AppCompatActivity {
         String totalPembelian = decimalFormat.format(total);
         tvTotal.setText("Rp. " + totalPembelian);
 
+        Locale local = new Locale("id_ID");
+        RuleBasedNumberFormat ruleBasedNumberFormat = new RuleBasedNumberFormat(local,
+                RuleBasedNumberFormat.SPELLOUT);
+
+        String terbilang = ruleBasedNumberFormat.format(total);
+        tvTerbilang.setText(terbilang);
+
+
         SimpleDateFormat formatTgl = new SimpleDateFormat("dd MMMM yyyy");
         Date da = calendar.getTime();
         String tglFormat = formatTgl.format(da);
@@ -93,6 +103,15 @@ public class FakturPembelianActivity extends AppCompatActivity {
 
         loadAkunToko();
     }
+
+//    private String convertIntoWords(String totalPembelian) {
+//        Locale locale = new Locale(totalPembelian);
+//        RuleBasedNumberFormat ruleBasedNumberFormat = new RuleBasedNumberFormat(locale,
+//                RuleBasedNumberFormat.SPELLOUT);
+//        return ruleBasedNumberFormat.format(totalPembelian);
+//
+//
+//    }
 
     private void loadAkunToko() {
         FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -111,4 +130,6 @@ public class FakturPembelianActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

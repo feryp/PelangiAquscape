@@ -74,7 +74,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         sharedPref = getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KEY", Context.MODE_PRIVATE);
 
         // INIT VIEW
-        cancel = findViewById(R.id.im_kembali);
+        cancel = findViewById(R.id.im_cancel);
         tvNoPesanan = findViewById(R.id.tv_no_pesanan);
         tvMetodePembayaran = findViewById(R.id.tv_status_pembayaran);
         tvTanggalPesanan = findViewById(R.id.tv_detail_tgl_pembelian);
@@ -91,6 +91,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         // REGISTER LISTENER
         btnKonfirmasi.setOnClickListener(this);
         btnLihatFaktur.setOnClickListener(this);
+        cancel.setOnClickListener(this);
 
         rvItem = findViewById(R.id.rv_list_detail_pembelian);
 //        rvCicilan = findViewById(R.id.rv_cicilan);
@@ -157,7 +158,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.im_kembali:
+            case R.id.im_cancel:
                 finish();
                 break;
 

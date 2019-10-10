@@ -61,15 +61,15 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         totalKembalian = 0;
         final Intent i = getIntent();
 
-        if (i != null){
-            totalHarga = i.getDoubleExtra("totalHargaKeranjang", 0);
-            Bundle bundle = getIntent().getExtras();
-            ArrayList<ItemKeranjang> k = bundle.getParcelableArrayList("listItemKeranjang");
-            listKeranjang = new ArrayList<>();
-            listKeranjang.addAll(k);
-        } else {
-            totalHarga = 0;
-        }
+//        if (i != null){
+//            totalHarga = i.getDoubleExtra("totalHargaKeranjang", 0);
+//            Bundle bundle = getIntent().getExtras();
+//            ArrayList<ItemKeranjang> k = bundle.getParcelableArrayList("listItemKeranjang");
+//            listKeranjang = new ArrayList<>();
+//            listKeranjang.addAll(k);
+//        } else {
+//            totalHarga = 0;
+//        }
 
         //GET DATA
         Intent p = getIntent();

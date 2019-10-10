@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.mobsandgeeks:android-saripaar:2.0.3'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation group: 'com.ibm.icu', name: 'icu4j', version: '51.1'
 
 
     //Firebase

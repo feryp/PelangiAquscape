@@ -74,7 +74,7 @@
 
 
             <SearchView
-                android:id="@+id/search_mere_persediaan_barang"
+                android:id="@+id/search_merek_persediaan_barang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

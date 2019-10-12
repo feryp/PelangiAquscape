@@ -46,13 +46,9 @@ public class BarangActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
     RecyclerView rvBarang;
-
     Query q;
-
     LinearLayout imageLayout;
-
     FloatingActionButton fab_barang;
 
     List<String> merek = new ArrayList<>();

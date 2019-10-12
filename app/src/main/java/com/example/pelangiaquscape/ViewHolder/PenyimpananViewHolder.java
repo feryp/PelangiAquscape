@@ -1,5 +1,7 @@
 package com.example.pelangiaquscape.ViewHolder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -24,20 +26,23 @@ import java.util.Date;
 public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
 
     private TextView tvKode, tvMerek, tvStok, tvSatuan, tvKeterangan, tvTanggal, tvJenisPenyimpanan;
+//    private Context context;
+
 
     private LinearLayout ll;
 
+    SharedPreferences preferences;
 
     public PenyimpananViewHolder(@NonNull View v) {
         super(v);
-        tvKode = v.findViewById(R.id.list_nama_barang_inventory);
-        tvMerek = v.findViewById(R.id.merek_inventory);
-        tvStok = v.findViewById(R.id.stok_barang_inventory);
-        tvSatuan = v.findViewById(R.id.satuan_unit_barang_inventory);
-        tvKeterangan = v.findViewById(R.id.keterangan_status_inventory);
-        tvTanggal = v.findViewById(R.id.tgl_inventory);
-        tvJenisPenyimpanan = v.findViewById(R.id.keterangan_barang_keluar);
-        ll = v.findViewById(R.id.linear_ket);
+        tvKode = itemView.findViewById(R.id.list_nama_barang_inventory);
+        tvMerek = itemView.findViewById(R.id.merek_inventory);
+        tvStok = itemView.findViewById(R.id.stok_barang_inventory);
+        tvSatuan = itemView.findViewById(R.id.satuan_unit_barang_inventory);
+        tvKeterangan = itemView.findViewById(R.id.keterangan_status_inventory);
+        tvTanggal = itemView.findViewById(R.id.tgl_inventory);
+        tvJenisPenyimpanan = itemView.findViewById(R.id.keterangan_barang_keluar);
+        ll = itemView.findViewById(R.id.linear_ket);
 
     }
 
@@ -74,8 +79,9 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
 
 
         // SET ALL TEXTVIEW FROM PENYIMPANAN
+//        int noMerek = Integer.valueOf(penyimpanan.getMerekBarang());
+//        String merek = preferences.getString(String.valueOf(noMerek),"unknown");
         tvKode.setText(penyimpanan.getKodeBarang());
-        tvMerek.setText("unknown");
         BigDecimal de = new BigDecimal(penyimpanan.getJumlahBarang());
         tvStok.setText(de.toString());
         tvSatuan.setText("pcs");

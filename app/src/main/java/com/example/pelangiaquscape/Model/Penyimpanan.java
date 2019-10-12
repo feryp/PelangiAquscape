@@ -7,6 +7,8 @@ public class Penyimpanan {
     private long timeInMilis;
     private String keyBarang;
     private String kodeBarang;
+
+
     private int jumlahBarang;
     private String keteranganBarang;
     /**
@@ -49,6 +51,7 @@ public class Penyimpanan {
     public void setKodeBarang(String kodeBarang) {
         this.kodeBarang = kodeBarang;
     }
+
 
     public int getJumlahBarang() {
         return jumlahBarang;

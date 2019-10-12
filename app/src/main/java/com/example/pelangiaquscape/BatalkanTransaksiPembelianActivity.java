@@ -1,6 +1,8 @@
 package com.example.pelangiaquscape;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,16 +33,20 @@ import java.util.List;
 public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implements View.OnClickListener{
 
 
-   private ImageView cancel;
-   private Button btnBatalkanTransaksi;
-   private RecyclerView rvItemBarang;
-   private TextView tvTotalHargaPesanan;
-   private RadioGroup radioAlasanPembatalan;
-   private RadioButton radioButton;
+   ImageView cancel;
+   Button btnBatalkanTransaksi;
+   RecyclerView rvItemBarang;
+   TextView tvTotalHargaPesanan;
+   RadioGroup radioAlasanPembatalan;
+   RadioButton radioButton;
 
 
     Pembelian pembelian;
     String key;
+
+    String PACKAGE_NAME = "com.example.pelangiaquascape.";
+    SharedPreferences sharedPreferences;
+    List<ItemKeranjang> listBarangBatal;
 
     int ALASAN_PEMBATALAN = 1;
 
@@ -54,13 +60,17 @@ public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implem
         pembelian = i.getParcelableExtra("value");
         key = i.getStringExtra("key");
 
+        //SHARED PREFERENCE
+        sharedPreferences = getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KEY", Context.MODE_PRIVATE);
+
+
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
         btnBatalkanTransaksi = findViewById(R.id.btn_batalkan_transaksi);
         tvTotalHargaPesanan = findViewById(R.id.tv_total_harga_pesanan);
         radioAlasanPembatalan = findViewById(R.id.radio_alasan_pembatalan);
         radioAlasanPembatalan.check(R.id.pengembalian_barang);
-        rvItemBarang = findViewById(R.id.rv_list_detail_barang);
+        rvItemBarang = findViewById(R.id.rv_list_barang_batalkan);
         rvItemBarang.setHasFixedSize(true);
         rvItemBarang.setLayoutManager(new LinearLayoutManager(this));
 
@@ -69,9 +79,10 @@ public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implem
         btnBatalkanTransaksi.setOnClickListener(this);
         cancel.setOnClickListener(this);
 
-//        List<ItemKeranjang> listItem = pembelian.getListBarang();
+        //SET TEXT
+//        listBarangBatal = pembelian.getListBarang();
 //        double total = 0;
-//        for (ItemKeranjang keranjang : listItem){
+//        for (ItemKeranjang keranjang : listBarangBatal){
 //            total = total + keranjang.getTotalPrice();
 //        }
 //
@@ -79,7 +90,7 @@ public class BatalkanTransaksiPembelianActivity extends AppCompatActivity implem
 //        String totalHargaPesanan = decimalFormat.format(total);
 //        tvTotalHargaPesanan.setText("Rp. " + totalHargaPesanan);
 //
-//        BatalkanTransaksiAdapter adapter = new BatalkanTransaksiAdapter(listItem, this);
+//        BatalkanTransaksiAdapter adapter = new BatalkanTransaksiAdapter(listBarangBatal, this);
 //        rvItemBarang.setAdapter(adapter);
     }
 

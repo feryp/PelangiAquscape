@@ -15,17 +15,14 @@ import java.util.List;
 
 public class BatalkanTransaksiAdapter extends RecyclerView.Adapter<BatalkanTransaksiViewHolder> {
 
-    List<ItemKeranjang> listBarang;
+    List<ItemKeranjang> listItemBarang;
     Context context;
 
-    public BatalkanTransaksiAdapter(List<ItemKeranjang> listBarang, Context context) {
-        this.listBarang = listBarang;
+    public BatalkanTransaksiAdapter(List<ItemKeranjang> listItemBarang, Context context) {
+        this.listItemBarang = listItemBarang;
         this.context = context;
     }
 
-    public void setListBarang(List<ItemKeranjang> listBarang) {
-        this.listBarang = listBarang;
-    }
 
     @NonNull
     @Override
@@ -36,11 +33,11 @@ public class BatalkanTransaksiAdapter extends RecyclerView.Adapter<BatalkanTrans
 
     @Override
     public void onBindViewHolder(@NonNull BatalkanTransaksiViewHolder batalkanTransaksiViewHolder, int i) {
-        batalkanTransaksiViewHolder.bindData(listBarang.get(i));
+        batalkanTransaksiViewHolder.bindData(listItemBarang.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return listBarang.size();
+        return listItemBarang.size();
     }
 }

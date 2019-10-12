@@ -61,7 +61,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -227,17 +227,17 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_batalkan_pembelian"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Batalkan"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlue"
-                android:textSize="16dp" />
+            <!--<Button-->
+                <!--android:id="@+id/btn_batalkan_pembelian"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="65dp"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:fontFamily="@font/roboto_bold"-->
+                <!--android:text="Batalkan"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/colorBlue"-->
+                <!--android:textSize="16dp" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -443,17 +443,25 @@
             <!--</RelativeLayout>-->
 
 
-            <Button
-                android:id="@+id/btn_lihat_faktur"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="@color/colorBlue"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Lihat Faktur"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:id="@+id/btn_lihat_faktur"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="@color/colorBlue"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Lihat Faktur"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
 
         </LinearLayout>
 

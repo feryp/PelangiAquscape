@@ -60,7 +60,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         tvTglPembelian = findViewById(R.id.tv_detail_tgl_pembelian);
         tvNamaPemasok = findViewById(R.id.tv_detail_nama_pemasok);
         tvTotalHargaPembelian = findViewById(R.id.tv_total_harga_pembelian);
-        btnBatalkan = findViewById(R.id.btn_batalkan_pembelian);
+//        btnBatalkan = findViewById(R.id.btn_batalkan_pembelian);
         btnLihatFaktur = findViewById(R.id.btn_lihat_faktur);
 //        btnSimpanCicilan = findViewById(R.id.btn_simpan_cicilan);
 //        toogle_switch = findViewById(R.id.toogle_switch);
@@ -74,7 +74,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         //SET LISTENER
         btnLihatFaktur.setOnClickListener(this);
         cancel.setOnClickListener(this);
-        btnBatalkan.setOnClickListener(this);
+//        btnBatalkan.setOnClickListener(this);
 
         tvNoPesanan.setText(pembelian.getNoPesanan());
 //        switch (pembelian.getStatusPembelian()) {
@@ -141,11 +141,11 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                 lihat_faktur.putExtra("no", no);
                 startActivity(lihat_faktur);
                 break;
-            case R.id.btn_batalkan_pembelian:
-                Intent batalkan_pembelian = new Intent(DetailSelesaiPembelianActivity.this, BatalkanTransaksiPembelianActivity.class);
-                batalkan_pembelian.putExtra("pembelian",pembelian);
-                startActivity(batalkan_pembelian);
-                break;
+//            case R.id.btn_batalkan_pembelian:
+//                Intent batalkan_pembelian = new Intent(DetailSelesaiPembelianActivity.this, BatalkanTransaksiPembelianActivity.class);
+//                batalkan_pembelian.putExtra("pembelian",pembelian);
+//                startActivity(batalkan_pembelian);
+//                break;
         }
     }
 }

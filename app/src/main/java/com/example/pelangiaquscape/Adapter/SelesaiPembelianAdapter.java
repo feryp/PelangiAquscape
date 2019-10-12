@@ -45,8 +45,6 @@ public class SelesaiPembelianAdapter extends RecyclerView.Adapter<SelesaiPembeli
 
     @Override
     public void onBindViewHolder(@NonNull SelesaiPembelianViewHolder holder, int i) {
-
-
         holder.bindData(filterPembelianSelesai.get(i), filterKey.get(i));
 
     }

@@ -38,6 +38,7 @@ public class FakturPembelianActivity extends AppCompatActivity {
     Pembelian pembelian;
     Pemasok pemasok;
     String key;
+    int no;
 
     DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
 
@@ -51,7 +52,7 @@ public class FakturPembelianActivity extends AppCompatActivity {
         Intent p = getIntent();
         pembelian = p.getParcelableExtra("pembelian");
         key = p.getStringExtra("key");
-
+        no = p.getIntExtra("no", no);
 
         //INIT VIEW
         tvNamaToko = findViewById(R.id.faktur_nama_toko);
@@ -70,6 +71,7 @@ public class FakturPembelianActivity extends AppCompatActivity {
         rvItemPesanan.setLayoutManager(new LinearLayoutManager(this));
 
         //SET TEXT
+        tvNoFaktur.setText("00"+no);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(pembelian.getTanggalPesanan());

@@ -39,6 +39,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
 
     Pembelian pembelian;
     String key;
+    int no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         Intent i = getIntent();
         pembelian = i.getParcelableExtra("value");
         key = i.getStringExtra("key");
+        no = i.getIntExtra("no", -1);
 
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
@@ -136,6 +138,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
             case R.id.btn_lihat_faktur:
                 Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);
                 lihat_faktur.putExtra("pembelian", pembelian);
+                lihat_faktur.putExtra("no", no);
                 startActivity(lihat_faktur);
                 break;
             case R.id.btn_batalkan_pembelian:

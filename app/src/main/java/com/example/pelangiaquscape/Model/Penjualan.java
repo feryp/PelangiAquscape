@@ -23,7 +23,7 @@ public class Penjualan implements Parcelable {
     public Penjualan() {
     }
 
-    public Penjualan(String noPenjualan, String jenisPembayaran, long tanggalPenjualan, String namaPenjual, List<ItemKeranjang> listItemKeranjang, String namaKustomer, String noTelpKustomer, double totalPenjualan) {
+    public Penjualan(String noPenjualan, String jenisPembayaran, long tanggalPenjualan, String namaPenjual, List<ItemKeranjang> listItemKeranjang, String namaKustomer, String noTelpKustomer, double totalPenjualan, double uangBayar, double uangKembalian, double diskon) {
         this.noPenjualan = noPenjualan;
         this.jenisPembayaran = jenisPembayaran;
         this.tanggalPenjualan = tanggalPenjualan;
@@ -32,9 +32,9 @@ public class Penjualan implements Parcelable {
         this.namaKustomer = namaKustomer;
         this.noTelpKustomer = noTelpKustomer;
         this.totalPenjualan = totalPenjualan;
-//        this.uangBayar = uangBayar;
-//        this.uangKembalian = uangKembalian;
-//        this.diskon = diskon;
+        this.uangBayar = uangBayar;
+        this.uangKembalian = uangKembalian;
+        this.diskon = diskon;
     }
 
     protected Penjualan(Parcel in) {
@@ -46,9 +46,9 @@ public class Penjualan implements Parcelable {
         namaKustomer = in.readString();
         noTelpKustomer = in.readString();
         totalPenjualan = in.readDouble();
-//        uangBayar = in.readDouble();
-//        uangKembalian = in.readDouble();
-//        diskon = in.readDouble();
+        uangBayar = in.readDouble();
+        uangKembalian = in.readDouble();
+        diskon = in.readDouble();
     }
 
     public static final Creator<Penjualan> CREATOR = new Creator<Penjualan>() {
@@ -127,29 +127,29 @@ public class Penjualan implements Parcelable {
         this.totalPenjualan = totalPenjualan;
     }
 
-//    public double getUangBayar() {
-//        return uangBayar;
-//    }
-//
-//    public void setUangBayar(double uangBayar) {
-//        this.uangBayar = uangBayar;
-//    }
-//
-//    public double getUangKembalian() {
-//        return uangKembalian;
-//    }
-//
-//    public void setUangKembalian(double uangKembalian) {
-//        this.uangKembalian = uangKembalian;
-//    }
-//
-//    public double getDiskon() {
-//        return diskon;
-//    }
-//
-//    public void setDiskon(double diskon) {
-//        this.diskon = diskon;
-//    }
+    public double getUangBayar() {
+        return uangBayar;
+    }
+
+    public void setUangBayar(double uangBayar) {
+        this.uangBayar = uangBayar;
+    }
+
+    public double getUangKembalian() {
+        return uangKembalian;
+    }
+
+    public void setUangKembalian(double uangKembalian) {
+        this.uangKembalian = uangKembalian;
+    }
+
+    public double getDiskon() {
+        return diskon;
+    }
+
+    public void setDiskon(double diskon) {
+        this.diskon = diskon;
+    }
 
     @Override
     public int describeContents() {
@@ -167,9 +167,9 @@ public class Penjualan implements Parcelable {
         dest.writeString(namaKustomer);
         dest.writeString(noTelpKustomer);
         dest.writeDouble(totalPenjualan);
-//        dest.writeDouble(uangBayar);
-//        dest.writeDouble(uangKembalian);
-//        dest.writeDouble(diskon);
+        dest.writeDouble(uangBayar);
+        dest.writeDouble(uangKembalian);
+        dest.writeDouble(diskon);
 
     }
 }

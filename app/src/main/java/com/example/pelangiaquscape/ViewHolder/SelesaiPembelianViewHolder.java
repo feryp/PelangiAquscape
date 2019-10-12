@@ -87,6 +87,7 @@ public class SelesaiPembelianViewHolder extends RecyclerView.ViewHolder implemen
                 Intent intent = new Intent(context, DetailSelesaiPembelianActivity.class);
                 intent.putExtra("key", key);
                 intent.putExtra("value", pembelian);
+                intent.putExtra("no", getAdapterPosition() +1);
                 context.startActivity(intent);
                 break;
         }

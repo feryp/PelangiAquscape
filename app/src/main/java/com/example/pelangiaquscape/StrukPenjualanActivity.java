@@ -99,17 +99,12 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         rvItemBarang.setLayoutManager(new LinearLayoutManager(this));
 
         //SET TEXT
-
-
         if(namaKasir != null){
             tvNamaKasir.setText(namaKasir);
         }
 
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(penjualan.getTanggalPenjualan());
-
-
 
         SimpleDateFormat formatTgl = new SimpleDateFormat("dd MMMM yyyy");
         SimpleDateFormat formatJam = new SimpleDateFormat("HH:mm");
@@ -126,8 +121,13 @@ public class StrukPenjualanActivity extends AppCompatActivity {
             total = total + itemKeranjang.getTotalPrice();
         }
 
-        String format = decimalFormat.format(totalHarga);
+        String format = decimalFormat.format(penjualan.getUangBayar());
         tvUangBayar.setText("Rp. " + format);
+
+
+        tvDiskon.setText(decimalFormat.format(penjualan.getDiskon()).length()<1?"0":decimalFormat.format(penjualan.getDiskon()));
+
+        tvUangKembalian.setText(decimalFormat.format(penjualan.getUangKembalian()));
 //
 //        double kembalian = 0;
 //        totalKembalian = total-bayar;

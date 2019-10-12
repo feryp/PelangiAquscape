@@ -71,6 +71,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     double totalHarga;
     double totalKembalian;
     double diskon;
+    double uangBayar;
 
     boolean diskonPersen, diskonRp;
 
@@ -92,6 +93,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
 
         totalKembalian = 0;
+        uangBayar = 0;
+        diskon = 0;
         final Intent i = getIntent();
 
         if (i != null) {
@@ -211,6 +214,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
                     double jmlLain = Double.parseDouble(s.toString());
                     double kembalian = jmlLain - totalHarga;
+                    uangBayar = jmlLain;
                     totalKembalian = kembalian;
 
                     tvKembalian.setText("Rp. " + fmt.format(kembalian));
@@ -299,6 +303,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_kelipatan_dua:
 
                 kembalian = 20000 - totalHarga;
+                uangBayar = 20000;
                 totalKembalian = kembalian;
                 String as = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as);
@@ -316,6 +321,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_kelipatan_lima:
                 kembalian = 50000 - totalHarga;
+                uangBayar = 50000;
                 totalKembalian = kembalian;
                 String as1 = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as1);
@@ -334,6 +340,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_kelipatan_sepuluh:
                 kembalian = 100000 - totalHarga;
+                uangBayar = 100000;
                 totalKembalian = kembalian;
                 String as2 = fmt.format(kembalian);
                 tvKembalian.setText("Rp. " + as2);
@@ -352,6 +359,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.btn_uang_pas:
                 tvKembalian.setText("Rp. 0.00");
+                uangBayar = totalHarga;
                 totalKembalian = 0;
                 v.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_pressed));
                 btnKelDua.setTextColor(Color.GRAY);
@@ -415,7 +423,10 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                         listKeranjang,
                         etNamaPelanggan.getText().toString() != null ? etNamaPelanggan.getText().toString() : "",
                         etNoHp.getText().toString() != null ? etNoHp.getText().toString() : "",
-                        totalHarga
+                        totalHarga,
+                        uangBayar,
+                        totalKembalian,
+                        diskon
                 );
 
                 penjualan = p;
@@ -482,35 +493,6 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
                     }
                 });
-//                db.getReference("Barang").addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot sn : dataSnapshot.getChildren()) {
-//
-//                            for (Penyimpanan p : listPenyimpanan) {
-//                                System.out.println("snapshot "+ sn.getKey() + " key " + p.getKeyBarang());
-//
-//                                if(p.getKeyBarang().equals(sn.getKey())){
-//                                    Barang barang = sn.getValue(Barang.class);
-//
-//                                    int stok = barang.getStok() - p.getJumlahBarang();
-//                                    System.out.println("NAMA BARANG" + barang.getKode());
-//                                    System.out.println("STOK BARANG" + stok);
-//                                    barang.setStok(stok);
-//                                    sn.getRef().setValue(barang);
-//
-//                                }
-////                            dataSnapshot.getRef().child(p.getKeyBarang()).child("")
-//                            }
-//                        }
-//                    }
-//
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
 
 
                 SharedPreferences pref = getSharedPreferences(PACKAGE_NAME+"PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);

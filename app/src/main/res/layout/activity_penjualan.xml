@@ -45,7 +45,7 @@
                     android:fontFamily="@font/roboto_medium"/>
 
                 <ImageView
-                    android:id="@+id/im_save"
+                    android:id="@+id/im_filter"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_filter"

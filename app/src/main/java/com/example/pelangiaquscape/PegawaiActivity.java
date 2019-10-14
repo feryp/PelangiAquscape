@@ -64,7 +64,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
         imageLayout = findViewById(R.id.linear_imageview_pegawai);
         rvPegawai = findViewById(R.id.rv_pegawai);
         rvPegawai.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(this, 3);
+        layoutManager = new GridLayoutManager(this, 2);
         rvPegawai.setLayoutManager(layoutManager);
 
         //INIT FIREBASE

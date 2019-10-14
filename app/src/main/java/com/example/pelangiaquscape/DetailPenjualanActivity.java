@@ -47,6 +47,8 @@ public class DetailPenjualanActivity extends AppCompatActivity {
     User user;
     ProgressDialog dialog ;
 
+    DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +91,9 @@ public class DetailPenjualanActivity extends AppCompatActivity {
         tvNamaKasir.setText(penjualan.getNamaPenjual());
         tvNamaPelanggan.setText(penjualan.getNamaKustomer());
 
+        String formatDiskon = decimalFormat.format(penjualan.getDiskon()).length()<1?"0":decimalFormat.format(penjualan.getDiskon());
+        tvDiskon.setText("Rp. " + formatDiskon);
+
 
         List<ItemKeranjang> listItemPenjualan = penjualan.getListItemKeranjang();
         double total = 0;
@@ -97,7 +102,7 @@ public class DetailPenjualanActivity extends AppCompatActivity {
         }
 
 //        BigDecimal decimal = new BigDecimal(total);
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+
         String totalHargaPenjualan = decimalFormat.format(total);
         tvTotalHargaPenjualan.setText("Rp. " + totalHargaPenjualan);
 

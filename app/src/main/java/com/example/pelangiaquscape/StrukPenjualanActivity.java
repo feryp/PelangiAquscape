@@ -124,10 +124,11 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         String format = decimalFormat.format(penjualan.getUangBayar());
         tvUangBayar.setText("Rp. " + format);
 
+        String formatDiskon = decimalFormat.format(penjualan.getDiskon()).length()<1?"0":decimalFormat.format(penjualan.getDiskon());
+        tvDiskon.setText("Rp. " + formatDiskon);
 
-        tvDiskon.setText(decimalFormat.format(penjualan.getDiskon()).length()<1?"0":decimalFormat.format(penjualan.getDiskon()));
-
-        tvUangKembalian.setText(decimalFormat.format(penjualan.getUangKembalian()));
+        String formatKembalian = decimalFormat.format(penjualan.getUangKembalian());
+        tvUangKembalian.setText("Rp. " + formatKembalian);
 //
 //        double kembalian = 0;
 //        totalKembalian = total-bayar;

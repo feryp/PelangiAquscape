@@ -1,7 +1,9 @@
 package com.example.pelangiaquscape;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,10 +29,12 @@ import java.util.List;
 
 public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView cancel;
+    ImageView cancel, filter;
     RecyclerView rvPenjualan;
 
     List<Penjualan> listPenjualan = new ArrayList<>();
+
+    String[] listFilter;
 
     FirebaseDatabase fd;
     DatabaseReference dr;
@@ -44,6 +48,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     TextView tvImage;
 
     Query query;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +56,8 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
 
         // INIT VIEW
-        cancel =  findViewById(R.id.im_kembali);
+        cancel = findViewById(R.id.im_kembali);
+        filter = findViewById(R.id.im_filter);
         rvPenjualan = findViewById(R.id.rv_penjualan);
         rvPenjualan.setHasFixedSize(true);
 //        rvPenjualan.setLayoutManager(new LinearLayoutManager(this));
@@ -61,6 +67,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
         //SET LISTENER
         cancel.setOnClickListener(this);
+        filter.setOnClickListener(this);
 
         // INIT VIEW END
 
@@ -72,14 +79,36 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.im_kembali:
                 finish();
+                break;
+            case R.id.im_filter:
+                listFilter = new String[]{"Oleh Tanggal", "Oleh Waktu"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(PenjualanActivity.this);
+                builder.setTitle("Pilih salah satu");
+                builder.setIcon(R.drawable.ic_list);
+                builder.setSingleChoiceItems(listFilter, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                //show alert dialog
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 break;
         }
     }
 
-    void loadDataPenjualan(){
+    void loadDataPenjualan() {
         query = FirebaseDatabase.getInstance().getReference().child("Penjualan").orderByChild("tanggalPenjualan");
         Log.v("query", query.getPath().toString());
 
@@ -95,7 +124,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {
                     @Override
                     public void onClick(View v, int position) {
-                        Toast.makeText(PenjualanActivity.this, position+"", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PenjualanActivity.this, position + "", Toast.LENGTH_SHORT).show();
                         Intent p = new Intent(PenjualanActivity.this, DetailPenjualanActivity.class);
                         p.putExtra("penjualan", penjualan);
                         p.putExtra("key", key);
@@ -130,6 +159,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         Log.v("itemCount", String.valueOf(rvPenjualan.getAdapter().getItemCount()));
         rvPenjualan.setVisibility(View.VISIBLE);
     }
+
     @Override
     protected void onStart() {
         super.onStart();

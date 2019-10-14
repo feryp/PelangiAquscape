@@ -9,185 +9,185 @@
     android:paddingRight="30dp"
     tools:context=".StrukPenjualanActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
-
         <RelativeLayout
-            android:id="@+id/header_struk"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
 
-            <TextView
-                android:id="@+id/tv_nama_toko"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/roboto_bold"
-                android:text=""
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tv_alamat_toko"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_nama_toko"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/roboto_regular"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_no_telepon_toko"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_alamat_toko"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/roboto_regular"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/toogle_garis"
+            <RelativeLayout
+                android:id="@+id/header_struk"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_below="@+id/tv_no_telepon_toko"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layerType="software"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:src="@drawable/garis_putus" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/profile_struk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_struk"
-            android:padding="15dp">
-
-            <TextView
-                android:id="@+id/tv_nama_kasir"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Nama Kasir"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                android:paddingTop="8dp">
 
-            <TextView
-                android:id="@+id/nama_kasir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Fery Pratama"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_nama_toko"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text=""
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_tanggal_transaksi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_nama_kasir"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Tanggal"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_alamat_toko"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nama_toko"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/tanggal_transaksi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_nama_kasir"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_regular"
-                android:text="12 September 2019"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_no_telepon_toko"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_alamat_toko"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/tv_waktu_transaksi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_tanggal_transaksi"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Waktu"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                <ImageView
+                    android:id="@+id/toogle_garis"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@+id/tv_no_telepon_toko"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layerType="software"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:src="@drawable/garis_putus" />
 
-            <TextView
-                android:id="@+id/waktu_transaksi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_tanggal_transaksi"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_regular"
-                android:text="17:30 WIB"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_no_struk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_waktu_transaksi"
-                android:fontFamily="@font/roboto_regular"
-                android:text="No.Struk"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/no_struk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_waktu_transaksi"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_regular"
-                android:text="INV-11092019-030952"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/toogle_garis1"
+            <RelativeLayout
+                android:id="@+id/profile_struk"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_below="@+id/tv_no_struk"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layerType="software"
-                android:src="@drawable/garis_putus" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header_struk"
+                android:padding="15dp">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_nama_kasir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Nama Kasir"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
 
-        <RelativeLayout
-            android:id="@+id/isi_barang_struk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_struk"
-            android:layout_marginTop="-6dp"
-            android:padding="15dp">
+                <TextView
+                    android:id="@+id/nama_kasir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Fery Pratama"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_list_struk_barang"
+                <TextView
+                    android:id="@+id/tv_tanggal_transaksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nama_kasir"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Tanggal"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tanggal_transaksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nama_kasir"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="12 September 2019"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_waktu_transaksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_tanggal_transaksi"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Waktu"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/waktu_transaksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_tanggal_transaksi"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="17:30 WIB"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_no_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_waktu_transaksi"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="No.Struk"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/no_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_waktu_transaksi"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="INV-11092019-030952"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/toogle_garis1"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@+id/tv_no_struk"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layerType="software"
+                    android:src="@drawable/garis_putus" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/isi_barang_struk"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_struk"
+                android:layout_marginTop="-6dp"
+                android:padding="15dp">
 
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_list_struk_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <!--<TextView-->
+                </android.support.v7.widget.RecyclerView>
+
+                <!--<TextView-->
                 <!--android:id="@+id/tv_kode_barang_struk"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
@@ -197,7 +197,7 @@
                 <!--android:textColor="@color/disable_thumb_grey"-->
                 <!--android:textSize="12sp" />-->
 
-            <!--<TextView-->
+                <!--<TextView-->
                 <!--android:id="@+id/tv_merek_barang_struk"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
@@ -208,7 +208,7 @@
                 <!--android:textColor="@color/disable_thumb_grey"-->
                 <!--android:textSize="12sp" />-->
 
-            <!--<TextView-->
+                <!--<TextView-->
                 <!--android:id="@+id/tv_harga_barang_struk"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
@@ -218,7 +218,7 @@
                 <!--android:textColor="@color/colorDarkGrey"-->
                 <!--android:textSize="10sp" />-->
 
-            <!--<TextView-->
+                <!--<TextView-->
                 <!--android:id="@+id/tv_kali"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
@@ -230,7 +230,7 @@
                 <!--android:textColor="@color/colorDarkGrey"-->
                 <!--android:textSize="10sp" />-->
 
-            <!--<TextView-->
+                <!--<TextView-->
                 <!--android:id="@+id/tv_kuantitas_struk"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
@@ -242,7 +242,7 @@
                 <!--android:textColor="@color/colorDarkGrey"-->
                 <!--android:textSize="10sp" />-->
 
-            <!--<TextView-->
+                <!--<TextView-->
                 <!--android:id="@+id/harga_barang_struk"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
@@ -255,169 +255,169 @@
                 <!--android:textSize="12sp" />-->
 
 
-            <ImageView
-                android:id="@+id/toogle_garis2"
+                <ImageView
+                    android:id="@+id/toogle_garis2"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@+id/rv_list_struk_barang"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layerType="software"
+                    android:src="@drawable/garis_putus" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/pembayaran_harga_struk"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_below="@+id/rv_list_struk_barang"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layerType="software"
-                android:src="@drawable/garis_putus" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/pembayaran_harga_struk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/isi_barang_struk"
-            android:layout_marginTop="-6dp"
-            android:padding="15dp">
-
-
-            <TextView
-                android:id="@+id/tv_diskon_struk"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Diskon"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                android:layout_below="@+id/isi_barang_struk"
+                android:layout_marginTop="-6dp"
+                android:padding="15dp">
 
 
-            <TextView
-                android:id="@+id/diskon_struk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_bold"
-                android:text="- Rp. 0"
-                android:textColor="@color/colorDarkGrey"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_diskon_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Diskon"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
 
 
-            <ImageView
-                android:id="@+id/toogle_garis3"
+                <TextView
+                    android:id="@+id/diskon_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="- Rp. 0"
+                    android:textColor="@color/colorDarkGrey"
+                    android:textSize="12sp" />
+
+
+                <ImageView
+                    android:id="@+id/toogle_garis3"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@+id/tv_diskon_struk"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layerType="software"
+                    android:src="@drawable/garis_putus" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/pentotal_harga_struk"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_below="@+id/tv_diskon_struk"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layerType="software"
-                android:src="@drawable/garis_putus" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/pentotal_harga_struk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pembayaran_harga_struk"
-            android:layout_marginTop="-6dp"
-            android:padding="15dp">
-
-            <TextView
-                android:id="@+id/tv_total_harga_struk"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Total Harga"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                android:layout_below="@+id/pembayaran_harga_struk"
+                android:layout_marginTop="-6dp"
+                android:padding="15dp">
 
-            <TextView
-                android:id="@+id/total_harga_struk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Rp. 15.000,00"
-                android:textColor="@color/colorDarkGrey"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_total_harga_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Total Harga"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/total_harga_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 15.000,00"
+                    android:textColor="@color/colorDarkGrey"
+                    android:textSize="12sp" />
 
 
-            <ImageView
-                android:id="@+id/toogle_garis4"
+                <ImageView
+                    android:id="@+id/toogle_garis4"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@+id/tv_total_harga_struk"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layerType="software"
+                    android:src="@drawable/garis_putus" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/pembayaran_struk"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_below="@+id/tv_total_harga_struk"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layerType="software"
-                android:src="@drawable/garis_putus" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/pembayaran_struk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pentotal_harga_struk"
-            android:layout_marginTop="-6dp"
-            android:padding="15dp">
-
-            <TextView
-                android:id="@+id/tv_bayar_struk"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Bayar"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                android:layout_below="@+id/pentotal_harga_struk"
+                android:layout_marginTop="-6dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_bayar_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Bayar"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
 
 
-            <TextView
-                android:id="@+id/tv_kembalian_struk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_bayar_struk"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Kembalian"
-                android:textColor="@color/disable_thumb_grey"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_kembalian_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_bayar_struk"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Kembalian"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
 
 
-            <TextView
-                android:id="@+id/bayar_struk"
+                <TextView
+                    android:id="@+id/bayar_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 20.000,00"
+                    android:textColor="@color/colorDarkGrey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/kembalian_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_bayar_struk"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="- Rp. 5000,00"
+                    android:textColor="@color/colorDarkGrey"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_action_print"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Rp. 20.000,00"
-                android:textColor="@color/colorDarkGrey"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/kembalian_struk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_bayar_struk"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/roboto_bold"
-                android:text="- Rp. 5000,00"
-                android:textColor="@color/colorDarkGrey"
-                android:textSize="12sp" />
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorBlue"
+                android:elevation="6dp"
+                android:src="@drawable/ic_print"
+                app:borderWidth="0dp"
+                app:fabSize="normal" />
 
 
-        </RelativeLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_action_print"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/colorBlue"
-            android:elevation="6dp"
-            android:src="@drawable/ic_print"
-            app:borderWidth="0dp"
-            app:fabSize="normal" />
-
-
-        <!--<com.getbase.floatingactionbutton.FloatingActionsMenu-->
+            <!--<com.getbase.floatingactionbutton.FloatingActionsMenu-->
             <!--android:id="@+id/fab_menu"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -429,29 +429,28 @@
             <!--app:fab_labelStyle="@style/customFab">-->
 
             <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
-                <!--android:id="@+id/fab_action_print"-->
-                <!--android:layout_width="30dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--app:fab_size="mini"-->
-                <!--app:fab_colorNormal="@color/colorPrimary"-->
-                <!--app:fab_colorPressed="@color/colorWhiteMisty"-->
-                <!--app:fab_icon="@drawable/ic_print_blue"-->
-                <!--app:fab_title="Cetak" />-->
+            <!--android:id="@+id/fab_action_print"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--app:fab_size="mini"-->
+            <!--app:fab_colorNormal="@color/colorPrimary"-->
+            <!--app:fab_colorPressed="@color/colorWhiteMisty"-->
+            <!--app:fab_icon="@drawable/ic_print_blue"-->
+            <!--app:fab_title="Cetak" />-->
 
             <!--&lt;!&ndash;<com.getbase.floatingactionbutton.FloatingActionButton&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/fab_action_bagikan"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:fab_size="mini"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:fab_colorNormal="@color/colorPrimary"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:fab_colorPressed="@color/colorWhiteMisty"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:fab_icon="@drawable/ic_share"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:fab_title="Bagikan" />&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/fab_action_bagikan"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:fab_size="mini"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:fab_colorNormal="@color/colorPrimary"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:fab_colorPressed="@color/colorWhiteMisty"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:fab_icon="@drawable/ic_share"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:fab_title="Bagikan" />&ndash;&gt;-->
 
-        <!--</com.getbase.floatingactionbutton.FloatingActionsMenu>-->
+            <!--</com.getbase.floatingactionbutton.FloatingActionsMenu>-->
 
 
-    </RelativeLayout>
-
+        </RelativeLayout>
 
 </RelativeLayout>

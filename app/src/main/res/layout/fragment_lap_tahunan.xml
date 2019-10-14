@@ -1,289 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    android:padding="20dp"
     tools:context=".Fragment.LapTahunanFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/spinner_border">
-
-        <Spinner
-            android:id="@+id/spinner_tahun"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@android:color/transparent"
-            android:entries="@array/tahun_arrays"
-            android:spinnerMode="dropdown" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="18dp"
-            android:src="@drawable/ic_drop_down" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/container_total_penjualan"
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/spinner_border">
-
-        <ImageView
-            android:id="@+id/im_total_penjualan"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_total_penjualan" />
-
-        <TextView
-            android:id="@+id/tv_nominal_penjualan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toEndOf="@+id/im_total_penjualan"
-            android:fontFamily="@font/roboto_bold"
-            android:text=""
-            android:textColor="@color/colorBlack"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/tv_total_penjualan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_nominal_penjualan"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toEndOf="@+id/im_total_penjualan"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Total Penjualan"
-            android:textColor="@color/colorDarkGray"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/im_grafik_penjualan"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
-            android:src="@drawable/ic_grafik" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/container_total_keuntungan"
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/spinner_border">
-
-        <ImageView
-            android:id="@+id/im_total_keuntungan"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_total_keuntungan" />
-
-        <TextView
-            android:id="@+id/tv_nominal_keuntungan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toEndOf="@+id/im_total_keuntungan"
-            android:fontFamily="@font/roboto_bold"
-            android:text=""
-            android:textColor="@color/colorBlack"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/tv_total_keuntungan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_nominal_keuntungan"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toEndOf="@+id/im_total_keuntungan"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Total Keuntungan"
-            android:textColor="@color/colorDarkGray"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/im_grafik_keuntungan"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
-            android:src="@drawable/ic_grafik" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <RelativeLayout
-            android:id="@+id/container_jumlah_transaksi"
-            android:layout_width="150dp"
-            android:layout_height="85dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:background="@drawable/spinner_border">
 
-            <TextView
-                android:id="@+id/tv_jumlah_transaksi"
+            <Spinner
+                android:id="@+id/spinner_tahun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@android:color/transparent"
+                android:entries="@array/tahun_arrays"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="0"
-                android:textColor="@color/colorBlack"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/tv_transaksi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_jumlah_transaksi"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="Transaksi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp" />
-
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_drop_down" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/container_jumlah_produk_terjual"
-            android:layout_width="150dp"
+            android:id="@+id/container_total_penjualan"
+            android:layout_width="match_parent"
             android:layout_height="85dp"
-            android:layout_alignParentRight="true"
+            android:layout_marginTop="16dp"
             android:background="@drawable/spinner_border">
 
+            <ImageView
+                android:id="@+id/im_total_penjualan"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_total_penjualan" />
+
             <TextView
-                android:id="@+id/tv_jumlah_produk_terjual"
+                android:id="@+id/tv_nominal_penjualan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:layout_toEndOf="@+id/im_total_penjualan"
                 android:fontFamily="@font/roboto_bold"
-                android:text="0"
+                android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tv_produk_terjual"
+                android:id="@+id/tv_total_penjualan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_jumlah_produk_terjual"
-                android:layout_centerInParent="true"
+                android:layout_below="@+id/tv_nominal_penjualan"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:layout_toEndOf="@+id/im_total_penjualan"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Produk Terjual"
+                android:text="Total Penjualan"
                 android:textColor="@color/colorDarkGray"
                 android:textSize="14sp" />
 
+            <ImageView
+                android:id="@+id/im_grafik_penjualan"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_grafik" />
+
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/container_produk_paling_laku"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/spinner_border">
-
-
-        <TextView
-            android:id="@+id/tv_produk_paling_laku"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Produk Paling Laku"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_jumlah_produk_laku"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="0"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_bulan_produk_laku"
+        <RelativeLayout
+            android:id="@+id/container_total_keuntungan"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="85dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_border">
 
-        </android.support.v7.widget.RecyclerView>
+            <ImageView
+                android:id="@+id/im_total_keuntungan"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_total_keuntungan" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_nominal_keuntungan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toEndOf="@+id/im_total_keuntungan"
+                android:fontFamily="@font/roboto_bold"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp" />
 
-    <RelativeLayout
-        android:id="@+id/container_produk_paling_tidaklaku"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/spinner_border">
+            <TextView
+                android:id="@+id/tv_total_keuntungan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_nominal_keuntungan"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toEndOf="@+id/im_total_keuntungan"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Total Keuntungan"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_produk_tidak_laku"
+            <ImageView
+                android:id="@+id/im_grafik_keuntungan"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_grafik" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Produk Tidak Laku"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp" />
+            android:layout_marginTop="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="0"
-            android:textColor="@color/colorBlack"
-            android:textSize="14sp" />
+            <RelativeLayout
+                android:id="@+id/container_jumlah_transaksi"
+                android:layout_width="150dp"
+                android:layout_height="85dp"
+                android:background="@drawable/spinner_border">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_bulan_produk_paling_tidak_laku"
+                <TextView
+                    android:id="@+id/tv_jumlah_transaksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="0"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_transaksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_jumlah_transaksi"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Transaksi"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_jumlah_produk_terjual"
+                android:layout_width="150dp"
+                android:layout_height="85dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/spinner_border">
+
+                <TextView
+                    android:id="@+id/tv_jumlah_produk_terjual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="0"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_produk_terjual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_jumlah_produk_terjual"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Produk Terjual"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_produk_paling_laku"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_border">
 
-        </android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_produk_paling_laku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Produk Paling Laku"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_jumlah_produk_laku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_bulan_produk_laku"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_produk_paling_tidaklaku"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_border">
+
+            <TextView
+                android:id="@+id/tv_produk_tidak_laku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Produk Tidak Laku"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_bulan_produk_paling_tidak_laku"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

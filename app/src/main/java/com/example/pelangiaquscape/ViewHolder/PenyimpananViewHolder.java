@@ -51,18 +51,22 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
         FirebaseDatabase.getInstance().getReference("Barang").child(penyimpanan.getKeyBarang()).child("merek").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                FirebaseDatabase.getInstance().getReference("Merek").child(dataSnapshot.getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Merek m = dataSnapshot.getValue(Merek.class);
-                        tvMerek.setText(m.getNama());
-                    }
+                if(dataSnapshot.getValue(String.class) != null) {
+                    FirebaseDatabase.getInstance().getReference("Merek").child(dataSnapshot.getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Merek m = dataSnapshot.getValue(Merek.class);
+                            tvMerek.setText(m.getNama());
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+                }else{
+                    tvMerek.setText("UNKNOWN");
+                }
             }
 
             @Override

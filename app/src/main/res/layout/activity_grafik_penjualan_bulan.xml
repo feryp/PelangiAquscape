@@ -71,34 +71,34 @@
             android:textColor="@color/colorBlack"
             android:textSize="20sp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/spinner_border">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:background="@drawable/spinner_border">-->
 
-            <Spinner
-                android:id="@+id/spinner_bulan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:entries="@array/bulan_arrays"
-                android:prompt="@string/bulan_prompt"
-                android:spinnerMode="dropdown" />
+            <!--<Spinner-->
+                <!--android:id="@+id/spinner_bulan"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:entries="@array/bulan_arrays"-->
+                <!--android:prompt="@string/bulan_prompt"-->
+                <!--android:spinnerMode="dropdown" />-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginRight="18dp"
-                android:src="@drawable/ic_drop_down" />
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="18dp"-->
+                <!--android:src="@drawable/ic_drop_down" />-->
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"

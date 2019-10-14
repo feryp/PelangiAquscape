@@ -181,13 +181,13 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.container_total_penjualan:
-                Intent TotalPenjualan = new Intent(getActivity(), GrafikPenjualanBulanActivity.class);
-                TotalPenjualan.putExtra("penjualan", penjualan);
-                startActivity(TotalPenjualan);
+//                Intent TotalPenjualan = new Intent(getActivity(), GrafikPenjualanBulanActivity.class);
+//                TotalPenjualan.putExtra("penjualan", penjualan);
+//                startActivity(TotalPenjualan);
                 break;
             case R.id.container_total_keuntungan:
-                Intent TotalKeuntungan = new Intent(getActivity(), GrafikKeuntunganBulanActivity.class);
-                startActivity(TotalKeuntungan);
+//                Intent TotalKeuntungan = new Intent(getActivity(), GrafikKeuntunganBulanActivity.class);
+//                startActivity(TotalKeuntungan);
                 break;
         }
     }

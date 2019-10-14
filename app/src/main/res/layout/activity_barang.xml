@@ -49,14 +49,13 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
+
                     <ImageView
-                        android:id="@+id/im_reload"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/ic_reload" />
+                        android:paddingRight="10dp" />
 
 
                 </RelativeLayout>
@@ -68,8 +67,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:background="@color/colorPrimary"
+            android:orientation="horizontal"
             android:padding="12dp">
 
 
@@ -84,57 +83,63 @@
 
         </LinearLayout>
 
-
-        <RelativeLayout
-            android:id="@+id/container_ilustrasi"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:layout_height="wrap_content">
 
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_merek_barang"
+            <RelativeLayout
+                android:id="@+id/container_ilustrasi"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <LinearLayout
-                android:id="@+id/linear_imageview"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/iv_ilustrasi_barangkosong"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tidak_ada_barang" />
+                android:background="@color/colorPrimary">
 
-                <TextView
-                    android:id="@+id/tv_barang_kosong"
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_merek_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <LinearLayout
+                    android:id="@+id/linear_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Belum ada list barang"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_ilustrasi_barangkosong"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/tidak_ada_barang" />
+
+                    <TextView
+                        android:id="@+id/tv_barang_kosong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Belum ada list barang"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
 
+            </RelativeLayout>
 
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-        </RelativeLayout>
 
         <!--<include-->
-            <!--android:id="@+id/layout_barang_kosong"-->
-            <!--layout="@layout/layout_barang_kosong" />-->
+        <!--android:id="@+id/layout_barang_kosong"-->
+        <!--layout="@layout/layout_barang_kosong" />-->
 
         <!--<include-->
-            <!--android:id="@+id/layout_barang_ada"-->
-            <!--layout="@layout/layout_barang_ada"-->
-            <!--android:visibility="gone" />-->
+        <!--android:id="@+id/layout_barang_ada"-->
+        <!--layout="@layout/layout_barang_ada"-->
+        <!--android:visibility="gone" />-->
 
     </LinearLayout>
 

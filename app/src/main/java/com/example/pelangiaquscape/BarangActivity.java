@@ -3,6 +3,7 @@ package com.example.pelangiaquscape;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,6 +54,7 @@ public class BarangActivity extends AppCompatActivity {
 
     List<String> merek = new ArrayList<>();
     private MerekCallback callback;
+    private SwipeRefreshLayout swipeRefresh;
     BarangAdapter adapter;
 
     boolean fromTambahPenyimpananActivity;
@@ -79,6 +81,7 @@ public class BarangActivity extends AppCompatActivity {
         cancel = findViewById(R.id.im_cancel);
         fab_barang = findViewById(R.id.fab_barang);
         imageLayout = findViewById(R.id.linear_imageview);
+        swipeRefresh = findViewById(R.id.swipeRefresh);
         // END INIT VIEW
 
         readData(new MerekCallback() {
@@ -108,7 +111,19 @@ public class BarangActivity extends AppCompatActivity {
             }
         });
 
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefresh.setRefreshing(true);
+                loadBarang();
+
+            }
+        });
+
+        swipeRefresh.setRefreshing(true);
         loadBarang();
+
+
     }
 
     void readData(final MerekCallback callback) {
@@ -172,6 +187,9 @@ public class BarangActivity extends AppCompatActivity {
 
             }
         });
+
+
+        swipeRefresh.setRefreshing(false);
 
 
 //        Log.v("QUERYAN", q.getPath().toString());

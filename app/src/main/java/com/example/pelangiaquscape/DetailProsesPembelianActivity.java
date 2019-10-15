@@ -179,8 +179,10 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         final List<Penyimpanan> listPenyimpanan = new ArrayList<>();
         Task<Void> task = null;
         for (ItemKeranjang keranjang : listItem) {
+            String k = keranjang.getKode() + "key";
+            System.out.println(k);
             Penyimpanan pe = new Penyimpanan(c.getTimeInMillis(),
-                    sharedPref.getString(keranjang.getKode().concat("key"), ""), keranjang.getKode(), keranjang.getQty(), "Pembelian", 0);
+                    sharedPref.getString(k, ""), keranjang.getKode(), keranjang.getQty(), "Pembelian", 0);
 
             task = FirebaseDatabase.getInstance().getReference("Penyimpanan").push().setValue(pe);
             listPenyimpanan.add(pe);

@@ -178,6 +178,7 @@ public class TransaksiKodeBarangActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final TransaksiBarangViewHolder holder, int position, @NonNull final Barang model) {
 
+                System.out.println(getRef(position).getKey());
 
                 holder.bindDataTransaksi(model, namaMerek, fromTambahPembelian, this.getRef(position).getKey());
 

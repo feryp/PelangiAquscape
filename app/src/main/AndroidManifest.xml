@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
+        <activity android:name=".TestUI.TestUIActivity">
+
+        </activity>
         <activity android:name=".PusatBantuanPegawaiActivity"></activity>
         <activity android:name=".PusatBantuanPrinterActivity" />
         <activity android:name=".PusatBantuanAkunTokoActivity" />
@@ -105,13 +108,13 @@
         </activity>
         <activity android:name=".DummyInsertDataActivity" />
 
-        <service android:name=".Notification.NotificationService" >
-            <intent-filter>
+        <!--<service android:name=".Notification.NotificationService" >-->
+            <!--<intent-filter>-->
 
-                <action android:name="com.google.firebase.MESSAGIN_EVENT"/>
-            </intent-filter>
+                <!--<action android:name="com.google.firebase.MESSAGIN_EVENT"/>-->
+            <!--</intent-filter>-->
 
-        </service>
+        <!--</service>-->
     </application>
 
 </manifest>

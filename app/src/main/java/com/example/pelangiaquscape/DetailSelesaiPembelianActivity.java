@@ -95,6 +95,8 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
         String dateFormat = simpleDateFormat.format(date);
         tvTglPembelian.setText(dateFormat);
         tvNamaPemasok.setText(pembelian.getNamaPemasok());
+        tvNoFaktur.setText("00" + no);
+        tvStatusPembelian.setText("Lunas");
 
         List<ItemKeranjang> listBarang = pembelian.getListBarang();
         double total = 0;

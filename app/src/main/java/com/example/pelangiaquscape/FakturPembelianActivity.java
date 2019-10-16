@@ -71,7 +71,7 @@ public class FakturPembelianActivity extends AppCompatActivity {
         rvItemPesanan.setLayoutManager(new LinearLayoutManager(this));
 
         //SET TEXT
-        tvNoFaktur.setText("00"+no);
+        tvNoFaktur.setText("00" + no);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(pembelian.getTanggalPesanan());

@@ -268,11 +268,52 @@
 
             </RelativeLayout>
 
+
+            <RelativeLayout
+                android:id="@+id/pentotal_harga_struk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/isi_barang_struk"
+                android:layout_marginTop="-6dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_total_harga_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Total Harga"
+                    android:textColor="@color/disable_thumb_grey"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/total_harga_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Rp. 15.000,00"
+                    android:textColor="@color/colorDarkGrey"
+                    android:textSize="12sp" />
+
+
+                <ImageView
+                    android:id="@+id/toogle_garis4"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@+id/tv_total_harga_struk"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layerType="software"
+                    android:src="@drawable/garis_putus" />
+
+            </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/pembayaran_harga_struk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/isi_barang_struk"
+                android:layout_below="@+id/pentotal_harga_struk"
                 android:layout_marginTop="-6dp"
                 android:padding="15dp">
 
@@ -311,50 +352,10 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/pentotal_harga_struk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/pembayaran_harga_struk"
-                android:layout_marginTop="-6dp"
-                android:padding="15dp">
-
-                <TextView
-                    android:id="@+id/tv_total_harga_struk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Total Harga"
-                    android:textColor="@color/disable_thumb_grey"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/total_harga_struk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Rp. 15.000,00"
-                    android:textColor="@color/colorDarkGrey"
-                    android:textSize="12sp" />
-
-
-                <ImageView
-                    android:id="@+id/toogle_garis4"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_below="@+id/tv_total_harga_struk"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layerType="software"
-                    android:src="@drawable/garis_putus" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/pembayaran_struk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/pentotal_harga_struk"
+                android:layout_below="@+id/pembayaran_harga_struk"
                 android:layout_marginTop="-6dp"
                 android:padding="15dp">
 

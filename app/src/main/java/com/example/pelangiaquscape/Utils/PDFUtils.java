@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,6 +56,8 @@ public class PDFUtils {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(penjualan.getTanggalPenjualan());
 
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+
         SimpleDateFormat formattedDate = new SimpleDateFormat("dd-MM-yyyy");
         Date datea = c.getTime();
         String date  = formattedDate.format(datea);
@@ -78,7 +81,7 @@ public class PDFUtils {
 
 
         // create document
-        Document document = new Document(PageSize.LEGAL);
+        Document document = new Document(PageSize.SMALL_PAPERBACK);
         document.setMargins(10,10,20,20);
 
         // create table
@@ -130,7 +133,7 @@ public class PDFUtils {
             tbl.addCell(cell);
 
             document.add(tbl);
-            Paragraph p = new Paragraph("----------------------------------------------------------------------------------------------------------------------");
+            Paragraph p = new Paragraph("------------------------------------------------------------------------");
             p.setLeading(0,1);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
@@ -207,7 +210,7 @@ public class PDFUtils {
             tbl.addCell(cell);
 
             document.add(tbl);
-            Paragraph p1 = new Paragraph("----------------------------------------------------------------------------------------------------------------------");
+            Paragraph p1 = new Paragraph("------------------------------------------------------------------------");
             p1.setLeading(0,1);
             p1.setAlignment(Element.ALIGN_CENTER);
             document.add(p1);
@@ -226,20 +229,20 @@ public class PDFUtils {
 
                 // harga * qty
                 cell = new PdfPCell();
-                String harga = String.valueOf(keranjang.getHargaJual());
+                String harga = decimalFormat.format(keranjang.getHargaJual());
                 String qty = String.valueOf(keranjang.getQty());
-                cell.setPhrase(new Phrase(harga + " x " + qty));
+                cell.setPhrase(new Phrase("Rp. " + harga + " x " + qty));
                 cell.setBorder(0);
                 tbl.addCell(cell);
 
                 // total harga per item
                 cell = new PdfPCell();
-                String totalHargaPerItem = String.valueOf(keranjang.getTotalPrice());
+                String totalHargaPerItem = decimalFormat.format(keranjang.getTotalPrice());
                 Font fontTotalItem = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
                 Paragraph pTotalItem = new Paragraph(totalHargaPerItem);
                 paragraph.setLeading(0, 1);
                 cell.addElement(pTotalItem);
-                cell.setPhrase(new Phrase(totalHargaPerItem, fontTotalItem));
+                cell.setPhrase(new Phrase("Rp. " + totalHargaPerItem, fontTotalItem));
                 cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
                 cell.setBorder(0);
                 tbl.addCell(cell);
@@ -250,7 +253,7 @@ public class PDFUtils {
             }
 
             document.add(tbl);
-            Paragraph p2 = new Paragraph("----------------------------------------------------------------------------------------------------------------------");
+            Paragraph p2 = new Paragraph("------------------------------------------------------------------------");
             p2.setLeading(0,1);
             p2.setAlignment(Element.ALIGN_CENTER);
             document.add(p2);
@@ -288,18 +291,18 @@ public class PDFUtils {
             tbl.addCell(cell);
 
 
-            String totalHarga = String.valueOf(totalHargaSemuaItem);
+            String totalHarga = decimalFormat.format(totalHargaSemuaItem);
             Font fontTotalHarga = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pTotalHarga = new Paragraph(totalHarga);
             paragraph.setLeading(0, 1);
             cell.addElement(pTotalHarga);
-            cell.setPhrase(new Phrase(totalHarga, fontTotalHarga));
+            cell.setPhrase(new Phrase("Rp. " + totalHarga, fontTotalHarga));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             cell.setBorder(0);
             tbl.addCell(cell);
 
             document.add(tbl);
-            Paragraph p4 = new Paragraph("----------------------------------------------------------------------------------------------------------------------");
+            Paragraph p4 = new Paragraph("------------------------------------------------------------------------");
             p4.setLeading(0,1);
             p4.setAlignment(Element.ALIGN_CENTER);
             document.add(p4);
@@ -312,12 +315,12 @@ public class PDFUtils {
             cell.setBorder(0);
             tbl.addCell(cell);
 
-            String bayar = String.valueOf(penjualan.getUangBayar());
+            String bayar = decimalFormat.format(penjualan.getUangBayar());
             Font fontBayar = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pBayar = new Paragraph(bayar);
             paragraph.setLeading(0, 1);
             cell.addElement(pBayar);
-            cell.setPhrase(new Phrase(bayar, fontBayar));
+            cell.setPhrase(new Phrase("Rp. " + bayar, fontBayar));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             cell.setBorder(0);
             tbl.addCell(cell);
@@ -328,12 +331,12 @@ public class PDFUtils {
             cell.setBorder(0);
             tbl.addCell(cell);
 
-            String kembalian = String.valueOf(penjualan.getUangKembalian());
+            String kembalian = decimalFormat.format(penjualan.getUangKembalian());
             Font fontKembalian = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pKembalian = new Paragraph(kembalian);
             paragraph.setLeading(0, 1);
             cell.addElement(pKembalian);
-            cell.setPhrase(new Phrase(kembalian, fontKembalian));
+            cell.setPhrase(new Phrase("Rp. " + kembalian, fontKembalian));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             cell.setBorder(0);
             tbl.addCell(cell);

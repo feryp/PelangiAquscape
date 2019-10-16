@@ -166,7 +166,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
     void showDeleteDialog(final String key, final Pegawai pegawai){
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Hapus Data");
-        alertDialog.setMessage("Apakah anda ingin menghapus Merek ini ? ");
+        alertDialog.setMessage("Apakah anda ingin menghapus Pegawai ini ? ");
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "YA",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

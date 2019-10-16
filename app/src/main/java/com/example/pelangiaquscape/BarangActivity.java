@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -51,6 +52,7 @@ public class BarangActivity extends AppCompatActivity {
     Query q;
     LinearLayout imageLayout;
     FloatingActionButton fab_barang;
+    SearchView searchView;
 
     List<String> merek = new ArrayList<>();
     private MerekCallback callback;
@@ -81,6 +83,7 @@ public class BarangActivity extends AppCompatActivity {
         cancel = findViewById(R.id.im_cancel);
         fab_barang = findViewById(R.id.fab_barang);
         imageLayout = findViewById(R.id.linear_imageview);
+        searchView = findViewById(R.id.search_merek_persediaan_barang);
         swipeRefresh = findViewById(R.id.swipeRefresh);
         // END INIT VIEW
 
@@ -90,6 +93,27 @@ public class BarangActivity extends AppCompatActivity {
                 for (String a : listMerek) {
                     Log.v("testmerek", a);
                 }
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                searchFirebase(s);
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                loadBarang();
+                return false;
             }
         });
 
@@ -123,6 +147,21 @@ public class BarangActivity extends AppCompatActivity {
         swipeRefresh.setRefreshing(true);
         loadBarang();
 
+
+    }
+
+    private void searchFirebase(String searchText) {
+        Log.i("MASUK KE SEARCH", "hehe");
+        q = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("Merek")
+                .orderByChild("nama").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase() + "\uf8ff");
+
+        FirebaseRecyclerOptions<Merek> options =
+                new FirebaseRecyclerOptions.Builder<Merek>()
+                .setQuery(q, Merek.class)
+                .build();
 
     }
 

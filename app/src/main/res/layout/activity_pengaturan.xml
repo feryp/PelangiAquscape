@@ -84,14 +84,14 @@
             android:textColor="#898989"
             android:textSize="12sp" />
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/switch_bluetooth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:checked="false"
-            android:switchMinWidth="25dp"
-            android:theme="@style/SCBSwitch" />
+        <!--<android.support.v7.widget.SwitchCompat-->
+            <!--android:id="@+id/switch_bluetooth"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:checked="false"-->
+            <!--android:switchMinWidth="25dp"-->
+            <!--android:theme="@style/SCBSwitch" />-->
 
     </RelativeLayout>
 

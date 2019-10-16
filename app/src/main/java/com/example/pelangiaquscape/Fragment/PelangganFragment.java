@@ -197,7 +197,7 @@ public class PelangganFragment extends Fragment {
     void showDialog(final String key, final Pelanggan pelanggan){
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
         alertDialog.setTitle("Hapus Data");
-        alertDialog.setMessage("Apakah anda ingin mengahapus Pelaanggan ini ? ");
+        alertDialog.setMessage("Apakah anda ingin mengahapus Pelanggan ini ? ");
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "YA",
                 new DialogInterface.OnClickListener() {
                     @Override

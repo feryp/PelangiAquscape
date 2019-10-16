@@ -35,7 +35,7 @@ public class PengaturanActivity extends AppCompatActivity {
         cancel = findViewById(R.id.im_cancel);
         statusPrinter = findViewById(R.id.status_printer);
         pengaturanPrinter = findViewById(R.id.printer);
-        switchBluetooth = findViewById(R.id.switch_bluetooth);
+//        switchBluetooth = findViewById(R.id.switch_bluetooth);
 
         //adapter
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

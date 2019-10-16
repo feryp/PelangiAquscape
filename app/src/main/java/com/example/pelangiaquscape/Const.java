@@ -12,8 +12,8 @@ public class Const {
 
     public static String FOLDER_PDF = Environment.getExternalStorageDirectory() + File.separator+ "Struk";
 
-    public static ArrayList<ItemKeranjang> tempList(){
-        ArrayList<ItemKeranjang> listItem = new ArrayList<ItemKeranjang>();
+    public static List<ItemKeranjang> tempList(){
+        List<ItemKeranjang> listItem = new ArrayList<>();
 
         return listItem;
 

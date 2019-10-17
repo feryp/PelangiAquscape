@@ -23,6 +23,7 @@ import com.example.pelangiaquscape.Adapter.StrukPenjualanAdapter;
 import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
+import com.example.pelangiaquscape.Utils.PDFUtils;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,11 +60,10 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
     TextView tvNamaToko, tvAlamatToko, tvNoTeleponToko, tvNamaKasir, tvTglTransaksi, tvJamTransaksi, tvWaktuTransaksi, tvNoStruk, tvDiskon, tvTotalHarga, tvUangBayar, tvUangKembalian;
     RecyclerView rvItemBarang;
     FloatingActionButton fabCetak;
-    RelativeLayout convertPdf;
     Penjualan penjualan;
-    AkunToko akunToko;
     String namaKasir;
-    String key, dirpath;
+    String key;
+    PDFUtils utils;
 
     DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
     List<ItemKeranjang> listKeranjang;
@@ -160,100 +160,20 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public class AsyncMakePdf extends AsyncTask<List<ItemKeranjang>, String, Integer>{
 
-        LayoutInflater inflater = getLayoutInflater();
-        String path = FOLDER_PDF + File.separator + "Struk.pdf";
-        PdfWriter writer;
-
-        @Override
-        protected Integer doInBackground(List<ItemKeranjang>... lists) {
-
-            BaseFont baseFont = null;
-            try {
-                baseFont = BaseFont.createFont("res/font/roboto_regular.ttf", "UTF-8", BaseFont.EMBEDDED);
-            } catch (IOException e){
-                e.printStackTrace();
-            } catch (DocumentException e){
-                e.printStackTrace();
-            }
-
-
-            Document document =  new Document(PageSize.A4, 38,38,38,38);
-            document.addCreationDate();
-
-            //Location to save
-            try {
-                writer = PdfWriter.getInstance(document, new FileOutputStream(path));
-            } catch (DocumentException e){
-                e.printStackTrace();
-            } catch (FileNotFoundException e){
-                e.printStackTrace();
-            }
-
-
-            return null;
-        }
-    }
-
-//    public void layoutToImage(View view) throws FileNotFoundException {
-//        convertPdf = findViewById(R.id.layout_to_pdf);
-//        convertPdf.setDrawingCacheEnabled(true);
-//        convertPdf.buildDrawingCache();
-//        Bitmap bm = convertPdf.getDrawingCache();
-//        Intent share = new Intent(Intent.ACTION_SEND);
-//        share.setType("image/jpeg");
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//
-//        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-//        try {
-//            file.createNewFile();
-//            FileOutputStream fo = new FileOutputStream(file);
-//            fo.write(bytes.toByteArray());
-//        } catch (IOException e){
-//
-//        }
-//
-//        imageToPDF();
-//
-//
-//    }
-
-//    public void imageToPDF()  {
-//        try {
-//            Document document = new Document();
-//            dirpath = android.os.Environment.getExternalStorageDirectory().toString();
-//            PdfWriter.getInstance(document, new FileOutputStream(dirpath + "/NewPDF.pdf"));
-//            document.open();
-//            Image img = Image.getInstance(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-//            float scaler = ((document.getPageSize().getWidth() - document.leftMargin() - document.rightMargin() - 0) / img.getWidth()) * 100;
-//            img.scalePercent(scaler);
-//            img.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
-//            document.add(img);
-//            document.close();
-//            Toast.makeText(StrukPenjualanActivity.this, "PDF Generate Successfully...", Toast.LENGTH_SHORT).show();
-//
-//        } catch (Exception e){
-//
-//        }
-//
-//    }
-
-//    public void imageToPDF(View v) throws FileNotFoundException{
-//
-//    }
 
 
     void loadAkun(){
+
         FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                AkunToko akunToko = dataSnapshot.getValue(AkunToko.class);
+                AkunToko toko= dataSnapshot.getValue(AkunToko.class);
 
-                tvNamaToko.setText(akunToko.getNamaToko());
-                tvAlamatToko.setText(akunToko.getAlamat());
-                tvNoTeleponToko.setText(akunToko.getNoTelepon());
+                tvNamaToko.setText(toko.getNamaToko());
+                tvAlamatToko.setText(toko.getAlamat());
+                tvNoTeleponToko.setText(toko.getNoTelepon());
+
 
             }
 
@@ -268,35 +188,17 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fab_action_print:
-                AsyncMakePdf asyncMakePdf = new AsyncMakePdf();
-                asyncMakePdf.execute(tempList());
-
-                showToast("Cetak");
+                try {
+                    utils.createPdfForReceipt();
+                    showToast("Cetak");
+                } catch (Exception e){
+                    e.printStackTrace();
+                    showToast("Tidak Bisa Di Cetak");
+                }
                 break;
         }
     }
 
-//    public void convertStruk() throws IOException {
-//        convertPdf = findViewById(R.id.layout_to_pdf);
-//        convertPdf.setDrawingCacheEnabled(true);
-//        convertPdf.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-//                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-//        convertPdf.layout(0,0, convertPdf.getMeasuredWidth(), convertPdf.getMeasuredHeight());
-//        convertPdf.buildDrawingCache();
-//        Bitmap bm = Bitmap.createBitmap(convertPdf.getDrawingCache());
-//        convertPdf.setDrawingCacheEnabled(false);
-//        Intent share = new Intent(Intent.ACTION_SEND);
-//        share.setType("image/jpg");
-//
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//
-//        File file = new File(getExternalFilesDir(null).getAbsolutePath() + File.separator + "Struk" + File.separator + "strukPenjualan.jpg");
-//        file.createNewFile();
-//        FileOutputStream fo = new FileOutputStream(file);
-//        fo.write(bytes.toByteArray());
-//
-//    }
 
 
 }

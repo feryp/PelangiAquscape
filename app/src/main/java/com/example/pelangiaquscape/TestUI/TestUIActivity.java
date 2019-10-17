@@ -21,6 +21,7 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
 
     Button btnTest;
     PDFUtils utils;
+    String key;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
 
                         Penjualan penjualan = dataSnapshotPenjualan.getValue(Penjualan.class);
 
-                        utils =  new PDFUtils(penjualan, toko);
+//                        utils =  new PDFUtils(penjualan, toko);
                         btnTest.setOnClickListener(TestUIActivity.this);
 
                     }
@@ -72,13 +73,13 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
         switch(v.getId()){
             case R.id.btn_test:
 
-                try {
-                    utils.createPdfForReceipt();
-                    Toast.makeText(this, "kayanya berhasil wkkkw", Toast.LENGTH_SHORT).show();
-                }catch(Exception exc){
-                    exc.printStackTrace();
-                    Toast.makeText(this, "GAGAL BOS", Toast.LENGTH_SHORT).show();
-                }
+//                try {
+//                    utils.createPdfForReceipt(key);
+//                    Toast.makeText(this, "kayanya berhasil wkkkw", Toast.LENGTH_SHORT).show();
+//                }catch(Exception exc){
+//                    exc.printStackTrace();
+//                    Toast.makeText(this, "GAGAL BOS", Toast.LENGTH_SHORT).show();
+//                }
 
                 break;
         }

@@ -36,12 +36,14 @@ public class PDFUtils {
     Penjualan penjualan;
     AkunToko akunToko;
     Merek merek;
+    String key;
 
-    public PDFUtils(){}
+
+    public PDFUtils(AkunToko akunToko){}
 
     public PDFUtils(Penjualan penjualan, AkunToko akunToko) {
-        this.penjualan = penjualan;
-        this.akunToko = akunToko;
+        this.penjualan = this.penjualan;
+        this.akunToko = this.akunToko;
     }
 
     public PDFUtils(Penjualan penjualan, AkunToko akunToko, Merek merek) {
@@ -50,11 +52,14 @@ public class PDFUtils {
         this.merek = merek;
     }
 
+
+
     public void createPdfForReceipt(){
+
 
         // create Calendar
         Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(penjualan.getTanggalPenjualan());
+        c.setTimeInMillis(this.penjualan.getTanggalPenjualan());
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
 
@@ -66,7 +71,7 @@ public class PDFUtils {
         String hehe = fmt.format(datea);
 
         // direktori u/ menyimpan pdf
-        String fpath = "/sdcard/testPdf"+hehe+".pdf";
+        String fpath = "/sdcard/strukPenjualan"+hehe+".pdf";
         File file = new File(fpath);
         if(!file.exists()){
             try {
@@ -149,7 +154,7 @@ public class PDFUtils {
             cell.setBorder(0);
             tbl.addCell(cell);
 
-            String namaKasir = penjualan.getNamaPenjual();
+            String namaKasir = this.penjualan.getNamaPenjual();
             Font fontNamaKasir = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pNamaKasir = new Paragraph(namaKasir);
             paragraph.setLeading(0, 1);
@@ -199,7 +204,7 @@ public class PDFUtils {
             cell.setBorder(0);
             tbl.addCell(cell);
 
-            String noPenjualan = penjualan.getNoPenjualan();
+            String noPenjualan = this.penjualan.getNoPenjualan();
             Font fontNoPenjualan = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pNoPenjualan = new Paragraph(tgl);
             paragraph.setLeading(0, 1);
@@ -218,7 +223,7 @@ public class PDFUtils {
             tbl = new PdfPTable(2); // buat table dgn 2 kolom
 
             double totalHargaSemuaItem = 0;
-            for(ItemKeranjang keranjang: penjualan.getListItemKeranjang()){
+            for(ItemKeranjang keranjang: this.penjualan.getListItemKeranjang()){
 
                 // kode penjualan
                 cell = new PdfPCell();
@@ -267,7 +272,7 @@ public class PDFUtils {
             tbl.addCell(cell);
 
 
-            String diskon = String.valueOf(penjualan.getDiskon());
+            String diskon = String.valueOf(this.penjualan.getDiskon());
             Font fontDiskon = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pDiskon = new Paragraph(diskon);
             paragraph.setLeading(0, 1);
@@ -315,7 +320,7 @@ public class PDFUtils {
             cell.setBorder(0);
             tbl.addCell(cell);
 
-            String bayar = decimalFormat.format(penjualan.getUangBayar());
+            String bayar = decimalFormat.format(this.penjualan.getUangBayar());
             Font fontBayar = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pBayar = new Paragraph(bayar);
             paragraph.setLeading(0, 1);
@@ -331,7 +336,7 @@ public class PDFUtils {
             cell.setBorder(0);
             tbl.addCell(cell);
 
-            String kembalian = decimalFormat.format(penjualan.getUangKembalian());
+            String kembalian = decimalFormat.format(this.penjualan.getUangKembalian());
             Font fontKembalian = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pKembalian = new Paragraph(kembalian);
             paragraph.setLeading(0, 1);
@@ -351,4 +356,6 @@ public class PDFUtils {
         }
 
     }
+
+
 }

@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.pelangiaquscape.Adapter.StrukPenjualanAdapter;
 import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.example.pelangiaquscape.Utils.PDFUtils;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -52,15 +53,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.example.pelangiaquscape.Const.FOLDER_PDF;
-import static com.example.pelangiaquscape.Const.tempList;
-
-public class StrukPenjualanActivity extends AppCompatActivity implements View.OnClickListener{
+public class StrukPenjualanActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvNamaToko, tvAlamatToko, tvNoTeleponToko, tvNamaKasir, tvTglTransaksi, tvJamTransaksi, tvWaktuTransaksi, tvNoStruk, tvDiskon, tvTotalHarga, tvUangBayar, tvUangKembalian;
     RecyclerView rvItemBarang;
     FloatingActionButton fabCetak;
     Penjualan penjualan;
+    AkunToko akunToko;
     String namaKasir;
     String key;
     PDFUtils utils;
@@ -80,10 +79,10 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
 
 
         //GET DATA
-        Intent p = getIntent();
-        penjualan = p.getParcelableExtra("penjualan");
-        key = p.getStringExtra("key");
-        namaKasir = p.getStringExtra("namaKasir");
+
+        penjualan = i.getParcelableExtra("penjualan");
+        key = i.getStringExtra("key");
+        namaKasir = i.getStringExtra("namaKasir");
 
 
         //INIT VIEW
@@ -107,7 +106,7 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
         rvItemBarang.setLayoutManager(new LinearLayoutManager(this));
 
         //SET TEXT
-        if(namaKasir != null){
+        if (namaKasir != null) {
             tvNamaKasir.setText(namaKasir);
         }
 
@@ -125,14 +124,14 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
         tvNoStruk.setText(penjualan.getNoPenjualan());
         List<ItemKeranjang> listItemTransaksi = penjualan.getListItemKeranjang();
         double total = 0;
-        for (ItemKeranjang itemKeranjang:listItemTransaksi){
+        for (ItemKeranjang itemKeranjang : listItemTransaksi) {
             total = total + itemKeranjang.getTotalPrice();
         }
 
         String format = decimalFormat.format(penjualan.getUangBayar());
         tvUangBayar.setText("Rp. " + format);
 
-        String formatDiskon = decimalFormat.format(penjualan.getDiskon()).length()<1?"0":decimalFormat.format(penjualan.getDiskon());
+        String formatDiskon = decimalFormat.format(penjualan.getDiskon()).length() < 1 ? "0" : decimalFormat.format(penjualan.getDiskon());
         tvDiskon.setText("Rp. " + formatDiskon);
 
         String formatKembalian = decimalFormat.format(penjualan.getUangKembalian());
@@ -152,29 +151,41 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
 
         loadAkun();
 
-        fabCetak.setOnClickListener(this);
 
     }
 
-    public void showToast(String message){
+    public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 
-
-
-    void loadAkun(){
-
-        FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+    void loadAkun() {
+        FirebaseDatabase.getInstance().getReference("Penjualan").child("key").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                AkunToko toko= dataSnapshot.getValue(AkunToko.class);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshotPenjualan) {
 
-                tvNamaToko.setText(toko.getNamaToko());
-                tvAlamatToko.setText(toko.getAlamat());
-                tvNoTeleponToko.setText(toko.getNoTelepon());
+                FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        AkunToko toko = dataSnapshot.getValue(AkunToko.class);
+
+                        Penjualan p = dataSnapshotPenjualan.getValue(Penjualan.class);
+
+                        utils = new PDFUtils(p, toko);
+                        fabCetak.setOnClickListener(StrukPenjualanActivity.this);
+
+                        tvNamaToko.setText(toko.getNamaToko());
+                        tvAlamatToko.setText(toko.getAlamat());
+                        tvNoTeleponToko.setText(toko.getNoTelepon());
 
 
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
@@ -182,23 +193,25 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
 
             }
         });
+
+
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.fab_action_print:
+
                 try {
 //                    utils.createPdfForReceipt();
                     showToast("Cetak");
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     showToast("Tidak Bisa Di Cetak");
                 }
                 break;
         }
     }
-
 
 
 }

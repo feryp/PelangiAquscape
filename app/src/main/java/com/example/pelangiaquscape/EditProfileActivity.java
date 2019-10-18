@@ -80,9 +80,12 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
+
         // REGISTER LISTENER
         cancel.setOnClickListener(this);
         tvUbah.setOnClickListener(this);
+
+
 
         loadProfile();
     }
@@ -108,11 +111,20 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                         etStatusJabatan.setText("Super Admin");
                     }
 
-
                     user = user1;
+
                 }
 
                 save.setOnClickListener(EditProfileActivity.this);
+
+//                try {
+//                    update(getIntent().getExtras().getString("username"),
+//                            getIntent().getExtras().getString("kodeLogin"),
+//                            getIntent().getExtras().getString("telepon"),
+//                            getIntent().getExtras().getString("bio"));
+//                } catch (NullPointerException ex){
+//
+//                }
 
             }
 
@@ -167,6 +179,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+
+
     void uploadToCloudStorage() {
 
 
@@ -185,17 +199,22 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
                     ProgressDialog dialog = new ProgressDialog(EditProfileActivity.this);
-                    dialog.setMessage("Sedang mengupload foto profil...");
+                    dialog.setMessage("Ubah Data...");
                     dialog.setIndeterminate(false);
                     dialog.setProgress((int)progress);
                     dialog.show();
+
 
 //                    String nama_akun = etNamaAkun.getText().toString();
 //                    String status_jabatan = etStatusJabatan.getText().toString();
 //                    String no_hp = etNoHp.getText().toString();
 //                    String bio = etBio.getText().toString();
-//
+
 //                    update(nama_akun, status_jabatan, no_hp, bio);
+
+                    dialog.dismiss();
+
+
 
                 })
                 .addOnFailureListener(exception -> {
@@ -209,15 +228,16 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 });
 
 
+
     }
 
-//    private void update(final String nama_akun, final String status_jabatan,final String no_hp, final  String bio) {
-//
-//        etNamaAkun.setText(nama_akun);
-//        etStatusJabatan.setText(status_jabatan);
-//        etNoHp.setText(no_hp);
-//        etBio.setText(bio);
-//    }
+    private void update(final String nama_akun, final String status_jabatan,final String no_hp, final  String bio) {
+
+        etNamaAkun.setText(nama_akun);
+        etStatusJabatan.setText(status_jabatan);
+        etNoHp.setText(no_hp);
+        etBio.setText(bio);
+    }
 
 
 }

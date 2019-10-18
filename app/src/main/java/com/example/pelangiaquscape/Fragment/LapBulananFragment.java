@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +16,11 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.pelangiaquscape.Adapter.BarangAdapter;
+import com.example.pelangiaquscape.Adapter.ProdukTidakLakuAdapter;
 import com.example.pelangiaquscape.GrafikKeuntunganBulanActivity;
 import com.example.pelangiaquscape.GrafikPenjualanBulanActivity;
+import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Pembelian;
 import com.example.pelangiaquscape.Model.Penjualan;
@@ -25,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -32,14 +39,19 @@ import java.util.List;
 public class LapBulananFragment extends Fragment implements View.OnClickListener{
     RelativeLayout TotalPenjualan, TotalKeuntungan;
     Spinner spinner;
-
+    RecyclerView rvProdukTidakLaku;
     TextView tvTotalPenjualan, tvTotalKeuntungan, tvTotalTransaksi, tvTotalTerjual, tvTotalProdukPalingLaku;
 
+    RecyclerView.LayoutManager layoutManager;
     Calendar calendar = Calendar.getInstance();
     final int YEAR = calendar.get(Calendar.YEAR);
     final int MONTH = calendar.get(Calendar.MONTH);
 
     Penjualan penjualan;
+    ProdukTidakLakuAdapter adapter;
+    List<String> merek = new ArrayList<>();
+
+    boolean fromTambahPenyimpananActivity;
 
     DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
 
@@ -57,6 +69,10 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
         tvTotalTransaksi = v.findViewById(R.id.tv_jumlah_transaksi);
         tvTotalTerjual = v.findViewById(R.id.tv_jumlah_produk_terjual);
         tvTotalProdukPalingLaku = v.findViewById(R.id.tv_jumlah_produk_laku);
+        rvProdukTidakLaku = v.findViewById(R.id.rv_bulan_produk_paling_tidak_laku);
+        rvProdukTidakLaku.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        rvProdukTidakLaku.setLayoutManager(layoutManager);
 
         spinner = v.findViewById(R.id.spinner_bulan);
 
@@ -78,6 +94,8 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 loadDataPenjualan(position);
+//                loadDataBarang(position);
+
             }
 
             @Override
@@ -91,6 +109,7 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
     }
 
 
+
     void loadDataPenjualan(int month){
         FirebaseDatabase.getInstance().getReference("Penjualan").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -102,7 +121,9 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
                 int jmlTransaksi = 0;
                 int jmlProdukTerjual = 0;
                 int qtyProdukPalingLaku = 0;
+                int qtyProdukTidakLaku = 0;
                 ItemKeranjang produkPalingLaku = null;
+                ItemKeranjang produkTidakLaku = null;
 
 
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
@@ -122,6 +143,10 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
                                 qtyProdukPalingLaku = ik.getQty();
                                 produkPalingLaku = ik;
                             }
+                            if (ik.getQty() < qtyProdukTidakLaku){
+                                qtyProdukTidakLaku = ik.getQty();
+                                produkTidakLaku = ik;
+                            }
 
                         }
                     }
@@ -137,6 +162,7 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
                 tvTotalTerjual.setText(String.valueOf(jmlProdukTerjual));
                 if(produkPalingLaku != null)
                 tvTotalProdukPalingLaku.setText(produkPalingLaku.getKode());
+
 
                 double finalTotalPenjualan = totalPenjualan;
                 FirebaseDatabase.getInstance().getReference("Pembelian").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -169,6 +195,31 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
                     }
                 });
 
+
+                if(produkPalingLaku != null)
+                FirebaseDatabase.getInstance().getReference().child("Barang").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<Barang> list = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            Barang barang = snapshot.getValue(Barang.class);
+
+
+                            list.add(barang);
+                        }
+
+                        adapter = new ProdukTidakLakuAdapter(getActivity(), list , fromTambahPenyimpananActivity);
+                        rvProdukTidakLaku.setAdapter(adapter);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
 
             @Override
@@ -176,6 +227,8 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
 
             }
         });
+
+
     }
     @Override
     public void onClick(View v) {

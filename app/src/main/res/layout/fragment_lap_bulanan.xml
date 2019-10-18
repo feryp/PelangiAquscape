@@ -254,43 +254,45 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/container_produk_paling_tidaklaku"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:orientation="vertical"
             android:background="@drawable/spinner_border">
 
             <TextView
                 android:id="@+id/tv_produk_tidak_laku"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Produk Tidak Laku"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="18dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="0"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginRight="18dp"-->
+                <!--android:fontFamily="@font/roboto_regular"-->
+                <!--android:text=""-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textSize="14sp" />-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_bulan_produk_paling_tidak_laku"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
 
             </android.support.v7.widget.RecyclerView>
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

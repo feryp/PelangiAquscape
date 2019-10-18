@@ -37,13 +37,20 @@ public class PDFUtils {
     AkunToko akunToko;
     Merek merek;
     String key;
+    String namaKasir;
 
 
     public PDFUtils(AkunToko akunToko){}
 
     public PDFUtils(Penjualan penjualan, AkunToko akunToko) {
-        this.penjualan = this.penjualan;
-        this.akunToko = this.akunToko;
+        this.penjualan = penjualan;
+        this.akunToko = akunToko;
+    }
+
+    public PDFUtils(Penjualan penjualan, AkunToko akunToko, String namaKasir) {
+        this.penjualan = penjualan;
+        this.akunToko = akunToko;
+        this.namaKasir = namaKasir;
     }
 
     public PDFUtils(Penjualan penjualan, AkunToko akunToko, Merek merek) {
@@ -59,7 +66,7 @@ public class PDFUtils {
 
         // create Calendar
         Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(this.penjualan.getTanggalPenjualan());
+        c.setTimeInMillis(penjualan.getTanggalPenjualan());
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
 
@@ -71,7 +78,7 @@ public class PDFUtils {
         String hehe = fmt.format(datea);
 
         // direktori u/ menyimpan pdf
-        String fpath = "/sdcard/strukPenjualan"+hehe+".pdf";
+        String fpath = "/sdcard/"+penjualan.getNoPenjualan()+".pdf";
         File file = new File(fpath);
         if(!file.exists()){
             try {
@@ -82,7 +89,6 @@ public class PDFUtils {
         }
 
 //        Font font = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, new BaseColor(0,0,0));
-
 
 
         // create document
@@ -154,12 +160,18 @@ public class PDFUtils {
             cell.setBorder(0);
             tbl.addCell(cell);
 
-            String namaKasir = this.penjualan.getNamaPenjual();
+            String nama;
+            if(this.namaKasir != null){
+                nama = this.namaKasir;
+            }else{
+                nama = this.penjualan.getNamaPenjual();
+            }
+
             Font fontNamaKasir = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
-            Paragraph pNamaKasir = new Paragraph(namaKasir);
+            Paragraph pNamaKasir = new Paragraph(nama);
             paragraph.setLeading(0, 1);
             cell.addElement(pNamaKasir);
-            cell.setPhrase(new Phrase(namaKasir, fontNamaKasir));
+            cell.setPhrase(new Phrase(nama, fontNamaKasir));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             cell.setBorder(0);
             tbl.addCell(cell);

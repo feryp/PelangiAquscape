@@ -189,7 +189,7 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
         switch (v.getId()){
             case R.id.fab_action_print:
                 try {
-                    utils.createPdfForReceipt();
+//                    utils.createPdfForReceipt();
                     showToast("Cetak");
                 } catch (Exception e){
                     e.printStackTrace();

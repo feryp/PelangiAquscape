@@ -32,10 +32,13 @@ import android.widget.Toast;
 
 import com.example.pelangiaquscape.Database.ItemKeranjangContract;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
+import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.example.pelangiaquscape.Model.Penyimpanan;
+import com.example.pelangiaquscape.Model.User;
+import com.example.pelangiaquscape.Utils.PDFUtils;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -428,6 +431,48 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                         totalKembalian,
                         diskon
                 );
+
+                FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
+                        if (user != null) {
+//                            tvNamaKasir.setText(user.getUsername());
+                            FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    AkunToko toko = dataSnapshot.getValue(AkunToko.class);
+                                    Toast.makeText(PembayaranActivity.this, "membuat struk otomatis", Toast.LENGTH_SHORT).show();
+                                    try {
+                                        if(toko!= null && penjualan != null){
+                                            PDFUtils utils = new PDFUtils(penjualan, toko, user.getUsername());
+                                            utils.createPdfForReceipt();
+                                        }
+
+
+                                        Toast.makeText(PembayaranActivity.this, "struk berhasil dibuat", Toast.LENGTH_SHORT).show();
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                        Toast.makeText(PembayaranActivity.this, "pembuatan struk gagal", Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
                 penjualan = p;
 

@@ -1,8 +1,13 @@
 package com.example.pelangiaquscape.TestUI;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +21,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.File;
+import java.io.IOException;
 
 public class TestUIActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -73,8 +81,24 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
         switch(v.getId()){
             case R.id.btn_test:
 
+                String fpath = "/sdcard/testPdf.pdf";
+
+                File file = new File(fpath);
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+
+//                startActivity(intent);
+
+                Uri path = FileProvider.getUriForFile(this,  "com.example.pelangiaquscape.fileprovider", file);
+
+//                Uri path = Uri.fromFile(file);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(path, "application/pdf");
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivity(intent);
 //                try {
-//                    utils.createPdfForReceipt(key);
+//                    utils.createPdfForReceipt();
 //                    Toast.makeText(this, "kayanya berhasil wkkkw", Toast.LENGTH_SHORT).show();
 //                }catch(Exception exc){
 //                    exc.printStackTrace();
@@ -83,5 +107,45 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
 
                 break;
         }
+    }
+
+    void openFile(){
+        // direktori u/ menyimpan pdf
+//        String fpath = "/sdcard/"+penjualan.getNoPenjualan()+".pdf";
+//        File file = new File(fpath);
+//        if(!file.exists()){
+//            try {
+//                file.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+    }
+
+    void openPDFFile(){
+
+        // direktori u/ menyimpan pdf
+        String fpath = "/sdcard/testPdf.pdf";
+        File file = new File(fpath);
+        if(!file.exists()){
+            utils.createPdfForReceipt();
+        }else{
+            try {
+
+            } catch (ActivityNotFoundException e) {
+                // no Activity to handle this kind of files
+            }
+        }
+
+    }
+    void openReceipt(File file){
+
+        Uri path = FileProvider.getUriForFile(this,  "com.example.pelangiaquscape.fileprovider", file);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(path, "application/pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
     }
 }

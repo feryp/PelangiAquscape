@@ -124,7 +124,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {
                     @Override
                     public void onClick(View v, int position) {
-                        Toast.makeText(PenjualanActivity.this, position + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PenjualanActivity.this, "Penjualan", Toast.LENGTH_SHORT).show();
                         Intent p = new Intent(PenjualanActivity.this, DetailPenjualanActivity.class);
                         p.putExtra("penjualan", penjualan);
                         p.putExtra("key", key);

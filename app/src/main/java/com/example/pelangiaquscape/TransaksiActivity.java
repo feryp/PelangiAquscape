@@ -135,9 +135,18 @@ public class TransaksiActivity extends AppCompatActivity {
     }
 
     private void loadMerk() {
-        query = FirebaseDatabase.getInstance().getReference().child("Merek").orderByChild("nama");
+        query = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("Merek")
+                .orderByChild("nama");
+
+
         FirebaseRecyclerOptions<Merek> options =
-                new FirebaseRecyclerOptions.Builder<Merek>().setQuery(query, Merek.class).build();
+                new FirebaseRecyclerOptions
+                        .Builder<Merek>()
+                        .setQuery(query, Merek.class)
+                        .build();
 
         Log.i("SNAPSHOT", options.getSnapshots().toString());
 
@@ -192,13 +201,9 @@ public class TransaksiActivity extends AppCompatActivity {
                 .getInstance()
                 .getReference()
                 .child("Merek")
-                .orderByChild("nama").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase() + "\uf8ff");
-
-//        query = FirebaseDatabase
-//                .getInstance()
-//                .getReference()
-//                .child("Merek")
-//                .orderByChild("nama").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase());
+                .orderByChild("nama")
+                .startAt(searchText.toUpperCase())
+                .endAt(searchText.toUpperCase() + "\uf8ff");
 
         FirebaseRecyclerOptions<Merek> options =
                 new FirebaseRecyclerOptions.Builder<Merek>()

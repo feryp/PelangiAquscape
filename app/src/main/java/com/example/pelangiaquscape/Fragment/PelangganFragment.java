@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Interface.ItemClickListener;
@@ -38,6 +39,7 @@ public class PelangganFragment extends Fragment {
     FirebaseRecyclerAdapter adapter;
     RecyclerView rvPelanggan;
     RecyclerView.LayoutManager layoutManager;
+    SearchView cariPelanggan;
 
     Query query;
 
@@ -71,10 +73,36 @@ public class PelangganFragment extends Fragment {
         databasePelanggan = firebaseDatabase.getReference("Pelanggan");
 
         //load data pelanggan
+        cariPelanggan = v.findViewById(R.id.search_data_pelanggan);
         rvPelanggan = v.findViewById(R.id.rv_pelanggan);
         rvPelanggan.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         rvPelanggan.setLayoutManager(layoutManager);
+
+
+        cariPelanggan.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                cariFirebase(s);
+                adapter.startListening();
+                return false;
+            }
+        });
+
+        cariPelanggan.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                loadPelanggan();
+                adapter.startListening();
+                return false;
+            }
+        });
 
         fab_pelanggan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +121,116 @@ public class PelangganFragment extends Fragment {
         return v;
     }
 
+    private void cariFirebase(String searchText) {
+        Log.i("MASUK KE SEARCH ", "haha");
+
+        query = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("Pelanggan")
+                .orderByChild("namaPelanggan")
+                .startAt(searchText.toUpperCase())
+                .endAt(searchText.toUpperCase() + "\uf8ff");
+
+        FirebaseRecyclerOptions<Pelanggan> options =
+                new FirebaseRecyclerOptions.Builder<Pelanggan>()
+                .setQuery(query, Pelanggan.class)
+                .build();
+
+//        Log.i("SNAPSHOT", options.getSnapshots().toString());
+
+        adapter = new FirebaseRecyclerAdapter<Pelanggan, PelangganViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull PelangganViewHolder holder, final int position, @NonNull final Pelanggan model) {
+
+                holder.bindData(model);
+
+
+                Log.i("INFORMATION", model.getNamaPelanggan() + " " + model.getNamaPelanggan());
+                Log.i("INFORMATION", model.getNoHp() + " " + model.getNoHp());
+                Log.i("INFORMATION", model.getAlamat() + " " + model.getAlamat());
+
+                final Pelanggan clickItem = model;
+
+                final int size = this.getItemCount();
+
+
+                if(!fromTambahPembelianActivity){
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent pelanggan = new Intent(getActivity(), TambahPelangganActivity.class);
+                            pelanggan.putExtra("idForPelanggan", adapter.getRef(position).getKey());
+                            pelanggan.putExtra("namaPelanggan", model.getNamaPelanggan());
+                            pelanggan.putExtra("noHp", model.getNoHp());
+                            pelanggan.putExtra("alamat", model.getAlamat());
+                            pelanggan.putExtra("catatan", model.getCatatan());
+
+                            System.out.println("ID Pelanggan " + adapter.getRef(position).getKey());
+//                        Log.i("GET IDPELANGGAN", pelanggan.getStringExtra("newIdForPelanggan") + adapter.getRef(position).getKey());
+                            startActivity(pelanggan);
+                        }
+                    });
+                }else{
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent i = new Intent();
+                            i.putExtra("pelanggan", model);
+                            i.putExtra("pelanggan", pelanggan);
+                            i.putExtra("idForPelanggan", key);
+                            ((Activity)getContext()).setResult(Activity.RESULT_OK, i);
+                            ((Activity)getContext()).finish();
+                        }
+                    });
+                }
+
+
+                holder.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        showDialog(String.valueOf(adapter.getRef(position).getKey()), model);
+                        return false;
+                    }
+                });
+
+
+            }
+
+
+            @NonNull
+            @Override
+            public PelangganViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+                View view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.list_item_pelanggan, viewGroup, false);
+                Log.i("Buat View Holder", view.toString());
+                return new PelangganViewHolder(view);
+            }
+
+            @Override
+            public void onDataChanged() {
+
+                super.onDataChanged();
+
+                if (adapter.getItemCount() > 0) {
+                    imageLayout.setVisibility(View.GONE);
+                }
+            }
+        };
+
+        rvPelanggan.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+    }
+
     void loadPelanggan() {
-        query = FirebaseDatabase.getInstance().getReference("Pelanggan").orderByChild("nama");
+        query = FirebaseDatabase
+                .getInstance()
+                .getReference("Pelanggan")
+                .orderByChild("namaPelanggan");
+
+
         FirebaseRecyclerOptions<Pelanggan> options =
                 new FirebaseRecyclerOptions.Builder<Pelanggan>().setQuery(query, Pelanggan.class).build();
         Log.i("SNAPSHOT", options.getSnapshots().toString());

@@ -39,11 +39,10 @@ public class PDFUtils {
     String key;
 
 
-    public PDFUtils(AkunToko akunToko){}
+    public PDFUtils(Penjualan p, AkunToko toko){
+        this.penjualan = p;
+        this.akunToko = toko;
 
-    public PDFUtils(Penjualan penjualan, AkunToko akunToko) {
-        this.penjualan = this.penjualan;
-        this.akunToko = this.akunToko;
     }
 
     public PDFUtils(Penjualan penjualan, AkunToko akunToko, Merek merek) {
@@ -53,25 +52,24 @@ public class PDFUtils {
     }
 
 
-
     public void createPdfForReceipt(){
 
 
         // create Calendar
         Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(this.penjualan.getTanggalPenjualan());
+        c.setTimeInMillis(penjualan.getTanggalPenjualan());
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
 
-        SimpleDateFormat formattedDate = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formattedDate = new SimpleDateFormat("dd MMMM yyyy");
         Date datea = c.getTime();
         String date  = formattedDate.format(datea);
 
-        SimpleDateFormat fmt = new SimpleDateFormat("mm:ss");
-        String hehe = fmt.format(datea);
+        SimpleDateFormat fmt = new SimpleDateFormat("HH:mm");
+        String jam = fmt.format(datea);
 
         // direktori u/ menyimpan pdf
-        String fpath = "/sdcard/strukPenjualan"+hehe+".pdf";
+        String fpath = "/sdcard/strukPenjualan.pdf" ;
         File file = new File(fpath);
         if(!file.exists()){
             try {
@@ -187,8 +185,7 @@ public class PDFUtils {
             tbl.addCell(cell);
 
 
-            formattedDate = new SimpleDateFormat("HH:mm");
-            String waktu = formattedDate.format(datea);
+            String waktu = jam;
             Font fontWaktu = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pWaktu = new Paragraph(waktu);
             paragraph.setLeading(0, 1);

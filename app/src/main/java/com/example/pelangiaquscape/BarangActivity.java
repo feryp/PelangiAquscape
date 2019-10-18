@@ -155,13 +155,51 @@ public class BarangActivity extends AppCompatActivity {
         q = FirebaseDatabase
                 .getInstance()
                 .getReference()
-                .child("Merek")
+                .child("Barang")
                 .orderByChild("nama").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase() + "\uf8ff");
 
         FirebaseRecyclerOptions<Merek> options =
                 new FirebaseRecyclerOptions.Builder<Merek>()
                 .setQuery(q, Merek.class)
                 .build();
+
+        Log.i("SNAPSHOT", options.getSnapshots().toString());
+
+        FirebaseDatabase.getInstance().getReference().child("Barang").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                List<Barang> listBarang = new ArrayList<>();
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+
+//                    ObservableSnapshotArray<Barang> a = new FirebaseArray<>();
+//                    Log.v("KEYKEYKEY", snap.getKey());
+                    Barang bbe = snap.getValue(Barang.class);
+                    String merek = snap.child("merek").getValue(String.class);
+//                    bbe.setMerek(merek);
+
+
+                    Log.v("MEREK", bbe.getMerek());
+                    listBarang.add(bbe);
+//                    Log.v("KEYKEYKEYMODEL", bbe.getKode());
+
+                }
+
+                adapter = new BarangAdapter(BarangActivity.this, listBarang, merek, fromTambahPenyimpananActivity);
+                rvBarang.setAdapter(adapter);
+                if (adapter.getItemCount() > 0) {
+                    imageLayout.setVisibility(View.GONE);
+                } else {
+                    imageLayout.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

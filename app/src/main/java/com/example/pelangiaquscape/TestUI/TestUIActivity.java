@@ -56,11 +56,11 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         AkunToko toko = dataSnapshot.getValue(AkunToko.class);
 
-                        Pembelian pembelian = dataSnapshotPembelian.getValue(Pembelian.class);
-
-                        fakturUtils = new FakturUtils(pembelian, toko);
-//                        utils =  new PDFUtils(penjualan, toko);
-                        btnTest.setOnClickListener(TestUIActivity.this);
+//                        Pembelian pembelian = dataSnapshotPembelian.getValue(Pembelian.class);
+//
+//                        fakturUtils = new FakturUtils(pembelian, toko);
+////                        utils =  new PDFUtils(penjualan, toko);
+//                        btnTest.setOnClickListener(TestUIActivity.this);
 
                     }
 
@@ -133,7 +133,7 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
         String fpath = "/sdcard/testPdf.pdf";
         File file = new File(fpath);
         if(!file.exists()){
-            fakturUtils.createPdfForFaktur();
+//            fakturUtils.createPdfForFaktur();
         }else{
             try {
                 file.createNewFile();

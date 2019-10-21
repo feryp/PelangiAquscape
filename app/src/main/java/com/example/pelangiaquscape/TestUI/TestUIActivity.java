@@ -14,8 +14,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Model.AkunToko;
+import com.example.pelangiaquscape.Model.Pembelian;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.example.pelangiaquscape.R;
+import com.example.pelangiaquscape.Utils.FakturUtils;
 import com.example.pelangiaquscape.Utils.PDFUtils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,8 +30,9 @@ import java.io.IOException;
 public class TestUIActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btnTest;
-    PDFUtils utils;
+    FakturUtils fakturUtils;
     String key;
+    Pembelian pembelian;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,17 +47,18 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     void loadData(){
-        FirebaseDatabase.getInstance().getReference("Penjualan").child("-Lqysqx_9VccSL6CrLLh").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Pembelian").child("-LodnFnIBuUZZqf6D2Em").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshotPenjualan) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshotPembelian) {
 
                 FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         AkunToko toko = dataSnapshot.getValue(AkunToko.class);
 
-                        Penjualan penjualan = dataSnapshotPenjualan.getValue(Penjualan.class);
+                        Pembelian pembelian = dataSnapshotPembelian.getValue(Pembelian.class);
 
+                        fakturUtils = new FakturUtils(pembelian, toko);
 //                        utils =  new PDFUtils(penjualan, toko);
                         btnTest.setOnClickListener(TestUIActivity.this);
 
@@ -97,21 +101,21 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
 //                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
-//                try {
-//                    utils.createPdfForReceipt();
-//                    Toast.makeText(this, "kayanya berhasil wkkkw", Toast.LENGTH_SHORT).show();
-//                }catch(Exception exc){
-//                    exc.printStackTrace();
-//                    Toast.makeText(this, "GAGAL BOS", Toast.LENGTH_SHORT).show();
-//                }
+                try {
+                    fakturUtils.createPdfForFaktur();
+                    Toast.makeText(this, "kayanya berhasil wkkkw", Toast.LENGTH_SHORT).show();
+                }catch(Exception exc){
+                    exc.printStackTrace();
+                    Toast.makeText(this, "GAGAL BOS", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
         }
     }
 
-    void openFile(){
-        // direktori u/ menyimpan pdf
-//        String fpath = "/sdcard/"+penjualan.getNoPenjualan()+".pdf";
+//    void openFile(){
+////         direktori u/ menyimpan pdf
+//        String fpath = "/sdcard/"+ pembelian.getNoPesanan() +".pdf";
 //        File file = new File(fpath);
 //        if(!file.exists()){
 //            try {
@@ -121,7 +125,7 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
 //            }
 //        }
 
-    }
+
 
     void openPDFFile(){
 
@@ -129,12 +133,12 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
         String fpath = "/sdcard/testPdf.pdf";
         File file = new File(fpath);
         if(!file.exists()){
-            utils.createPdfForReceipt();
+            fakturUtils.createPdfForFaktur();
         }else{
             try {
-
-            } catch (ActivityNotFoundException e) {
-                // no Activity to handle this kind of files
+                file.createNewFile();
+            } catch (IOException e){
+                e.printStackTrace();
             }
         }
 

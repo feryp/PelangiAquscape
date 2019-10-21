@@ -185,7 +185,7 @@ public class PDFUtils {
             String tgl = date;
             Font fontTgl = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pTgl = new Paragraph(tgl);
-            paragraph.setLeading(0, 1);
+            pTgl.setLeading(0, 1);
             cell.addElement(pTgl);
             cell.setPhrase(new Phrase(tgl, fontTgl));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -203,7 +203,7 @@ public class PDFUtils {
             String waktu = formattedDate.format(datea);
             Font fontWaktu = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pWaktu = new Paragraph(waktu);
-            paragraph.setLeading(0, 1);
+            pWaktu.setLeading(0, 1);
             cell.addElement(pWaktu);
             cell.setPhrase(new Phrase(waktu, fontWaktu));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -219,7 +219,7 @@ public class PDFUtils {
             String noPenjualan = this.penjualan.getNoPenjualan();
             Font fontNoPenjualan = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pNoPenjualan = new Paragraph(tgl);
-            paragraph.setLeading(0, 1);
+            pNoPenjualan.setLeading(0, 1);
             cell.addElement(pNoPenjualan);
             cell.setPhrase(new Phrase(noPenjualan, fontNoPenjualan));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -257,7 +257,7 @@ public class PDFUtils {
                 String totalHargaPerItem = decimalFormat.format(keranjang.getTotalPrice());
                 Font fontTotalItem = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
                 Paragraph pTotalItem = new Paragraph(totalHargaPerItem);
-                paragraph.setLeading(0, 1);
+                pTotalItem.setLeading(0, 1);
                 cell.addElement(pTotalItem);
                 cell.setPhrase(new Phrase("Rp. " + totalHargaPerItem, fontTotalItem));
                 cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -287,7 +287,7 @@ public class PDFUtils {
             String diskon = String.valueOf(this.penjualan.getDiskon());
             Font fontDiskon = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pDiskon = new Paragraph(diskon);
-            paragraph.setLeading(0, 1);
+            pDiskon.setLeading(0, 1);
             cell.addElement(pDiskon);
             cell.setPhrase(new Phrase(diskon, fontDiskon));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -311,7 +311,7 @@ public class PDFUtils {
             String totalHarga = decimalFormat.format(totalHargaSemuaItem);
             Font fontTotalHarga = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pTotalHarga = new Paragraph(totalHarga);
-            paragraph.setLeading(0, 1);
+            pTotalHarga.setLeading(0, 1);
             cell.addElement(pTotalHarga);
             cell.setPhrase(new Phrase("Rp. " + totalHarga, fontTotalHarga));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -335,7 +335,7 @@ public class PDFUtils {
             String bayar = decimalFormat.format(this.penjualan.getUangBayar());
             Font fontBayar = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pBayar = new Paragraph(bayar);
-            paragraph.setLeading(0, 1);
+            pBayar.setLeading(0, 1);
             cell.addElement(pBayar);
             cell.setPhrase(new Phrase("Rp. " + bayar, fontBayar));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -351,7 +351,7 @@ public class PDFUtils {
             String kembalian = decimalFormat.format(this.penjualan.getUangKembalian());
             Font fontKembalian = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pKembalian = new Paragraph(kembalian);
-            paragraph.setLeading(0, 1);
+            pKembalian.setLeading(0, 1);
             cell.addElement(pKembalian);
             cell.setPhrase(new Phrase("Rp. " + kembalian, fontKembalian));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);

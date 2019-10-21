@@ -540,6 +540,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 });
 
 
+
+
                 SharedPreferences pref = getSharedPreferences(PACKAGE_NAME+"PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = pref.edit();
                 edit.clear();

@@ -20,10 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.DetailProsesPembelianAdapter;
+import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Pembelian;
 import com.example.pelangiaquscape.Model.Penyimpanan;
+import com.example.pelangiaquscape.Utils.FakturUtils;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -215,9 +217,33 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
                             sn.getRef().setValue(barang);
 
                         }
+
 //                            dataSnapshot.getRef().child(p.getKeyBarang()).child("")
                     }
                 }
+                FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        AkunToko toko = dataSnapshot.getValue(AkunToko.class);
+                        Toast.makeText(DetailProsesPembelianActivity.this, "membuat faktur", Toast.LENGTH_SHORT).show();
+                        try {
+                            if (toko != null && pembelian != null){
+                                FakturUtils utils = new FakturUtils(pembelian, toko);
+                                utils.createPdfForFaktur();
+                            }
+
+                            Toast.makeText(DetailProsesPembelianActivity.this,"Faktur berhasil dibuat", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(DetailProsesPembelianActivity.this, "pembuatan faktur gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override

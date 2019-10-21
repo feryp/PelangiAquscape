@@ -1,8 +1,11 @@
 package com.example.pelangiaquscape;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,12 +16,21 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.DetailSelesaiPembelianAdapter;
+import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Pemasok;
 import com.example.pelangiaquscape.Model.Pembelian;
+import com.example.pelangiaquscape.Utils.FakturUtils;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -38,6 +50,8 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
     RecyclerView rvItem, rvCicilan;
 
     Pembelian pembelian;
+    AkunToko toko;
+    FakturUtils utils;
     String key;
     int no;
 
@@ -128,6 +142,39 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
 //            }
 //        });
 
+        loadToko();
+
+    }
+
+    void loadToko(){
+
+        FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                toko = dataSnapshot.getValue(AkunToko.class);
+                Toast.makeText(DetailSelesaiPembelianActivity.this, "membuat faktur", Toast.LENGTH_SHORT).show();
+                try {
+                    if (toko != null && pembelian != null){
+                        utils = new FakturUtils(pembelian, toko);
+                        utils.createPdfForFaktur();
+                    } else {
+                        utils = new FakturUtils(pembelian, toko);
+                        utils.createPdfForFaktur();
+                    }
+
+                    Toast.makeText(DetailSelesaiPembelianActivity.this, "faktur berhasil dibuat", Toast.LENGTH_SHORT).show();
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(DetailSelesaiPembelianActivity.this,"pembuatan faktur gagal", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
@@ -138,10 +185,13 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                 finish();
                 break;
             case R.id.btn_lihat_faktur:
-                Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);
-                lihat_faktur.putExtra("pembelian", pembelian);
-                lihat_faktur.putExtra("no", no);
-                startActivity(lihat_faktur);
+                String fpath = "/sdcard/" + pembelian.getNoPesanan() + ".pdf";
+                File file = new File(fpath);
+                openFaktur(file);
+//                Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);
+//                lihat_faktur.putExtra("pembelian", pembelian);
+//                lihat_faktur.putExtra("no", no);
+//                startActivity(lihat_faktur);
                 break;
 //            case R.id.btn_batalkan_pembelian:
 //                Intent batalkan_pembelian = new Intent(DetailSelesaiPembelianActivity.this, BatalkanTransaksiPembelianActivity.class);
@@ -149,5 +199,15 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
 //                startActivity(batalkan_pembelian);
 //                break;
         }
+    }
+
+    private void openFaktur(File file) {
+
+        Uri path = FileProvider.getUriForFile(this,"com.example.pelangiaquscape.fileprovider", file);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(path, "application/pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
     }
 }

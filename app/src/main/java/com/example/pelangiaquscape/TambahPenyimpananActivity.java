@@ -133,9 +133,11 @@ public class TambahPenyimpananActivity extends AppCompatActivity implements View
         DatabaseReference dr = fd.getReference("Penyimpanan");
 
 
+
+
 //        Penyimpanan penyimpanan = new Penyimpanan(tanggalMasuk, barang.getKode(),
 //                Integer.valueOf(etStokBarang.getText().toString()), etKeterangan.getText().toString(), spinnerKeteranganBarang.getSelectedItemPosition());
-
+//
 //        dr.push().setValue(penyimpanan).addOnCompleteListener(new OnCompleteListener<Void>() {
 //            @Override
 //            public void onComplete(@NonNull Task<Void> task) {

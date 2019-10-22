@@ -157,12 +157,10 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                     if (toko != null && pembelian != null){
                         utils = new FakturUtils(pembelian, toko);
                         utils.createPdfForFaktur();
-                    } else {
-                        utils = new FakturUtils(pembelian, toko);
-                        utils.createPdfForFaktur();
+                        Toast.makeText(DetailSelesaiPembelianActivity.this, "faktur berhasil dibuat", Toast.LENGTH_SHORT).show();
                     }
 
-                    Toast.makeText(DetailSelesaiPembelianActivity.this, "faktur berhasil dibuat", Toast.LENGTH_SHORT).show();
+
                 } catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(DetailSelesaiPembelianActivity.this,"pembuatan faktur gagal", Toast.LENGTH_SHORT).show();
@@ -175,6 +173,8 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
 
             }
         });
+
+
     }
 
 
@@ -185,7 +185,7 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                 finish();
                 break;
             case R.id.btn_lihat_faktur:
-                String fpath = "/sdcard/" + pembelian.getNoPesanan() + ".pdf";
+                String fpath = "/sdcard/" + pembelian.getNoPesanan().replaceAll("[^a-zA-Z0-9]","") + ".pdf";
                 File file = new File(fpath);
                 openFaktur(file);
 //                Intent lihat_faktur = new Intent(DetailSelesaiPembelianActivity.this, FakturPembelianActivity.class);

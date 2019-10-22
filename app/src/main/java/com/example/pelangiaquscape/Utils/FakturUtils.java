@@ -53,7 +53,7 @@ public class FakturUtils {
         String tanggal = formatTgl.format(date);
 
 //        direktori untuk menyimpan pdf
-        String path = "/sdcard/" + pembelian.getNoPesanan() + ".pdf";
+        String path = "/sdcard/" + pembelian.getNoPesanan().replaceAll("[^a-zA-Z0-9]","") + ".pdf";
         File file = new File(path);
         if (!file.exists()){
             try {
@@ -179,12 +179,17 @@ public class FakturUtils {
             cell.setBorder(0);
             table.addCell(cell);
 
-            String namaPemasok = this.pemasok.getNamaPemasok();
+            String namaPemasok = pembelian.getNamaPemasok();
             Font fontNamaPemasok = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pNamaPemasok = new Paragraph(namaPemasok);
             pNamaPemasok.setLeading(0,1);
             cell.addElement(pNamaPemasok);
-            cell.setPhrase(new Phrase(namaPemasok, fontNamaPemasok));
+            if(namaPemasok!= null){
+                cell.setPhrase(new Phrase(namaPemasok, fontNamaPemasok));
+            }else{
+                cell.setPhrase(new Phrase("unknown", fontNamaPemasok));
+            }
+
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             cell.setBorder(0);
             table.addCell(cell);

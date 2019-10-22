@@ -49,20 +49,20 @@ public class PenyimpananActivity extends AppCompatActivity {
 
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
-        fab_penyimpanan = findViewById(R.id.fab_penyimpanan);
+//        fab_penyimpanan = findViewById(R.id.fab_penyimpanan);
         imageLayout = findViewById(R.id.linear_imageview_penyimpanan);
         rvPenyimpanan = findViewById(R.id.rv_inventory);
         rvPenyimpanan.setHasFixedSize(true);
 
 
-        fab_penyimpanan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(PenyimpananActivity.this, "Tambah Inventory", Toast.LENGTH_SHORT).show();
-                Intent fab_penyimpanan = new Intent(PenyimpananActivity.this, TambahPenyimpananActivity.class);
-                startActivity(fab_penyimpanan);
-            }
-        });
+//        fab_penyimpanan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Toast.makeText(PenyimpananActivity.this, "Tambah Inventory", Toast.LENGTH_SHORT).show();
+//                Intent fab_penyimpanan = new Intent(PenyimpananActivity.this, TambahPenyimpananActivity.class);
+//                startActivity(fab_penyimpanan);
+//            }
+//        });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

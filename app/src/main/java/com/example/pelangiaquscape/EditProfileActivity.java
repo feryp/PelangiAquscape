@@ -137,7 +137,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         String uid = FirebaseAuth.getInstance().getUid();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference fakturRef = storageRef.child("Profile").child(uid+".jpg");
+        StorageReference fakturRef = storageRef.child("Profile").child(uid +".jpg");
         fakturRef.getDownloadUrl().addOnSuccessListener(uri -> {
             if(uri != null){
                 currentPhotoUri = uri;

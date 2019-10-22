@@ -119,17 +119,17 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_penyimpanan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorBlue"
-        app:elevation="6dp"
-        android:src="@drawable/ic_add_white"
-        app:borderWidth="0dp"
-        app:fabSize="normal" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab_penyimpanan"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:backgroundTint="@color/colorBlue"-->
+        <!--app:elevation="6dp"-->
+        <!--android:src="@drawable/ic_add_white"-->
+        <!--app:borderWidth="0dp"-->
+        <!--app:fabSize="normal" />-->
 
 </RelativeLayout>

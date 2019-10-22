@@ -1,6 +1,7 @@
 package com.example.pelangiaquscape;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.LinkAddress;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Pegawai;
 import com.example.pelangiaquscape.ViewHolder.PegawaiViewHolder;
@@ -31,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -44,14 +47,19 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
     RecyclerView rvPegawai;
 
     Query q;
+    Context c;
 
     LinearLayout imageLayout;
+    private Pegawai pegawai;
+    private String key;
 
     RecyclerView.LayoutManager layoutManager;
     FloatingActionButton fab_pegawai;
+    boolean fromTambahPembelianActivity;
 
     Query query;
     FirebaseRecyclerAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,25 +100,60 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                 holder.bindData(model);
                 imageLayout.setVisibility(View.GONE);
 
-                holder.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
+                Log.i("INFORMATION", model.getFotoPegawai() + " " + model.getFotoPegawai());
+                Log.i("INFORMATION", model.getNamaPegawai() + " " + model.getNamaPegawai());
+                Log.i("INFORMATION", model.getNamapengguna() + " " + model.getNamapengguna());
+                Log.i("INFORMATION", model.getPassword() + " " + model.getPassword());
+                Log.i("INFORMATION", model.getJabatan() + " " + model.getJabatan());
+                Log.i("INFORMATION", model.getHakAkses() + " " + model.getHakAkses());
+                Log.i("INFORMATION", model.getNoHp() + " " + model.getNoHp());
+                Log.i("INFORMATION", model.getEmailPegawai() + " " + model.getEmailPegawai());
 
-                        pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
-                        pegawai.putExtra("emailPegawai", model.getEmailPegawai());
-                        pegawai.putExtra("modelPegawai", model);
-                        startActivity(pegawai);
+
+                final Pegawai clickItem = model;
+
+                final int size = this.getItemCount();
+
+                if (!fromTambahPembelianActivity) {
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
+
+                            pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
+                            pegawai.putExtra("emailPegawai", model.getEmailPegawai());
+                            pegawai.putExtra("fotoPegawai", model.getFotoPegawai());
+                            pegawai.putExtra("hakAkses", model.getHakAkses());
+                            pegawai.putExtra("id", model.getId());
+                            pegawai.putExtra("namaPegawai", model.getNamaPegawai());
+                            pegawai.putExtra("namaPengguna", model.getNamapengguna());
+                            pegawai.putExtra("noHp", model.getNoHp());
+//                        pegawai.putExtra("modelPegawai", model);
+
+                            System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
+                            startActivity(pegawai);
+
 //                        merek.putExtra("listSize", size);
-
 
 
 //                        Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
 //                        setResult(RESULT_OK, merek);
 
-                    }
-                });
 
+                        }
+                    });
+                } else {
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Intent i = new Intent(c, TambahPegawaiActivity.class);
+                            i.putExtra("pegawai", model);
+                            i.putExtra("pegawai", pegawai);
+                            i.putExtra("idForPegawai", key);
+                            c.startActivity(i);
+                        }
+                    });
+                }
                 holder.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
@@ -126,8 +169,17 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
             public PegawaiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_item_pegawai, viewGroup, false);
-
+                Log.i("Buat View Holder", view.toString());
                 return new PegawaiViewHolder(view);
+            }
+
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+
+                if (adapter.getItemCount() > 0){
+                    imageLayout.setVisibility(View.GONE);
+                }
             }
         };
 

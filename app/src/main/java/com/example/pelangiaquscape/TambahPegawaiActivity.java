@@ -60,8 +60,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TambahPegawaiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView cancel, save;
-    CircleImageView fotoPegawai, add_foto;
+    ImageView cancel, save, imgFotoprofile;
+    CircleImageView  add_foto;
     Spinner spinnerHakAkses;
     TextInputEditText etNamaPegawai, etNamaPengguna, etKataSandi, etJabatan, etNoHp, etEmailPegawai;
 
@@ -97,7 +97,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         cancel = findViewById(R.id.im_cancel);
         save = findViewById(R.id.im_save);
         etNamaPegawai = findViewById(R.id.et_nama_pegawai);
-        fotoPegawai = findViewById(R.id.image_profile);
+        imgFotoprofile = findViewById(R.id.profile_pegawai);
         add_foto = findViewById(R.id.add_foto);
         etNamaPengguna = findViewById(R.id.et_nama_pengguna_pegawai);
         etKataSandi = findViewById(R.id.et_password);
@@ -121,25 +121,38 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             }
         });
 
+        try {
+            idPegawai = getIntent().getExtras().getString("idForPegawai");
+            System.out.println("ID in tambah pegawai act " + idPegawai);
+            bind(getIntent().getExtras().getString("namaPegawai"),
+                    getIntent().getExtras().getString("namaPengguna"),
+                    getIntent().getExtras().getString("jabatan"),
+                    getIntent().getExtras().getString("emailPegawai"),
+                    getIntent().getExtras().getString("noHp"));
+        } catch (NullPointerException ex){
+            idPegawai = firebaseAuth.getUid();
+        }
+
 //        databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid());
         storageReference = FirebaseStorage.getInstance().getReference("foto pegawai");
 
         pegawai = new Pegawai();
 
+
         //SET IMAGE
         if (mImageUri != null) {
-            Picasso.get().load(mImageUri).into(fotoPegawai);
+            Picasso.get().load(mImageUri).into(imgFotoprofile);
         }
 
-        try {
-            idPegawai = getIntent().getExtras().getString("idPegawai");
-            pegawai = getIntent().getParcelableExtra("modelPegawai");
-            setFormFromModelPegawai();
-//            System.out.println("ID in tambah pegawai act " + idPegawai);
-        } catch (NullPointerException ex) {
-//            idPegawai = "1";
-//            idPegawai =
-        }
+//        try {
+//            idPegawai = getIntent().getExtras().getString("idPegawai");
+//            pegawai = getIntent().getParcelableExtra("modelPegawai");
+//            setFormFromModelPegawai();
+////            System.out.println("ID in tambah pegawai act " + idPegawai);
+//        } catch (NullPointerException ex) {
+////            idPegawai = "1";
+////            idPegawai =
+//        }
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this, R.array.akses_arrays, android.R.layout.simple_spinner_item);
@@ -167,6 +180,14 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         save.setOnClickListener(this);
         add_foto.setOnClickListener(this);
 
+    }
+
+    private void bind(String namaPegawai, String namaPengguna, String jabatan, String emailPegawai, String noHp) {
+        etNamaPegawai.setText(namaPegawai);
+        etNamaPengguna.setText(namaPengguna);
+        etJabatan.setText(jabatan);
+        etEmailPegawai.setText(emailPegawai);
+        etNoHp.setText(noHp);
     }
 
 
@@ -235,23 +256,63 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
             }
         });
+
+        String uid = FirebaseAuth.getInstance().getUid();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(uid + ".jpg");
+        pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            if (uri != null){
+                mImageUri = uri;
+                Picasso.get().load(uri).into(imgFotoprofile);
+            }
+        });
+
+
     }
+
+    private void getValues(){
+//        pegawai.setFotoPegawai(imgFotoprofile.getDrawable().toString());
+        pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
+        pegawai.setNamapengguna(etNamaPengguna.getText().toString());
+        pegawai.setPassword(etKataSandi.getText().toString());
+        pegawai.setJabatan(etJabatan.getText().toString());
+//        pegawai.setHakAkses(spinnerHakAkses.getSelectedItem().toString());
+        pegawai.setEmailPegawai(etEmailPegawai.getText().toString());
+        pegawai.setNoHp(etNoHp.getText().toString());
+
+    }
+
 
 //
     private void save() {
-        spinnerHakAkses.getSelectedItem().toString();
-        if(idPegawai != null){
-            
-        }else{
-            daftarPegawai("", etNamaPegawai.getText().toString(),
-                    etNamaPengguna.getText().toString(),
-                    etKataSandi.getText().toString(),
-                    etJabatan.getText().toString(),
-                    String.valueOf(spinnerHakAkses.getSelectedItemPosition()),
-                    etNoHp.getText().toString(),
-                    etEmailPegawai.getText().toString());
-        }
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getValues();
+                databaseReference.child(String.valueOf(idPegawai)).setValue(pegawai);
+                Toast.makeText(TambahPegawaiActivity.this, "Pegawai telah ditambah", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+//        spinnerHakAkses.getSelectedItem().toString();
+//        if(idPegawai != null){
+//
+//        }else{
+//            daftarPegawai("",
+//                    etNamaPegawai.getText().toString(),
+//                    etNamaPengguna.getText().toString(),
+//                    etKataSandi.getText().toString(),
+//                    etJabatan.getText().toString(),
+//                    String.valueOf(spinnerHakAkses.getSelectedItemPosition()),
+//                    etNoHp.getText().toString(),
+//                    etEmailPegawai.getText().toString());
+//        }
 
 
     }
@@ -270,7 +331,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 //    }
 
     private void setFormFromModelPegawai(){
-//        pegawai.setFotoPegawai(pegawai.getFotoPegawai());
+        pegawai.setFotoPegawai(pegawai.getFotoPegawai());
         pegawai.setNamaPegawai(pegawai.getNamaPegawai());
         pegawai.setNamapengguna(pegawai.getNamapengguna());
         pegawai.setPassword(pegawai.getPassword());
@@ -281,18 +342,9 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     }
 
 
-    private void ubah_foto() {
-        openImage();
-    }
 
-    private void openImage() {
 
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
-    }
+
 
 
     @Override
@@ -302,10 +354,13 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
             Uri uri = data.getData();
             mImageUri = uri;
-            fotoPegawai.setImageURI(uri);
+            imgFotoprofile.setImageURI(uri);
         }
 
     }
+
+
+
 
 
     @Override
@@ -316,12 +371,15 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.im_save:
                 save();
-//                uploadToCloudStorage();
+                uploadToCloudStorage();
                 finish();
                 break;
             case R.id.add_foto:
-                ubah_foto();
-                finish();
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
                 break;
         }
 
@@ -348,6 +406,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                     dialog.setProgress((int) progress);
                     dialog.show();
 
+                    dialog.dismiss();
                 })
                 .addOnFailureListener(exception -> {
                     // Handle unsuccessful uploads

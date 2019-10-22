@@ -43,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class TambahPembelianActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -345,6 +346,19 @@ public class TambahPembelianActivity extends AppCompatActivity implements View.O
 
     private void clearAllData() {
         SharedPreferences.Editor edit = preferences.edit();
+
+//        editor.putString(tvKode.getText().toString().concat("key"), barangKey);
+
+        SharedPreferences p = getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KONFIRMASI_KEY", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = p.edit();
+        for(ItemKeranjang keranjang :listKeranjang){
+            ed.putString(keranjang.getKode().concat("key"), preferences.getString(keranjang.getKode().concat("key"),null));
+        }
+
+        ed.apply();
+
+
+
         edit.clear();
         edit.apply();
 

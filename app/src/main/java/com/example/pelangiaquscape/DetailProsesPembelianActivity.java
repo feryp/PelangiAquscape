@@ -73,7 +73,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         key = i.getStringExtra("key");
 
         // SHARED PREFERENCE
-        sharedPref = getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KEY", Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KONFIRMASI_KEY", Context.MODE_PRIVATE);
 
         // INIT VIEW
         cancel = findViewById(R.id.im_cancel);
@@ -262,6 +262,8 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
 
                     }
                 });
+
+
     }
     private void showConfirmationDialog(){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);

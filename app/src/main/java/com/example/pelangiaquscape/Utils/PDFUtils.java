@@ -152,6 +152,8 @@ public class PDFUtils {
 
 
             tbl = new PdfPTable(2); // buat table dgn 2 kolom
+            tbl.setSpacingBefore(8);
+            tbl.setSpacingAfter(8);
 
             // nama kasir
             cell = new PdfPCell();
@@ -233,6 +235,8 @@ public class PDFUtils {
             document.add(p1);
 
             tbl = new PdfPTable(2); // buat table dgn 2 kolom
+            tbl.setSpacingBefore(8);
+            tbl.setSpacingAfter(8);
 
             double totalHargaSemuaItem = 0;
             for(ItemKeranjang keranjang: this.penjualan.getListItemKeranjang()){
@@ -276,6 +280,8 @@ public class PDFUtils {
             document.add(p2);
 
             tbl = new PdfPTable(2); // buat table dgn 2 kolom
+            tbl.setSpacingBefore(8);
+            tbl.setSpacingAfter(8);
 
             // diskon
             cell = new PdfPCell();
@@ -284,22 +290,25 @@ public class PDFUtils {
             tbl.addCell(cell);
 
 
-            String diskon = String.valueOf(this.penjualan.getDiskon());
+            String diskon = decimalFormat.format(penjualan.getDiskon());
             Font fontDiskon = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0,0,0));
             Paragraph pDiskon = new Paragraph(diskon);
             pDiskon.setLeading(0, 1);
             cell.addElement(pDiskon);
-            cell.setPhrase(new Phrase(diskon, fontDiskon));
+            cell.setPhrase(new Phrase("Rp. " + diskon, fontDiskon));
             cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             cell.setBorder(0);
             tbl.addCell(cell);
 
-//            document.add(tbl);
-//            Paragraph p3 = new Paragraph("----------------------------------------------------------------------------------------------------------------------");
-//            p3.setLeading(0,1);
-//            p3.setAlignment(Element.ALIGN_CENTER);
-//            document.add(p3);
+            document.add(tbl);
+            Paragraph p3 = new Paragraph("------------------------------------------------------------------------");
+            p3.setLeading(0,1);
+            p3.setAlignment(Element.ALIGN_CENTER);
+            document.add(p3);
 
+            tbl = new PdfPTable(2); // buat table dgn 2 kolom
+            tbl.setSpacingBefore(8);
+            tbl.setSpacingAfter(8);
 
             // total harga all item
             cell = new PdfPCell();
@@ -325,6 +334,8 @@ public class PDFUtils {
             document.add(p4);
 
             tbl = new PdfPTable(2); // buat table dgn 2 kolom
+            tbl.setSpacingBefore(8);
+            tbl.setSpacingAfter(8);
 
             // bayar
             cell = new PdfPCell();

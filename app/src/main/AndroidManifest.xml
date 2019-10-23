@@ -35,6 +35,10 @@
         <activity android:name=".TestUI.TestUIActivity">
 
         </activity>
+        <activity android:name=".TestUI.TestNotif">
+
+        </activity>
+        <activity android:name=".Utils.NotificationUtils"></activity>
         <activity android:name=".PusatBantuanPegawaiActivity"></activity>
         <activity android:name=".PusatBantuanPrinterActivity" />
         <activity android:name=".PusatBantuanAkunTokoActivity" />
@@ -67,9 +71,6 @@
         <activity android:name=".UploadPenerimaanActivity" />
         <activity android:name=".TambahPenyimpananActivity" />
         <activity android:name=".PenyimpananActivity" />
-
-
-
         <activity android:name=".DetailPenjualanActivity" />
         <activity android:name=".VerificationActivity" />
         <activity android:name=".LupaPasswordActivity" />

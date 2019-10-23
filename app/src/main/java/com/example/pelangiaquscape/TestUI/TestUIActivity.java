@@ -37,7 +37,7 @@ public class TestUIActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_testui);
+//        setContentView(R.layout.activity_testui);
 
         btnTest = findViewById(R.id.btn_test);
 

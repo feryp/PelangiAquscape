@@ -1,13 +1,16 @@
 package com.example.pelangiaquscape;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +27,7 @@ import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Penjualan;
+import com.example.pelangiaquscape.Model.User;
 import com.example.pelangiaquscape.Utils.PDFUtils;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,10 +63,12 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
     RecyclerView rvItemBarang;
     FloatingActionButton fabCetak;
     Penjualan penjualan;
-    AkunToko akunToko;
+    AkunToko toko;
     String namaKasir;
+    User user;
     String key;
     PDFUtils utils;
+    ProgressDialog dialog;
 
     DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
     List<ItemKeranjang> listKeranjang;
@@ -106,9 +112,9 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
         rvItemBarang.setLayoutManager(new LinearLayoutManager(this));
 
         //SET TEXT
-        if (namaKasir != null) {
-            tvNamaKasir.setText(namaKasir);
-        }
+//        if (namaKasir != null) {
+//            tvNamaKasir.setText(namaKasir);
+//        }
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(penjualan.getTanggalPenjualan());
@@ -149,35 +155,51 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
         StrukPenjualanAdapter adapter = new StrukPenjualanAdapter(listItemTransaksi, this);
         rvItemBarang.setAdapter(adapter);
 
-        loadAkun();
+        fabCetak.setOnClickListener(StrukPenjualanActivity.this);
+
+
+        loadAkun(penjualan.getNamaPenjual());
 
 
     }
 
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
 
-
-    void loadAkun() {
-        FirebaseDatabase.getInstance().getReference("Penjualan").child("key").addListenerForSingleValueEvent(new ValueEventListener() {
+    void loadAkun(String key) {
+        FirebaseDatabase.getInstance().getReference("User").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshotPenjualan) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                if (user != null) {
+                    tvNamaKasir.setText(user.getUsername());
+                }
 
                 FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        AkunToko toko = dataSnapshot.getValue(AkunToko.class);
+                        toko = dataSnapshot.getValue(AkunToko.class);
+                        Toast.makeText(StrukPenjualanActivity.this, "membuat struk otomatis", Toast.LENGTH_SHORT).show();
 
-                        Penjualan p = dataSnapshotPenjualan.getValue(Penjualan.class);
+                        try {
+                            if (toko != null && penjualan != null && user != null) {
+                                utils = new PDFUtils(penjualan, toko, user.getUsername());
+                                utils.createPdfForReceipt();
+                            } else {
+                                utils = new PDFUtils(penjualan, toko);
+                                utils.createPdfForReceipt();
+                            }
 
-                        utils = new PDFUtils(p, toko);
-                        fabCetak.setOnClickListener(StrukPenjualanActivity.this);
+                            Toast.makeText(StrukPenjualanActivity.this, "Cetak Struk", Toast.LENGTH_SHORT).show();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(StrukPenjualanActivity.this, "Gagal Cetak", Toast.LENGTH_SHORT).show();
+
+                        }
+
 
                         tvNamaToko.setText(toko.getNamaToko());
                         tvAlamatToko.setText(toko.getAlamat());
                         tvNoTeleponToko.setText(toko.getNoTelepon());
-
 
                     }
 
@@ -186,6 +208,8 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
 
                     }
                 });
+
+
             }
 
             @Override
@@ -201,16 +225,22 @@ public class StrukPenjualanActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_action_print:
+                String fpath = "/sdcard/" + penjualan.getNoPenjualan() + ".pdf";
+                File file = new File(fpath);
+                openReceipt(file);
 
-                try {
-//                    utils.createPdfForReceipt();
-                    showToast("Cetak");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    showToast("Tidak Bisa Di Cetak");
-                }
                 break;
         }
+    }
+
+    private void openReceipt(File file) {
+        Uri path = FileProvider.getUriForFile(this, "com.example.pelangiaquscape.fileprovider", file);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(path, "application/pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
+
     }
 
 

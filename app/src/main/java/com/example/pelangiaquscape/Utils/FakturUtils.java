@@ -21,6 +21,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.parser.Line;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -360,12 +361,13 @@ public class FakturUtils {
             document.add(p4);
 
             table = new PdfPTable(4);
-            table.setSpacingBefore(20);
+            table.setSpacingBefore(13);
 
             //terbilang
             cell = new PdfPCell();
-            cell.setPhrase(new Phrase("Terbilang         :"));
-            cell.setVerticalAlignment(Element.ALIGN_LEFT);
+            cell.setPhrase(new Phrase("Terbilang    :"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_CENTER);
             cell.setBorder(0);
             table.addCell(cell);
 
@@ -373,18 +375,17 @@ public class FakturUtils {
             RuleBasedNumberFormat rbf = new RuleBasedNumberFormat(local,
                     RuleBasedNumberFormat.SPELLOUT);
             String terbilang = rbf.format(total);
-            Font fontTerbilang = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLDITALIC, new BaseColor(0, 0, 0));
-            Paragraph pTerbilang = new Paragraph(terbilang);
-            cell.setVerticalAlignment(Element.ALIGN_LEFT);
-            cell.addElement(pTerbilang);
+            Font fontTerbilang = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.ITALIC, new BaseColor(0, 0, 0));
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
             cell.setPhrase(new Phrase(terbilang, fontTerbilang));
             cell.setBorder(0);
             table.addCell(cell);
 
             //Total Harga
             cell = new PdfPCell();
-            cell.setPhrase(new Phrase("Total         :"));
-            cell.setVerticalAlignment(Element.ALIGN_RIGHT);
+            cell.setPhrase(new Phrase("Total    :"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_CENTER);
             cell.setBorder(0);
             table.addCell(cell);
 
@@ -393,7 +394,65 @@ public class FakturUtils {
             Paragraph pTotalHarga = new Paragraph(totalHarga);
             pTotalHarga.setLeading(0, 1);
             cell.setPhrase(new Phrase("Rp. " + totalHarga, fontTotalHarga));
-            cell.setVerticalAlignment(Element.ALIGN_RIGHT);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setBorder(0);
+            table.addCell(cell);
+
+            document.add(table);
+            Paragraph p5 = new Paragraph();
+            p5.setAlignment(Element.ALIGN_CENTER);
+            document.add(p5);
+
+            table = new PdfPTable(1);
+
+            //keterangan
+            cell = new PdfPCell();
+            cell.setPhrase(new Phrase("Keterangan    :"));
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setBorder(0);
+            table.addCell(cell);
+
+            document.add(table);
+            Paragraph p6 = new Paragraph();
+            p6.setAlignment(Element.ALIGN_CENTER);
+            document.add(p6);
+
+            table = new PdfPTable(2);
+            table.setSpacingBefore(2);
+
+            //pengirim dan penerima
+            cell = new PdfPCell();
+            Font fontPengirim = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, new BaseColor(0, 0, 0));
+            cell.setPhrase(new Phrase("PENGIRIM", fontPengirim));
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setBorder(0);
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            Font fontPenerima = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, new BaseColor(0, 0, 0));
+            cell.setPhrase(new Phrase("PENERIMA", fontPenerima));
+            cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            cell.setBorder(0);
+            table.addCell(cell);
+
+
+            document.add(table);
+            Paragraph p7 = new Paragraph();
+            p7.setAlignment(Element.ALIGN_CENTER);
+            document.add(p7);
+
+            table = new PdfPTable(2);
+            table.setSpacingBefore(20);
+
+            cell = new PdfPCell();
+            cell.setPhrase(new Phrase("----------------"));
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setBorder(0);
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.setPhrase(new Phrase("----------------"));
+            cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             cell.setBorder(0);
             table.addCell(cell);
 

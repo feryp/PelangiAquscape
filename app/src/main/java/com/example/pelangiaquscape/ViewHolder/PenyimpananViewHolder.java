@@ -25,7 +25,7 @@ import java.util.Date;
 
 public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView tvKode, tvMerek, tvStok, tvSatuan, tvKeterangan, tvTanggal, tvJenisPenyimpanan;
+    private TextView tvKode, tvMerek, tvStok, tvSatuan, tvKeterangan, tvJam, tvTanggal, tvJenisPenyimpanan;
 //    private Context context;
 
 
@@ -35,14 +35,15 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
 
     public PenyimpananViewHolder(@NonNull View v) {
         super(v);
-        tvKode = itemView.findViewById(R.id.list_nama_barang_inventory);
-        tvMerek = itemView.findViewById(R.id.merek_inventory);
-        tvStok = itemView.findViewById(R.id.stok_barang_inventory);
-        tvSatuan = itemView.findViewById(R.id.satuan_unit_barang_inventory);
-        tvKeterangan = itemView.findViewById(R.id.keterangan_status_inventory);
-        tvTanggal = itemView.findViewById(R.id.tgl_inventory);
-        tvJenisPenyimpanan = itemView.findViewById(R.id.keterangan_barang_keluar);
-        ll = itemView.findViewById(R.id.linear_ket);
+        tvKode = v.findViewById(R.id.list_nama_barang_inventory);
+        tvMerek = v.findViewById(R.id.merek_inventory);
+        tvStok = v.findViewById(R.id.stok_barang_inventory);
+        tvSatuan = v.findViewById(R.id.satuan_unit_barang_inventory);
+        tvKeterangan = v.findViewById(R.id.keterangan_status_inventory);
+        tvJam = v.findViewById(R.id.jam_penyimpanan);
+        tvTanggal = v.findViewById(R.id.tgl_inventory);
+        tvJenisPenyimpanan = v.findViewById(R.id.keterangan_barang_keluar);
+        ll = v.findViewById(R.id.linear_ket);
 
     }
 
@@ -77,9 +78,11 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
         // GET CALENDAR FROM PENYIMPANAN
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(penyimpanan.getTimeInMilis());
+        SimpleDateFormat tglFormat = new SimpleDateFormat("dd MMMM yyyy");
+        SimpleDateFormat jamFormat = new SimpleDateFormat("HH:mm");
         Date date = cal.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
-        String dateFormat = format.format(date);
+        String dateFormat = tglFormat.format(date);
+        String timeFormat = jamFormat.format(date);
 
 
         // SET ALL TEXTVIEW FROM PENYIMPANAN
@@ -91,6 +94,7 @@ public class PenyimpananViewHolder extends RecyclerView.ViewHolder {
         tvSatuan.setText("pcs");
         tvKeterangan.setText(penyimpanan.getKeteranganBarang());
         tvTanggal.setText(dateFormat);
+        tvJam.setText(timeFormat);
 
         final int sdk = android.os.Build.VERSION.SDK_INT;
 

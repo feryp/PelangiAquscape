@@ -1,6 +1,7 @@
 package com.example.pelangiaquscape.Utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.bumptech.glide.load.resource.bitmap.Rotate;
@@ -46,7 +47,9 @@ public class FakturUtils {
     private Context context;
 
 
-    public FakturUtils() {
+    public FakturUtils(Pembelian pembelian, AkunToko akunToko) {
+        this.pembelian = pembelian;
+        this.akunToko = akunToko;
     }
 
     public FakturUtils(Pembelian pembelian, AkunToko akunToko, Context context) {
@@ -59,6 +62,7 @@ public class FakturUtils {
         //create Calendar
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(pembelian.getTanggalPesanan());
+
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
         SimpleDateFormat formatTgl = new SimpleDateFormat("dd MMMM yyyy");
@@ -147,7 +151,7 @@ public class FakturUtils {
             document.add(p1);
 
             table = new PdfPTable(4);
-            table.setSpacingBefore(8);
+            table.setSpacingBefore(5);
 
             //no faktur
             cell = new PdfPCell();
@@ -155,6 +159,7 @@ public class FakturUtils {
             cell.setVerticalAlignment(Element.ALIGN_LEFT);
             cell.setBorder(0);
             table.addCell(cell);
+
 
             String noFaktur = "00" + no;
             Font fontNoFaktur = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL, new BaseColor(0, 0, 0));
@@ -241,7 +246,7 @@ public class FakturUtils {
             table.addCell(cell);
 
             cell = new PdfPCell();
-            cell.setPhrase(new Phrase("Merek Barang"));
+            cell.setPhrase(new Phrase("Merek"));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
@@ -328,25 +333,6 @@ public class FakturUtils {
 
 
 
-
-//                cell = new PdfPCell();
-//                String hargaBarang = decimalFormat.format(keranjang.getHargaBeli());
-//                String qty = String.valueOf(keranjang.getQty());
-//                cell.setPhrase(new Phrase("Rp. " + hargaBarang + " x " + qty));
-//                table.addCell(cell);
-
-                //total harga per item
-//                cell = new PdfPCell();
-//                String totalHargaPerItem = decimalFormat.format(keranjang.getTotalPrice());
-//                Font fontTotalItem = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(0, 0, 0));
-//                Paragraph pTotalItem = new Paragraph(totalHargaPerItem);
-//                pTotalItem.setLeading(0, 1);
-//                cell.addElement(pTotalItem);
-//                cell.setPhrase(new Phrase("Rp. " + totalHargaPerItem, fontTotalItem));
-//                table.addCell(cell);
-
-//                totalHargaItem += keranjang.getTotalPrice();
-
             }
 
             double total = 0;
@@ -361,7 +347,7 @@ public class FakturUtils {
             document.add(p4);
 
             table = new PdfPTable(4);
-            table.setSpacingBefore(13);
+            table.setSpacingBefore(2);
 
             //terbilang
             cell = new PdfPCell();

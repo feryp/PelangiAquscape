@@ -1,19 +1,24 @@
 package com.example.pelangiaquscape;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.FakturPembelianAdapter;
 import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
 import com.example.pelangiaquscape.Model.Pemasok;
 import com.example.pelangiaquscape.Model.Pembelian;
+import com.example.pelangiaquscape.Utils.FakturUtils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,6 +27,7 @@ import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.RuleBasedNumberFormat;
 import com.ibm.icu.util.Currency;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,14 +35,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class FakturPembelianActivity extends AppCompatActivity {
+public class FakturPembelianActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvNamaToko, tvAlamatToko, tvNoTeleponToko, tvNoFaktur, tvNoPesanan, tvTglFaktur, tvNamaPemasok, tvTotal,tvTerbilang, tvKeterangan;
+    TextView tvNamaToko, tvAlamatToko, tvNoTeleponToko, tvNoFaktur, tvNoPesanan, tvTglFaktur, tvNamaPemasok, tvTotal, tvTerbilang, tvKeterangan;
     RecyclerView rvItemPesanan;
     FloatingActionButton fabCetak;
 
     Pembelian pembelian;
+    AkunToko toko;
     Pemasok pemasok;
+    FakturUtils utils;
     String key;
     int no;
 
@@ -65,6 +73,7 @@ public class FakturPembelianActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.total_faktur);
         tvTerbilang = findViewById(R.id.terbilang_nominal);
         tvKeterangan = findViewById(R.id.keterangan_faktur);
+        fabCetak = findViewById(R.id.fab_print_faktur);
 
         rvItemPesanan = findViewById(R.id.rv_item_faktur);
         rvItemPesanan.setHasFixedSize(true);
@@ -78,7 +87,7 @@ public class FakturPembelianActivity extends AppCompatActivity {
 
         List<ItemKeranjang> listItemPembelian = pembelian.getListBarang();
         double total = 0;
-        for (ItemKeranjang itemKeranjang:listItemPembelian){
+        for (ItemKeranjang itemKeranjang : listItemPembelian) {
             total = total + itemKeranjang.getTotalPrice();
         }
 
@@ -103,6 +112,8 @@ public class FakturPembelianActivity extends AppCompatActivity {
         tvNoPesanan.setText(pembelian.getNoPesanan());
         tvNamaPemasok.setText(pembelian.getNamaPemasok());
 
+        fabCetak.setOnClickListener(this);
+
         loadAkunToko();
     }
 
@@ -119,11 +130,27 @@ public class FakturPembelianActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("AkunToko").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                AkunToko akunToko = dataSnapshot.getValue(AkunToko.class);
+                toko = dataSnapshot.getValue(AkunToko.class);
+                Toast.makeText(FakturPembelianActivity.this, "membuat faktur", Toast.LENGTH_SHORT).show();
+                try {
+                    if (toko != null && pembelian != null){
+                        utils = new FakturUtils(pembelian, toko, getApplicationContext());
+                        utils.createPdfForFaktur();
+                        Toast.makeText(FakturPembelianActivity.this, "faktur berhasil dibuat", Toast.LENGTH_SHORT).show();
+                    } else {
+                        utils = new FakturUtils(pembelian, toko);
+                        utils.createPdfForFaktur();
+                    }
 
-                tvNamaToko.setText(akunToko.getNamaToko());
-                tvAlamatToko.setText(akunToko.getAlamat());
-                tvNoTeleponToko.setText(akunToko.getNoTelepon());
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(FakturPembelianActivity.this,"pembuatan faktur gagal", Toast.LENGTH_SHORT).show();
+                }
+
+
+                tvNamaToko.setText(toko.getNamaToko());
+                tvAlamatToko.setText(toko.getAlamat());
+                tvNoTeleponToko.setText(toko.getNoTelepon());
             }
 
             @Override
@@ -134,4 +161,25 @@ public class FakturPembelianActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_print_faktur:
+                String fpath = "/sdcard/" + pembelian.getNoPesanan().replaceAll("[^a-zA-Z0-9]", "") + ".pdf";
+                File file = new File(fpath);
+                openReceipt(file);
+
+                break;
+        }
+
+    }
+
+    private void openReceipt(File file) {
+        Uri path = FileProvider.getUriForFile(this, "com.example.pelangiaquscape.fileprovider", file);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(path, "application/pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
+    }
 }

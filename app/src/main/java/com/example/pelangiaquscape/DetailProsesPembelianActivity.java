@@ -53,6 +53,7 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
     RecyclerView rvItem, rvCicilan;
 
     Pembelian pembelian;
+    int no;
     String key;
 
     String PACKAGE_NAME = "com.example.pelangiaquascape.";
@@ -68,6 +69,8 @@ public class DetailProsesPembelianActivity extends AppCompatActivity implements 
         Intent i = getIntent();
         pembelian = i.getParcelableExtra("value");
         key = i.getStringExtra("key");
+        no = i.getIntExtra("no" , -1);
+
 
         // SHARED PREFERENCE
         sharedPref = getSharedPreferences(PACKAGE_NAME + "PEMBELIAN_KONFIRMASI_KEY", Context.MODE_PRIVATE);

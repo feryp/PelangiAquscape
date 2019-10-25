@@ -1,5 +1,8 @@
 package com.example.pelangiaquscape;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,10 +10,12 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -87,19 +92,26 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     SharedPreferences sharedPref;
     String PACKAGE_NAME = "com.example.pelangiaquascape.";
 
+
+    final String CHANNEL_ID = "theId";
+
+    NotificationManager notificationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pembayaran);
 
+        // AMBIL DARI INTERNAL
         sharedPref = getSharedPreferences(PACKAGE_NAME + "PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
 
-
+        // INISIALISASI NILAI AWAL
         totalKembalian = 0;
         uangBayar = 0;
         diskon = 0;
-        final Intent i = getIntent();
 
+        // GET INTENT DARI ACTIVITY SEBELUMNYA
+        final Intent i = getIntent();
         if (i != null) {
             totalHarga = i.getDoubleExtra("totalHargaKeranjang", 0);
             Bundle bundle = getIntent().getExtras();
@@ -110,19 +122,14 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             totalHarga = 0;
         }
 
+        // INIT VIEW
         rl = findViewById(R.id.rl_option_payment);
         ll = findViewById(R.id.ll);
-        rl.setOnClickListener(this);
-        ll.setOnClickListener(this);
-
         cancel = findViewById(R.id.im_cancel);
-
         etJmlLain = findViewById(R.id.et_jumlah_lain);
         etDiskon = findViewById(R.id.et_jumlah_diskon);
         etNamaPelanggan = findViewById(R.id.et_nama_pelanggan_pembayaran);
         etNoHp = findViewById(R.id.et_no_hp_pelanggan);
-
-
         btnUangPas = findViewById(R.id.btn_uang_pas);
         btnKelDua = findViewById(R.id.btn_kelipatan_dua);
         btnKelLima = findViewById(R.id.btn_kelipatan_lima);
@@ -130,24 +137,15 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         btnDiskonRp = findViewById(R.id.btn_diskon_rp);
         btnDiskonPersen = findViewById(R.id.btn_diskon_persen);
         btnBayar = findViewById(R.id.btn_bayar);
-        btnDiskonRp.setOnClickListener(this);
-        btnDiskonPersen.setOnClickListener(this);
-        btnUangPas.setOnClickListener(this);
-        btnKelDua.setOnClickListener(this);
-        btnKelLima.setOnClickListener(this);
-        btnKelSepuluh.setOnClickListener(this);
-        btnBayar.setOnClickListener(this);
-
         tvDiskon = findViewById(R.id.jumlah_diskon);
         tvNamaDiskon = findViewById(R.id.nama_diskon);
         btnSwitch = findViewById(R.id.toogle_switch);
         ivHapus = findViewById(R.id.im_delete);
-        ivHapus.setOnClickListener(this);
-
         tvTotalPembayaran = findViewById(R.id.tv_total_pembayaran);
         tvKembalian = findViewById(R.id.tv_kembalian);
+        ex = findViewById(R.id.l_expand);
 
-        //init
+        // INIT BTN DISKON
         btnDiskonPersen.setBackground(getResources().getDrawable(R.drawable.button_blue_circle));
         btnDiskonPersen.setTextColor(Color.WHITE);
         etDiskon.setHint("%");
@@ -155,13 +153,32 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         diskonRp = false;
 
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        // REGISTER LISTENER
+        rl.setOnClickListener(this);
+        ll.setOnClickListener(this);
+        ivHapus.setOnClickListener(this);
+        btnDiskonRp.setOnClickListener(this);
+        btnDiskonPersen.setOnClickListener(this);
+        btnUangPas.setOnClickListener(this);
+        btnKelDua.setOnClickListener(this);
+        btnKelLima.setOnClickListener(this);
+        btnKelSepuluh.setOnClickListener(this);
+        btnBayar.setOnClickListener(this);
+        cancel.setOnClickListener(this);
 
+
+        // PERTAMA SET PEMBAYARAN KETIKA MEMBUKA PEMBAYARAN ACTIVITY
+        String format = fmt.format(totalHarga);
+        tvTotalPembayaran.setText("Rp. " + format);
+
+
+        // KETIKA MEMBUKA PEMBAYARAN ACTIVITY BTN SWITCH TIDAK TERBUKA
+        // DAN EXPANDABLE VIEW TERTUTUP
+        btnSwitch.setChecked(false);
+        ex.collapse();
+
+
+        // EVENT LAIN
         etDiskon.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -232,7 +249,6 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-
         etJmlLain.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -248,15 +264,6 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 }
             }
         });
-
-
-        String format = fmt.format(totalHarga);
-        tvTotalPembayaran.setText("Rp. " + format);
-
-
-        btnSwitch.setChecked(false);
-        ex = findViewById(R.id.l_expand);
-        ex.collapse();
 
         btnSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -281,18 +288,11 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
+        // END EVENT LAIN
 
-//        buttonUasPas.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-//                    buttonUasPas.setBackgroundColor(Color.BLUE);
-//                } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-//                    buttonUasPas.setBackgroundColor(Color.GRAY);
-//                }
-//                return false;
-//            }
-//        });
+
+        // MEMBUAT CHANNEL UNTUK NOTIFIKASI;
+        createNotificationChannel();
 
 
     }
@@ -302,6 +302,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         double kembalian;
         InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
         switch (v.getId()) {
             case R.id.btn_kelipatan_dua:
 
@@ -322,6 +323,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 etJmlLain.clearFocus();
                 im.hideSoftInputFromWindow(etJmlLain.getWindowToken(), 0);
                 break;
+
             case R.id.btn_kelipatan_lima:
                 kembalian = 50000 - totalHarga;
                 uangBayar = 50000;
@@ -364,6 +366,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 tvKembalian.setText("Rp. 0.00");
                 uangBayar = totalHarga;
                 totalKembalian = 0;
+
                 v.setBackground(getResources().getDrawable(R.drawable.button_pembayaran_pressed));
                 btnKelDua.setTextColor(Color.GRAY);
                 btnKelLima.setTextColor(Color.GRAY);
@@ -527,6 +530,10 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                                     barang.setStok(stok);
                                     sn.getRef().setValue(barang);
 
+                                    if(barang.getStok() < barang.getMinStok()){
+                                        showNotification(barang);
+                                    }
+
                                 }
 //                            dataSnapshot.getRef().child(p.getKeyBarang()).child("")
                             }
@@ -556,6 +563,11 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             case R.id.im_delete:
                 showDeleteDialog();
                 break;
+
+            case R.id.im_cancel:
+                finish();
+                break;
+
         }
     }
 
@@ -656,5 +668,58 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                     }
                 });
         alertDialog.show();
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "The Channel Name";
+            String description = "The Description";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Pelangi Aquascape : test title", importance);
+            channel.setDescription("Test Message");
+            channel.enableLights(true);
+            channel.setLightColor(Color.BLUE);
+            channel.setShowBadge(true);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    void showNotification(Barang barang){
+        int icon = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.drawable.logoblack : R.drawable.logoblack;
+
+        String message = "Stok minimal "+barang.getMinStok() + " ,Stok saat ini "+barang.getStok();
+        String title = "Barang " + barang.getKode() + " telah mencapai stok minimal";
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(icon)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Notification notification = new Notification.Builder(this, CHANNEL_ID)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setSmallIcon(icon)
+                    .setAutoCancel(true)
+                    .build();
+
+
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(1221, notification);
+
+
+
+        }
+
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(1221, builder.build());
     }
 }

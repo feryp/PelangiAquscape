@@ -38,6 +38,10 @@
         <activity android:name=".TestUI.TestNotif">
 
         </activity>
+
+        <activity android:name=".TestUI.TestNotif2">
+
+        </activity>
         <activity android:name=".Utils.NotificationUtils"></activity>
         <activity android:name=".PusatBantuanPegawaiActivity"></activity>
         <activity android:name=".PusatBantuanPrinterActivity" />

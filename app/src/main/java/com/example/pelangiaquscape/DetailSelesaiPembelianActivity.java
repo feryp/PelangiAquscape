@@ -158,6 +158,9 @@ public class DetailSelesaiPembelianActivity extends AppCompatActivity implements
                         utils = new FakturUtils(pembelian, toko, getApplicationContext());
                         utils.createPdfForFaktur();
                         Toast.makeText(DetailSelesaiPembelianActivity.this, "faktur berhasil dibuat", Toast.LENGTH_SHORT).show();
+                    } else {
+                        utils = new FakturUtils(pembelian, toko);
+                        utils.createPdfForFaktur();
                     }
 
 

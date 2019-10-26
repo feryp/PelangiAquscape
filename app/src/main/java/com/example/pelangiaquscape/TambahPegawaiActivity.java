@@ -124,9 +124,12 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         try {
             idPegawai = getIntent().getExtras().getString("idForPegawai");
             System.out.println("ID in tambah pegawai act " + idPegawai);
-            bind(getIntent().getExtras().getString("namaPegawai"),
+            bind(getIntent().getExtras().getString("fotoPegawai"),
+                    getIntent().getExtras().getString("namaPegawai"),
                     getIntent().getExtras().getString("namaPengguna"),
+                    getIntent().getExtras().getString("password"),
                     getIntent().getExtras().getString("jabatan"),
+                    getIntent().getExtras().getString("hakAkses"),
                     getIntent().getExtras().getString("emailPegawai"),
                     getIntent().getExtras().getString("noHp"));
         } catch (NullPointerException ex){
@@ -137,6 +140,8 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         storageReference = FirebaseStorage.getInstance().getReference("foto pegawai");
 
         pegawai = new Pegawai();
+
+
 
 
         //SET IMAGE
@@ -159,20 +164,20 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinnerHakAkses.setAdapter(adapter);
 
-//        boolean fromPegawaiFragment = getIntent().getExtras().getBoolean("fromPegawaiFragment", false);
-//        if (fromPegawaiFragment){
+//       boolean fromPegawai = getIntent().getExtras().getBoolean("fromPegawai", false);
+//        if (fromPegawai){
 //
 //
-//            fotoProfilePegawai = getIntent().getExtras().getString("fotoPegawai");
-//            namaPegawai = getIntent().getExtras().getString("namaPegawai");
-//            namaPengguna = getIntent().getExtras().getString("namapengguna");
-//            kataSandi = getIntent().getExtras().getString("katasandi");
-//            jabatan = getIntent().getExtras().getString("jabatan");
-//            hakAkses = getIntent().getExtras().getString("hakAkses");
-//            noHp = getIntent().getExtras().getString("noHp");
-//            emailPegawai = getIntent().getExtras().getString("emailPegawai");
-//            bind(fotoProfilePegawai, namaPegawai, namaPengguna, kataSandi, jabatan, hakAkses, noHp,emailPegawai);
+//            String fotoPegawai = getIntent().getExtras().getString("fotoPegawai");
+//            String namaPegawai = getIntent().getExtras().getString("namaPegawai");
+//            String namaPengguna = getIntent().getExtras().getString("namaPengguna");
+//            String kataSandi = getIntent().getExtras().getString("password");
+//            String Jabatan = getIntent().getExtras().getString("jabatan");
+//            String hakAkses = getIntent().getExtras().getString("hakAkses");
+//            String emailPegawai = getIntent().getExtras().getString("emailPegawai");
+//            String noHp = getIntent().getExtras().getString("noHp");
 //
+//            daftarPegawai(fotoPegawai, namaPegawai, namaPengguna, kataSandi, Jabatan, hakAkses, emailPegawai, noHp);
 //        }
 
         //REGISTER LISTENER
@@ -182,24 +187,57 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private void bind(String namaPegawai, String namaPengguna, String jabatan, String emailPegawai, String noHp) {
+
+    private void bind(final
+                      String fotoPegawai,
+                      String namaPegawai,
+                      String namaPengguna,
+                      String kataSandi,
+                      String jabatan,
+                      String hakAkses,
+                      String emailPegawai,
+                      String noHp) {
+
+        int idxHakAkses = -1;
+
+        String[] hakAksesArray = getResources().getStringArray(R.array.akses_arrays);
+
+        for (int i = 0; i < hakAksesArray.length; i++){
+            if (hakAksesArray[i].equals(hakAkses)){
+                idxHakAkses = i;
+            }
+        }
+//        imgFotoprofile.setImageResource(Integer.parseInt(fotoPegawai));
         etNamaPegawai.setText(namaPegawai);
         etNamaPengguna.setText(namaPengguna);
+        etKataSandi.setText(kataSandi);
         etJabatan.setText(jabatan);
+        spinnerHakAkses.setSelection(idxHakAkses);
         etEmailPegawai.setText(emailPegawai);
         etNoHp.setText(noHp);
     }
 
 
-    private void daftarPegawai(final String fotoProfilePegawai,
-                               final String namaPegawai,
-                               final String namaPengguna,
-                               final String kataSandi,
-                               final String jabatan,
-                               final String hakAkses,
-                               final String noHp,
-                               final String emailPegawai) {
+    private void daftarPegawai(final String fotoPegawai,
+                               String namaPegawai,
+                               String namaPengguna,
+                               String kataSandi,
+                               String jabatan,
+                               String hakAkses,
+                               String emailPegawai,
+                               String noHp) {
 
+//        int idxHakAkses = -1;
+//
+//        String[] hakAksesArray = getResources().getStringArray(R.array.akses_arrays);
+//
+//        for (int i = 0; i < hakAksesArray.length; i++){
+//            if (hakAksesArray[i].equals(hakAkses)){
+//                idxHakAkses = i;
+//            }
+//        }
+
+//        int finalIdxHakAkses = idxHakAkses;
         firebaseAuth.createUserWithEmailAndPassword(emailPegawai, kataSandi).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -230,12 +268,12 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 //                        String id, String username, String telepon, String email, String password,  String kodeLogin, String fotoProfile, String bio
                 User user = new User();
                 user.setId(userid);
+                user.setFotoProfile(fotoPegawai);
                 user.setUsername(namaPengguna);
                 user.setTelepon(noHp);
                 user.setEmail(emailPegawai);
                 user.setPassword(kataSandi);
                 user.setKodeLogin(hakAkses);
-                user.setFotoProfile(fotoProfilePegawai);
                 user.setBio("");
 
                 FirebaseDatabase.getInstance().getReference("User").child(userid).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -404,9 +442,9 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                     dialog.setMessage("Sedang mengupload foto ...");
                     dialog.setIndeterminate(false);
                     dialog.setProgress((int) progress);
-                    dialog.show();
-
-                    dialog.dismiss();
+//                    dialog.show();
+//
+//                    dialog.dismiss();
                 })
                 .addOnFailureListener(exception -> {
                     // Handle unsuccessful uploads

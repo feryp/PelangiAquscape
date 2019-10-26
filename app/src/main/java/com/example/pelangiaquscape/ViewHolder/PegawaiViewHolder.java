@@ -1,5 +1,7 @@
 package com.example.pelangiaquscape.ViewHolder;
 
+import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +11,9 @@ import android.widget.TextView;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Model.Pegawai;
 import com.example.pelangiaquscape.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class PegawaiViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -18,6 +23,7 @@ public class PegawaiViewHolder extends RecyclerView.ViewHolder implements View.O
     public ImageView im_foto_pegawai;
 
     private Pegawai pegawai;
+    private Uri mImageUri;
 
     private View.OnLongClickListener onLongClickListener;
 
@@ -26,6 +32,7 @@ public class PegawaiViewHolder extends RecyclerView.ViewHolder implements View.O
     private View.OnClickListener onClickListener;
 
     String fotoProfile;
+    Context mContext;
 
 
     public PegawaiViewHolder(@NonNull View itemView) {
@@ -43,6 +50,24 @@ public class PegawaiViewHolder extends RecyclerView.ViewHolder implements View.O
         tv_nama_pegawai.setText(pegawai.getNamaPegawai());
         tv_jabatan.setText(pegawai.getJabatan());
 
+        String uid = FirebaseAuth.getInstance().getUid();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(uid + ".jpg");
+        pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
+
+            try {
+                if (uri != null){
+                    mImageUri = uri;
+                    Picasso.get().load(uri).into(im_foto_pegawai);
+                }
+
+            } catch (IllegalArgumentException e){
+                im_foto_pegawai.setImageResource(R.drawable.pegawai);
+            }
+
+        });
+
 //        try {
 //            Picasso.get().load(fotoProfile).into(im_foto_pegawai);
 //        } catch (IllegalArgumentException e){
@@ -50,6 +75,8 @@ public class PegawaiViewHolder extends RecyclerView.ViewHolder implements View.O
 //        }
 
     }
+
+
 
     @Override
     public void onClick(View v) {

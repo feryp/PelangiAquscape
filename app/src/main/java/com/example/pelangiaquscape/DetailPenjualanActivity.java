@@ -190,6 +190,7 @@ public class DetailPenjualanActivity extends AppCompatActivity implements View.O
                 String fpath = "/sdcard/" + penjualan.getNoPenjualan() + ".pdf";
                 File file = new File(fpath);
                 openReceipt(file);
+                break;
 
 
 
@@ -199,31 +200,10 @@ public class DetailPenjualanActivity extends AppCompatActivity implements View.O
 //                    lihatStruk.putExtra("namaKasir", user.getUsername());
 //                }
 //                startActivity(lihatStruk);
-                break;
+
         }
     }
 
-//    void createPDFFile() {
-//
-//        // direktori u/ menyimpan pdf
-//
-//        if (!file.exists()) {
-//            try {
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            try {
-//                Intent intent = new Intent(Intent.ACTION_VIEW);
-//                intent.setDataAndType(Uri.fromFile(file), "application/pdf");
-//                startActivity(intent);
-//            } catch (ActivityNotFoundException e) {
-//                // no Activity to handle this kind of files
-//            }
-//        }
-//
-//    }
 
     void openReceipt(File file) {
 

@@ -24,9 +24,14 @@ public class TestNotif extends AppCompatActivity implements View.OnClickListener
 
     Button btn_test;
     Context context;
-    String message = "Stok Barang sudah mencapai batas min";
-    String title = "New Notif";
-    String channelId = "default";
+    String message = "Pemberitahuan stok barang sudah mencapai batas minimum";
+    String title = "Stok Barang";
+
+//    public TestNotif(Context context, String message, String title) {
+//        this.context = context;
+//        this.message = message;
+//        this.title = title;
+//    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +53,7 @@ public class TestNotif extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    private void notification() {
+    public void notification() {
         Intent intent = new Intent(TestNotif.this, NotificationUtils.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

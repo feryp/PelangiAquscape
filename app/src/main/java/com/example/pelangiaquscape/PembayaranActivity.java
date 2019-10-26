@@ -595,13 +595,13 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         tvNamaPelanggan.setText(etNamaPelanggan.getText().toString());
         tvNoHp.setText(etNoHp.getText().toString());
         tvDiskon.setText(etDiskon.getText().toString());
-        tvTotalBayarTransaksi.setText("Rp. " + String.valueOf(fmt.format(totalHarga)));
-        tvKembalianTransaksi.setText("Rp. " + String.valueOf(fmt.format(totalKembalian)));
+        tvTotalBayarTransaksi.setText("Rp. " + (fmt.format(totalHarga)));
+        tvKembalianTransaksi.setText("Rp. " + (fmt.format(totalKembalian)));
 
         double uangBayar;
         uangBayar = totalKembalian + totalHarga;
 
-        tvUangBayar.setText("Rp. " + String.valueOf(fmt.format(uangBayar)));
+        tvUangBayar.setText("Rp. " + (fmt.format(uangBayar)));
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

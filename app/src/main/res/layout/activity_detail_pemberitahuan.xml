@@ -61,7 +61,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/judul_keterangan_pesan"
+                android:id="@+id/tv_judul_keterangan_pesan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -78,7 +78,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/isi_pesan"
+                android:id="@+id/tv_isi_pesan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="30dp"

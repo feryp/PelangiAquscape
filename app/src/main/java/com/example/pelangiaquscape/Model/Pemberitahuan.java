@@ -12,6 +12,7 @@ public class Pemberitahuan implements Parcelable{
     private boolean proses;
 
 
+    public Pemberitahuan(){}
 
     public Pemberitahuan(String judul, String pesan, Long waktu, Boolean baca, Boolean proses) {
         this.judul = judul;

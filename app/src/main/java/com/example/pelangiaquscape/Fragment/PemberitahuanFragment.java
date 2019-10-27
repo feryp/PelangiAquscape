@@ -77,15 +77,13 @@ public class PemberitahuanFragment extends Fragment {
 
     void loadPemberitahuan() {
 
-        query = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child("Pemberitahuan");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Pemberitahuan");
 
         FirebaseRecyclerOptions<Pemberitahuan> options =
                 new FirebaseRecyclerOptions.Builder<Pemberitahuan>()
-                .setQuery(query, Pemberitahuan.class)
+                .setQuery(databaseReference, Pemberitahuan.class)
                 .build();
+
         adapter = new FirebaseRecyclerAdapter<Pemberitahuan, PemberitahuanViewHolder>(options){
 
             @NonNull
@@ -93,7 +91,8 @@ public class PemberitahuanFragment extends Fragment {
             public PemberitahuanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_item_pemberitahuan_masuk,viewGroup, false);
-                Log.i("Buat View Holder", view.toString());
+
+//                Log.i("Buat View Holder", view.toString());
 
                 return new PemberitahuanViewHolder(view, getContext());
             }
@@ -148,8 +147,11 @@ public class PemberitahuanFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        adapter.stopListening();
+    public void onStop() {
+        super.onStop();
+
+        if (adapter != null){
+            adapter.stopListening();
+        }
     }
 }

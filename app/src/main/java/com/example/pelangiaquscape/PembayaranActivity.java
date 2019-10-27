@@ -706,7 +706,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         String message = "Stok minimal "+barang.getMinStok() + " ,Stok saat ini "+barang.getStok();
         String title = "Barang " + barang.getKode() + " telah mencapai stok minimal";
 
-        Intent intent = new Intent(this, PemberitahuanFragment.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("messgae", message);
@@ -751,7 +751,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         SimpleDateFormat fmt = new SimpleDateFormat("HH:mm");
         long waktu = calendar.getTimeInMillis();
         String judul = "Stok Barang";
-        String pesan = "Persediaan barang " + barang.getKode() + "sudah mencapai batas minimum";
+        String pesan = "Persediaan barang " + barang.getKode() + " sudah mencapai batas minimum";
 
         Pemberitahuan pemberitahuan = new Pemberitahuan(judul, pesan ,waktu, false, false );
 

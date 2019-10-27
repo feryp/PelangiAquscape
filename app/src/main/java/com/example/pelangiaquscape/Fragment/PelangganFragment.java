@@ -89,6 +89,7 @@ public class PelangganFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
+
                 cariFirebase(s);
                 adapter.startListening();
                 return false;
@@ -227,7 +228,8 @@ public class PelangganFragment extends Fragment {
     void loadPelanggan() {
         query = FirebaseDatabase
                 .getInstance()
-                .getReference("Pelanggan")
+                .getReference()
+                .child("Pelanggan")
                 .orderByChild("namaPelanggan");
 
 

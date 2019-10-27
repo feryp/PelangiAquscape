@@ -1,17 +1,22 @@
 package com.example.pelangiaquscape;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +28,13 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.core.Tag;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener {
+public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageView cancel, filter;
     RecyclerView rvPenjualan;
@@ -42,6 +49,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     private Penjualan penjualan;
     private String key;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 
     ImageView iv;
@@ -69,6 +77,39 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         cancel.setOnClickListener(this);
         filter.setOnClickListener(this);
 
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+//
+//        filter.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Calendar calendar = Calendar.getInstance();
+//                int year = calendar.get(Calendar.YEAR);
+//                int month = calendar.get(Calendar.MONTH);
+//                int day = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog dialog = new DatePickerDialog(PenjualanActivity.this,
+//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                        mDateSetListener, year, month, day);
+//
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                dialog.show();
+//            }
+//        });
+//
+//        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//            private String Tag;
+//
+//            @Override
+//                    public void onDateSet(DatePicker v, int year, int month, int dayOfMonth) {
+//                        Log.d(Tag, "onDataSet: date: " + year + "/" + month + "/" + dayOfMonth);
+//                    }
+//                };
+
         // INIT VIEW END
 
         fd = FirebaseDatabase.getInstance();
@@ -84,29 +125,101 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
             case R.id.im_filter:
-                listFilter = new String[]{"Oleh Tanggal", "Oleh Waktu"};
-                AlertDialog.Builder builder = new AlertDialog.Builder(PenjualanActivity.this);
-                builder.setTitle("Pilih salah satu");
-                builder.setIcon(R.drawable.ic_list);
-                builder.setSingleChoiceItems(listFilter, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                        dialog.dismiss();
-                    }
-                });
-                builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                DatePickerDialog dialog = new DatePickerDialog(PenjualanActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener, year, month, day);
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onDateSet(DatePicker v, int year, int month, int dayOfMonth) {
+                        query = FirebaseDatabase.getInstance().getReference().child("Penjualan").orderByChild("tanggalPenjualan");
+                        Log.v("query", query.getPath().toString());
+
+                        FirebaseRecyclerOptions<Penjualan> options =
+                                new FirebaseRecyclerOptions.Builder<Penjualan>().setQuery(query, Penjualan.class).build();
+
+                        adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
+
+                            @Override
+                            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int position, @NonNull final Penjualan model) {
+                                Log.v("modelPenjualan", model.getNoPenjualan());
+                                holder.bindData(model);
+                                holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v, int position) {
+                                        Toast.makeText(PenjualanActivity.this, "Penjualan", Toast.LENGTH_SHORT).show();
+                                        Intent p = new Intent(PenjualanActivity.this, DetailPenjualanActivity.class);
+                                        p.putExtra("penjualan", penjualan);
+                                        p.putExtra("key", key);
+                                        p.putExtra("penjualan", model);
+                                        startActivity(p);
+                                    }
+
+                                });
+
+                            }
+
+                            @NonNull
+                            @Override
+                            public PenjualanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_penjualan, viewGroup, false);
+                                Log.v("hereOnCreateView", "true");
+                                return new PenjualanViewHolder(v);
+                            }
+
+                            @Override
+                            public void onDataChanged() {
+                                super.onDataChanged();
+                                iv.setVisibility(View.GONE);
+                                tvImage.setVisibility(View.GONE);
+
+                            }
+                        };
+
+                        rvPenjualan.setAdapter(adapter);
+
+                        Log.v("itemCount", String.valueOf(rvPenjualan.getAdapter().getItemCount()));
+                        rvPenjualan.setVisibility(View.VISIBLE);
+
 
                     }
-                });
-                //show alert dialog
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+
+                };
+
+//                listFilter = new String[]{"Oleh Tanggal", "Oleh Waktu"};
+//                AlertDialog.Builder builder = new AlertDialog.Builder(PenjualanActivity.this);
+//                builder.setTitle("Pilih salah satu");
+//                builder.setIcon(R.drawable.ic_list);
+//                builder.setSingleChoiceItems(listFilter, -1, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                        dialog.dismiss();
+//                    }
+//                });
+//                builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//                //show alert dialog
+//                AlertDialog alertDialog = builder.create();
+////                alertDialog.show();
                 break;
         }
     }
+
+
 
     void loadDataPenjualan() {
         query = FirebaseDatabase.getInstance().getReference().child("Penjualan").orderByChild("tanggalPenjualan");
@@ -118,7 +231,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
 
             @Override
-            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int positiona, @NonNull final Penjualan model) {
+            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int position, @NonNull final Penjualan model) {
                 Log.v("modelPenjualan", model.getNoPenjualan());
                 holder.bindData(model);
                 holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {

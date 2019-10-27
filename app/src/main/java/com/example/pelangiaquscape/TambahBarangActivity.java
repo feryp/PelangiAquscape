@@ -183,7 +183,7 @@ public class TambahBarangActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.im_save:
 
-                Barang currentBarang;
+//                Barang currentBarang;
 //                if(id > 0){
 //                    currentBarang = barang;
 //                    currentBarang.setKode(etNamaBarang.getText().toString() != null ? etNamaBarang.getText().toString(): "");

@@ -3,6 +3,7 @@ package com.example.pelangiaquscape;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.NotificationCompat;
@@ -37,9 +39,11 @@ import android.widget.Toast;
 
 import com.example.pelangiaquscape.Database.ItemKeranjangContract;
 import com.example.pelangiaquscape.Database.ItemKeranjangDbHelper;
+import com.example.pelangiaquscape.Fragment.PemberitahuanFragment;
 import com.example.pelangiaquscape.Model.AkunToko;
 import com.example.pelangiaquscape.Model.Barang;
 import com.example.pelangiaquscape.Model.ItemKeranjang;
+import com.example.pelangiaquscape.Model.Pemberitahuan;
 import com.example.pelangiaquscape.Model.Penjualan;
 import com.example.pelangiaquscape.Model.Penyimpanan;
 import com.example.pelangiaquscape.Model.User;
@@ -74,6 +78,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     TextView tvTotalPembayaran, tvKembalian;
     Button btnBayar, btnUangPas, btnKelDua, btnKelLima, btnKelSepuluh, btnDiskonRp, btnDiskonPersen;
     RelativeLayout rl;
+
+//    Pemberitahuan pemberitahuan;
 
     LinearLayout ll;
     double totalHarga;
@@ -532,6 +538,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
                                     if(barang.getStok() < barang.getMinStok()){
                                         showNotification(barang);
+                                        insertNotif(barang);
                                     }
 
                                 }
@@ -570,6 +577,9 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         }
     }
+
+
+
 
     void showPembayaranBerhasilDialog() {
         ViewGroup group = findViewById(android.R.id.content);
@@ -690,15 +700,26 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
     }
 
     void showNotification(Barang barang){
+
         int icon = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.drawable.logoblack : R.drawable.logoblack;
 
         String message = "Stok minimal "+barang.getMinStok() + " ,Stok saat ini "+barang.getStok();
         String title = "Barang " + barang.getKode() + " telah mencapai stok minimal";
 
+        Intent intent = new Intent(this, PemberitahuanFragment.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("messgae", message);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(icon)
                 .setContentTitle(title)
                 .setContentText(message)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 
@@ -709,6 +730,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                     .setContentText(message)
                     .setSmallIcon(icon)
                     .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
                     .build();
 
 
@@ -722,4 +744,27 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(1221, builder.build());
     }
+
+    private void insertNotif(Barang barang) {
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat fmt = new SimpleDateFormat("HH:mm");
+        long waktu = calendar.getTimeInMillis();
+        String judul = "Stok Barang";
+        String pesan = "Persediaan barang " + barang.getKode() + "sudah mencapai batas minimum";
+
+        Pemberitahuan pemberitahuan = new Pemberitahuan(judul, pesan ,waktu, false, false );
+
+        FirebaseDatabase.getInstance().getReference("Pemberitahuan").push().setValue(pemberitahuan).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
+
+
+
+    }
+
+
 }

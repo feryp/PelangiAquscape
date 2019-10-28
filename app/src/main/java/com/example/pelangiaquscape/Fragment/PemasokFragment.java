@@ -215,11 +215,7 @@ public class PemasokFragment extends Fragment {
     }
 
     void loadPemasok() {
-        query = FirebaseDatabase
-                .getInstance()
-                .getReference("Pemasok")
-                .orderByChild("namaPemasok");
-
+        query = FirebaseDatabase.getInstance().getReference("Pemasok").orderByChild("namaPemasok");
         FirebaseRecyclerOptions<Pemasok> options =
                 new FirebaseRecyclerOptions.Builder<Pemasok>()
                         .setQuery(query, Pemasok.class)

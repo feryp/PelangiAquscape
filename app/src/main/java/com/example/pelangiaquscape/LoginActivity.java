@@ -315,15 +315,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "Semua harus diisi!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.v("HERE", "VALUE EVENT LISTENER");
-//                    AuthCredential credential = EmailAuthProvider.getCredential(str_namapengguna, str_katasandi);
 //
-//                    firebaseAuth.getCurrentUser().linkWithCredential(credential)
-//                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<AuthResult> task) {
-//
-//                                }
-//                            });
                     firebaseAuth.signInWithEmailAndPassword(str_namapengguna, str_katasandi)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override

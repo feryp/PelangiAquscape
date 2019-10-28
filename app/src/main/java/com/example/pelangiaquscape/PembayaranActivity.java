@@ -753,7 +753,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         String judul = "Stok Barang";
         String pesan = "Persediaan barang " + barang.getKode() + " sudah mencapai batas minimum";
 
-        Pemberitahuan pemberitahuan = new Pemberitahuan(judul, pesan ,waktu, false, false );
+        Pemberitahuan pemberitahuan = new Pemberitahuan(judul, pesan ,waktu,  false, false );
 
         FirebaseDatabase.getInstance().getReference("Pemberitahuan").push().setValue(pemberitahuan).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

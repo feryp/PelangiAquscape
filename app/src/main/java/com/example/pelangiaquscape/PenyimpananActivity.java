@@ -165,16 +165,11 @@ public class PenyimpananActivity extends AppCompatActivity {
     void loadPenyimpanan(){
         FirebaseDatabase fd = FirebaseDatabase.getInstance();
         DatabaseReference dr = fd.getReference("Penyimpanan");
-
-
         dr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 listPenyimpanan = new ArrayList<>();
                 listKey = new ArrayList<>();
-
-
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     Penyimpanan penyimpanan = ds.getValue(Penyimpanan.class);
                     String key = dataSnapshot.getKey();
@@ -182,27 +177,21 @@ public class PenyimpananActivity extends AppCompatActivity {
                     listPenyimpanan.add(penyimpanan);
                     listKey.add(key);
                 }
-
                 PenyimpananAdapter adapter = new PenyimpananAdapter(PenyimpananActivity.this, listPenyimpanan, listKey);
-
                 LinearLayoutManager manager = new LinearLayoutManager(PenyimpananActivity.this);
                 manager.setReverseLayout(true);
                 manager.setStackFromEnd(true);
-
                 rvPenyimpanan.setAdapter(adapter);
                 rvPenyimpanan.setLayoutManager(manager);
-
                 if(adapter.getItemCount() > 0){
                     imageLayout.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
     }
 
 

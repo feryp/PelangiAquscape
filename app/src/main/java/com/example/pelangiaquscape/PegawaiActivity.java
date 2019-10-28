@@ -94,9 +94,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
         query = FirebaseDatabase.getInstance().getReference().child("Pegawai").orderByChild("namaPegawai");
         FirebaseRecyclerOptions<Pegawai> options =
                 new FirebaseRecyclerOptions.Builder<Pegawai>().setQuery(query, Pegawai.class).build();
-
         Log.i("SNAPSHOT", options.getSnapshots().toString());
-
         adapter = new FirebaseRecyclerAdapter<Pegawai, PegawaiViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull PegawaiViewHolder holder, int position, @NonNull final Pegawai model) {
@@ -111,8 +109,6 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                 Log.i("INFORMATION", model.getHakAkses() + " " + model.getHakAkses());
                 Log.i("INFORMATION", model.getNoHp() + " " + model.getNoHp());
                 Log.i("INFORMATION", model.getEmailPegawai() + " " + model.getEmailPegawai());
-
-
                 final Pegawai clickItem = model;
 
                 final int size = this.getItemCount();
@@ -131,18 +127,9 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                             pegawai.putExtra("namaPegawai", model.getNamaPegawai());
                             pegawai.putExtra("namaPengguna", model.getNamapengguna());
                             pegawai.putExtra("noHp", model.getNoHp());
-//                        pegawai.putExtra("modelPegawai", model);
 
                             System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
                             startActivity(pegawai);
-
-//                        merek.putExtra("listSize", size);
-
-
-//                        Log.i("GET IDMEREK", merek.getStringExtra("idMerek") + adapter.getRef(position).getKey());
-//                        setResult(RESULT_OK, merek);
-
-
                         }
                     });
                 } else {
@@ -164,9 +151,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                         return false;
                     }
                 });
-
             }
-
             @NonNull
             @Override
             public PegawaiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -184,17 +169,8 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                     imageLayout.setVisibility(View.GONE);
                 }
             }
-
-
         };
-
-
-
-
-
         rvPegawai.setAdapter(adapter);
-
-
     }
 
     @Override

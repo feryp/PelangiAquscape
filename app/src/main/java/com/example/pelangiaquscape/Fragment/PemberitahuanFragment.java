@@ -119,25 +119,29 @@ public class PemberitahuanFragment extends Fragment {
 
                 final int size = this.getItemCount();
 
-                if (!fromPemberitahuanActivity){
+
                     holder.setItemClickListener(new ItemClickListener() {
                         @Override
                         public void onClick(View view, int position, boolean isLongClick) {
                             Intent i = new Intent(getActivity(), DetailPemberitahuanActivity.class);
-                            i.putExtra("idForPemberitahuan", adapter.getRef(position).getKey());
-                            i.putExtra("judul", model.getJudul());
-                            i.putExtra("pesan", model.getPesan());
-                            i.putExtra("waktu", model.getWaktu());
+                            i.putExtra("pemberitahuan", pemberitahuan);
+                            i.putExtra("key", key);
+                            i.putExtra("pemberitahuan", model);
+//                            i.putExtra("idForPemberitahuan", adapter.getRef(position).getKey());
+//                            i.putExtra("judul", model.getJudul());
+//                            i.putExtra("pesan", model.getPesan());
+//                            i.putExtra("waktu", model.getWaktu());
 
-                            System.out.println("ID Pemberitahuan " + adapter.getRef(position).getKey());
+//                            System.out.println("ID Pemberitahuan " + adapter.getRef(position).getKey());
                             startActivity(i);
                         }
                     });
                 }
-            }
         };
 
         rvPemberitahuan.setAdapter(adapter);
+        Log.v("itemCount", String.valueOf(rvPemberitahuan.getAdapter().getItemCount()));
+        rvPemberitahuan.setVisibility(View.VISIBLE);
     }
 
     @Override

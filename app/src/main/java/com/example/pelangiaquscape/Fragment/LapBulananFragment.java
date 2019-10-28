@@ -150,11 +150,7 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
 
                         }
                     }
-
-
-
                 }
-
 
                 String totalPenjualanBulan= decimalFormat.format(totalPenjualan);
                 tvTotalPenjualan.setText("Rp. " + totalPenjualanBulan);
@@ -162,7 +158,6 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
                 tvTotalTerjual.setText(String.valueOf(jmlProdukTerjual));
                 if(produkPalingLaku != null)
                 tvTotalProdukPalingLaku.setText(produkPalingLaku.getKode());
-
 
                 double finalTotalPenjualan = totalPenjualan;
                 FirebaseDatabase.getInstance().getReference("Pembelian").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -186,7 +181,6 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
                         String totalKeuntunganBulan = decimalFormat.format(totalPendapatan);
                         tvTotalKeuntungan.setText("Rp. " + totalKeuntunganBulan);
 
-
                     }
 
                     @Override
@@ -194,7 +188,6 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
 
                     }
                 });
-
 
                 if(produkPalingLaku != null)
                 FirebaseDatabase.getInstance().getReference().child("Barang").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -210,7 +203,6 @@ public class LapBulananFragment extends Fragment implements View.OnClickListener
 
                         adapter = new ProdukTidakLakuAdapter(getActivity(), list , fromTambahPenyimpananActivity);
                         rvProdukTidakLaku.setAdapter(adapter);
-
 
                     }
 

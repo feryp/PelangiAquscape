@@ -227,8 +227,6 @@ public class BarangActivity extends AppCompatActivity {
     }
 
     void loadBarang() {
-
-
         FirebaseDatabase.getInstance().getReference().child("Barang").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -236,19 +234,11 @@ public class BarangActivity extends AppCompatActivity {
                 List<Barang> listBarang = new ArrayList<>();
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
 
-//                    ObservableSnapshotArray<Barang> a = new FirebaseArray<>();
-//                    Log.v("KEYKEYKEY", snap.getKey());
                     Barang bbe = snap.getValue(Barang.class);
                     String merek = snap.child("merek").getValue(String.class);
-//                    bbe.setMerek(merek);
-
-
                     Log.v("MEREK", bbe.getMerek());
                     listBarang.add(bbe);
-//                    Log.v("KEYKEYKEYMODEL", bbe.getKode());
-
                 }
-
                 adapter = new BarangAdapter(BarangActivity.this, listBarang, merek, fromTambahPenyimpananActivity);
                 rvBarang.setAdapter(adapter);
                 if (adapter.getItemCount() > 0) {
@@ -256,20 +246,18 @@ public class BarangActivity extends AppCompatActivity {
                 } else {
                     imageLayout.setVisibility(View.VISIBLE);
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
-
         swipeRefresh.setRefreshing(false);
 
+    }
 
-//        Log.v("QUERYAN", q.getPath().toString());
+//       Log.v("QUERYAN", q.getPath().toString());
 
 //        FirebaseRecyclerOptions<Barang> options =
 //                new FirebaseRecyclerOptions.Builder<Barang>().set.setQuery(q, Barang.class).build();
@@ -291,5 +279,4 @@ public class BarangActivity extends AppCompatActivity {
 //        };
 
 //        rvBarang.setAdapter(adapter);
-    }
 }

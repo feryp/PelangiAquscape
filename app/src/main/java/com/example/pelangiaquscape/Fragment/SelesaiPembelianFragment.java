@@ -57,8 +57,6 @@ public class SelesaiPembelianFragment extends Fragment {
     public void loadPembelian(){
         FirebaseDatabase fd = FirebaseDatabase.getInstance();
         DatabaseReference dr = fd.getReference("Pembelian");
-
-
         dr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -68,7 +66,6 @@ public class SelesaiPembelianFragment extends Fragment {
 
                 boolean test = false;
                 for(DataSnapshot snapShot: dataSnapshot.getChildren()){
-//                    mapping.put(dataSnapshot.getKey(), snapShot.getValue(Pembelian.class));
                     listKey.add(dataSnapshot.getKey());
                     listPembelian.add(snapShot.getValue(Pembelian.class));
 
@@ -88,19 +85,11 @@ public class SelesaiPembelianFragment extends Fragment {
 
                     }
                 }
-
-
-
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
-
-
-
 }

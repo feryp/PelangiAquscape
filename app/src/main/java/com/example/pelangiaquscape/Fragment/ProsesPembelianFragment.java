@@ -107,8 +107,6 @@ public class ProsesPembelianFragment extends Fragment {
     public void loadPembelian(){
         FirebaseDatabase fd = FirebaseDatabase.getInstance();
         DatabaseReference dr = fd.getReference("Pembelian");
-
-
         dr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,14 +115,9 @@ public class ProsesPembelianFragment extends Fragment {
                 listKey = new ArrayList<>();
 
                 for(DataSnapshot snapShot: dataSnapshot.getChildren()){
-//                    mapping.put(dataSnapshot.getKey(), snapShot.getValue(Pembelian.class));
                     listKey.add(snapShot.getKey());
                     listPembelian.add(snapShot.getValue(Pembelian.class));
-
-
                 }
-
-
                 ProsesPembelianAdapter adapter = new ProsesPembelianAdapter(listPembelian, listKey, getContext());
                 rvProsesPembelian.setAdapter(adapter);
 
@@ -134,9 +127,7 @@ public class ProsesPembelianFragment extends Fragment {
                     imageLayout.setVisibility(View.GONE);
                     rl.setVisibility(View.GONE);
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

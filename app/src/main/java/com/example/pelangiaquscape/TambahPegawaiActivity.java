@@ -98,17 +98,20 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         // get intent from pegawai activity
         Intent i = getIntent();
 
-        if(i!=null){
+        try{
             keyPegawai = i.getStringExtra("idPegawai");
             pegawai = i.getParcelableExtra("pegawai");
             fromPegawaiActivity =  i.getBooleanExtra("fromPegawaiActivity", false);
 
+            bind(pegawai);
             if(pegawai.getFotoPegawai() != null){
                 Picasso.get().load(pegawai.getFotoPegawai()).into(imgFotoprofile);
             }
 
 
-            bind(pegawai);
+
+        }catch(Exception e){
+            e.printStackTrace();
         }
 
 

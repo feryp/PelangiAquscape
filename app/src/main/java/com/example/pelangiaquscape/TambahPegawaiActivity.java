@@ -103,7 +103,10 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             pegawai = i.getParcelableExtra("pegawai");
             fromPegawaiActivity =  i.getBooleanExtra("fromPegawaiActivity", false);
 
-            Picasso.get().load(mImageUri).into(imgFotoprofile);
+            if(pegawai.getFotoPegawai().length() > 0){
+                Picasso.get().load(pegawai.getFotoPegawai()).into(imgFotoprofile);
+            }
+
 
             bind(pegawai);
         }

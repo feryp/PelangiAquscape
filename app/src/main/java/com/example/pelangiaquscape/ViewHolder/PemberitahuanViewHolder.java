@@ -40,7 +40,7 @@ public class PemberitahuanViewHolder extends RecyclerView.ViewHolder implements 
         tvWaktu = v.findViewById(R.id.tv_jam_pemberitahuan);
         imPesan = v.findViewById(R.id.im_pesan);
 
-        itemView.setOnClickListener(this);
+        v.setOnClickListener(this);
     }
 
 
@@ -63,11 +63,11 @@ public class PemberitahuanViewHolder extends RecyclerView.ViewHolder implements 
     public void onClick(View v) {
         switch (v.getId()) {
             default:
-                Intent intent = new Intent(itemView.getContext(), DetailPemberitahuanActivity.class);
-                intent.putExtra("pemberitahuan", pemberitahuan);
-                if (uri != null)
-                    intent.putExtra("uri", uri.toString());
-                ((Activity) context).startActivityForResult(intent, 1);
+                itemClickListener.onClick(v, getAdapterPosition(), false);
+//                Intent intent = new Intent(itemView.getContext(), DetailPemberitahuanActivity.class);
+//                intent.putExtra("pemberitahuan", pemberitahuan);
+//                intent.putExtra("key",key);
+//                intent.putExtra("pemberitahuan", model);
                 break;
         }
     }

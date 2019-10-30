@@ -82,12 +82,12 @@
                 android:layout_margin="15dp">
 
                 <TextView
-                    android:id="@+id/tv_transaksi"
+                    android:id="@+id/tv_notif_pemberitahuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Transaksi"
+                    android:text="Pemberitahuan"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
@@ -102,51 +102,51 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Jenis Notifikasi Lainnya"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="15dp"-->
+                <!--android:fontFamily="@font/roboto_bold"-->
+                <!--android:text="Jenis Notifikasi Lainnya"-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textStyle="bold" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="15dp">-->
 
-                <TextView
-                    android:id="@+id/tv_email_pengingat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Email Pengingat"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="18sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_email_pengingat"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:fontFamily="@font/roboto_regular"-->
+                    <!--android:text="Email Pengingat"-->
+                    <!--android:textColor="@color/colorBlack"-->
+                    <!--android:textSize="18sp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_email_pengingat"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Dapatkan notifikasi yang mungkin anda lewatkan"
-                    android:textColor="#898989"
-                    android:textSize="12sp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_email_pengingat"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:fontFamily="@font/roboto_regular"-->
+                    <!--android:text="Dapatkan notifikasi yang mungkin anda lewatkan"-->
+                    <!--android:textColor="#898989"-->
+                    <!--android:textSize="12sp" />-->
 
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/switch_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:checked="false"
-                    android:switchMinWidth="25dp"
-                    android:theme="@style/SCBSwitch" />
+                <!--<android.support.v7.widget.SwitchCompat-->
+                    <!--android:id="@+id/switch_email"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:checked="false"-->
+                    <!--android:switchMinWidth="25dp"-->
+                    <!--android:theme="@style/SCBSwitch" />-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
             <!--<RelativeLayout-->
                 <!--android:layout_width="match_parent"-->

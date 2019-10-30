@@ -7,28 +7,48 @@ public class Pemberitahuan implements Parcelable{
 
     private String judul;
     private String pesan;
+    private String namaBarang;
+
+
+
     private long waktu;
     private boolean baca;
     private boolean proses;
 
-
-    public Pemberitahuan(){}
-
-    public Pemberitahuan(String judul, String pesan, Long waktu, Boolean baca, Boolean proses) {
+    public Pemberitahuan(String judul, String pesan, String namaBarang, long waktu, boolean baca, boolean proses) {
         this.judul = judul;
         this.pesan = pesan;
+        this.namaBarang = namaBarang;
         this.waktu = waktu;
         this.baca = baca;
         this.proses = proses;
     }
 
+    public Pemberitahuan(){}
+
 
     protected Pemberitahuan(Parcel in) {
         judul = in.readString();
         pesan = in.readString();
+        namaBarang = in.readString();
         waktu = in.readLong();
         baca = in.readByte() != 0;
         proses = in.readByte() != 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(judul);
+        dest.writeString(pesan);
+        dest.writeString(namaBarang);
+        dest.writeLong(waktu);
+        dest.writeByte((byte) (baca ? 1 : 0));
+        dest.writeByte((byte) (proses ? 1 : 0));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Pemberitahuan> CREATOR = new Creator<Pemberitahuan>() {
@@ -59,6 +79,14 @@ public class Pemberitahuan implements Parcelable{
         this.pesan = pesan;
     }
 
+    public String getNamaBarang() {
+        return namaBarang;
+    }
+
+    public void setNamaBarang(String namaBarang) {
+        this.namaBarang = namaBarang;
+    }
+
     public long getWaktu() {
         return waktu;
     }
@@ -83,17 +111,5 @@ public class Pemberitahuan implements Parcelable{
         this.proses = proses;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(judul);
-        dest.writeString(pesan);
-        dest.writeLong(waktu);
-        dest.writeByte((byte) (baca ? 1 : 0));
-        dest.writeByte((byte) (proses ? 1 : 0));
-    }
 }

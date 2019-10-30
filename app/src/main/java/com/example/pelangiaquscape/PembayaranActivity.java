@@ -706,7 +706,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         String message = "Stok minimal "+barang.getMinStok() + " ,Stok saat ini "+barang.getStok();
         String title = "Barang " + barang.getKode() + " telah mencapai stok minimal";
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, DetailPemberitahuanActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("messgae", message);
@@ -722,8 +722,6 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-
-
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Notification notification = new Notification.Builder(this, CHANNEL_ID)
                     .setContentTitle(title)
@@ -737,8 +735,6 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
             // notificationId is a unique int for each notification that you must define
             notificationManager.notify(1221, notification);
 
-
-
         }
 
         // notificationId is a unique int for each notification that you must define
@@ -750,10 +746,11 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat fmt = new SimpleDateFormat("HH:mm");
         long waktu = calendar.getTimeInMillis();
+        String namaBarang = barang.getKode();
         String judul = "Stok Barang";
-        String pesan = "Persediaan barang " + barang.getKode() + " sudah mencapai batas minimum";
+        String pesan = "Persediaan barang " + namaBarang + " sudah mencapai batas minimum";
 
-        Pemberitahuan pemberitahuan = new Pemberitahuan(judul, pesan ,waktu,  false, false );
+        Pemberitahuan pemberitahuan = new Pemberitahuan(judul, pesan ,namaBarang, waktu,  false, false );
 
         FirebaseDatabase.getInstance().getReference("Pemberitahuan").push().setValue(pemberitahuan).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

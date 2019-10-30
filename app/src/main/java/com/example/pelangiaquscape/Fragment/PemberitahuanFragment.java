@@ -1,5 +1,6 @@
 package com.example.pelangiaquscape.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -90,21 +91,24 @@ public class PemberitahuanFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull PemberitahuanViewHolder holder, int position, @NonNull Pemberitahuan model) {
 
-                Log.i("INFORMATION", model.getJudul() + " " + model.getJudul());
-                Log.i("INFORMATION", model.getPesan() + " " + model.getPesan());
-                Log.i("INFORMATION", model.getWaktu() + " " + model.getWaktu());
+                Log.v("modelPemberitahuan", model.getJudul());
+//                Log.i("INFORMATION", model.getPesan() + " " + model.getPesan());
+//                Log.i("INFORMATION", model.getWaktu() + " " + model.getWaktu());
                 holder.bind(model);
-                holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(), "Pemberitahuan", Toast.LENGTH_SHORT).show();
-                        Intent p = new Intent(getActivity(), DetailPemberitahuanActivity.class);
-                        p.putExtra("pemberitahuan", pemberitahuan);
-                        p.putExtra("key", key);
-                        p.putExtra("pemberitahuan", model);
-                        startActivity(p);
-                    }
-                });
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Toast.makeText(getActivity(), "Pemberitahuan", Toast.LENGTH_SHORT).show();
+                            Intent p = new Intent(getActivity(), DetailPemberitahuanActivity.class);
+                            p.putExtra("pemberitahuan", model);
+                            p.putExtra("key", key);
+                            p.putExtra("pemberitahuan", pemberitahuan);
+
+                            System.out.println("ID Pemberitahuan " + adapter.getRef(position).getKey());
+
+                            startActivity(p);
+                        }
+                    });
 
             }
 
@@ -113,9 +117,6 @@ public class PemberitahuanFragment extends Fragment {
             public PemberitahuanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_item_pemberitahuan_masuk, viewGroup, false);
-
-//                Log.i("Buat View Holder", view.toString());
-
                 return new PemberitahuanViewHolder(view, getContext());
             }
 

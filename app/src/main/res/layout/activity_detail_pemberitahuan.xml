@@ -7,7 +7,7 @@
     tools:context=".DetailPemberitahuanActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+        android:id="@+id/app_bar_pemberitahuan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -31,14 +31,14 @@
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_pemberitahuan"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:contentInsetLeft="0dp"
                 app:contentInsetRight="60dp"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:theme="@style/ToolbarTheme"
                 app:title="@string/judul_pemberitahuan">
 
 
@@ -121,7 +121,7 @@
         app:borderWidth="0dp"
         app:elevation="6dp"
         app:fabSize="normal"
-        app:layout_anchor="@id/app_bar"
+        app:layout_anchor="@id/app_bar_pemberitahuan"
         app:layout_anchorGravity="bottom|right|end"
         app:pressedTranslationZ="12dp" />
 

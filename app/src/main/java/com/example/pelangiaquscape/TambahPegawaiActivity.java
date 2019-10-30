@@ -74,7 +74,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     Pegawai pegawai;
 
 
-    String idPegawai;
+    String keyPegawai;
 
     private static final int IMAGE_REQUEST = 1;
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -87,11 +87,28 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     String token;
 
+    boolean fromPegawaiActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_pegawai);
+
+        // get intent from pegawai activity
+        Intent i = getIntent();
+
+        if(i!=null){
+            keyPegawai = i.getStringExtra("idPegawai");
+            pegawai = i.getParcelableExtra("pegawai");
+            fromPegawaiActivity =  i.getBooleanExtra("fromPegawaiActivity", false);
+
+            Picasso.get().load(mImageUri).into(imgFotoprofile);
+
+            bind(pegawai);
+        }
+
+
 
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
@@ -111,7 +128,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         databaseReference = firebaseDatabase.getReference("Pegawai");
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-//        firebaseUser.getIdToken(true).getResult();
         firebaseUser.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
             @Override
             public void onComplete(@NonNull Task<GetTokenResult> task) {
@@ -121,64 +137,14 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             }
         });
 
-        try {
-            idPegawai = getIntent().getExtras().getString("idForPegawai");
-            System.out.println("ID in tambah pegawai act " + idPegawai);
-            bind(getIntent().getExtras().getString("fotoPegawai"),
-                    getIntent().getExtras().getString("namaPegawai"),
-                    getIntent().getExtras().getString("namaPengguna"),
-                    getIntent().getExtras().getString("password"),
-                    getIntent().getExtras().getString("jabatan"),
-                    getIntent().getExtras().getString("hakAkses"),
-                    getIntent().getExtras().getString("emailPegawai"),
-                    getIntent().getExtras().getString("noHp"));
-        } catch (NullPointerException ex){
-            idPegawai = firebaseAuth.getUid();
-        }
-
-//        databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid());
-        storageReference = FirebaseStorage.getInstance().getReference("foto pegawai");
-
-        pegawai = new Pegawai();
-
-
-
-
         //SET IMAGE
-        if (mImageUri != null) {
-            Picasso.get().load(mImageUri).into(imgFotoprofile);
-        }
 
-//        try {
-//            idPegawai = getIntent().getExtras().getString("idPegawai");
-//            pegawai = getIntent().getParcelableExtra("modelPegawai");
-//            setFormFromModelPegawai();
-////            System.out.println("ID in tambah pegawai act " + idPegawai);
-//        } catch (NullPointerException ex) {
-////            idPegawai = "1";
-////            idPegawai =
-//        }
+
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this, R.array.akses_arrays, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
         spinnerHakAkses.setAdapter(adapter);
-
-//       boolean fromPegawai = getIntent().getExtras().getBoolean("fromPegawai", false);
-//        if (fromPegawai){
-//
-//
-//            String fotoPegawai = getIntent().getExtras().getString("fotoPegawai");
-//            String namaPegawai = getIntent().getExtras().getString("namaPegawai");
-//            String namaPengguna = getIntent().getExtras().getString("namaPengguna");
-//            String kataSandi = getIntent().getExtras().getString("password");
-//            String Jabatan = getIntent().getExtras().getString("jabatan");
-//            String hakAkses = getIntent().getExtras().getString("hakAkses");
-//            String emailPegawai = getIntent().getExtras().getString("emailPegawai");
-//            String noHp = getIntent().getExtras().getString("noHp");
-//
-//            daftarPegawai(fotoPegawai, namaPegawai, namaPengguna, kataSandi, Jabatan, hakAkses, emailPegawai, noHp);
-//        }
 
         //REGISTER LISTENER
         cancel.setOnClickListener(this);
@@ -188,38 +154,20 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     }
 
 
-    private void bind(final
-                      String fotoPegawai,
-                      String namaPegawai,
-                      String namaPengguna,
-                      String kataSandi,
-                      String jabatan,
-                      String hakAkses,
-                      String emailPegawai,
-                      String noHp) {
+    private void bind(Pegawai pegawai) {
 
-        int idxHakAkses = -1;
-
-        String[] hakAksesArray = getResources().getStringArray(R.array.akses_arrays);
-
-        for (int i = 0; i < hakAksesArray.length; i++){
-            if (hakAksesArray[i].equals(hakAkses)){
-                idxHakAkses = i;
-            }
-        }
 //        imgFotoprofile.setImageResource(Integer.parseInt(fotoPegawai));
-        etNamaPegawai.setText(namaPegawai);
-        etNamaPengguna.setText(namaPengguna);
-        etKataSandi.setText(kataSandi);
-        etJabatan.setText(jabatan);
-        spinnerHakAkses.setSelection(idxHakAkses);
-        etEmailPegawai.setText(emailPegawai);
-        etNoHp.setText(noHp);
+        etNamaPegawai.setText(pegawai.getNamaPegawai());
+        etNamaPengguna.setText(pegawai.getNamapengguna());
+        etKataSandi.setText(pegawai.getPassword());
+        etJabatan.setText(pegawai.getJabatan());
+        spinnerHakAkses.setSelection(Integer.parseInt(pegawai.getHakAkses()));
+        etEmailPegawai.setText(pegawai.getEmailPegawai());
+        etNoHp.setText(pegawai.getNoHp());
     }
 
 
-    private void daftarPegawai(final String fotoPegawai,
-                               String namaPegawai,
+    private void daftarPegawai(String namaPegawai,
                                String namaPengguna,
                                String kataSandi,
                                String jabatan,
@@ -227,26 +175,18 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                                String emailPegawai,
                                String noHp) {
 
-//        int idxHakAkses = -1;
-//
-//        String[] hakAksesArray = getResources().getStringArray(R.array.akses_arrays);
-//
-//        for (int i = 0; i < hakAksesArray.length; i++){
-//            if (hakAksesArray[i].equals(hakAkses)){
-//                idxHakAkses = i;
-//            }
-//        }
-
-//        int finalIdxHakAkses = idxHakAkses;
+        final Pegawai pegawai = new Pegawai();
         firebaseAuth.createUserWithEmailAndPassword(emailPegawai, kataSandi).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 FirebaseUser fUser = task.getResult().getUser();
                 String userid = fUser.getUid();
-                Pegawai pegawai = new Pegawai();
+
+                String urlImage = uploadToCloudStorage(userid);
+
                 pegawai.setId(userid);
-                pegawai.setFotoPegawai("");
+                pegawai.setFotoPegawai(urlImage);
                 pegawai.setNamaPegawai(namaPegawai);
                 pegawai.setNamapengguna(namaPengguna);
                 pegawai.setJabatan(jabatan);
@@ -258,23 +198,21 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-//                            pd.dismiss();
 
                         }
                     }
 
                 });
 
-//                        String id, String username, String telepon, String email, String password,  String kodeLogin, String fotoProfile, String bio
                 User user = new User();
                 user.setId(userid);
-                user.setFotoProfile(fotoPegawai);
+                user.setFotoProfile(urlImage);
                 user.setUsername(namaPengguna);
                 user.setTelepon(noHp);
                 user.setEmail(emailPegawai);
                 user.setPassword(kataSandi);
                 user.setKodeLogin(hakAkses);
-                user.setBio("");
+
 
                 FirebaseDatabase.getInstance().getReference("User").child(userid).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -282,6 +220,8 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                         Toast.makeText(TambahPegawaiActivity.this, "Berhasil menambahkan user", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
 
                 FirebaseAuth.getInstance().signOut();
 
@@ -295,22 +235,27 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             }
         });
 
-        String uid = FirebaseAuth.getInstance().getUid();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(uid + ".jpg");
-        pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            if (uri != null){
-                mImageUri = uri;
-                Picasso.get().load(uri).into(imgFotoprofile);
-            }
-        });
+//        String uid = FirebaseAuth.getInstance().getUid();
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference storageRef = storage.getReference();
+//        StorageReference pegawaiRef = storageRef.child("Profile").child(uid + ".jpg");
+
+//        pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
+//            if (uri != null){
+//                mImageUri = uri;
+//
+//                pegawai.setFotoPegawai(uri.toString());
+//                Picasso.get().load(uri).into(imgFotoprofile);
+////                FirebaseDatabase.getInstance().getRe
+//            }
+//        });
 
 
     }
 
     private void getValues(){
 //        pegawai.setFotoPegawai(imgFotoprofile.getDrawable().toString());
+        uploadToCloudStorage(pegawai.getId());
         pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
         pegawai.setNamapengguna(etNamaPengguna.getText().toString());
         pegawai.setPassword(etKataSandi.getText().toString());
@@ -328,7 +273,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 getValues();
-                databaseReference.child(String.valueOf(idPegawai)).setValue(pegawai);
+                databaseReference.child(String.valueOf(keyPegawai)).setValue(pegawai);
                 Toast.makeText(TambahPegawaiActivity.this, "Pegawai telah ditambah", Toast.LENGTH_SHORT).show();
             }
 
@@ -338,35 +283,9 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
             }
         });
 
-//        spinnerHakAkses.getSelectedItem().toString();
-//        if(idPegawai != null){
-//
-//        }else{
-//            daftarPegawai("",
-//                    etNamaPegawai.getText().toString(),
-//                    etNamaPengguna.getText().toString(),
-//                    etKataSandi.getText().toString(),
-//                    etJabatan.getText().toString(),
-//                    String.valueOf(spinnerHakAkses.getSelectedItemPosition()),
-//                    etNoHp.getText().toString(),
-//                    etEmailPegawai.getText().toString());
-//        }
-
-
     }
 
-    //
-//    private void setFormFromModelPegawai() {
-////        pegawai.setFotoPegawai(fotoPegawai.getDrawable().toString());
-//        pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
-//        pegawai.setNamapengguna(etNamaPengguna.getText().toString());
-//        pegawai.setPassword(etKataSandi.getText().toString());
-//        pegawai.setJabatan(etJabatan.getText().toString());
-//        pegawai.setHakAkses(spinnerHakAkses.getSelectedItem().toString());
-//        pegawai.setNoHp(etNoHp.getText().toString());
-//        pegawai.setEmailPegawai(etEmailPegawai.getText().toString());
-//
-//    }
+
 
     private void setFormFromModelPegawai(){
         pegawai.setFotoPegawai(pegawai.getFotoPegawai());
@@ -378,12 +297,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         pegawai.setNoHp(pegawai.getNoHp());
         pegawai.setEmailPegawai(pegawai.getEmailPegawai());
     }
-
-
-
-
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -397,10 +310,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     }
 
-
-
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -408,8 +317,24 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 finish();
                 break;
             case R.id.im_save:
-                save();
-                uploadToCloudStorage();
+
+                if(!fromPegawaiActivity){
+//                    pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
+//                    pegawai.setNamapengguna(etNamaPengguna.getText().toString());
+//                    pegawai.setPassword(etKataSandi.getText().toString());
+//                    pegawai.setJabatan(etJabatan.getText().toString());
+////        pegawai.setHakAkses(spinnerHakAkses.getSelectedItem().toString());
+//                    pegawai.setEmailPegawai(etEmailPegawai.getText().toString());
+//                    pegawai.setNoHp(etNoHp.getText().toString());
+                    daftarPegawai(etNamaPegawai.getText().toString(),
+                            etNamaPengguna.getText().toString(),
+                            etKataSandi.getText().toString(),
+                            etJabatan.getText().toString(),
+                            String.valueOf(spinnerHakAkses.getSelectedItemPosition()),etEmailPegawai.getText().toString(),
+                            etNoHp.getText().toString());
+                }else{
+                    save();
+                }
                 finish();
                 break;
             case R.id.add_foto:
@@ -423,12 +348,12 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private void uploadToCloudStorage() {
+    private String uploadToCloudStorage(String uid) {
         Uri file = mImageUri;
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(pegawai.getId() + ".jpg");
+        StorageReference pegawaiRef = storageRef.child("Profile").child(uid + ".jpg");
 
 
         UploadTask uploadTask = pegawaiRef.putFile(file);
@@ -442,9 +367,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                     dialog.setMessage("Sedang mengupload foto ...");
                     dialog.setIndeterminate(false);
                     dialog.setProgress((int) progress);
-//                    dialog.show();
-//
-//                    dialog.dismiss();
+
                 })
                 .addOnFailureListener(exception -> {
                     // Handle unsuccessful uploads
@@ -452,9 +375,13 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 .addOnSuccessListener(taskSnapshot -> {
                     // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                     Toast.makeText(this, "Upload Foto Profil berhasil", Toast.LENGTH_SHORT).show();
+
+
                     setResult(RESULT_OK);
                     finish();
                 });
+
+        return pegawaiRef.getDownloadUrl().toString();
     }
 
 

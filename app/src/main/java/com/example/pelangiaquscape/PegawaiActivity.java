@@ -101,14 +101,14 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                 holder.bindData(model);
                 imageLayout.setVisibility(View.GONE);
 
-                Log.i("INFORMATION", model.getFotoPegawai() + " " + model.getFotoPegawai());
-                Log.i("INFORMATION", model.getNamaPegawai() + " " + model.getNamaPegawai());
-                Log.i("INFORMATION", model.getNamapengguna() + " " + model.getNamapengguna());
-                Log.i("INFORMATION", model.getPassword() + " " + model.getPassword());
-                Log.i("INFORMATION", model.getJabatan() + " " + model.getJabatan());
-                Log.i("INFORMATION", model.getHakAkses() + " " + model.getHakAkses());
-                Log.i("INFORMATION", model.getNoHp() + " " + model.getNoHp());
-                Log.i("INFORMATION", model.getEmailPegawai() + " " + model.getEmailPegawai());
+//                Log.i("INFORMATION", model.getFotoPegawai() + " " + model.getFotoPegawai());
+//                Log.i("INFORMATION", model.getNamaPegawai() + " " + model.getNamaPegawai());
+//                Log.i("INFORMATION", model.getNamapengguna() + " " + model.getNamapengguna());
+//                Log.i("INFORMATION", model.getPassword() + " " + model.getPassword());
+//                Log.i("INFORMATION", model.getJabatan() + " " + model.getJabatan());
+//                Log.i("INFORMATION", model.getHakAkses() + " " + model.getHakAkses());
+//                Log.i("INFORMATION", model.getNoHp() + " " + model.getNoHp());
+//                Log.i("INFORMATION", model.getEmailPegawai() + " " + model.getEmailPegawai());
                 final Pegawai clickItem = model;
 
                 final int size = this.getItemCount();
@@ -118,15 +118,16 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void onClick(View view, int position, boolean isLongClick) {
                             Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
-
+                            pegawai.putExtra("pegawai", model);
+                            pegawai.putExtra("fromPegawaiActivity", true);
                             pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
-                            pegawai.putExtra("emailPegawai", model.getEmailPegawai());
-                            pegawai.putExtra("fotoPegawai", model.getFotoPegawai());
-                            pegawai.putExtra("hakAkses", model.getHakAkses());
-                            pegawai.putExtra("id", model.getId());
-                            pegawai.putExtra("namaPegawai", model.getNamaPegawai());
-                            pegawai.putExtra("namaPengguna", model.getNamapengguna());
-                            pegawai.putExtra("noHp", model.getNoHp());
+//                            pegawai.putExtra("emailPegawai", model.getEmailPegawai());
+//                            pegawai.putExtra("fotoPegawai", model.getFotoPegawai());
+//                            pegawai.putExtra("hakAkses", model.getHakAkses());
+//                            pegawai.putExtra("id", model.getId());
+//                            pegawai.putExtra("namaPegawai", model.getNamaPegawai());
+//                            pegawai.putExtra("namaPengguna", model.getNamapengguna());
+//                            pegawai.putExtra("noHp", model.getNoHp());
 
                             System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
                             startActivity(pegawai);

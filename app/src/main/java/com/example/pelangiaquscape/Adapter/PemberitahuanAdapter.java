@@ -17,25 +17,23 @@ public class PemberitahuanAdapter extends RecyclerView.Adapter<PemberitahuanView
 
     Context context;
     List<Pemberitahuan> listPemberitahuan;
-    List<String> listKey;
 
-    public PemberitahuanAdapter(Context context, List<Pemberitahuan> pemberitahuan, List<String> key) {
+    public PemberitahuanAdapter(Context context, List<Pemberitahuan> pemberitahuan) {
         this.context = context;
         this.listPemberitahuan = pemberitahuan;
-        this.listKey = key;
     }
 
     @NonNull
     @Override
     public PemberitahuanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item_pemberitahuan_masuk, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_pemberitahuan_keluar, viewGroup, false);
 
-        return new PemberitahuanViewHolder(v, context);
+        return new PemberitahuanViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PemberitahuanViewHolder holder, int i) {
-        holder.bind(listPemberitahuan.get(i));
+        holder.bindP(listPemberitahuan.get(i));
     }
 
     @Override

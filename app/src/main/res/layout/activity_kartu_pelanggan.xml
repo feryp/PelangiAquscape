@@ -43,12 +43,13 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <View
-                    android:id="@+id/im_save"
+                <ImageView
+                    android:id="@+id/im_cetak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
+                    android:src="@drawable/ic_print_blue"
                     android:layout_marginRight="10dp" />
 
             </RelativeLayout>
@@ -58,6 +59,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
+        android:id="@+id/llPdf"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -264,18 +266,18 @@
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/btn_cetak_kartu_pelanggan"
-            android:layout_width="165dp"
-            android:layout_height="60dp"
-            android:background="@drawable/button_blue"
-            android:text="Cetak Kartu"
-            android:textAllCaps="false"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"/>
+        <!--<Button-->
+            <!--android:id="@+id/btn_cetak_kartu_pelanggan"-->
+            <!--android:layout_width="165dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:background="@drawable/button_blue"-->
+            <!--android:text="Cetak Kartu"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:fontFamily="@font/roboto_bold"-->
+            <!--android:textColor="@color/colorPrimary"-->
+            <!--android:textSize="20sp"/>-->
 
 
     </LinearLayout>

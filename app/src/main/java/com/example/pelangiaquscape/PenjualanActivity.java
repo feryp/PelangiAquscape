@@ -30,11 +30,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.core.Tag;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener{
+
+
+    private static final String TAG = "PenjualanActivity";
 
     ImageView cancel, filter;
     RecyclerView rvPenjualan;
@@ -50,6 +58,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     private Penjualan penjualan;
     private String key;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private long tanggal;
 
 
     ImageView iv;
@@ -76,39 +85,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         //SET LISTENER
         cancel.setOnClickListener(this);
         filter.setOnClickListener(this);
-
-//        cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
-//
-//        filter.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar calendar = Calendar.getInstance();
-//                int year = calendar.get(Calendar.YEAR);
-//                int month = calendar.get(Calendar.MONTH);
-//                int day = calendar.get(Calendar.DAY_OF_MONTH);
-//
-//                DatePickerDialog dialog = new DatePickerDialog(PenjualanActivity.this,
-//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-//                        mDateSetListener, year, month, day);
-//
-//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                dialog.show();
-//            }
-//        });
-//
-//        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-//            private String Tag;
-//
-//            @Override
-//                    public void onDateSet(DatePicker v, int year, int month, int dayOfMonth) {
-//                        Log.d(Tag, "onDataSet: date: " + year + "/" + month + "/" + dayOfMonth);
-//                    }
-//                };
 
         // INIT VIEW END
 
@@ -140,57 +116,32 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
                     @Override
-                    public void onDateSet(DatePicker v, int year, int month, int dayOfMonth) {
-                        query = FirebaseDatabase.getInstance().getReference().child("Penjualan").orderByChild("tanggalPenjualan");
-                        Log.v("query", query.getPath().toString());
+                    public void onDateSet(DatePicker v, int year, int month, int day) {
+                        month = month + 1;
 
-                        FirebaseRecyclerOptions<Penjualan> options =
-                                new FirebaseRecyclerOptions.Builder<Penjualan>().setQuery(query, Penjualan.class).build();
+                        //Log.d(TAG, "onDataSet: mm/dd/yyyy: " + day + "/" + month + "/" + year);
+                        String tanggalPilih;
+                        if(String.valueOf(day).length() == 1) {
+                            tanggalPilih = "0" + day + "/" + month + "/" + year;
+                        } else {
+                            tanggalPilih = day + "/" + month + "/" + year;
+                        }
+                     //   Toast.makeText(PenjualanActivity.this, "tanggal " + tanggalPilih, Toast.LENGTH_SHORT).show();
 
-                        adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
+                        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                        Date datePilih;
+                        try {
+                            datePilih = df.parse(tanggalPilih);
+                            long millis = datePilih.getTime();
+                            tanggal = millis;
+                            Toast.makeText(PenjualanActivity.this, "tanggal " + tanggal, Toast.LENGTH_LONG).show();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                            Toast.makeText(PenjualanActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
 
-                            @Override
-                            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int position, @NonNull final Penjualan model) {
-                                Log.v("modelPenjualan", model.getNoPenjualan());
-                                holder.bindData(model);
-                                holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v, int position) {
-                                        Toast.makeText(PenjualanActivity.this, "Penjualan", Toast.LENGTH_SHORT).show();
-                                        Intent p = new Intent(PenjualanActivity.this, DetailPenjualanActivity.class);
-                                        p.putExtra("penjualan", penjualan);
-                                        p.putExtra("key", key);
-                                        p.putExtra("penjualan", model);
-                                        startActivity(p);
-                                    }
-
-                                });
-
-                            }
-
-                            @NonNull
-                            @Override
-                            public PenjualanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_penjualan, viewGroup, false);
-                                Log.v("hereOnCreateView", "true");
-                                return new PenjualanViewHolder(v);
-                            }
-
-                            @Override
-                            public void onDataChanged() {
-                                super.onDataChanged();
-                                iv.setVisibility(View.GONE);
-                                tvImage.setVisibility(View.GONE);
-
-                            }
-                        };
-
-                        rvPenjualan.setAdapter(adapter);
-
-                        Log.v("itemCount", String.valueOf(rvPenjualan.getAdapter().getItemCount()));
-                        rvPenjualan.setVisibility(View.VISIBLE);
-
-
+                      loadDataPenjualanFilter();
+                        // 1572627600000
                     }
 
                 };
@@ -219,14 +170,78 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    private String millisToDate(long millis){
 
+        return DateFormat.getDateInstance(DateFormat.SHORT).format(millis);
+        //You can use DateFormat.LONG instead of SHORT
+
+    }
 
     void loadDataPenjualan() {
         query = FirebaseDatabase.getInstance().getReference().child("Penjualan").orderByChild("tanggalPenjualan");
         Log.v("query", query.getPath().toString());
 
         FirebaseRecyclerOptions<Penjualan> options =
-                new FirebaseRecyclerOptions.Builder<Penjualan>().setQuery(query, Penjualan.class).build();
+                new FirebaseRecyclerOptions.Builder<Penjualan>()
+                        .setQuery(query, Penjualan.class)
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull PenjualanViewHolder holder, int position, @NonNull final Penjualan model) {
+                Log.v("modelPenjualan", model.getNoPenjualan());
+                holder.bindData(model);
+                holder.setItemClickListener(new PenjualanViewHolder.OnClickListener() {
+                    @Override
+                    public void onClick(View v, int position) {
+                        Toast.makeText(PenjualanActivity.this, "Penjualan", Toast.LENGTH_SHORT).show();
+                        Intent p = new Intent(PenjualanActivity.this, DetailPenjualanActivity.class);
+                        p.putExtra("penjualan", penjualan);
+                        p.putExtra("key", key);
+                        p.putExtra("penjualan", model);
+                        startActivity(p);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public PenjualanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_penjualan, viewGroup, false);
+                Log.v("hereOnCreateView", "true");
+                return new PenjualanViewHolder(v);
+            }
+
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                iv.setVisibility(View.GONE);
+                tvImage.setVisibility(View.GONE);
+
+            }
+        };
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setReverseLayout(true);
+        manager.setStackFromEnd(true);
+        rvPenjualan.setLayoutManager(manager);
+        rvPenjualan.setAdapter(adapter);
+
+        Log.v("itemCount", String.valueOf(rvPenjualan.getAdapter().getItemCount()));
+        rvPenjualan.setVisibility(View.VISIBLE);
+    }
+
+    void loadDataPenjualanFilter() {
+        DatabaseReference tanggalRef = FirebaseDatabase.getInstance().getReference().child("Penjualan");
+       // Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
+        Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal);
+
+        Log.v("query", query.getPath().toString());
+
+        FirebaseRecyclerOptions<Penjualan> options =
+                new FirebaseRecyclerOptions.Builder<Penjualan>()
+                        .setQuery(tanggalQuery, Penjualan.class)
+                        .build();
 
         adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
 

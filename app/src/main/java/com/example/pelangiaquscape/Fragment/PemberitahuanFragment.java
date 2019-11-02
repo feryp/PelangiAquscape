@@ -47,12 +47,13 @@ public class PemberitahuanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fromPemberitahuanActivity = false;
-        try {
-            fromPemberitahuanActivity = getArguments().getBoolean("fromPemberitahuanActivity");
-        } catch (NullPointerException ex) {
 
-        }
+//        fromPemberitahuanActivity = false;
+//        try {
+//            fromPemberitahuanActivity = getArguments().getBoolean("fromPemberitahuanActivity");
+//        } catch (NullPointerException ex) {
+//
+//        }
 
 
         // Inflate the layout for this fragment
@@ -79,11 +80,14 @@ public class PemberitahuanFragment extends Fragment {
 
     void loadPemberitahuan() {
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Pemberitahuan");
+        query = FirebaseDatabase.getInstance().getReference("Pemberitahuan").orderByChild("waktu");
+        Log.v("query", query.getPath().toString());
+
+//        databaseReference = FirebaseDatabase.getInstance().getReference("Pemberitahuan");
 
         FirebaseRecyclerOptions<Pemberitahuan> options =
                 new FirebaseRecyclerOptions.Builder<Pemberitahuan>()
-                        .setQuery(databaseReference, Pemberitahuan.class)
+                        .setQuery(query, Pemberitahuan.class)
                         .build();
 
         adapter = new FirebaseRecyclerAdapter<Pemberitahuan, PemberitahuanViewHolder>(options) {
@@ -91,24 +95,44 @@ public class PemberitahuanFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull PemberitahuanViewHolder holder, int position, @NonNull Pemberitahuan model) {
 
+//                Log.v("modelPemberitahuan", model.getJudul());
                 Log.v("modelPemberitahuan", model.getJudul());
-//                Log.i("INFORMATION", model.getPesan() + " " + model.getPesan());
-//                Log.i("INFORMATION", model.getWaktu() + " " + model.getWaktu());
-                holder.bind(model);
+                Log.v("modelPemberitahuan", model.getPesan());
+                Log.v("modelPemberitahuan", model.getNamaBarang());
+                Log.v("modelPemberitahuan", String.valueOf(model.getWaktu()));
+
+
+                holder.bindP(model);
+
+                final Pemberitahuan clickItem = model;
+                final int size = this.getItemCount();
+
+                if (!fromPemberitahuanActivity){
                     holder.setItemClickListener(new ItemClickListener() {
                         @Override
                         public void onClick(View view, int position, boolean isLongClick) {
                             Toast.makeText(getActivity(), "Pemberitahuan", Toast.LENGTH_SHORT).show();
                             Intent p = new Intent(getActivity(), DetailPemberitahuanActivity.class);
-                            p.putExtra("pemberitahuan", model);
+//                            p.putExtra("idForPemberitahuan", adapter.getRef(position).getKey());
+//                            p.putExtra("judul", model.getJudul());
+//                            p.putExtra("pesan", model.getPesan());
+//                            p.putExtra("namaBarang", model.getNamaBarang());
+//                            p.putExtra("waktu", model.getJudul());
+//                            p.putExtra("baca", model.isBaca());
+//                            p.putExtra("proses", model.isProses());
+
+                            p.putExtra("pemberitahuan",model);
+                         // p.putExtra("pemberitahuan",pemberitahuan );
                             p.putExtra("key", key);
-                            p.putExtra("pemberitahuan", pemberitahuan);
+//
 
                             System.out.println("ID Pemberitahuan " + adapter.getRef(position).getKey());
-
+//                            p.putExtra("fromPemberitahuanFragment" , true);
+//                            startActivityForResult(p,1);
                             startActivity(p);
                         }
                     });
+                }
 
             }
 
@@ -116,8 +140,8 @@ public class PemberitahuanFragment extends Fragment {
             @Override
             public PemberitahuanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.list_item_pemberitahuan_masuk, viewGroup, false);
-                return new PemberitahuanViewHolder(view, getContext());
+                        .inflate(R.layout.list_item_pemberitahuan_keluar, viewGroup, false);
+                return new PemberitahuanViewHolder(view);
             }
 
             @Override

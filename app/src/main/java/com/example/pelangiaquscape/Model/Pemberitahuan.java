@@ -8,9 +8,6 @@ public class Pemberitahuan implements Parcelable{
     private String judul;
     private String pesan;
     private String namaBarang;
-
-
-
     private long waktu;
     private boolean baca;
     private boolean proses;
@@ -24,32 +21,17 @@ public class Pemberitahuan implements Parcelable{
         this.proses = proses;
     }
 
+    protected Pemberitahuan(Parcel in) {
+        this.judul = in.readString();
+        this.pesan = in.readString();
+        this.namaBarang = in.readString();
+        this.waktu = in.readLong();
+        this.baca = in.readByte() != 0;
+        this.proses = in.readByte() != 0;
+    }
+
     public Pemberitahuan(){}
 
-
-    protected Pemberitahuan(Parcel in) {
-        judul = in.readString();
-        pesan = in.readString();
-        namaBarang = in.readString();
-        waktu = in.readLong();
-        baca = in.readByte() != 0;
-        proses = in.readByte() != 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(judul);
-        dest.writeString(pesan);
-        dest.writeString(namaBarang);
-        dest.writeLong(waktu);
-        dest.writeByte((byte) (baca ? 1 : 0));
-        dest.writeByte((byte) (proses ? 1 : 0));
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
     public static final Creator<Pemberitahuan> CREATOR = new Creator<Pemberitahuan>() {
         @Override
@@ -111,5 +93,19 @@ public class Pemberitahuan implements Parcelable{
         this.proses = proses;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.judul);
+        dest.writeString(this.pesan);
+        dest.writeString(this.namaBarang);
+        dest.writeLong(this.waktu);
+        dest.writeByte((byte) (baca ? 1 : 0));
+        dest.writeByte((byte) (proses ? 1 : 0));
+    }
 
 }

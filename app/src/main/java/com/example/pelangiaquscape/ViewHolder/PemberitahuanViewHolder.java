@@ -32,9 +32,8 @@ public class PemberitahuanViewHolder extends RecyclerView.ViewHolder implements 
 
     private View.OnClickListener onClickListener;
 
-    public PemberitahuanViewHolder(@NonNull View v, Context c) {
+    public PemberitahuanViewHolder(@NonNull View v) {
         super(v);
-        this.context = c;
         tvJudul = v.findViewById(R.id.tv_judul_pemberitahuan);
         tvIsi = v.findViewById(R.id.tv_isi_pemberitahuan);
         tvWaktu = v.findViewById(R.id.tv_jam_pemberitahuan);
@@ -44,13 +43,15 @@ public class PemberitahuanViewHolder extends RecyclerView.ViewHolder implements 
     }
 
 
-    public void bind(Pemberitahuan pemberitahuan) {
+    public void bindP(Pemberitahuan pemberitahuan) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(pemberitahuan.getWaktu());
         Date time = calendar.getTime();
 
-        SimpleDateFormat formatJam = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat formatJam = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat formatTgl = new SimpleDateFormat("dd MMMM yyyy");
         String jam = formatJam.format(time);
+        String tgl = formatTgl.format(time);
 
         tvJudul.setText(pemberitahuan.getJudul());
         tvIsi.setText(pemberitahuan.getPesan());
@@ -61,15 +62,7 @@ public class PemberitahuanViewHolder extends RecyclerView.ViewHolder implements 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            default:
-                itemClickListener.onClick(v, getAdapterPosition(), false);
-//                Intent intent = new Intent(itemView.getContext(), DetailPemberitahuanActivity.class);
-//                intent.putExtra("pemberitahuan", pemberitahuan);
-//                intent.putExtra("key",key);
-//                intent.putExtra("pemberitahuan", model);
-                break;
-        }
+        itemClickListener.onClick(v, getAdapterPosition(), false);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

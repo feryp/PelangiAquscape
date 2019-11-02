@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DetailPemberitahuanActivity extends AppCompatActivity implements View.OnClickListener{
+public class DetailPemberitahuanActivity extends AppCompatActivity implements View.OnClickListener {
 
     CollapsingToolbarLayout collapsingToolbarLayout;
     Toolbar toolbarPemberitahuan;
@@ -45,14 +45,15 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_pemberitahuan);
 
-        //get data
+        //GET DATA
+
         Intent i = getIntent();
-        pemberitahuan = i.getParcelableExtra("pemberitahuan");
+        pemberitahuan = getIntent().getParcelableExtra("pemberitahuan");
         key = i.getStringExtra("key");
 
-
         dialog = new ProgressDialog(this);
-        //init view
+
+        //INIT VIEW
         toolbarPemberitahuan = findViewById(R.id.toolbar_pemberitahuan);
         collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
         appBarLayout = findViewById(R.id.app_bar_pemberitahuan);
@@ -62,15 +63,15 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_pemberitahuan);
 
         setSupportActionBar(toolbarPemberitahuan);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbarPemberitahuan.setNavigationIcon(R.drawable.ic_back);
         toolbarPemberitahuan.setNavigationOnClickListener(this);
 
-        //set text
-        String judul = "Barang " + pemberitahuan.getNamaBarang() + " telah mencapai batas minimum";
-        String pesan = "Penambahan stok barang " + pemberitahuan.getNamaBarang() + " harap segera dilakukan, agar barang tersedia lagi.";
-        tvJudul.setText(judul);
-        tvPesan.setText(pesan);
+
+        //SET TEXT
+        tvJudul.setText("Barang " + pemberitahuan.getNamaBarang() + " telah mencapai batas minimum");
+        tvPesan.setText("Penambahan stok barang " + pemberitahuan.getNamaBarang() + " harap segera dilakukan, agar barang tersedia lagi.");
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(pemberitahuan.getWaktu());
@@ -83,8 +84,6 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
 
 
     }
-
-
 
 
     @Override

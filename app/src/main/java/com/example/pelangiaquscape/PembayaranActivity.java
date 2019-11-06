@@ -81,6 +81,9 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
 //    Pemberitahuan pemberitahuan;
 
+    Pemberitahuan model;
+    String key;
+
     LinearLayout ll;
     double totalHarga;
     double totalKembalian;
@@ -709,7 +712,8 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         Intent intent = new Intent(this, DetailPemberitahuanActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("messgae", message);
+        intent.putExtra("message", message);
+        intent.putExtra("title", title);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);

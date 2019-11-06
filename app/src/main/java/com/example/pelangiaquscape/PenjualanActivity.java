@@ -128,7 +128,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                         }
                      //   Toast.makeText(PenjualanActivity.this, "tanggal " + tanggalPilih, Toast.LENGTH_SHORT).show();
 
-                        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                        DateFormat df = new SimpleDateFormat("dd MMM yyyy");
                         Date datePilih;
                         try {
                             datePilih = df.parse(tanggalPilih);
@@ -232,15 +232,19 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     }
 
     void loadDataPenjualanFilter() {
-        DatabaseReference tanggalRef = FirebaseDatabase.getInstance().getReference().child("Penjualan");
+        query = FirebaseDatabase.getInstance().getReference()
+                .child("Penjualan")
+                .orderByChild("tanggalPenjualan")
+                .startAt(tanggal)
+                .endAt(tanggal + "\uf8ff");
        // Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
-        Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal);
+//        Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
 
         Log.v("query", query.getPath().toString());
 
         FirebaseRecyclerOptions<Penjualan> options =
                 new FirebaseRecyclerOptions.Builder<Penjualan>()
-                        .setQuery(tanggalQuery, Penjualan.class)
+                        .setQuery(query, Penjualan.class)
                         .build();
 
         adapter = new FirebaseRecyclerAdapter<Penjualan, PenjualanViewHolder>(options) {
@@ -300,18 +304,4 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         adapter.stopListening();
     }
 
-    //        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot ds:dataSnapshot.getChildren()){
-//                    Penjualan penjualan = ds.getValue(Penjualan.class);
-//                    Log.v("penjualanModel", penjualan.getNoPenjualan());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 }

@@ -209,6 +209,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
                 pegawai.setId(userid);
 //                pegawai.setFotoPegawai(urlImage);
+                pegawai.setFotoPegawai("");
                 pegawai.setNamaPegawai(namaPegawai);
                 pegawai.setNamapengguna(namaPengguna);
                 pegawai.setJabatan(jabatan);
@@ -220,7 +221,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-
+                            uploadToCloudStorage(userid);
                         }
                     }
 

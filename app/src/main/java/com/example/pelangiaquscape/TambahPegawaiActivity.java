@@ -6,6 +6,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
@@ -61,7 +63,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class TambahPegawaiActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cancel, save, imgFotoprofile;
-    CircleImageView  add_foto;
+    CircleImageView add_foto;
     Spinner spinnerHakAkses;
     TextInputEditText etNamaPegawai, etNamaPengguna, etKataSandi, etJabatan, etNoHp, etEmailPegawai;
 
@@ -95,27 +97,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_pegawai);
 
-        // get intent from pegawai activity
-        Intent i = getIntent();
-
-        try{
-            keyPegawai = i.getStringExtra("idPegawai");
-            pegawai = i.getParcelableExtra("pegawai");
-            fromPegawaiActivity =  i.getBooleanExtra("fromPegawaiActivity", false);
-
-            bind(pegawai);
-            if(pegawai.getFotoPegawai() != null){
-                Picasso.get().load(pegawai.getFotoPegawai()).into(imgFotoprofile);
-            }
-
-
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-
-
         //INIT VIEW
         cancel = findViewById(R.id.im_cancel);
         save = findViewById(R.id.im_save);
@@ -129,6 +110,28 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         etEmailPegawai = findViewById(R.id.et_email_pegawai);
         spinnerHakAkses = findViewById(R.id.spinner_hak_akses);
 
+        // get intent from pegawai activity
+        Intent i = getIntent();
+        fromPegawaiActivity = i.getBooleanExtra("fromPegawaiActivity", false);
+        if (fromPegawaiActivity) {
+            keyPegawai = i.getStringExtra("idPegawai");
+            pegawai = i.getParcelableExtra("pegawai");
+
+
+            System.out.println("tambahpegawaiactivity: foto " + pegawai.toString());
+
+            System.out.println("isEmpty : " + pegawai.getFotoPegawai().isEmpty());
+            System.out.println("length : " + pegawai.getFotoPegawai());
+            System.out.println("isNull : " + pegawai.getFotoPegawai() != null ? "tidak" : "ya");
+
+
+            if (!pegawai.getFotoPegawai().isEmpty()) {
+                Picasso.get().load(pegawai.getFotoPegawai()).into(imgFotoprofile);
+            }
+            bind(pegawai);
+        }
+
+
         //INIT FIREBASE
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Pegawai");
@@ -137,15 +140,13 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         firebaseUser.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
             @Override
             public void onComplete(@NonNull Task<GetTokenResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     token = task.getResult().getToken();
                 }
             }
         });
 
         //SET IMAGE
-
-
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this, R.array.akses_arrays, android.R.layout.simple_spinner_item);
@@ -157,6 +158,21 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         save.setOnClickListener(this);
         add_foto.setOnClickListener(this);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+            Uri uri = data.getData();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+                getApplicationContext().getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                mImageUri = uri;
+            }
+            imgFotoprofile.setImageURI(uri);
+        }
     }
 
 
@@ -189,10 +205,10 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 FirebaseUser fUser = task.getResult().getUser();
                 String userid = fUser.getUid();
 
-                String urlImage = uploadToCloudStorage(userid);
+//                String urlImage = uploadToCloudStorage(userid);
 
                 pegawai.setId(userid);
-                pegawai.setFotoPegawai(urlImage);
+//                pegawai.setFotoPegawai(urlImage);
                 pegawai.setNamaPegawai(namaPegawai);
                 pegawai.setNamapengguna(namaPengguna);
                 pegawai.setJabatan(jabatan);
@@ -212,7 +228,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
                 User user = new User();
                 user.setId(userid);
-                user.setFotoProfile(urlImage);
+//                user.setFotoProfile(urlImage);
                 user.setUsername(namaPengguna);
                 user.setTelepon(noHp);
                 user.setEmail(emailPegawai);
@@ -226,7 +242,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                         Toast.makeText(TambahPegawaiActivity.this, "Berhasil menambahkan user", Toast.LENGTH_SHORT).show();
                     }
                 });
-
 
 
                 FirebaseAuth.getInstance().signOut();
@@ -259,12 +274,12 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private void getValues(){
-//        pegawai.setFotoPegawai(imgFotoprofile.getDrawable().toString());
+    private void getValues() {
         uploadToCloudStorage(pegawai.getId());
+//        pegawai.setFotoPegawai(downloadUrl);
         pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
         pegawai.setNamapengguna(etNamaPengguna.getText().toString());
-        pegawai.setPassword(etKataSandi.getText().toString());
+//        pegawai.setPassword(!etKataSandi.getText().toString().isEmpty()?etKataSandi.getText().toString():pegawai.getPassword());
         pegawai.setJabatan(etJabatan.getText().toString());
 //        pegawai.setHakAkses(spinnerHakAkses.getSelectedItem().toString());
         pegawai.setEmailPegawai(etEmailPegawai.getText().toString());
@@ -273,14 +288,16 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     }
 
 
-//
+    //
     private void save() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 getValues();
                 databaseReference.child(String.valueOf(keyPegawai)).setValue(pegawai);
-                Toast.makeText(TambahPegawaiActivity.this, "Pegawai telah ditambah", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TambahPegawaiActivity.this, "Pegawai terupdate ditambah", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -292,8 +309,8 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     }
 
 
+    private void setFormFromModelPegawai() {
 
-    private void setFormFromModelPegawai(){
         pegawai.setFotoPegawai(pegawai.getFotoPegawai());
         pegawai.setNamaPegawai(pegawai.getNamaPegawai());
         pegawai.setNamapengguna(pegawai.getNamapengguna());
@@ -304,17 +321,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         pegawai.setEmailPegawai(pegawai.getEmailPegawai());
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
-            Uri uri = data.getData();
-            mImageUri = uri;
-            imgFotoprofile.setImageURI(uri);
-        }
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -324,7 +330,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.im_save:
 
-                if(!fromPegawaiActivity){
+                if (!fromPegawaiActivity) {
 //                    pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
 //                    pegawai.setNamapengguna(etNamaPengguna.getText().toString());
 //                    pegawai.setPassword(etKataSandi.getText().toString());
@@ -336,59 +342,81 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                             etNamaPengguna.getText().toString(),
                             etKataSandi.getText().toString(),
                             etJabatan.getText().toString(),
-                            String.valueOf(spinnerHakAkses.getSelectedItemPosition()),etEmailPegawai.getText().toString(),
+                            String.valueOf(spinnerHakAkses.getSelectedItemPosition()),
+                            etEmailPegawai.getText().toString(),
                             etNoHp.getText().toString());
-                }else{
+                } else {
                     save();
                 }
                 finish();
                 break;
             case R.id.add_foto:
+
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
                 startActivityForResult(Intent.createChooser(intent, "Pilih file"), RESULT_LOAD_IMAGE);
                 break;
         }
 
     }
 
-    private String uploadToCloudStorage(String uid) {
+    private void uploadToCloudStorage(String uid) {
         Uri file = mImageUri;
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pegawaiRef = storageRef.child("Profile").child(uid + ".jpg");
 
-
         UploadTask uploadTask = pegawaiRef.putFile(file);
 
         // Register observers to listen for when the download is done or if it fails
-        uploadTask
-                .addOnProgressListener(taskSnapshot -> {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+        uploadTask.addOnProgressListener(taskSnapshot -> {
 
-                    ProgressDialog dialog = new ProgressDialog(TambahPegawaiActivity.this);
-                    dialog.setMessage("Sedang mengupload foto ...");
-                    dialog.setIndeterminate(false);
-                    dialog.setProgress((int) progress);
+        }).addOnFailureListener(exception -> {
+            // Handle unsuccessful uploads
+        }).addOnSuccessListener(taskSnapshot -> {
 
-                })
-                .addOnFailureListener(exception -> {
-                    // Handle unsuccessful uploads
-                })
-                .addOnSuccessListener(taskSnapshot -> {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    Toast.makeText(this, "Upload Foto Profil berhasil", Toast.LENGTH_SHORT).show();
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.i("problem", task.getException().toString());
+                    }
+
+                    return pegawaiRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+
+                        Toast.makeText(TambahPegawaiActivity.this, "Upload Berhasil", Toast.LENGTH_SHORT).show();
 
 
-                    setResult(RESULT_OK);
-                    finish();
-                });
 
-        return pegawaiRef.getDownloadUrl().toString();
+                        Log.i("seeThisUri", downloadUri.toString());// This is the one you should store
+                        FirebaseDatabase.getInstance().getReference("Pegawai").child(String.valueOf(keyPegawai))
+                                .child("fotoPegawai").setValue(downloadUri.toString());
+
+
+
+
+                    } else {
+                        Log.i("wentWrong","downloadUri failure");
+                    }
+                }
+            });
+
+            System.out.println("url download bos :" + uploadTask.getResult().toString());
+
+        });
+
     }
-
-
 }
+
+
+

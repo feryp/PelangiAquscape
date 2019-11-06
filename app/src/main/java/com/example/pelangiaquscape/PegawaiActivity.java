@@ -40,7 +40,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PegawaiActivity extends AppCompatActivity implements View.OnClickListener{
+public class PegawaiActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cancel;
 
@@ -113,14 +113,16 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 
                 final int size = this.getItemCount();
 
-                if (!fromTambahPembelianActivity) {
-                    holder.setItemClickListener(new ItemClickListener() {
-                        @Override
-                        public void onClick(View view, int position, boolean isLongClick) {
-                            Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
-                            pegawai.putExtra("pegawai", model);
-                            pegawai.putExtra("fromPegawaiActivity", true);
-                            pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
+
+                holder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
+                        pegawai.putExtra("pegawai", model);
+                        System.out.println( "pegawai activity : "+model.toString());
+
+                        pegawai.putExtra("fromPegawaiActivity", true);
+                        pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
 //                            pegawai.putExtra("emailPegawai", model.getEmailPegawai());
 //                            pegawai.putExtra("fotoPegawai", model.getFotoPegawai());
 //                            pegawai.putExtra("hakAkses", model.getHakAkses());
@@ -129,30 +131,20 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 //                            pegawai.putExtra("namaPengguna", model.getNamapengguna());
 //                            pegawai.putExtra("noHp", model.getNoHp());
 
-                            System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
-                            startActivity(pegawai);
-                        }
-                    });
-                } else {
-                    holder.setItemClickListener(new ItemClickListener() {
-                        @Override
-                        public void onClick(View view, int position, boolean isLongClick) {
-                            Intent i = new Intent(c, TambahPegawaiActivity.class);
-                            i.putExtra("pegawai", model);
-                            i.putExtra("pegawai", pegawai);
-                            i.putExtra("idForPegawai", key);
-                            c.startActivity(i);
-                        }
-                    });
-                }
+                        System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
+                        startActivity(pegawai);
+                    }
+                });
+
                 holder.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        showDeleteDialog(String.valueOf(adapter.getRef(position).getKey()),model);
+                        showDeleteDialog(String.valueOf(adapter.getRef(position).getKey()), model);
                         return false;
                     }
                 });
             }
+
             @NonNull
             @Override
             public PegawaiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -166,7 +158,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
             public void onDataChanged() {
                 super.onDataChanged();
 
-                if (adapter.getItemCount() > 0){
+                if (adapter.getItemCount() > 0) {
                     imageLayout.setVisibility(View.GONE);
                 }
             }
@@ -188,7 +180,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.im_cancel:
                 finish();
                 break;
@@ -200,7 +192,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    void showDeleteDialog(final String key, final Pegawai pegawai){
+    void showDeleteDialog(final String key, final Pegawai pegawai) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Hapus Data");
         alertDialog.setMessage("Apakah anda ingin menghapus Pegawai ini ? ");
@@ -213,7 +205,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(PegawaiActivity.this, "item "+pegawai.getNamapengguna() +" telah terhapus", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PegawaiActivity.this, "item " + pegawai.getNamapengguna() + " telah terhapus", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 

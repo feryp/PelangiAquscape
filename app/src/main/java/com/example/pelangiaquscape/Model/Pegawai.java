@@ -145,4 +145,19 @@ public class Pegawai implements Parcelable {
         dest.writeString(noHp);
         dest.writeString(emailPegawai);
     }
+
+    @Override
+    public String toString() {
+        return "Pegawai{" +
+                "id='" + id + '\'' +
+                ", fotoPegawai='" + fotoPegawai + '\'' +
+                ", namaPegawai='" + namaPegawai + '\'' +
+                ", namapengguna='" + namapengguna + '\'' +
+                ", password='" + password + '\'' +
+                ", jabatan='" + jabatan + '\'' +
+                ", hakAkses='" + hakAkses + '\'' +
+                ", noHp='" + noHp + '\'' +
+                ", emailPegawai='" + emailPegawai + '\'' +
+                '}';
+    }
 }

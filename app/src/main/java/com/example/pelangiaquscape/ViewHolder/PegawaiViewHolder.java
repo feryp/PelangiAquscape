@@ -50,10 +50,10 @@ public class PegawaiViewHolder extends RecyclerView.ViewHolder implements View.O
         tv_nama_pegawai.setText(pegawai.getNamaPegawai());
         tv_jabatan.setText(pegawai.getJabatan());
 
-        String uid = FirebaseAuth.getInstance().getUid();
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference pegawaiRef = storageRef.child("Foto Pegawai").child(uid + ".jpg");
+        StorageReference pegawaiRef = storageRef.child("Profile").child(pegawai.getId() + ".jpg");
         pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
 
             try {

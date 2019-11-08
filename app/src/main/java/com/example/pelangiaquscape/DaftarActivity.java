@@ -105,7 +105,7 @@ public class DaftarActivity extends AppCompatActivity implements View.OnClickLis
                             user.setEmail(email);
                             user.setPassword(katasandi);
                             user.setKodeLogin("0");
-                            user.setBio("");
+//                            user.setBio("");
                             user.setFotoProfile("");
 
                             databaseReference.setValue(user).addOnCompleteListener(task1 -> {

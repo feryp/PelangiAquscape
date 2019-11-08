@@ -237,7 +237,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 .orderByChild("tanggalPenjualan")
                 .startAt(tanggal)
                 .endAt(tanggal + "\uf8ff");
-       // Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
+//        Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
 //        Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
 
         Log.v("query", query.getPath().toString());

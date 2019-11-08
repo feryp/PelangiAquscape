@@ -15,8 +15,11 @@ public class Pegawai implements Parcelable {
     private String hakAkses;
     private String noHp;
     private String emailPegawai;
+    private String bio;
 
-    public Pegawai(String id, String fotoPegawai, String namaPegawai, String namapengguna, String password, String jabatan, String hakAkses, String noHp, String emailPegawai) {
+
+
+    public Pegawai(String id, String fotoPegawai, String namaPegawai, String namapengguna, String password, String jabatan, String hakAkses, String noHp, String emailPegawai, String bio) {
         this.id = id;
         this.fotoPegawai = fotoPegawai;
         this.namaPegawai = namaPegawai;
@@ -26,7 +29,9 @@ public class Pegawai implements Parcelable {
         this.hakAkses = hakAkses;
         this.noHp = noHp;
         this.emailPegawai = emailPegawai;
+        this.bio = bio;
     }
+
 
     public Pegawai(){}
 
@@ -127,6 +132,14 @@ public class Pegawai implements Parcelable {
         this.emailPegawai = emailPegawai;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
 
     @Override
     public int describeContents() {
@@ -144,6 +157,7 @@ public class Pegawai implements Parcelable {
         dest.writeString(hakAkses);
         dest.writeString(noHp);
         dest.writeString(emailPegawai);
+        dest.writeString(bio);
     }
 
     @Override
@@ -158,6 +172,7 @@ public class Pegawai implements Parcelable {
                 ", hakAkses='" + hakAkses + '\'' +
                 ", noHp='" + noHp + '\'' +
                 ", emailPegawai='" + emailPegawai + '\'' +
+                ", bio='" + bio + '\'' +
                 '}';
     }
 }

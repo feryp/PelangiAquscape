@@ -216,6 +216,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 pegawai.setHakAkses(hakAkses);
                 pegawai.setNoHp(noHp);
                 pegawai.setEmailPegawai(emailPegawai);
+//                pegawai.setBio("");
 
                 FirebaseDatabase.getInstance().getReference().child("Pegawai").push().setValue(pegawai).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -229,12 +230,13 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
                 User user = new User();
                 user.setId(userid);
-//                user.setFotoProfile(urlImage);
+                user.setFotoProfile("");
                 user.setUsername(namaPengguna);
                 user.setTelepon(noHp);
                 user.setEmail(emailPegawai);
                 user.setPassword(kataSandi);
                 user.setKodeLogin(hakAkses);
+//                user.setBio("");
 
 
                 FirebaseDatabase.getInstance().getReference("User").child(userid).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

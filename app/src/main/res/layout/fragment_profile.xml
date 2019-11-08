@@ -60,13 +60,13 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/bio_profile"
+                        android:id="@+id/email_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/no_hp_profile"
                         android:layout_marginTop="0dp"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="Bio"
+                        android:text="Email"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp" />
 

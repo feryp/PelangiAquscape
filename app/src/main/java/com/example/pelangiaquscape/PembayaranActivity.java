@@ -710,7 +710,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
         String title = "Barang " + barang.getKode() + " telah mencapai stok minimal";
 
         Intent intent = new Intent(this, DetailPemberitahuanActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("message", message);
         intent.putExtra("title", title);

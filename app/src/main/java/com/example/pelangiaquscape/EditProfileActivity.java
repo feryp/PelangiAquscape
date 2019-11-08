@@ -43,7 +43,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     final String EXTRA = "INTENT_EDIT_TO_MAIN";
     ImageView cancel, save, imgFotoprofile;
     TextView tvUbah;
-    TextInputEditText etNamaAkun, etStatusJabatan, etNoHp, etBio;
+    TextInputEditText etNamaAkun, etStatusJabatan, etNoHp, etEmail;
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
@@ -74,7 +74,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         etNamaAkun = findViewById(R.id.et_nama_akun_pengguna);
         etStatusJabatan = findViewById(R.id.et_status_jabatan);
         etNoHp = findViewById(R.id.et_telepon);
-        etBio = findViewById(R.id.et_bio);
+        etEmail = findViewById(R.id.et_email);
 
         // INIT FIREBASE
         firebaseAuth = FirebaseAuth.getInstance();
@@ -94,8 +94,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         FirebaseDatabase fd = FirebaseDatabase.getInstance();
         DatabaseReference dr = fd.getReference("User");
 
-
-
         dr.child(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -104,7 +102,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 if(user1 != null) {
                     etNamaAkun.setText(user1.getUsername());
                     etNoHp.setText(user1.getTelepon());
-                    etBio.setText(user1.getBio());
+                    etEmail.setText(user1.getEmail());
                     if (user1.getKodeLogin().equals("1")) {
                         etStatusJabatan.setText("Admin");
                     } else {
@@ -194,8 +192,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         UploadTask uploadTask = fakturRef.putFile(file);
 
         // Register observers to listen for when the download is done or if it fails
-        uploadTask
-                .addOnProgressListener(taskSnapshot -> {
+        uploadTask.addOnProgressListener(taskSnapshot -> {
                     double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
                     ProgressDialog dialog = new ProgressDialog(EditProfileActivity.this);
@@ -236,7 +233,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         etNamaAkun.setText(nama_akun);
         etStatusJabatan.setText(status_jabatan);
         etNoHp.setText(no_hp);
-        etBio.setText(bio);
+        etEmail.setText(bio);
     }
 
 

@@ -36,7 +36,7 @@ import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    TextView tvNamaPengguna, tvStatusJabatan, tvNoHp, tvBiodata;
+    TextView tvNamaPengguna, tvStatusJabatan, tvNoHp, tvEmail;
     Button editAkun;
     ImageView imgFotoProfile;
     LinearLayout akunToko, notifikasi, bantuan, pengaturan, tentangkami, keluar;
@@ -48,7 +48,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     StorageReference storageReference;
 
 
-    String namaPengguna, statusJabatan, noHp, biodata, fotoProfile, kodeLogin;
+    String namaPengguna, statusJabatan, noHp, email, fotoProfile, kodeLogin;
     User user;
 
 
@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvNamaPengguna = v.findViewById(R.id.nama_pengguna_profile);
         tvStatusJabatan = v.findViewById(R.id.status_jabatan_profile);
         tvNoHp = v.findViewById(R.id.no_hp_profile);
-        tvBiodata = v.findViewById(R.id.bio_profile);
+        tvEmail = v.findViewById(R.id.email_profile);
         editAkun = v.findViewById(R.id.btn_edit_akun);
         akunToko = v.findViewById(R.id.akun_toko);
         notifikasi = v.findViewById(R.id.notifikasi);
@@ -99,12 +99,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         statusJabatan = "Super Admin";
                         break;
                     case "1":
-                        statusJabatan = "Pegawai";
+                        statusJabatan = "Admin";
                         break;
                 }
 
                 noHp = "" + dataSnapshot.child("telepon").getValue();
-                biodata = "" + dataSnapshot.child("bio").getValue();
+                email = "" + dataSnapshot.child("email").getValue();
                 fotoProfile = "" + dataSnapshot.child("fotoProfile").getValue();
 
 
@@ -118,7 +118,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 tvNamaPengguna.setText(namaPengguna);
                 tvStatusJabatan.setText(statusJabatan);
                 tvNoHp.setText(noHp);
-                tvBiodata.setText(biodata);
+                tvEmail.setText(email);
 
                 // REGISTER LISTENER
                 editAkun.setOnClickListener(ProfileFragment.this);

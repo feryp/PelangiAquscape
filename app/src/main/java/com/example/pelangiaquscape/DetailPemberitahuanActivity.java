@@ -36,7 +36,7 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
     Button btnKonfirmasi;
     TextView tvJudul, tvPesan, tvWaktu;
     Pemberitahuan pemberitahuan;
-    String key, message, title;
+    String key;
     ProgressDialog dialog;
 
 
@@ -50,8 +50,6 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
         Intent i = getIntent();
         pemberitahuan = i.getParcelableExtra("pemberitahuan");
         key = i.getStringExtra("key");
-        message = i.getStringExtra("message");
-        title = i.getStringExtra("title");
 
         dialog = new ProgressDialog(this);
 

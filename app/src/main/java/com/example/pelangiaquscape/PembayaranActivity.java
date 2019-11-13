@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -82,7 +83,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 //    Pemberitahuan pemberitahuan;
 
     Pemberitahuan model;
-    String key;
+    String key, date;
 
     LinearLayout ll;
     double totalHarga;
@@ -603,7 +604,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy, HH:mm");
-        String date = format.format(new Date());
+        date = format.format(new Date());
         tvTanggal.setText(date.concat(" WIB"));
         tvNamaPelanggan.setText(etNamaPelanggan.getText().toString());
         tvNoHp.setText(etNoHp.getText().toString());
@@ -706,12 +707,13 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         int icon = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.drawable.logoblack : R.drawable.logoblack;
 
-        String message = "Stok minimal "+barang.getMinStok() + " ,Stok saat ini "+barang.getStok();
+        String message = "Stok minimal "+ barang.getMinStok() + " ,Stok saat ini "+barang.getStok();
         String title = "Barang " + barang.getKode() + " telah mencapai stok minimal";
 
         Intent intent = new Intent(this, DetailPemberitahuanActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         intent.putExtra("message", message);
         intent.putExtra("title", title);
 
@@ -734,6 +736,24 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
                     .build();
+
+            Pemberitahuan pemberitahuan = new Pemberitahuan();
+
+            pemberitahuan.setNamaBarang(title);
+            pemberitahuan.setWaktuString(date);
+
+            Intent i = new Intent();
+            i.setComponent(new ComponentName(PembayaranActivity.this, DetailPemberitahuanActivity.class));
+           // i.putExtra("NAMA_BARANG", title);
+            //i.putExtra("TANGGAL", date);
+            i.putExtra("pemberitahuan",pemberitahuan);
+            PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
+            builder.setContentIntent(pIntent);
+
+            NotificationManager mNotificationManager =
+                    (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
 
 
             // notificationId is a unique int for each notification that you must define

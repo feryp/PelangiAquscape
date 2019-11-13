@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
@@ -23,47 +24,46 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 //import com.theartofdev.edmodo.cropper.CropImage;
 //import com.theartofdev.edmodo.cropper.CropImageView;
 
 
 public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int RESULT_LOAD_IMAGE = 1;
     final String EXTRA = "INTENT_EDIT_TO_MAIN";
     ImageView cancel, save, imgFotoprofile;
     TextView tvUbah;
     TextInputEditText etNamaAkun, etStatusJabatan, etNoHp, etEmail;
-
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
-
-    private static final int RESULT_LOAD_IMAGE = 1;
+    String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
+    User user;
     private Uri mImageUri;
     private StorageTask uploadTask;
-
-    String namaPengguna, statusJabatan, biodata, fotoProfile, kodeLogin;
     private Uri currentPhotoUri;
-
-    User user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
 
 
         // INIT VIEW
@@ -86,11 +86,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         tvUbah.setOnClickListener(this);
 
 
-
         loadProfile();
     }
 
-    void loadProfile(){
+    void loadProfile() {
         FirebaseDatabase fd = FirebaseDatabase.getInstance();
         DatabaseReference dr = fd.getReference("User");
 
@@ -98,8 +97,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user1 = dataSnapshot.getValue(User.class);
-                System.out.println("EditProfileActivity "+user1.getId());
-                if(user1 != null) {
+                System.out.println("EditProfileActivity " + user1.getId());
+                if (user1 != null) {
                     etNamaAkun.setText(user1.getUsername());
                     etNoHp.setText(user1.getTelepon());
                     etEmail.setText(user1.getEmail());
@@ -110,6 +109,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     }
 
                     user = user1;
+                    // etEmail.setEnabled(false);
+                    etStatusJabatan.setEnabled(false);
 
                 }
 
@@ -135,9 +136,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         String uid = FirebaseAuth.getInstance().getUid();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference fakturRef = storageRef.child("Profile").child(uid +".jpg");
+        StorageReference fakturRef = storageRef.child("Profile").child(uid + ".jpg");
         fakturRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            if(uri != null){
+            if (uri != null) {
                 currentPhotoUri = uri;
                 Picasso.get().load(uri).into(imgFotoprofile);
 
@@ -158,7 +159,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.im_cancel:
                 finish();
                 break;
@@ -178,7 +179,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-
     void uploadToCloudStorage() {
 
 
@@ -186,20 +186,20 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference fakturRef = storageRef.child("Profile").child(user.getId()+".jpg");
-
+        StorageReference fakturRef = storageRef.child("Profile").child(user.getId() + ".jpg");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(firebaseAuth.getUid());
 
         UploadTask uploadTask = fakturRef.putFile(file);
 
         // Register observers to listen for when the download is done or if it fails
         uploadTask.addOnProgressListener(taskSnapshot -> {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
-                    ProgressDialog dialog = new ProgressDialog(EditProfileActivity.this);
-                    dialog.setMessage("Ubah Data...");
-                    dialog.setIndeterminate(false);
-                    dialog.setProgress((int)progress);
-                    dialog.show();
+            ProgressDialog dialog = new ProgressDialog(EditProfileActivity.this);
+            dialog.setMessage("Ubah Data...");
+            dialog.setIndeterminate(false);
+            dialog.setProgress((int) progress);
+            dialog.show();
 
 
 //                    String nama_akun = etNamaAkun.getText().toString();
@@ -209,11 +209,64 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
 //                    update(nama_akun, status_jabatan, no_hp, bio);
 
-                    dialog.dismiss();
+            // Kalo user update email
+          /*  String emailFirebase = firebaseUser.getEmail();
+            String emailBaru = etEmail.getText().toString();
+
+            if (!(emailFirebase.equals(emailBaru))) {
+                // Toast.makeText(this, "Email lama : " + emailFirebase + "\n Email baru : " + emailBaru, Toast.LENGTH_SHORT).show();
+
+                FirebaseUser firebaseUser2 = firebaseAuth.getCurrentUser();
+
+                firebaseUser2.updateEmail(emailBaru)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    userRef.child("email").setValue(emailBaru);
+                                    Log.d("EMAIL", "email : " + emailBaru);
+                                } else {
+                                    Log.d("EMAIL", "error");
+                                }
+                            }
+                        });
+            } */
+
+            // update data uname & telepon di node User
+            userRef.child("username").setValue(etNamaAkun.getText().toString());
+            userRef.child("telepon").setValue(etNoHp.getText().toString());
+
+            if (etStatusJabatan.getText().toString().equals("Admin")) {
+                DatabaseReference root = FirebaseDatabase.getInstance().getReference("Pegawai");
+                Query userQuery = root.orderByChild("id").equalTo(firebaseAuth.getUid());
+
+                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // update data uname & telepon di node Pegawai (untuk admin/pegawai)
+                            for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                                String keyPegawai = issue.getKey();
+
+                                root.child(keyPegawai).child("namapengguna").setValue(etNamaAkun.getText().toString());
+                                root.child(keyPegawai).child("noHp").setValue(etNoHp.getText().toString());
+                            }
 
 
+                        }
+                    }
 
-                })
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            dialog.dismiss();
+
+
+        })
                 .addOnFailureListener(exception -> {
                     // Handle unsuccessful uploads
                 })
@@ -225,10 +278,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 });
 
 
-
     }
 
-    private void update(final String nama_akun, final String status_jabatan,final String no_hp, final  String bio) {
+    private void update(final String nama_akun, final String status_jabatan, final String no_hp, final String bio) {
 
         etNamaAkun.setText(nama_akun);
         etStatusJabatan.setText(status_jabatan);

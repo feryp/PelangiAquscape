@@ -36,7 +36,8 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
     Button btnKonfirmasi;
     TextView tvJudul, tvPesan, tvWaktu;
     Pemberitahuan pemberitahuan;
-    String key;
+    Barang barang;
+    String key,  tanggal;
     ProgressDialog dialog;
 
 
@@ -49,7 +50,11 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
 
         Intent i = getIntent();
         pemberitahuan = i.getParcelableExtra("pemberitahuan");
+        barang = i.getParcelableExtra("barang");
         key = i.getStringExtra("key");
+//        Log.d("")
+       // tanggal = i.getStringExtra("TANGGAL");
+
 
         dialog = new ProgressDialog(this);
 
@@ -68,17 +73,21 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
         toolbarPemberitahuan.setNavigationIcon(R.drawable.ic_back);
         toolbarPemberitahuan.setNavigationOnClickListener(this);
 
-
         //SET TEXT
         tvJudul.setText("Barang " + pemberitahuan.getNamaBarang() + " telah mencapai batas minimum");
         tvPesan.setText("Penambahan stok barang " + pemberitahuan.getNamaBarang() + " harap segera dilakukan, agar barang tersedia lagi.");
 
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(pemberitahuan.getWaktu());
-        Date date = cal.getTime();
-        SimpleDateFormat waktuFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
-        String timeFormat = waktuFormat.format(date);
-        tvWaktu.setText(timeFormat);
+
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(pemberitahuan.getWaktu());
+            Date date = cal.getTime();
+            SimpleDateFormat waktuFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
+            String timeFormat = waktuFormat.format(date);
+            tvWaktu.setText(timeFormat);
+        } catch (NullPointerException e) {
+            tvWaktu.setText(pemberitahuan.getWaktuString());
+        }
 
         btnKonfirmasi.setOnClickListener(this);
 

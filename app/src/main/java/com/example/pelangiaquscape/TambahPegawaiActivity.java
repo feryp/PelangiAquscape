@@ -110,6 +110,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         etEmailPegawai = findViewById(R.id.et_email_pegawai);
         spinnerHakAkses = findViewById(R.id.spinner_hak_akses);
 
+
         // get intent from pegawai activity
         Intent i = getIntent();
         fromPegawaiActivity = i.getBooleanExtra("fromPegawaiActivity", false);

@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.print.PrinterInfo;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -49,6 +50,14 @@ public class KartuPelangganActivity extends AppCompatActivity implements View.On
     AkunToko akunToko;
     String key;
     Bitmap bitmap;
+
+    public static Bitmap loadBitmapFromView(View view, int width, int height) {
+        Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        view.draw(c);
+
+        return b;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +124,11 @@ public class KartuPelangganActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
             case R.id.im_cetak:
-                showToast("Cetak Kartu");
-                Log.d("size", "" + llPdf.getWidth() + " "+llPdf.getWidth());
+                /*showToast("Cetak Kartu");*/
+                Log.d("size", " " + llPdf.getWidth() + " " + llPdf.getWidth());
                 bitmap = loadBitmapFromView(llPdf, llPdf.getWidth(), llPdf.getHeight());
+//                String fpath = "/sdcard/pdfkartupelanggan.pdf";
+//                File file = new File(fpath);
                 createPdf();
                 break;
         }
@@ -144,45 +155,43 @@ public class KartuPelangganActivity extends AppCompatActivity implements View.On
 
             bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHeight, true);
 
-            paint.setColor(Color.WHITE);
+            paint.setColor(Color.BLUE);
             canvas.drawBitmap(bitmap, 0, 0, null);
             document.finishPage(page);
 
             //write the document content
-            String targetPdf = "/sdcard/pdfkartupelanggan.pdf";
-            File filePath;
-            filePath = new File(targetPdf);
+            String targetPdf = "/sdcard/Kartu_Pelanggan_" + pelanggan.getNamaPelanggan() + ".pdf";
+            File filePath = new File(targetPdf);
             try {
                 document.writeTo(new FileOutputStream(filePath));
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(this, "Ada yang salah : " + e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ada yang salah : " + e.toString(), Toast.LENGTH_LONG).show();
             }
 
             //close the document
             document.close();
             Toast.makeText(this, "PDF sudah dibuat", Toast.LENGTH_SHORT).show();
-            openGeneratedPDF();
+            openGeneratedPDF(filePath);
+
         }
+
+
     }
 
-    private void openGeneratedPDF() {
-        File file = new File("/sdcard/pdfkartupelanggan.pdf");
-        if (!file.exists())
-        {
+    private void openGeneratedPDF(File file) {
+
+        Uri uri = FileProvider.getUriForFile(this, "com.example.pelangiaquscape.fileprovider", file);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(uri, "application/pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
+        if (!file.exists()) {
             try {
                 file.createNewFile();
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static Bitmap loadBitmapFromView(View view, int width, int height) {
-        Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(b);
-        view.draw(c);
-
-        return b;
     }
 }

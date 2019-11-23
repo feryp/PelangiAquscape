@@ -104,8 +104,9 @@ public class BarangActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                searchFirebase(s);
-                return false;
+//                searchFirebase(s);
+                adapter.getFilter().filter(s);
+                return true;
             }
         });
 
@@ -156,7 +157,7 @@ public class BarangActivity extends AppCompatActivity {
                 .getInstance()
                 .getReference()
                 .child("Barang")
-                .orderByChild("nama").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase() + "\uf8ff");
+                .orderByChild("kode").startAt(searchText.toUpperCase()).endAt(searchText.toUpperCase() + "\uf8ff");
 
         FirebaseRecyclerOptions<Merek> options =
                 new FirebaseRecyclerOptions.Builder<Merek>()
@@ -165,7 +166,7 @@ public class BarangActivity extends AppCompatActivity {
 
         Log.i("SNAPSHOT", options.getSnapshots().toString());
 
-        FirebaseDatabase.getInstance().getReference().child("Barang").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Barang").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

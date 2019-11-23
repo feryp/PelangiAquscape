@@ -73,7 +73,9 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     FirebaseDatabase firebaseDatabase;
     StorageReference storageReference;
     FirebaseRecyclerAdapter firebaseRecyclerAdapter;
+
     Pegawai pegawai;
+    User user = new User();
 
 
     String keyPegawai;
@@ -109,7 +111,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         etNoHp = findViewById(R.id.et_no_hp_pegawai);
         etEmailPegawai = findViewById(R.id.et_email_pegawai);
         spinnerHakAkses = findViewById(R.id.spinner_hak_akses);
-
 
         // get intent from pegawai activity
         Intent i = getIntent();
@@ -206,38 +207,34 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 FirebaseUser fUser = task.getResult().getUser();
                 String userid = fUser.getUid();
 
-//                String urlImage = uploadToCloudStorage(userid);
+                uploadToCloudStorage(userid);
 
                 pegawai.setId(userid);
-//                pegawai.setFotoPegawai(urlImage);
-                pegawai.setFotoPegawai("");
                 pegawai.setNamaPegawai(namaPegawai);
                 pegawai.setNamapengguna(namaPengguna);
                 pegawai.setJabatan(jabatan);
                 pegawai.setHakAkses(hakAkses);
                 pegawai.setNoHp(noHp);
                 pegawai.setEmailPegawai(emailPegawai);
-//                pegawai.setBio("");
 
                 FirebaseDatabase.getInstance().getReference().child("Pegawai").push().setValue(pegawai).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            uploadToCloudStorage(userid);
+
                         }
                     }
 
                 });
 
-                User user = new User();
+
                 user.setId(userid);
-                user.setFotoProfile("");
+//                user.setFotoProfile(urlImage);
                 user.setUsername(namaPengguna);
                 user.setTelepon(noHp);
                 user.setEmail(emailPegawai);
                 user.setPassword(kataSandi);
                 user.setKodeLogin(hakAkses);
-//                user.setBio("");
 
 
                 FirebaseDatabase.getInstance().getReference("User").child(userid).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -259,21 +256,6 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
             }
         });
-
-//        String uid = FirebaseAuth.getInstance().getUid();
-//        FirebaseStorage storage = FirebaseStorage.getInstance();
-//        StorageReference storageRef = storage.getReference();
-//        StorageReference pegawaiRef = storageRef.child("Profile").child(uid + ".jpg");
-
-//        pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
-//            if (uri != null){
-//                mImageUri = uri;
-//
-//                pegawai.setFotoPegawai(uri.toString());
-//                Picasso.get().load(uri).into(imgFotoprofile);
-////                FirebaseDatabase.getInstance().getRe
-//            }
-//        });
 
 
     }

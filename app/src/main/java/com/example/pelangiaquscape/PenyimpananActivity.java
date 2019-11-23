@@ -44,7 +44,7 @@ public class PenyimpananActivity extends AppCompatActivity {
     Query query;
     Penyimpanan penyimpanan;
 
-
+    PenyimpananAdapter adapter;
     List<String> listKey;
     List<Penyimpanan> listPenyimpanan;
 
@@ -69,8 +69,8 @@ public class PenyimpananActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                searchFirebase(newText);
-                return false;
+                adapter.getFilter().filter(newText);
+                return true;
             }
         });
 
@@ -83,14 +83,7 @@ public class PenyimpananActivity extends AppCompatActivity {
         });
 
 
-//        fab_penyimpanan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Toast.makeText(PenyimpananActivity.this, "Tambah Inventory", Toast.LENGTH_SHORT).show();
-//                Intent fab_penyimpanan = new Intent(PenyimpananActivity.this, TambahPenyimpananActivity.class);
-//                startActivity(fab_penyimpanan);
-//            }
-//        });
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,66 +93,6 @@ public class PenyimpananActivity extends AppCompatActivity {
         });
 
         loadPenyimpanan();
-    }
-
-    private void searchFirebase(String newText) {
-        Log.i("MASUK KE SEARCH ","hehe");
-
-//        FirebaseDatabase fd = FirebaseDatabase.getInstance();
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Penyimpanan");
-
-        query = FirebaseDatabase
-                .getInstance()
-                .getReference("Penyimpanan")
-                .child("key")
-                .orderByChild("kodeBarang")
-                .startAt(newText.toUpperCase())
-                .endAt(newText.toUpperCase() + "\uf8ff");
-
-        FirebaseRecyclerOptions<Penyimpanan> options =
-                new FirebaseRecyclerOptions.Builder<Penyimpanan>()
-                .setQuery(query, Penyimpanan.class)
-                .build();
-
-        Log.i("SNAPSHOT", options.getSnapshots().toString());
-
-
-        dr.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                listPenyimpanan = new ArrayList<>();
-                listKey = new ArrayList<>();
-
-
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    Penyimpanan penyimpanan = ds.getValue(Penyimpanan.class);
-                    String key = dataSnapshot.getKey();
-
-                    listPenyimpanan.add(penyimpanan);
-                    listKey.add(key);
-                }
-
-                PenyimpananAdapter adapter = new PenyimpananAdapter(PenyimpananActivity.this, listPenyimpanan, listKey);
-
-                LinearLayoutManager manager = new LinearLayoutManager(PenyimpananActivity.this);
-                manager.setReverseLayout(true);
-                manager.setStackFromEnd(true);
-
-                rvPenyimpanan.setAdapter(adapter);
-                rvPenyimpanan.setLayoutManager(manager);
-
-                if(adapter.getItemCount() > 0){
-                    imageLayout.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
     }
 
     void loadPenyimpanan(){
@@ -177,7 +110,7 @@ public class PenyimpananActivity extends AppCompatActivity {
                     listPenyimpanan.add(penyimpanan);
                     listKey.add(key);
                 }
-                PenyimpananAdapter adapter = new PenyimpananAdapter(PenyimpananActivity.this, listPenyimpanan, listKey);
+                adapter = new PenyimpananAdapter(PenyimpananActivity.this, listPenyimpanan, listKey);
                 LinearLayoutManager manager = new LinearLayoutManager(PenyimpananActivity.this);
                 manager.setReverseLayout(true);
                 manager.setStackFromEnd(true);

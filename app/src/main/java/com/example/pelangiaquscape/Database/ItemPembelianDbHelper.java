@@ -68,6 +68,13 @@ public class ItemPembelianDbHelper extends SQLiteOpenHelper {
         return db.delete(ItemPembelianEntry.TABLE_NAME, null, null);
     }
 
+//    //---deletes a particular title---
+//    public boolean deleteTitle(String name)
+//    {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        return db.delete(ItemPembelianEntry.TABLE_NAME, null + "=" + name, null) > 0;
+//    }
+
     public void insertOrDelete(Barang model, String ids, String qty, String hargaBeli){
         SQLiteDatabase db =this.getWritableDatabase();
 

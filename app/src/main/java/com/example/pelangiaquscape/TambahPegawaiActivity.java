@@ -55,6 +55,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -84,7 +85,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     private static final int RESULT_LOAD_IMAGE = 1;
     static final int REQUEST_IMAGE_CAPTURE = 80;
     private String currentPhotoPath;
-    private Uri mImageUri;
+    private Uri mImageUri, uri;
     private StorageTask uploadTask;
     private ProgressDialog pd;
 
@@ -122,13 +123,17 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
 
             System.out.println("tambahpegawaiactivity: foto " + pegawai.toString());
 
-            System.out.println("isEmpty : " + pegawai.getFotoPegawai().isEmpty());
+            // System.out.println("isEmpty : " + pegawai.getFotoPegawai().isEmpty());
             System.out.println("length : " + pegawai.getFotoPegawai());
             System.out.println("isNull : " + pegawai.getFotoPegawai() != null ? "tidak" : "ya");
 
 
-            if (!pegawai.getFotoPegawai().isEmpty()) {
-                Picasso.get().load(pegawai.getFotoPegawai()).into(imgFotoprofile);
+            try {
+                if (!pegawai.getFotoPegawai().isEmpty()) {
+                    Picasso.get().load(pegawai.getFotoPegawai()).into(imgFotoprofile);
+                }
+            } catch (NullPointerException e) {
+
             }
             bind(pegawai);
         }
@@ -167,7 +172,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
-            Uri uri = data.getData();
+            uri = data.getData();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
                 getApplicationContext().getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
@@ -207,7 +212,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
                 FirebaseUser fUser = task.getResult().getUser();
                 String userid = fUser.getUid();
 
-                uploadToCloudStorage(userid);
+                // uploadToCloudStorage(userid);
 
                 pegawai.setId(userid);
                 pegawai.setNamaPegawai(namaPegawai);
@@ -261,7 +266,7 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     }
 
     private void getValues() {
-        uploadToCloudStorage(pegawai.getId());
+       uploadToCloudStorage(pegawai.getId());
 //        pegawai.setFotoPegawai(downloadUrl);
         pegawai.setNamaPegawai(etNamaPegawai.getText().toString());
         pegawai.setNamapengguna(etNamaPengguna.getText().toString());
@@ -350,56 +355,62 @@ public class TambahPegawaiActivity extends AppCompatActivity implements View.OnC
     }
 
     private void uploadToCloudStorage(String uid) {
+
         Uri file = mImageUri;
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pegawaiRef = storageRef.child("Profile").child(uid + ".jpg");
 
-        UploadTask uploadTask = pegawaiRef.putFile(file);
+        try {
+            UploadTask uploadTask = pegawaiRef.putFile(file);
 
-        // Register observers to listen for when the download is done or if it fails
-        uploadTask.addOnProgressListener(taskSnapshot -> {
 
-        }).addOnFailureListener(exception -> {
-            // Handle unsuccessful uploads
-        }).addOnSuccessListener(taskSnapshot -> {
+            // Register observers to listen for when the download is done or if it fails
+            uploadTask.addOnProgressListener(taskSnapshot -> {
 
-            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if (!task.isSuccessful()) {
-                        Log.i("problem", task.getException().toString());
+            }).addOnFailureListener(exception -> {
+                // Handle unsuccessful uploads
+            }).addOnSuccessListener(taskSnapshot -> {
+
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.i("problem", task.getException().toString());
+                        }
+
+                        return pegawaiRef.getDownloadUrl();
                     }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Uri downloadUri = task.getResult();
 
-                    return pegawaiRef.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-
-                        Toast.makeText(TambahPegawaiActivity.this, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TambahPegawaiActivity.this, "Upload Berhasil", Toast.LENGTH_SHORT).show();
 
 
-
-                        Log.i("seeThisUri", downloadUri.toString());// This is the one you should store
-                        FirebaseDatabase.getInstance().getReference("Pegawai").child(String.valueOf(keyPegawai))
-                                .child("fotoPegawai").setValue(downloadUri.toString());
-
+                            Log.i("seeThisUri", downloadUri.toString());// This is the one you should store
+                            FirebaseDatabase.getInstance().getReference("Pegawai").child(String.valueOf(keyPegawai))
+                                    .child("fotoPegawai").setValue(downloadUri.toString());
 
 
-
-                    } else {
-                        Log.i("wentWrong","downloadUri failure");
+                        } else {
+                            Log.i("wentWrong", "downloadUri failure");
+                        }
                     }
-                }
+                });
+
+                System.out.println("url download bos :" + uploadTask.getResult().toString());
+
             });
 
-            System.out.println("url download bos :" + uploadTask.getResult().toString());
+            //
+        } catch (IllegalArgumentException e) {
 
-        });
+        }
+
 
     }
 }

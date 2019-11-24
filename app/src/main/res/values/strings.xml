@@ -143,9 +143,10 @@
 
     <!--Pusat Bantuan cara penyimpanan -->
     <string name="pusat_bantuan_penyimpanan">Kamu dapat melakukan penyimpanan barang pada menu Penyimpanan, berikut caranya :</string>
-    <string name="step1_penyimpanan">1. Pilih Menu Penyimpanan, dalam menu Penyimpanan terdapat list barang masuk dan barang keluar. Apabila anda ingin melakukan stock opname maka dapat menekan tombol tambah.</string>
-    <string name="step2_penyimpanan">2. Setelah itu masuk ke halaman Tambah Penyimpanan, lalu isi atau ubah data barang yang ingin disimpan di gudang. Setelah Tambah Penyimpanan sudah diisi, tekan tombol ceklis yang ada di pojok kanan atas.</string>
-    <string name="step3_penyimpanan">3. Lalu list penyimpanan akan bertambah atau berubah datanya sesuai dengan data yang dimasukkan.</string>
+    <string name="step1_penyimpanan">1. Pilih Menu Penyimpanan, dalam menu Penyimpanan jika belum terdapat list informasi barang masuk dan barang keluar maka tampilannya seperti berikut .</string>
+    <string name="step2_penyimpanan">2. Jika sudah terdapat list informasi barang masuk dan barang keluar maka sebagai berikut ini.</string>
+    <!--<string name="step2_penyimpanan">2. Setelah itu masuk ke halaman Tambah Penyimpanan, lalu isi atau ubah data barang yang ingin disimpan di gudang. Setelah Tambah Penyimpanan sudah diisi, tekan tombol ceklis yang ada di pojok kanan atas.</string>-->
+    <!--<string name="step3_penyimpanan">3. Lalu list penyimpanan akan bertambah atau berubah datanya sesuai dengan data yang dimasukkan.</string>-->
 
     <!--Pusat Bantuan cara tambah barang -->
     <string name="pusat_bantuan_tambah_barang">Kamu dapat melakukan menambahkan barang pada menu Barang, berikut caranya :</string>
@@ -176,8 +177,8 @@
     <!--Pusat Bantuan cara laporan -->
     <string name="pusat_bantuan_laporan">Kamu dapat melakukan melihat data laporan penjualan dalam menu Laporan Penjualan, berikut caranya :</string>
     <string name="step1_laporan">1. Pilih Menu Laporan Penjualan, dalam menu Laporan Penjualan terdapat dua tab yaitu bulan dan tahun. Dari setiap tab menampilkan Total Penjualan, Total Keuntungan, Transaksi, Produk Terjual, Produk Paling Laku, dan Produk Paling Tidak Laku.</string>
-    <string name="step2_laporan">2. Setelah itu masuk ke halaman Laporan Penjualan, anda dapat melihat hasil laporan dari penjualan berdasarkan bulan atau tahun Lalu disetiap fitur dalam Menu Laporan Penjualan hanya Total Penjualan dan Total Keuntungan yang dapat melihat grafik. Dengan cara klik Total Penjualan atau Total Keuntungan.</string>
-    <string name="step3_laporan">3. Lalu akan tampil grafik sesuai dengan bulan dan tahun yang ditetapkan.</string>
+    <string name="step2_laporan">2. Setelah itu masuk ke halaman Laporan Penjualan, anda dapat melihat hasil laporan dari penjualan berdasarkan bulan atau tahun.</string>
+    <!--<string name="step3_laporan">3. Lalu akan tampil grafik sesuai dengan bulan dan tahun yang ditetapkan.</string>-->
 
     <!--Pusat Bantuan rekap -->
     <string name="pusat_bantuan_rekap">Kamu dapat melakukan melihat data rekap kas dalam menu Rekap Kas, berikut caranya :</string>

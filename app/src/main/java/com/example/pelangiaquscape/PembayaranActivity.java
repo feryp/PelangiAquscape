@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -529,7 +530,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                         for (DataSnapshot sn : dataSnapshot.getChildren()) {
 
                             for (Penyimpanan p : listPenyimpanan) {
-                                System.out.println("snapshot "+ sn.getKey() + " key " + p.getKeyBarang());
+                               // System.out.println("snapshot "+ sn.getKey() + " key " + p.getKeyBarang());
 
                                 if(p.getKeyBarang().equals(sn.getKey())){
                                     Barang barang = sn.getValue(Barang.class);
@@ -540,7 +541,11 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                                     barang.setStok(stok);
                                     sn.getRef().setValue(barang);
 
-                                    if(barang.getStok() < barang.getMinStok()){
+                                    /*System.out.println("stok barang = " + barang.getStok());
+                                    System.out.println("min stock = " + barang.getMinStok());
+                                    System.out.println(barang.getStok() < barang.getMinStok());*/
+                                    if(barang.getStok() <= barang.getMinStok()){
+                                        System.out.println("CEK BENER GA YA");
                                         showNotification(barang);
                                         insertNotif(barang);
                                     }
@@ -716,6 +721,7 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
 
         intent.putExtra("message", message);
         intent.putExtra("title", title);
+        intent.putExtra("tanggal",date);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
@@ -737,24 +743,20 @@ public class PembayaranActivity extends AppCompatActivity implements View.OnClic
                     .setContentIntent(pendingIntent)
                     .build();
 
-            Pemberitahuan pemberitahuan = new Pemberitahuan();
-
-            pemberitahuan.setNamaBarang(title);
-            pemberitahuan.setWaktuString(date);
-
-            Intent i = new Intent();
-            i.setComponent(new ComponentName(PembayaranActivity.this, DetailPemberitahuanActivity.class));
-           // i.putExtra("NAMA_BARANG", title);
-            //i.putExtra("TANGGAL", date);
-            i.putExtra("pemberitahuan",pemberitahuan);
-            PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
-            builder.setContentIntent(pIntent);
-
-            NotificationManager mNotificationManager =
-                    (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-
-
-
+//            Pemberitahuan pemberitahuan = new Pemberitahuan();
+//
+//            pemberitahuan.setNamaBarang(title);
+////           pemberitahuan.setWaktuString(date);
+//
+//           Intent i = new Intent();
+//           i.setComponent(new ComponentName(PembayaranActivity.this, DetailPemberitahuanActivity.class));
+//           i.putExtra("NAMA_BARANG", title);
+//            //i.putExtra("TANGGAL", date);
+//            i.putExtra("pemberitahuan",pemberitahuan);
+//            PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
+//            builder.setContentIntent(pIntent);
+////
+          notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
             // notificationId is a unique int for each notification that you must define
             notificationManager.notify(1221, notification);

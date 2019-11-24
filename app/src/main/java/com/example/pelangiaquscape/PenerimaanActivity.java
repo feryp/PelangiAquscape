@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class PenerimaanActivity extends AppCompatActivity {
     List<Pembelian> listPembelian;
     List<String> listKey;
     ImageView cancel;
+
+    Query query;
 
 
     @Override
@@ -66,11 +69,15 @@ public class PenerimaanActivity extends AppCompatActivity {
     }
 
     public void loadPembelian(){
-        FirebaseDatabase fd = FirebaseDatabase.getInstance();
-        DatabaseReference dr = fd.getReference("Pembelian");
+//        FirebaseDatabase fd = FirebaseDatabase.getInstance();
+//        DatabaseReference dr = fd.getReference("Pembelian");
+        query = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("Pembelian")
+                .orderByChild("tanggalPesanan");
 
-
-        dr.addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // RESET LIST

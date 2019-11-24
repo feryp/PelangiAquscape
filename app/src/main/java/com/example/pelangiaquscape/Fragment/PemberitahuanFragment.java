@@ -122,7 +122,7 @@ public class PemberitahuanFragment extends Fragment {
 //                            p.putExtra("proses", model.isProses());
 
                             p.putExtra("pemberitahuan",model);
-                         // p.putExtra("pemberitahuan",pemberitahuan );
+                           // salah gaes p.putExtra("pemberitahuan",pemberitahuan );
                             p.putExtra("key", key);
 //
 

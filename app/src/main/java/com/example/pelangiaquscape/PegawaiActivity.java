@@ -17,9 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Adapter.PegawaiAdapter;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
+import com.example.pelangiaquscape.Interface.NamaPegawai;
 import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Pegawai;
 import com.example.pelangiaquscape.ViewHolder.PegawaiViewHolder;
@@ -38,6 +41,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PegawaiActivity extends AppCompatActivity implements View.OnClickListener {
@@ -53,8 +57,10 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
     Context c;
 
     LinearLayout imageLayout;
+    List<String> namapegawai = new ArrayList<>();
     private Pegawai pegawai;
     private String key;
+    SearchView searchView;
 
     RecyclerView.LayoutManager layoutManager;
     FloatingActionButton fab_pegawai;
@@ -62,6 +68,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 
     Query query;
     FirebaseRecyclerAdapter adapter;
+    PegawaiAdapter pegawaiAdapter;
 
 
     @Override
@@ -74,6 +81,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
         fab_pegawai = findViewById(R.id.fab_pegawai);
         imageLayout = findViewById(R.id.linear_imageview_pegawai);
         rvPegawai = findViewById(R.id.rv_pegawai);
+        searchView = findViewById(R.id.search_data_pegawai);
         rvPegawai.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(this, 2);
         rvPegawai.setLayoutManager(layoutManager);
@@ -82,12 +90,66 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Pegawai");
 
+
         // REGISTER LISTENER
         cancel.setOnClickListener(this);
         fab_pegawai.setOnClickListener(this);
 
+        readData(new NamaPegawai() {
+            @Override
+            public void readNamaPegawai(List<String> listNamaPegawai) {
+                for (String pegawai : listNamaPegawai){
+                    Log.v("testpegawai", pegawai);
+                }
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                pegawaiAdapter = new PegawaiAdapter();
+                pegawaiAdapter.getFilter().filter(s);
+                return true;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                loadPegawai();
+                return false;
+            }
+        });
+
         // LOAD PEGAWAI FROM FIREBASE
         loadPegawai();
+
+
+    }
+
+    void readData(final NamaPegawai callback){
+        FirebaseDatabase.getInstance().getReference("Pegawai").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    String p = ds.child("namaPegawai").getValue(String.class);
+                    namapegawai.add(p);
+
+                }
+                callback.readNamaPegawai(namapegawai);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void loadPegawai() {

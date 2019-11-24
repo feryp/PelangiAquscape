@@ -37,7 +37,8 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
     TextView tvJudul, tvPesan, tvWaktu;
     Pemberitahuan pemberitahuan;
     Barang barang;
-    String key,  tanggal;
+    String key, barangTemp, waktuTemp;
+    long waktu;
     ProgressDialog dialog;
 
 
@@ -52,8 +53,11 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
         pemberitahuan = i.getParcelableExtra("pemberitahuan");
         barang = i.getParcelableExtra("barang");
         key = i.getStringExtra("key");
+        barangTemp = i.getStringExtra("title");
+        waktuTemp = i.getStringExtra("tanggal");
+       /* barangTemp = i.getStringExtra("NAMA_BARANG");*/
 //        Log.d("")
-       // tanggal = i.getStringExtra("TANGGAL");
+        // tanggal = i.getStringExtra("TANGGAL");
 
 
         dialog = new ProgressDialog(this);
@@ -73,21 +77,33 @@ public class DetailPemberitahuanActivity extends AppCompatActivity implements Vi
         toolbarPemberitahuan.setNavigationIcon(R.drawable.ic_back);
         toolbarPemberitahuan.setNavigationOnClickListener(this);
 
-        //SET TEXT
-        tvJudul.setText("Barang " + pemberitahuan.getNamaBarang() + " telah mencapai batas minimum");
-        tvPesan.setText("Penambahan stok barang " + pemberitahuan.getNamaBarang() + " harap segera dilakukan, agar barang tersedia lagi.");
-
-
         try {
+        barangTemp = pemberitahuan.getNamaBarang();
+        waktu = pemberitahuan.getWaktu();
+
             Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(pemberitahuan.getWaktu());
+            cal.setTimeInMillis(waktu);
             Date date = cal.getTime();
             SimpleDateFormat waktuFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
             String timeFormat = waktuFormat.format(date);
             tvWaktu.setText(timeFormat);
-        } catch (NullPointerException e) {
-            tvWaktu.setText(pemberitahuan.getWaktuString());
         }
+        catch (NullPointerException e) {
+            tvWaktu.setText(waktuTemp);
+        }
+
+        //SET TEXT
+        tvJudul.setText("Barang " + barangTemp + " telah mencapai batas minimum");
+        tvPesan.setText("Penambahan stok barang " + barangTemp + " harap segera dilakukan, agar barang tersedia lagi.");
+
+
+    /*    Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(waktu);
+        Date date = cal.getTime();
+        SimpleDateFormat waktuFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
+        String timeFormat = waktuFormat.format(date);
+        tvWaktu.setText(timeFormat);*/
+
 
         btnKonfirmasi.setOnClickListener(this);
 

@@ -8,7 +8,7 @@ public class Pemberitahuan implements Parcelable{
     private String judul;
     private String pesan;
     private String namaBarang;
-    private String waktuString;
+    //private String waktuString;
     private long waktu;
     private boolean baca;
     private boolean proses;
@@ -94,13 +94,13 @@ public class Pemberitahuan implements Parcelable{
         this.proses = proses;
     }
 
-    public String getWaktuString() {
+   /* public String getWaktuString() {
         return waktuString;
     }
 
     public void setWaktuString(String waktuS) {
         this.waktuString = waktuS;
-    }
+    } */
 
     @Override
     public int describeContents() {
@@ -113,7 +113,7 @@ public class Pemberitahuan implements Parcelable{
         dest.writeString(this.pesan);
         dest.writeString(this.namaBarang);
         dest.writeLong(this.waktu);
-        dest.writeString(this.waktuString);
+        //dest.writeString(this.waktuString);
         dest.writeByte((byte) (baca ? 1 : 0));
         dest.writeByte((byte) (proses ? 1 : 0));
     }

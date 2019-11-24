@@ -109,7 +109,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     }
 
                     user = user1;
-                    // etEmail.setEnabled(false);
+                    etEmail.setEnabled(false);
                     etStatusJabatan.setEnabled(false);
 
                 }

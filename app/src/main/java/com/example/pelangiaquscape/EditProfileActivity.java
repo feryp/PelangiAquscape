@@ -189,17 +189,18 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         StorageReference fakturRef = storageRef.child("Profile").child(user.getId() + ".jpg");
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(firebaseAuth.getUid());
 
-        UploadTask uploadTask = fakturRef.putFile(file);
+        try {
+            UploadTask uploadTask = fakturRef.putFile(file);
 
-        // Register observers to listen for when the download is done or if it fails
-        uploadTask.addOnProgressListener(taskSnapshot -> {
-            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+            // Register observers to listen for when the download is done or if it fails
+            uploadTask.addOnProgressListener(taskSnapshot -> {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
-            ProgressDialog dialog = new ProgressDialog(EditProfileActivity.this);
-            dialog.setMessage("Ubah Data...");
-            dialog.setIndeterminate(false);
-            dialog.setProgress((int) progress);
-            dialog.show();
+                ProgressDialog dialog = new ProgressDialog(EditProfileActivity.this);
+                dialog.setMessage("Ubah Data...");
+                dialog.setIndeterminate(false);
+                dialog.setProgress((int) progress);
+                dialog.show();
 
 
 //                    String nama_akun = etNamaAkun.getText().toString();
@@ -209,7 +210,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
 //                    update(nama_akun, status_jabatan, no_hp, bio);
 
-            // Kalo user update email
+                // Kalo user update email
           /*  String emailFirebase = firebaseUser.getEmail();
             String emailBaru = etEmail.getText().toString();
 
@@ -232,6 +233,31 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                         });
             } */
 
+                dialog.dismiss();
+
+
+            })
+                    .addOnFailureListener(exception -> {
+                        // Handle unsuccessful uploads
+                    })
+                    .addOnSuccessListener(taskSnapshot -> {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                        Toast.makeText(this, "Upload Foto Profil berhasil", Toast.LENGTH_SHORT).show();
+                        setResult(RESULT_OK);
+                        finish();
+                    });
+
+
+        } catch (IllegalArgumentException e) {
+
+        } finally {
+            /* kodingan yg ada di blok finally bakal dijalanin dalam semua kondisi.
+                Jadi, kan ini pake try catch buat handle error kalo misalnya ga mau update foto
+                Terus mau kondisinya nanti user mau update foto atau cuma update profil aja,
+                blok finally ini bakal tetep dijalanin.
+                Jadi user tetep bisa update profil walau ga update foto
+                atau pun sekalian dia update foto
+             */
             // update data uname & telepon di node User
             userRef.child("username").setValue(etNamaAkun.getText().toString());
             userRef.child("telepon").setValue(etNoHp.getText().toString());
@@ -262,22 +288,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     }
                 });
             }
-
-            dialog.dismiss();
-
-
-        })
-                .addOnFailureListener(exception -> {
-                    // Handle unsuccessful uploads
-                })
-                .addOnSuccessListener(taskSnapshot -> {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    Toast.makeText(this, "Upload Foto Profil berhasil", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_OK);
-                    finish();
-                });
-
-
+        }
     }
 
     private void update(final String nama_akun, final String status_jabatan, final String no_hp, final String bio) {

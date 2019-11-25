@@ -4,11 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.LinkAddress;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,19 +17,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pelangiaquscape.Adapter.PegawaiAdapter;
 import com.example.pelangiaquscape.Interface.ItemClickListener;
 import com.example.pelangiaquscape.Interface.NamaPegawai;
-import com.example.pelangiaquscape.Model.Merek;
 import com.example.pelangiaquscape.Model.Pegawai;
 import com.example.pelangiaquscape.ViewHolder.PegawaiViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +42,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PegawaiActivity extends AppCompatActivity implements View.OnClickListener {
+public class PegawaiActivity extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
 
     ImageView cancel;
 
@@ -58,18 +56,15 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 
     LinearLayout imageLayout;
     List<String> namapegawai = new ArrayList<>();
-    private Pegawai pegawai;
-    private String key;
     SearchView searchView;
-
     RecyclerView.LayoutManager layoutManager;
     FloatingActionButton fab_pegawai;
     boolean fromTambahPembelianActivity;
-
     Query query;
     FirebaseRecyclerAdapter adapter;
     PegawaiAdapter pegawaiAdapter;
-
+    private Pegawai pegawai;
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,31 +93,20 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
         readData(new NamaPegawai() {
             @Override
             public void readNamaPegawai(List<String> listNamaPegawai) {
-                for (String pegawai : listNamaPegawai){
+                for (String pegawai : listNamaPegawai) {
                     Log.v("testpegawai", pegawai);
                 }
             }
         });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                pegawaiAdapter = new PegawaiAdapter();
-                pegawaiAdapter.getFilter().filter(s);
-                return true;
-            }
-        });
+        searchView.setOnQueryTextListener(this);
 
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
                 loadPegawai();
-                return false;
+                return true;
             }
         });
 
@@ -132,11 +116,11 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    void readData(final NamaPegawai callback){
+    void readData(final NamaPegawai callback) {
         FirebaseDatabase.getInstance().getReference("Pegawai").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String p = ds.child("namaPegawai").getValue(String.class);
                     namapegawai.add(p);
 
@@ -156,21 +140,12 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
         query = FirebaseDatabase.getInstance().getReference().child("Pegawai").orderByChild("namaPegawai");
         FirebaseRecyclerOptions<Pegawai> options =
                 new FirebaseRecyclerOptions.Builder<Pegawai>().setQuery(query, Pegawai.class).build();
-        Log.i("SNAPSHOT", options.getSnapshots().toString());
         adapter = new FirebaseRecyclerAdapter<Pegawai, PegawaiViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull PegawaiViewHolder holder, int position, @NonNull final Pegawai model) {
                 holder.bindData(model);
                 imageLayout.setVisibility(View.GONE);
 
-//                Log.i("INFORMATION", model.getFotoPegawai() + " " + model.getFotoPegawai());
-//                Log.i("INFORMATION", model.getNamaPegawai() + " " + model.getNamaPegawai());
-//                Log.i("INFORMATION", model.getNamapengguna() + " " + model.getNamapengguna());
-//                Log.i("INFORMATION", model.getPassword() + " " + model.getPassword());
-//                Log.i("INFORMATION", model.getJabatan() + " " + model.getJabatan());
-//                Log.i("INFORMATION", model.getHakAkses() + " " + model.getHakAkses());
-//                Log.i("INFORMATION", model.getNoHp() + " " + model.getNoHp());
-//                Log.i("INFORMATION", model.getEmailPegawai() + " " + model.getEmailPegawai());
                 final Pegawai clickItem = model;
 
                 final int size = this.getItemCount();
@@ -181,17 +156,10 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
                         pegawai.putExtra("pegawai", model);
-                        System.out.println( "pegawai activity : "+model.toString());
+                        System.out.println("pegawai activity : " + model.toString());
 
                         pegawai.putExtra("fromPegawaiActivity", true);
                         pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
-//                            pegawai.putExtra("emailPegawai", model.getEmailPegawai());
-//                            pegawai.putExtra("fotoPegawai", model.getFotoPegawai());
-//                            pegawai.putExtra("hakAkses", model.getHakAkses());
-//                            pegawai.putExtra("id", model.getId());
-//                            pegawai.putExtra("namaPegawai", model.getNamaPegawai());
-//                            pegawai.putExtra("namaPengguna", model.getNamapengguna());
-//                            pegawai.putExtra("noHp", model.getNoHp());
 
                         System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
                         startActivity(pegawai);
@@ -212,7 +180,7 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
             public PegawaiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.list_item_pegawai, viewGroup, false);
-                Log.i("Buat View Holder", view.toString());
+
                 return new PegawaiViewHolder(view);
             }
 
@@ -283,4 +251,116 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
                 });
         alertDialog.show();
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        if (s.equals("")) {
+            loadPegawai();
+        }
+
+        String kata = s.substring(0, 1).toUpperCase() + s.substring(1);
+
+        Query firebaseSearchQuery = FirebaseDatabase.getInstance().getReference().child("Pegawai").orderByChild("namaPegawai").startAt(kata).endAt(kata + "\uf8ff");
+
+        //set Options
+        FirebaseRecyclerOptions<Pegawai> options =
+                new FirebaseRecyclerOptions.Builder<Pegawai>()
+                        .setQuery(firebaseSearchQuery, Pegawai.class)
+                        .setLifecycleOwner(this)
+                        .build();
+
+        FirebaseRecyclerAdapter adaptersearch = new FirebaseRecyclerAdapter<Pegawai, PegawaiSearchviewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull PegawaiSearchviewHolder holder, int position, @NonNull Pegawai model) {
+
+                holder.setNama(model.getNamaPegawai());
+                holder.setJabatan(model.getJabatan());
+
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference();
+                StorageReference pegawaiRef = storageRef.child("Profile").child(model.getId() + ".jpg");
+                pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
+
+                    try {
+                        if (uri != null){
+                            Picasso.get().load(uri).into(holder.im_foto_pegawai);
+                        }
+
+                    } catch (IllegalArgumentException e){
+                        holder.im_foto_pegawai.setImageResource(R.drawable.pegawai);
+                    }
+                });
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
+                        pegawai.putExtra("pegawai", model);
+                        System.out.println("pegawai activity : " + model.toString());
+
+                        pegawai.putExtra("fromPegawaiActivity", true);
+                        pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
+
+                        System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
+                        startActivity(pegawai);
+                    }
+                });
+
+                holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        showDeleteDialog(String.valueOf(adapter.getRef(position).getKey()), model);
+                        return false;
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public PegawaiSearchviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_pegawai, parent, false);
+                return new PegawaiSearchviewHolder(mView);
+            }
+        };
+
+        rvPegawai.setAdapter(adaptersearch);
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        if (s.equals("")) {
+            loadPegawai();
+        }
+
+        return true;
+    }
+
+    //VIEW HOLDER
+    public class PegawaiSearchviewHolder extends RecyclerView.ViewHolder {
+        View mView;
+        TextView mdisplayname, mJabatan;
+        ImageView im_foto_pegawai;
+
+
+        public PegawaiSearchviewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+
+            mdisplayname = mView.findViewById(R.id.tv_nama_pegawai);
+            mJabatan = mView.findViewById(R.id.tv_jabatan);
+            im_foto_pegawai = itemView.findViewById(R.id.foto_pegawai);
+        }
+
+        public void setNama(String display_name) {
+
+            mdisplayname.setText(display_name);
+        }
+
+        public void setJabatan(String j) {
+            mJabatan.setText(j);
+        }
+    }
+
 }

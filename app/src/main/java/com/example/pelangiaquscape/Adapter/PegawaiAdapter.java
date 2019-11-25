@@ -68,7 +68,7 @@ public class PegawaiAdapter extends RecyclerView.Adapter<PegawaiViewHolder> impl
         return theFilter;
     }
 
-   private class PegawaiFilter extends Filter{
+    private class PegawaiFilter extends Filter{
 
        @Override
        protected FilterResults performFiltering(CharSequence constraint) {

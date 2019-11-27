@@ -2,10 +2,10 @@ package com.example.pelangiaquscape;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,46 +15,38 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pelangiaquscape.Adapter.ListViewAdapter;
+import com.example.pelangiaquscape.Model.Bantuan;
+import com.example.pelangiaquscape.Model.Barang;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 public class BantuanActivity extends AppCompatActivity {
 
     ImageView cancel;
     EditText etSearch;
     ImageButton btnSearch;
-    private ListView listView;
+    String mTitle[];
+    String mDescription[];
+    int images[];
 
-    String mTitle[] = {"Cara Pembelian Barang", "Cara Transaksi Penjualan", "Cara Penyimpanan Barang", "Cara Menambah Barang",
-            "Cara Penerimaan Barang", "Cara Menambah Mitra Bisnis", "Cara Menambah Pegawai", "Cara Melihat Laporan", "Cara Melihat Rekap Kas",
-            "Cara Melihat Pemberitahuan", "Cara Mengubah Akun", "Cara Mengubah Akun Toko", "Cara Mengatur Printer"
-    };
-    String mDescription[] = {
-            "Bagaimana cara membeli barang di Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara melakukan transaksi penjualan pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk menyimpan barang digudang pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk menambah barang pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk penerimaan barang dari proses pembelian pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk menambahkan data mitra bisnis pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk menambahkan data pegawai pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk melihat laporan penjualan pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk melihat rekap kas pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk melihat pemberitahuan pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk mengubah akun pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk mengubah akun toko pada Aplikasi Pelangi Aquascape?",
-            "Bagaimana cara untuk mengatur printer pada Aplikasi Pelangi Aquascape?"
-
-    };
-
-    int images[] = {R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question,
-            R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question,
-            R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question,
-            R.drawable.ic_question,
-    };
     CardView caraPembelian, caraPenjualan, caraPenyimpanan, caraTambahBarang, caraPenerimaan, caraMitraBisnis, caraLaporan, caraRekap, caraPemberitahuan, caraAkun, caraAkunToko, caraPrinter;
+    private ListView listView;
+    MyAdapter adapter;
+
+    ArrayList<Bantuan> arraylist = new ArrayList<Bantuan>();
+    ListViewAdapter listViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,39 +58,78 @@ public class BantuanActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.search_field_bantuan);
         btnSearch = findViewById(R.id.btn_search);
 
-        MyAdapter adapter = new MyAdapter(this, mTitle, mDescription, images);
-        listView.setAdapter(adapter);
+        mTitle = new String[]{"Cara Pembelian Barang", "Cara Transaksi Penjualan", "Cara Penyimpanan Barang", "Cara Menambah Barang",
+                "Cara Penerimaan Barang", "Cara Menambah Mitra Bisnis", "Cara Menambah Pegawai", "Cara Melihat Laporan", "Cara Melihat Rekap Kas",
+                "Cara Melihat Pemberitahuan", "Cara Mengubah Akun", "Cara Mengubah Akun Toko", "Cara Mengatur Printer"
+        };
+
+        mDescription = new String[]{
+                "Bagaimana cara membeli barang di Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara melakukan transaksi penjualan pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk menyimpan barang digudang pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk menambah barang pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk penerimaan barang dari proses pembelian pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk menambahkan data mitra bisnis pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk menambahkan data pegawai pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk melihat laporan penjualan pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk melihat rekap kas pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk melihat pemberitahuan pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk mengubah akun pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk mengubah akun toko pada Aplikasi Pelangi Aquascape?",
+                "Bagaimana cara untuk mengatur printer pada Aplikasi Pelangi Aquascape?"
+
+        };
+
+        images = new int[]{R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question,
+                R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question,
+                R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question, R.drawable.ic_question,
+                R.drawable.ic_question,
+        };
+
+        // adapter = new MyAdapter(this, mTitle, mDescription, images);
+      //  listView.setAdapter(adapter);
+
+        for (int i = 0; i < mTitle.length; i++)
+        {
+            Bantuan wp = new Bantuan(mTitle[i], mDescription[i], images[i]);
+            // Binds all strings into an array
+            arraylist.add(wp);
+        }
+
+        listViewAdapter = new ListViewAdapter(this, arraylist);
+        listView.setAdapter(listViewAdapter);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              search();
-            }
+                //search();
+               // adapter.getFilter().filter(etSearch.getText().toString());
 
-            private void search() {
-                etSearch.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        adapter.getFilter().filter(s);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
+                   /* boolean cek = valid.contains(etSearch.getText().toString());
+                    Toast.makeText(BantuanActivity.this, String.valueOf(cek), Toast.LENGTH_SHORT).show(); */
             }
         });
 
 
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String text = etSearch.getText().toString().toLowerCase(Locale.getDefault());
+                listViewAdapter.filter(text);
+            }
+        });
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
@@ -167,7 +198,8 @@ public class BantuanActivity extends AppCompatActivity {
                     startActivity(caraPrinter);
                 }
             }
-        });
+        });*/
+
 //        caraPembelian = findViewById(R.id.cv_cara_pembelian_barang);
 //        caraPenjualan = findViewById(R.id.cv_cara_transaksi_penjualan);
 //        caraPenyimpanan = findViewById(R.id.cv_cara_penyimpanan);
@@ -286,12 +318,15 @@ public class BantuanActivity extends AppCompatActivity {
     }
 
 
-
-    class MyAdapter extends ArrayAdapter<String> {
+    class MyAdapter extends ArrayAdapter<String> implements Filterable {
         Context context;
         String rTitle[];
         String rDescription[];
         int rImgs[];
+
+        BantuanFilter theFilter;
+        List<Bantuan> bantuan;
+        List<Bantuan> filterBantuan;
 
         public MyAdapter(Context context, String title[], String description[], int imgs[]) {
             super(context, R.layout.list_bantuan, title);
@@ -299,6 +334,8 @@ public class BantuanActivity extends AppCompatActivity {
             this.rTitle = title;
             this.rDescription = description;
             this.rImgs = imgs;
+
+            getFilter();
         }
 
         @NonNull
@@ -315,5 +352,45 @@ public class BantuanActivity extends AppCompatActivity {
             myDesc.setText(rDescription[position]);
             return list;
         }
+
+        @Override
+        public Filter getFilter() {
+            if(theFilter == null){
+                theFilter = new BantuanFilter();
+            }
+            return theFilter;
+        }
+
+        private class BantuanFilter extends Filter{
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults filterResults = new FilterResults();
+                if(constraint!= null && constraint.length() > 0){
+                    ArrayList<Bantuan> tempList = new ArrayList<>();
+
+                    for(Bantuan bantuan:bantuan){
+                        if(bantuan.getJudul().toLowerCase().contains(constraint.toString().toLowerCase())){
+                            tempList.add(bantuan);
+                        }
+                    }
+
+                    filterResults.count = tempList.size();
+                    filterResults.values = tempList;
+                }else{
+                    filterResults.count = bantuan.size();
+                    filterResults.values = bantuan;
+                }
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filterBantuan = (List<Bantuan>) results.values;
+                notifyDataSetChanged();
+
+            }
+        }
+
     }
 }

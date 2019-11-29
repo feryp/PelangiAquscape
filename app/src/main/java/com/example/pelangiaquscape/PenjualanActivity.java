@@ -1,17 +1,14 @@
 package com.example.pelangiaquscape;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,18 +25,15 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.core.Tag;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener{
+public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
 
     private static final String TAG = "PenjualanActivity";
@@ -54,17 +48,14 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     FirebaseDatabase fd;
     DatabaseReference dr;
     FirebaseRecyclerAdapter adapter;
-
+    ImageView iv;
+    TextView tvImage;
+    Query query;
     private Penjualan penjualan;
     private String key;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private long tanggal;
 
-
-    ImageView iv;
-    TextView tvImage;
-
-    Query query;
+    long millis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +72,15 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
         iv = findViewById(R.id.iv_ilustrasi_pelanggankosong);
         tvImage = findViewById(R.id.tv_pelanggan_kosong);
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(PenjualanActivity.this,
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                mDateSetListener, year, month, day);
 
         //SET LISTENER
         cancel.setOnClickListener(this);
@@ -101,50 +101,9 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
             case R.id.im_filter:
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+               loadDatePicker();
 
-                DatePickerDialog dialog = new DatePickerDialog(PenjualanActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener, year, month, day);
 
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-
-                mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker v, int year, int month, int day) {
-                        month = month + 1;
-
-                        //Log.d(TAG, "onDataSet: mm/dd/yyyy: " + day + "/" + month + "/" + year);
-                        String tanggalPilih;
-                        if(String.valueOf(day).length() == 1) {
-                            tanggalPilih = "0" + day + "/" + month + "/" + year;
-                        } else {
-                            tanggalPilih = day + "/" + month + "/" + year;
-                        }
-                     //   Toast.makeText(PenjualanActivity.this, "tanggal " + tanggalPilih, Toast.LENGTH_SHORT).show();
-
-                        DateFormat df = new SimpleDateFormat("dd MMM yyyy");
-                        Date datePilih;
-                        try {
-                            datePilih = df.parse(tanggalPilih);
-                            long millis = datePilih.getTime();
-                            tanggal = millis;
-                            Toast.makeText(PenjualanActivity.this, "tanggal " + tanggal, Toast.LENGTH_LONG).show();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                            Toast.makeText(PenjualanActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
-                      loadDataPenjualanFilter();
-                        // 1572627600000
-                    }
-
-                };
 
 //                listFilter = new String[]{"Oleh Tanggal", "Oleh Waktu"};
 //                AlertDialog.Builder builder = new AlertDialog.Builder(PenjualanActivity.this);
@@ -170,7 +129,48 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private String millisToDate(long millis){
+    private void loadDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(PenjualanActivity.this,
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        Calendar calendar = Calendar.getInstance();
+
+                      //  Toast.makeText(PenjualanActivity.this, "month " + month + " day " + day, Toast.LENGTH_SHORT).show();
+
+                        calendar.set(year, month, day);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        calendar.set(Calendar.HOUR, 0);
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MINUTE,0);
+
+                       /* SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+
+                       String dateString = dateFormat.format(calendar.getTime());*/
+
+                        millis = calendar.getTimeInMillis();
+
+                      /*  String tanggalTest = millisToDate(millis);
+
+                       Toast.makeText(PenjualanActivity.this, "Tanggal test : " + tanggalTest, Toast.LENGTH_SHORT).show();
+*/
+                        loadDataPenjualanFilter();
+                        // 1572627600000
+                    }
+                }, year, month, day);
+
+        datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        datePickerDialog.show();
+
+    }
+
+    private String millisToDate(long millis) {
 
         return DateFormat.getDateInstance(DateFormat.SHORT).format(millis);
         //You can use DateFormat.LONG instead of SHORT
@@ -183,7 +183,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 .getReference()
                 .child("Penjualan")
                 .orderByChild("tanggalPenjualan");
-        Log.v("query", query.getPath().toString());
 
         FirebaseRecyclerOptions<Penjualan> options =
                 new FirebaseRecyclerOptions.Builder<Penjualan>()
@@ -239,13 +238,9 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         query = FirebaseDatabase.getInstance().getReference()
                 .child("Penjualan")
                 .orderByChild("tanggalPenjualan")
-                .startAt(tanggal)
-                .endAt(tanggal + "\uf8ff");
+                .startAt(millis).endAt(millis + "\uf8ff");
 //        Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
-//        Query tanggalQuery = tanggalRef.orderByChild("tanggalPenjualan").startAt(tanggal).endAt(tanggal + "\uf8ff");
-
-        Log.v("query", query.getPath().toString());
-
+//
         FirebaseRecyclerOptions<Penjualan> options =
                 new FirebaseRecyclerOptions.Builder<Penjualan>()
                         .setQuery(query, Penjualan.class)
@@ -308,4 +303,8 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         adapter.stopListening();
     }
 
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
+    }
 }

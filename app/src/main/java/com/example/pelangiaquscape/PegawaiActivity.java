@@ -254,11 +254,97 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-        if (s.equals("")) {
+//        if (s.equals("")) {
+//            loadPegawai();
+//        }
+
+//        String kata = s.substring(0, 1).toUpperCase() + s.substring(1);
+//
+//        Query firebaseSearchQuery = FirebaseDatabase.getInstance().getReference().child("Pegawai").orderByChild("namaPegawai").startAt(kata).endAt(kata + "\uf8ff");
+//
+//        //set Options
+//        FirebaseRecyclerOptions<Pegawai> options =
+//                new FirebaseRecyclerOptions.Builder<Pegawai>()
+//                        .setQuery(firebaseSearchQuery, Pegawai.class)
+//                        .setLifecycleOwner(this)
+//                        .build();
+//
+//        FirebaseRecyclerAdapter adaptersearch = new FirebaseRecyclerAdapter<Pegawai, PegawaiSearchviewHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull PegawaiSearchviewHolder holder, int position, @NonNull Pegawai model) {
+//
+//                holder.setNama(model.getNamaPegawai());
+//                holder.setJabatan(model.getJabatan());
+//
+//                FirebaseStorage storage = FirebaseStorage.getInstance();
+//                StorageReference storageRef = storage.getReference();
+//                StorageReference pegawaiRef = storageRef.child("Profile").child(model.getId() + ".jpg");
+//                pegawaiRef.getDownloadUrl().addOnSuccessListener(uri -> {
+//
+//                    try {
+//                        if (uri != null){
+//                            Picasso.get().load(uri).into(holder.im_foto_pegawai);
+//                        }
+//
+//                    } catch (IllegalArgumentException e){
+//                        holder.im_foto_pegawai.setImageResource(R.drawable.pegawai);
+//                    }
+//                });
+//
+//                holder.mView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent pegawai = new Intent(PegawaiActivity.this, TambahPegawaiActivity.class);
+//                        pegawai.putExtra("pegawai", model);
+//                        System.out.println("pegawai activity : " + model.toString());
+//
+//                        pegawai.putExtra("fromPegawaiActivity", true);
+//                        pegawai.putExtra("idPegawai", adapter.getRef(holder.getAdapterPosition()).getKey());
+//
+//                        System.out.println("ID Pegawai " + adapter.getRef(position).getKey());
+//                        startActivity(pegawai);
+//                    }
+//                });
+//
+//                holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+//                    @Override
+//                    public boolean onLongClick(View v) {
+//                        showDeleteDialog(String.valueOf(adapter.getRef(position).getKey()), model);
+//                        return false;
+//                    }
+//                });
+//            }
+//
+//            @NonNull
+//            @Override
+//            public PegawaiSearchviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_pegawai, parent, false);
+//                return new PegawaiSearchviewHolder(mView);
+//            }
+//        };
+//
+//        rvPegawai.setAdapter(adaptersearch);
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+//        if (s.equals("")) {
+//            loadPegawai();
+//        }
+//
+//        return true;
+//        if (s.equals("")) {
+//            loadPegawai();
+//        }
+
+        String kata = null;
+        try {
+            kata = s.substring(0,1).toUpperCase() + s.substring(1);
+        } catch (StringIndexOutOfBoundsException e){
             loadPegawai();
         }
-
-        String kata = s.substring(0, 1).toUpperCase() + s.substring(1);
 
         Query firebaseSearchQuery = FirebaseDatabase.getInstance().getReference().child("Pegawai").orderByChild("namaPegawai").startAt(kata).endAt(kata + "\uf8ff");
 
@@ -325,14 +411,6 @@ public class PegawaiActivity extends AppCompatActivity implements View.OnClickLi
 
         rvPegawai.setAdapter(adaptersearch);
 
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-        if (s.equals("")) {
-            loadPegawai();
-        }
 
         return true;
     }

@@ -102,6 +102,8 @@ public class BantuanActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String text = etSearch.getText().toString().toLowerCase(Locale.getDefault());
+                listViewAdapter.filter(text);
                 //search();
                // adapter.getFilter().filter(etSearch.getText().toString());
 
@@ -123,8 +125,8 @@ public class BantuanActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String text = etSearch.getText().toString().toLowerCase(Locale.getDefault());
-                listViewAdapter.filter(text);
+//                String text = etSearch.getText().toString().toLowerCase(Locale.getDefault());
+//                listViewAdapter.filter(text);
             }
         });
 
